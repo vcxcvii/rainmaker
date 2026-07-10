@@ -7,7 +7,7 @@ export interface Suggestion {
 
 const SUGGESTIONS: Record<string, (f: Finding) => Suggestion> = {
   DeadClickCount: (f) => ({
-    title: `[Lazarus Pit] Dead clicks detected (${f.value}% of sessions)`,
+    title: `[Lazarus Pit] Dead clicks detected`,
     body: [
       `**Metric:** DeadClickCount — ${f.value}% of sessions (threshold ${f.threshold}%)`,
       ``,
@@ -17,7 +17,7 @@ const SUGGESTIONS: Record<string, (f: Finding) => Suggestion> = {
     ].join("\n"),
   }),
   RageClickCount: (f) => ({
-    title: `[Lazarus Pit] Rage clicks detected (${f.value}% of sessions)`,
+    title: `[Lazarus Pit] Rage clicks detected`,
     body: [
       `**Metric:** RageClickCount — ${f.value}% of sessions (threshold ${f.threshold}%)`,
       ``,
@@ -27,7 +27,7 @@ const SUGGESTIONS: Record<string, (f: Finding) => Suggestion> = {
     ].join("\n"),
   }),
   QuickbackClick: (f) => ({
-    title: `[Lazarus Pit] High quickback rate (${f.value}% of sessions)`,
+    title: `[Lazarus Pit] High quickback rate`,
     body: [
       `**Metric:** QuickbackClick — ${f.value}% of sessions (threshold ${f.threshold}%)`,
       ``,
@@ -37,7 +37,7 @@ const SUGGESTIONS: Record<string, (f: Finding) => Suggestion> = {
     ].join("\n"),
   }),
   ScriptErrorCount: (f) => ({
-    title: `[Lazarus Pit] Script errors in ${f.value}% of sessions`,
+    title: `[Lazarus Pit] Script errors detected`,
     body: [
       `**Metric:** ScriptErrorCount — ${f.value}% of sessions (threshold ${f.threshold}%)`,
       ``,
@@ -47,7 +47,7 @@ const SUGGESTIONS: Record<string, (f: Finding) => Suggestion> = {
     ].join("\n"),
   }),
   ErrorClickCount: (f) => ({
-    title: `[Lazarus Pit] Clicks triggering errors (${f.value}% of sessions)`,
+    title: `[Lazarus Pit] Clicks triggering errors`,
     body: [
       `**Metric:** ErrorClickCount — ${f.value}% of sessions (threshold ${f.threshold}%)`,
       ``,
@@ -57,7 +57,7 @@ const SUGGESTIONS: Record<string, (f: Finding) => Suggestion> = {
     ].join("\n"),
   }),
   ScrollDepth: (f) => ({
-    title: `[Lazarus Pit] Low average scroll depth (${f.value}%)`,
+    title: `[Lazarus Pit] Low average scroll depth`,
     body: [
       `**Metric:** ScrollDepth — average ${f.value}% (threshold ${f.threshold}%)`,
       ``,
@@ -72,7 +72,7 @@ export function mapFindingToSuggestion(finding: Finding): Suggestion {
   const mapper = SUGGESTIONS[finding.metric];
   if (!mapper) {
     return {
-      title: `[Lazarus Pit] ${finding.metric} anomaly (${finding.value})`,
+      title: `[Lazarus Pit] ${finding.metric} anomaly`,
       body: `**Metric:** ${finding.metric} — ${finding.value} (threshold ${finding.threshold})\n\n**Hypothesis:** ${finding.hypothesis}`,
     };
   }
