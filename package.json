@@ -1,0 +1,20 @@
+{
+  "name": "lazarus-pit",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "fetch": "tsx src/fetch-clarity.ts",
+    "diagnose": "tsx src/finding-extractor.ts",
+    "propose": "tsx src/pr-generator.ts",
+    "run": "tsx src/run.ts"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0",
+    "@types/node": "^22.0.0"
+  }
+}
