@@ -1,6 +1,6 @@
 # lazarus-pit
 
-Self-healing UX agent. Pulls Clarity session data, diagnoses friction, files GitHub issues with a proposed fix against the target site. Human approves before anything touches code — no blind auto-deploy.
+Self-healing UX agent. Pulls Clarity session data, diagnoses friction, files GitHub issues with a proposed fix against the target site. Runs on autopilot weekly via GitHub Actions. Human approves before anything touches code — no blind auto-deploy.
 
 ## Modules
 
@@ -29,6 +29,15 @@ npm run diagnose   # extract findings → data/findings-*.json
 npm run propose    # file GitHub issues from latest findings
 npm run run        # all three in sequence
 ```
+
+## Autopilot
+
+`.github/workflows/weekly.yml` runs the full pipeline every Monday at 14:00 UTC (also triggerable manually via `workflow_dispatch`). It needs two repo secrets:
+
+- `CLARITY_TOKEN` — same token as local `.env`
+- `GH_PAT` — a personal access token with `repo` scope, used instead of the default `GITHUB_TOKEN` because issues are filed on a *different* repo (`vcxcvii/vcxcvii.github.io`) than the one the workflow runs in
+
+Weekly cadence matches Clarity's 3-day lookback window and 10-calls/day budget — one run a week uses 2 of those 10 calls (fetch + nothing else hits the API) and stays well inside the window.
 
 ## Design decisions
 

@@ -1,0 +1,21 @@
+name: Weekly UX diagnosis
+
+on:
+  schedule:
+    - cron: "0 14 * * 1" # every Monday, 14:00 UTC
+  workflow_dispatch: {}
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    env:
+      CLARITY_TOKEN: ${{ secrets.CLARITY_TOKEN }}
+      GH_TOKEN: ${{ secrets.GH_PAT }}
+      LAZARUS_TARGET_REPO: vcxcvii/vcxcvii.github.io
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+      - run: npm run run
