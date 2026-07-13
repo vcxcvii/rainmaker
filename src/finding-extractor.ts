@@ -58,8 +58,32 @@ function latestClarityFile(dataDir: string): string {
   return join(dataDir, files.at(-1)!);
 }
 
+// Below this many human sessions, per-metric percentages and averages are
+// dominated by individual (often bot) sessions and can't be trusted.
+const MIN_HUMAN_SESSIONS = 20;
+
+export function humanSessionCount(metrics: ClarityMetric[]): number {
+  const traffic = metrics.find((m) => m.metricName === "Traffic")?.information?.[0];
+  const total = Number(traffic?.totalSessionCount ?? 0);
+  const bots = Number(traffic?.totalBotSessionCount ?? 0);
+  return Math.max(0, total - bots);
+}
+
 export function extractFindings(metrics: ClarityMetric[]): Finding[] {
   const findings: Finding[] = [];
+
+  const humanSessions = humanSessionCount(metrics);
+  if (humanSessions < MIN_HUMAN_SESSIONS) {
+    findings.push({
+      metric: "Traffic",
+      severity: "low",
+      value: humanSessions,
+      threshold: MIN_HUMAN_SESSIONS,
+      hypothesis:
+        "Too few human (non-bot) sessions in the window to diagnose UX — this is a distribution problem, not a friction problem. Skipping all other findings until traffic clears the floor.",
+    });
+    return findings;
+  }
 
   for (const [metricName, rule] of Object.entries(THRESHOLDS)) {
     const metric = metrics.find((m) => m.metricName === metricName);
