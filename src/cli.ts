@@ -68,6 +68,10 @@ async function main(argv: string[]): Promise<number> {
       const { runInit } = await import('./commands/init.js');
       return runInit(rest);
     }
+    case 'doctor': {
+      const { runDoctor } = await import('./commands/doctor.js');
+      return runDoctor(rest);
+    }
     default: {
       console.error(
         `\`paydirt ${command}\` is not implemented yet.\n` +
