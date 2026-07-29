@@ -1,8 +1,8 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { execFileSync } from "node:child_process";
-import type { Finding } from "./finding-extractor.js";
-import { mapFindingToSuggestion } from "./component-mapper.js";
+import type { Finding } from "../analyze/findings.js";
+import { mapFindingToSuggestion } from "../analyze/component-mapper.js";
 
 const REPO = process.env.LAZARUS_TARGET_REPO ?? "vcxcvii/vcxcvii.github.io";
 const LABEL = "lazarus-pit";

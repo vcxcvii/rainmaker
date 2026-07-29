@@ -1,4 +1,9 @@
 node_modules/
-.env
 dist/
-data/*.json
+.env
+
+# Contains real traffic, conversion counts and modelled pipeline.
+# data.example/ is committed instead, same shapes, fabricated numbers.
+data/
+paydirt.config.yml
+*.local.json

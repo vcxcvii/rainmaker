@@ -1,0 +1,36 @@
+# paydirt configuration
+# Supplies the business context that universal tiering logic needs.
+# Docs: https://github.com/vcxcvii/paydirt
+
+site: https://quillet.com
+revenue_model: sales-led
+
+# Tier 0. Where money changes hands.
+primary_conversion:
+  - /demo
+  - /pricing
+
+# Tier 1 and 2 seeds.
+secondary_conversion:
+  - /docs
+  - /blog
+
+# 0 disables value-weighted scoring.
+acv: 18000
+sales_cycle_days: 45
+
+# grill-me starts from this hypothesis and argues with it.
+icp_hint: "GCs and legal ops leads, Series B+, 200-2000 employees"
+
+competitors:
+  - ironclad.com
+  - luminance.com
+
+crawl:
+  max_urls: 500
+  provider: firecrawl
+  exclude:
+    - /tag/
+    - /author/
+    - /page/
+    - /feed/

@@ -1,4 +1,4 @@
-import type { Finding } from "./finding-extractor.js";
+import type { Finding } from "./findings.js";
 
 export interface Suggestion {
   title: string;

@@ -1,16 +1,44 @@
 {
-  "name": "lazarus-pit",
+  "name": "paydirt",
   "version": "0.1.0",
-  "private": true,
+  "description": "GTM-native SEO and AI-search system. Ranks every finding by distance to revenue, not technical severity.",
   "type": "module",
-  "scripts": {
-    "fetch": "tsx src/fetch-clarity.ts",
-    "diagnose": "tsx src/finding-extractor.ts",
-    "propose": "tsx src/pr-generator.ts",
-    "run": "tsx src/run.ts"
+  "bin": {
+    "paydirt": "./dist/cli.js"
   },
+  "files": [
+    "dist",
+    "skills",
+    "paydirt.config.example.yml",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/cli.ts",
+    "init": "tsx src/cli.ts init",
+    "doctor": "tsx src/cli.ts doctor",
+    "audit": "tsx src/cli.ts audit",
+    "report": "tsx src/cli.ts report",
+    "routine": "tsx src/cli.ts routine",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test src/**/*.test.ts"
+  },
+  "keywords": [
+    "seo",
+    "aeo",
+    "geo",
+    "gtm",
+    "content-marketing",
+    "google-search-console",
+    "ga4"
+  ],
+  "license": "MIT",
   "dependencies": {
-    "dotenv": "^16.4.5"
+    "dotenv": "^16.4.5",
+    "yaml": "^2.5.0"
   },
   "devDependencies": {
     "tsx": "^4.19.0",
