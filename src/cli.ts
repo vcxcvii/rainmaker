@@ -72,6 +72,10 @@ async function main(argv: string[]): Promise<number> {
       const { runDoctor } = await import('./commands/doctor.js');
       return runDoctor(rest);
     }
+    case 'fetch': {
+      const { runFetch } = await import('./commands/fetch.js');
+      return runFetch(rest);
+    }
     default: {
       console.error(
         `\`paydirt ${command}\` is not implemented yet.\n` +

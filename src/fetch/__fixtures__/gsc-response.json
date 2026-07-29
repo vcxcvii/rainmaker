@@ -1,0 +1,11 @@
+{
+  "rows": [
+    {
+      "keys": ["https://www.example.com/consulting/", "b2b saas marketing consultant"],
+      "clicks": 4,
+      "impressions": 90,
+      "ctr": 0.044444,
+      "position": 7.2
+    }
+  ]
+}

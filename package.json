@@ -21,6 +21,7 @@
     "init": "tsx src/cli.ts init",
     "doctor": "tsx src/cli.ts doctor",
     "audit": "tsx src/cli.ts audit",
+    "fetch": "tsx src/cli.ts fetch",
     "report": "tsx src/cli.ts report",
     "routine": "tsx src/cli.ts routine",
     "typecheck": "tsc --noEmit",
