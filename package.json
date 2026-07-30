@@ -45,5 +45,10 @@
     "tsx": "^4.19.0",
     "typescript": "^5.6.0",
     "@types/node": "^22.0.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vcxcvii/rainmaker.git"
+  },
+  "homepage": "https://varunchoraria.com/side-quests/rainmaker/"
 }
