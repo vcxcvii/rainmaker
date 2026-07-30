@@ -1,0 +1,1212 @@
+{
+  "findings": {
+    "t0:canonical:/blog/what-is-clm-47": {
+      "baseline": {
+        "impressions": 277,
+        "position": 59
+      },
+      "cause_chain": [],
+      "confidence": 0.41,
+      "current": {
+        "impressions": 277,
+        "position": 59
+      },
+      "first_seen": "2026-02-02T21:00:00Z",
+      "last_event": "2026-08-31T03:00:00Z",
+      "score": 5.55,
+      "status": "closed",
+      "tier": 0
+    },
+    "t0:cwv:/demo-27": {
+      "baseline": {
+        "impressions": 205,
+        "position": 43
+      },
+      "cause_chain": [
+        "commit:534f4ff"
+      ],
+      "confidence": 0.87,
+      "current": {
+        "impressions": 205,
+        "position": 43
+      },
+      "first_seen": "2026-01-17T03:00:00Z",
+      "last_event": "2026-09-02T21:00:00Z",
+      "score": 0.12,
+      "status": "shipped",
+      "tier": 0
+    },
+    "t0:indexation:/contact-40": {
+      "baseline": {
+        "impressions": 116,
+        "position": 44
+      },
+      "cause_chain": [
+        "commit:c45307f"
+      ],
+      "confidence": 0.56,
+      "current": {
+        "impressions": 116,
+        "position": 44
+      },
+      "first_seen": "2026-01-06T09:00:00Z",
+      "last_event": "2026-09-03T15:00:00Z",
+      "score": 3.67,
+      "status": "in_progress",
+      "tier": 0
+    },
+    "t0:indexation:/demo-31": {
+      "baseline": {
+        "impressions": 348,
+        "position": 23
+      },
+      "cause_chain": [],
+      "confidence": 0.05,
+      "current": {
+        "impressions": 348,
+        "position": 23
+      },
+      "first_seen": "2026-01-07T15:00:00Z",
+      "last_event": "2026-09-11T09:00:00Z",
+      "score": 31.54,
+      "status": "dismissed",
+      "tier": 0
+    },
+    "t0:indexation:/integrations/slack-58": {
+      "baseline": {
+        "impressions": 998,
+        "position": 37
+      },
+      "cause_chain": [
+        "commit:37e9f9f",
+        "commit:b81f7ff"
+      ],
+      "confidence": 0.63,
+      "current": {
+        "impressions": 998,
+        "position": 37,
+        "tier": 1
+      },
+      "first_seen": "2026-01-20T15:00:00Z",
+      "last_event": "2026-08-18T21:00:00Z",
+      "score": 27.64,
+      "status": "dismissed",
+      "tier": 1
+    },
+    "t0:indexation:/vs/acme-22": {
+      "baseline": {
+        "impressions": 518,
+        "position": 24
+      },
+      "cause_chain": [],
+      "confidence": 0.22,
+      "current": {
+        "impressions": 518,
+        "position": 24
+      },
+      "first_seen": "2026-01-11T09:00:00Z",
+      "last_event": "2026-09-08T09:00:00Z",
+      "score": 8.29,
+      "status": "in_progress",
+      "tier": 0
+    },
+    "t0:offsite:/blog/what-is-clm-11": {
+      "baseline": {
+        "impressions": 910,
+        "position": 55
+      },
+      "cause_chain": [
+        "commit:327a83f",
+        "commit:a9775ee"
+      ],
+      "confidence": 0.29,
+      "current": {
+        "impressions": 910,
+        "position": 61
+      },
+      "first_seen": "2026-01-23T03:00:00Z",
+      "last_event": "2026-08-16T03:00:00Z",
+      "score": 31.55,
+      "status": "in_progress",
+      "tier": 0
+    },
+    "t0:offsite:/demo-24": {
+      "baseline": {
+        "impressions": 881,
+        "position": 19
+      },
+      "cause_chain": [
+        "commit:ad0f43f"
+      ],
+      "confidence": 0.85,
+      "current": {
+        "impressions": 881,
+        "position": 19
+      },
+      "first_seen": "2026-01-22T15:00:00Z",
+      "last_event": "2026-08-29T09:00:00Z",
+      "score": 19.74,
+      "status": "opened",
+      "tier": 0
+    },
+    "t0:orphan:/blog/what-is-clm-16": {
+      "baseline": {
+        "impressions": 426,
+        "position": 47
+      },
+      "cause_chain": [],
+      "confidence": 0.84,
+      "current": {
+        "impressions": 426,
+        "position": 47
+      },
+      "first_seen": "2026-02-15T21:00:00Z",
+      "last_event": "2026-09-08T15:00:00Z",
+      "score": 7.65,
+      "status": "acknowledged",
+      "tier": 0
+    },
+    "t0:position:/blog/what-is-clm-57": {
+      "baseline": {
+        "impressions": 111,
+        "position": 19
+      },
+      "cause_chain": [
+        "commit:4b3a7bf",
+        "commit:2872d5f"
+      ],
+      "confidence": 0.25,
+      "current": {
+        "impressions": 111,
+        "position": 22
+      },
+      "first_seen": "2026-01-25T03:00:00Z",
+      "last_event": "2026-09-03T21:00:00Z",
+      "score": 26.84,
+      "status": "acknowledged",
+      "tier": 0
+    },
+    "t0:position:/contact-20": {
+      "baseline": {
+        "impressions": 182,
+        "position": 48
+      },
+      "cause_chain": [
+        "commit:1d6fe1f",
+        "commit:25b73e7"
+      ],
+      "confidence": 0.69,
+      "current": {
+        "impressions": 182,
+        "position": 48
+      },
+      "first_seen": "2026-01-23T21:00:00Z",
+      "last_event": "2026-08-23T21:00:00Z",
+      "score": 4.19,
+      "status": "opened",
+      "tier": 0
+    },
+    "t0:position:/contact-51": {
+      "baseline": {
+        "impressions": 676,
+        "position": 54
+      },
+      "cause_chain": [
+        "commit:fbc47e7"
+      ],
+      "confidence": 0.49,
+      "current": {
+        "impressions": 676,
+        "position": 57
+      },
+      "first_seen": "2026-01-09T09:00:00Z",
+      "last_event": "2026-09-01T21:00:00Z",
+      "score": 21.06,
+      "status": "acknowledged",
+      "tier": 0
+    },
+    "t0:position:/vs/acme-42": {
+      "baseline": {
+        "impressions": 719,
+        "position": 15
+      },
+      "cause_chain": [
+        "commit:6ffe49f",
+        "commit:21e125f"
+      ],
+      "confidence": 0.06,
+      "current": {
+        "impressions": 719,
+        "position": 15
+      },
+      "first_seen": "2026-01-06T03:00:00Z",
+      "last_event": "2026-08-12T21:00:00Z",
+      "score": 29.37,
+      "status": "acknowledged",
+      "tier": 0
+    },
+    "t0:schema:/blog/what-is-clm-36": {
+      "baseline": {
+        "impressions": 507,
+        "position": 35
+      },
+      "cause_chain": [
+        "commit:722f89f",
+        "commit:dfacb47"
+      ],
+      "confidence": 0.62,
+      "current": {
+        "impressions": 507,
+        "position": 37
+      },
+      "first_seen": "2026-01-26T09:00:00Z",
+      "last_event": "2026-09-02T15:00:00Z",
+      "score": 3.3,
+      "status": "in_progress",
+      "tier": 0
+    },
+    "t0:schema:/pricing-3": {
+      "baseline": {
+        "impressions": 584,
+        "position": 36
+      },
+      "cause_chain": [
+        "commit:ae0307f",
+        "commit:53c76bf",
+        "commit:75cc037"
+      ],
+      "confidence": 0.12,
+      "current": {
+        "impressions": 584,
+        "position": 45
+      },
+      "first_seen": "2026-02-14T03:00:00Z",
+      "last_event": "2026-08-30T09:00:00Z",
+      "score": 4.92,
+      "status": "regressed",
+      "tier": 0
+    },
+    "t1:canonical:/demo-53": {
+      "baseline": {
+        "impressions": 404,
+        "position": 39
+      },
+      "cause_chain": [
+        "commit:32c7d9f"
+      ],
+      "confidence": 0.23,
+      "current": {
+        "impressions": 404,
+        "position": 42
+      },
+      "first_seen": "2026-01-17T09:00:00Z",
+      "last_event": "2026-08-30T03:00:00Z",
+      "score": 0.83,
+      "status": "regressed",
+      "tier": 1
+    },
+    "t1:cwv:/integrations/slack-12": {
+      "baseline": {
+        "impressions": 497,
+        "position": 41
+      },
+      "cause_chain": [],
+      "confidence": 0.8,
+      "current": {
+        "impressions": 497,
+        "position": 41
+      },
+      "first_seen": "2026-01-23T15:00:00Z",
+      "last_event": "2026-08-21T03:00:00Z",
+      "score": 11.25,
+      "status": "acknowledged",
+      "tier": 1
+    },
+    "t1:indexation:/vs/acme-48": {
+      "baseline": {
+        "impressions": 648,
+        "position": 26
+      },
+      "cause_chain": [
+        "commit:4c7c4bf",
+        "commit:5959e3f"
+      ],
+      "confidence": 0.11,
+      "current": {
+        "impressions": 648,
+        "position": 28
+      },
+      "first_seen": "2026-01-09T15:00:00Z",
+      "last_event": "2026-07-09T09:00:00Z",
+      "score": 37.44,
+      "status": "acknowledged",
+      "tier": 1
+    },
+    "t1:offsite:/contact-19": {
+      "baseline": {
+        "impressions": 937,
+        "position": 49
+      },
+      "cause_chain": [
+        "commit:723487f",
+        "commit:e41593f"
+      ],
+      "confidence": 0.94,
+      "current": {
+        "impressions": 937,
+        "position": 44,
+        "tier": 1
+      },
+      "first_seen": "2026-02-08T03:00:00Z",
+      "last_event": "2026-07-01T03:00:00Z",
+      "score": 17.78,
+      "status": "verified",
+      "tier": 1
+    },
+    "t1:orphan:/contact-13": {
+      "baseline": {
+        "impressions": 471,
+        "position": 51
+      },
+      "cause_chain": [
+        "commit:bb1702e"
+      ],
+      "confidence": 0.51,
+      "current": {
+        "impressions": 471,
+        "position": 51
+      },
+      "first_seen": "2026-01-17T21:00:00Z",
+      "last_event": "2026-08-21T09:00:00Z",
+      "score": 19.17,
+      "status": "opened",
+      "tier": 1
+    },
+    "t1:orphan:/contact-5": {
+      "baseline": {
+        "impressions": 153,
+        "position": 60
+      },
+      "cause_chain": [
+        "commit:124d71f",
+        "commit:5e4d91f"
+      ],
+      "confidence": 0.46,
+      "current": {
+        "impressions": 153,
+        "position": 59
+      },
+      "first_seen": "2026-01-31T15:00:00Z",
+      "last_event": "2026-08-25T03:00:00Z",
+      "score": 5.65,
+      "status": "acknowledged",
+      "tier": 1
+    },
+    "t1:orphan:/pricing-30": {
+      "baseline": {
+        "impressions": 500,
+        "position": 18
+      },
+      "cause_chain": [
+        "commit:ab663df"
+      ],
+      "confidence": 0.21,
+      "current": {
+        "impressions": 500,
+        "position": 18
+      },
+      "first_seen": "2026-01-06T15:00:00Z",
+      "last_event": "2026-08-29T15:00:00Z",
+      "score": 7.58,
+      "status": "dismissed",
+      "tier": 1
+    },
+    "t1:position:/contact-28": {
+      "baseline": {
+        "impressions": 244,
+        "position": 46
+      },
+      "cause_chain": [
+        "commit:4696d67",
+        "commit:103ccff"
+      ],
+      "confidence": 0.75,
+      "current": {
+        "impressions": 244,
+        "position": 44
+      },
+      "first_seen": "2026-01-17T15:00:00Z",
+      "last_event": "2026-08-29T21:00:00Z",
+      "score": 3.8,
+      "status": "regressed",
+      "tier": 1
+    },
+    "t1:position:/integrations/slack-46": {
+      "baseline": {
+        "impressions": 481,
+        "position": 31
+      },
+      "cause_chain": [],
+      "confidence": 0.53,
+      "current": {
+        "impressions": 481,
+        "position": 31
+      },
+      "first_seen": "2026-01-08T09:00:00Z",
+      "last_event": "2026-09-01T09:00:00Z",
+      "score": 28.46,
+      "status": "in_progress",
+      "tier": 1
+    },
+    "t1:position:/use-cases/legal-39": {
+      "baseline": {
+        "impressions": 276,
+        "position": 33
+      },
+      "cause_chain": [
+        "commit:352b23f"
+      ],
+      "confidence": 0.75,
+      "current": {
+        "impressions": 276,
+        "position": 33
+      },
+      "first_seen": "2026-01-13T09:00:00Z",
+      "last_event": "2026-08-17T15:00:00Z",
+      "score": 8.06,
+      "status": "shipped",
+      "tier": 1
+    },
+    "t2:canonical:/pricing-38": {
+      "baseline": {
+        "impressions": 324,
+        "position": 43
+      },
+      "cause_chain": [
+        "commit:43abb67",
+        "commit:82ac327",
+        "commit:2e0437f",
+        "commit:9a3dd9f"
+      ],
+      "confidence": 0.96,
+      "current": {
+        "impressions": 324,
+        "position": 43
+      },
+      "first_seen": "2026-02-28T03:00:00Z",
+      "last_event": "2026-09-10T09:00:00Z",
+      "score": 19.32,
+      "status": "opened",
+      "tier": 2
+    },
+    "t2:canonical:/use-cases/legal-14": {
+      "baseline": {
+        "impressions": 230,
+        "position": 47
+      },
+      "cause_chain": [],
+      "confidence": 0.81,
+      "current": {
+        "impressions": 230,
+        "position": 47
+      },
+      "first_seen": "2026-02-03T03:00:00Z",
+      "last_event": "2026-09-11T03:00:00Z",
+      "score": 37.7,
+      "status": "closed",
+      "tier": 2
+    },
+    "t2:cwv:/contact-25": {
+      "baseline": {
+        "impressions": 759,
+        "position": 32
+      },
+      "cause_chain": [
+        "commit:9d50fff"
+      ],
+      "confidence": 0.38,
+      "current": {
+        "impressions": 759,
+        "position": 32
+      },
+      "first_seen": "2026-01-12T03:00:00Z",
+      "last_event": "2026-09-04T15:00:00Z",
+      "score": 36.16,
+      "status": "opened",
+      "tier": 2
+    },
+    "t2:cwv:/demo-32": {
+      "baseline": {
+        "impressions": 394,
+        "position": 49
+      },
+      "cause_chain": [],
+      "confidence": 0.05,
+      "current": {
+        "impressions": 394,
+        "position": 49
+      },
+      "first_seen": "2026-01-10T21:00:00Z",
+      "last_event": "2026-08-26T03:00:00Z",
+      "score": 38.22,
+      "status": "opened",
+      "tier": 2
+    },
+    "t2:cwv:/use-cases/legal-18": {
+      "baseline": {
+        "impressions": 954,
+        "position": 30
+      },
+      "cause_chain": [
+        "commit:f1b8387"
+      ],
+      "confidence": 0.07,
+      "current": {
+        "impressions": 954,
+        "position": 30
+      },
+      "first_seen": "2026-01-13T15:00:00Z",
+      "last_event": "2026-09-06T09:00:00Z",
+      "score": 33.97,
+      "status": "closed",
+      "tier": 2
+    },
+    "t2:indexation:/blog/what-is-clm-34": {
+      "baseline": {
+        "impressions": 393,
+        "position": 47
+      },
+      "cause_chain": [
+        "commit:f972e1f"
+      ],
+      "confidence": 0.02,
+      "current": {
+        "impressions": 393,
+        "position": 47
+      },
+      "first_seen": "2026-01-07T21:00:00Z",
+      "last_event": "2026-09-09T03:00:00Z",
+      "score": 36.5,
+      "status": "opened",
+      "tier": 2
+    },
+    "t2:indexation:/integrations/slack-17": {
+      "baseline": {
+        "impressions": 728,
+        "position": 33
+      },
+      "cause_chain": [
+        "commit:1d5549f"
+      ],
+      "confidence": 0.34,
+      "current": {
+        "impressions": 728,
+        "position": 32
+      },
+      "first_seen": "2026-02-05T15:00:00Z",
+      "last_event": "2026-09-09T21:00:00Z",
+      "score": 5.74,
+      "status": "in_progress",
+      "tier": 2
+    },
+    "t2:indexation:/pricing-21": {
+      "baseline": {
+        "impressions": 823,
+        "position": 34
+      },
+      "cause_chain": [],
+      "confidence": 0.68,
+      "current": {
+        "impressions": 823,
+        "position": 34,
+        "tier": 2
+      },
+      "first_seen": "2026-01-07T09:00:00Z",
+      "last_event": "2026-08-20T09:00:00Z",
+      "score": 5.23,
+      "status": "closed",
+      "tier": 2
+    },
+    "t2:offsite:/demo-43": {
+      "baseline": {
+        "impressions": 994,
+        "position": 53
+      },
+      "cause_chain": [],
+      "confidence": 0.61,
+      "current": {
+        "impressions": 994,
+        "position": 53
+      },
+      "first_seen": "2026-02-05T09:00:00Z",
+      "last_event": "2026-08-24T09:00:00Z",
+      "score": 6.25,
+      "status": "in_progress",
+      "tier": 2
+    },
+    "t2:offsite:/integrations/slack-0": {
+      "baseline": {
+        "impressions": 357,
+        "position": 24
+      },
+      "cause_chain": [
+        "commit:9911c41"
+      ],
+      "confidence": 0.44,
+      "current": {
+        "impressions": 357,
+        "position": 24
+      },
+      "first_seen": "2026-01-22T21:00:00Z",
+      "last_event": "2026-08-20T15:00:00Z",
+      "score": 5.68,
+      "status": "acknowledged",
+      "tier": 2
+    },
+    "t2:offsite:/pricing-37": {
+      "baseline": {
+        "impressions": 615,
+        "position": 57
+      },
+      "cause_chain": [
+        "commit:de017ff",
+        "commit:c0b307f"
+      ],
+      "confidence": 0.64,
+      "current": {
+        "impressions": 615,
+        "position": 57
+      },
+      "first_seen": "2026-01-19T15:00:00Z",
+      "last_event": "2026-09-05T09:00:00Z",
+      "score": 27.99,
+      "status": "shipped",
+      "tier": 2
+    },
+    "t2:offsite:/use-cases/legal-6": {
+      "baseline": {
+        "impressions": 705,
+        "position": 25
+      },
+      "cause_chain": [],
+      "confidence": 0.87,
+      "current": {
+        "impressions": 705,
+        "position": 25
+      },
+      "first_seen": "2026-01-07T03:00:00Z",
+      "last_event": "2026-09-06T21:00:00Z",
+      "score": 34.43,
+      "status": "opened",
+      "tier": 2
+    },
+    "t2:orphan:/integrations/slack-10": {
+      "baseline": {
+        "impressions": 106,
+        "position": 59
+      },
+      "cause_chain": [
+        "commit:ed9755f"
+      ],
+      "confidence": 0.87,
+      "current": {
+        "impressions": 106,
+        "position": 58
+      },
+      "first_seen": "2026-02-25T03:00:00Z",
+      "last_event": "2026-09-05T21:00:00Z",
+      "score": 17.83,
+      "status": "regressed",
+      "tier": 2
+    },
+    "t2:position:/use-cases/legal-1": {
+      "baseline": {
+        "impressions": 984,
+        "position": 42
+      },
+      "cause_chain": [],
+      "confidence": 0.98,
+      "current": {
+        "impressions": 984,
+        "position": 42
+      },
+      "first_seen": "2026-01-13T21:00:00Z",
+      "last_event": "2026-08-22T09:00:00Z",
+      "score": 21.12,
+      "status": "acknowledged",
+      "tier": 2
+    },
+    "t2:position:/use-cases/legal-7": {
+      "baseline": {
+        "impressions": 522,
+        "position": 48
+      },
+      "cause_chain": [
+        "commit:b9f636f",
+        "commit:88e3a4f",
+        "commit:70b585f"
+      ],
+      "confidence": 0.8,
+      "current": {
+        "impressions": 522,
+        "position": 48
+      },
+      "first_seen": "2026-01-18T09:00:00Z",
+      "last_event": "2026-09-07T03:00:00Z",
+      "score": 26.01,
+      "status": "dismissed",
+      "tier": 2
+    },
+    "t3:canonical:/blog/what-is-clm-52": {
+      "baseline": {
+        "impressions": 913,
+        "position": 42
+      },
+      "cause_chain": [
+        "commit:5309887"
+      ],
+      "confidence": 0.28,
+      "current": {
+        "impressions": 913,
+        "position": 42,
+        "tier": 3
+      },
+      "first_seen": "2026-02-13T09:00:00Z",
+      "last_event": "2026-09-03T03:00:00Z",
+      "score": 19.12,
+      "status": "closed",
+      "tier": 3
+    },
+    "t3:canonical:/vs/acme-41": {
+      "baseline": {
+        "impressions": 283,
+        "position": 58
+      },
+      "cause_chain": [
+        "commit:4a5183f",
+        "commit:67d6e5f",
+        "commit:4b0fb7f"
+      ],
+      "confidence": 0.42,
+      "current": {
+        "impressions": 283,
+        "position": 63
+      },
+      "first_seen": "2026-02-04T21:00:00Z",
+      "last_event": "2026-09-10T03:00:00Z",
+      "score": 32.09,
+      "status": "in_progress",
+      "tier": 3
+    },
+    "t3:canonical:/vs/acme-8": {
+      "baseline": {
+        "impressions": 443,
+        "position": 49
+      },
+      "cause_chain": [
+        "commit:d0987ff",
+        "commit:4beb7bf",
+        "commit:f99e59f"
+      ],
+      "confidence": 0.17,
+      "current": {
+        "impressions": 443,
+        "position": 49
+      },
+      "first_seen": "2026-01-30T21:00:00Z",
+      "last_event": "2026-08-25T09:00:00Z",
+      "score": 16.23,
+      "status": "opened",
+      "tier": 3
+    },
+    "t3:indexation:/pricing-44": {
+      "baseline": {
+        "impressions": 734,
+        "position": 33
+      },
+      "cause_chain": [
+        "commit:1d161df"
+      ],
+      "confidence": 0.22,
+      "current": {
+        "impressions": 734,
+        "position": 36
+      },
+      "first_seen": "2026-01-14T09:00:00Z",
+      "last_event": "2026-08-06T21:00:00Z",
+      "score": 9.04,
+      "status": "closed",
+      "tier": 3
+    },
+    "t3:offsite:/demo-56": {
+      "baseline": {
+        "impressions": 891,
+        "position": 53
+      },
+      "cause_chain": [
+        "commit:962dfbf"
+      ],
+      "confidence": 0.52,
+      "current": {
+        "impressions": 891,
+        "position": 53
+      },
+      "first_seen": "2026-01-06T21:00:00Z",
+      "last_event": "2026-09-07T21:00:00Z",
+      "score": 2.57,
+      "status": "in_progress",
+      "tier": 3
+    },
+    "t3:offsite:/pricing-50": {
+      "baseline": {
+        "impressions": 516,
+        "position": 44
+      },
+      "cause_chain": [
+        "commit:40013c6"
+      ],
+      "confidence": 0.58,
+      "current": {
+        "impressions": 516,
+        "position": 44
+      },
+      "first_seen": "2026-01-18T15:00:00Z",
+      "last_event": "2026-08-29T03:00:00Z",
+      "score": 10.82,
+      "status": "opened",
+      "tier": 3
+    },
+    "t3:offsite:/pricing-9": {
+      "baseline": {
+        "impressions": 988,
+        "position": 46
+      },
+      "cause_chain": [
+        "commit:949eadf",
+        "commit:651ad3f",
+        "commit:2d3653f"
+      ],
+      "confidence": 0.41,
+      "current": {
+        "impressions": 988,
+        "position": 48
+      },
+      "first_seen": "2026-01-26T15:00:00Z",
+      "last_event": "2026-09-05T15:00:00Z",
+      "score": 31.83,
+      "status": "closed",
+      "tier": 3
+    },
+    "t3:orphan:/demo-2": {
+      "baseline": {
+        "impressions": 815,
+        "position": 37
+      },
+      "cause_chain": [],
+      "confidence": 0.51,
+      "current": {
+        "impressions": 815,
+        "position": 37
+      },
+      "first_seen": "2026-01-30T03:00:00Z",
+      "last_event": "2026-08-11T21:00:00Z",
+      "score": 4.01,
+      "status": "opened",
+      "tier": 3
+    },
+    "t3:orphan:/use-cases/legal-26": {
+      "baseline": {
+        "impressions": 244,
+        "position": 42
+      },
+      "cause_chain": [
+        "commit:d3525bf",
+        "commit:4fdc407"
+      ],
+      "confidence": 0.92,
+      "current": {
+        "impressions": 244,
+        "position": 41
+      },
+      "first_seen": "2026-01-05T21:00:00Z",
+      "last_event": "2026-08-31T15:00:00Z",
+      "score": 18.32,
+      "status": "regressed",
+      "tier": 3
+    },
+    "t3:position:/pricing-45": {
+      "baseline": {
+        "impressions": 251,
+        "position": 52
+      },
+      "cause_chain": [
+        "commit:747b9ff"
+      ],
+      "confidence": 0.14,
+      "current": {
+        "impressions": 251,
+        "position": 52
+      },
+      "first_seen": "2026-01-26T21:00:00Z",
+      "last_event": "2026-08-30T15:00:00Z",
+      "score": 13.13,
+      "status": "opened",
+      "tier": 3
+    },
+    "t3:schema:/demo-29": {
+      "baseline": {
+        "impressions": 207,
+        "position": 46
+      },
+      "cause_chain": [
+        "commit:dc2ecbf"
+      ],
+      "confidence": 0,
+      "current": {
+        "impressions": 207,
+        "position": 46
+      },
+      "first_seen": "2026-01-15T03:00:00Z",
+      "last_event": "2026-09-08T21:00:00Z",
+      "score": 37.18,
+      "status": "closed",
+      "tier": 3
+    },
+    "t4:cwv:/demo-35": {
+      "baseline": {
+        "impressions": 526,
+        "position": 42
+      },
+      "cause_chain": [
+        "commit:1789b47",
+        "commit:7dd2407"
+      ],
+      "confidence": 0.57,
+      "current": {
+        "impressions": 526,
+        "position": 45
+      },
+      "first_seen": "2026-01-24T03:00:00Z",
+      "last_event": "2026-09-02T03:00:00Z",
+      "score": 32.8,
+      "status": "acknowledged",
+      "tier": 4
+    },
+    "t4:cwv:/vs/acme-59": {
+      "baseline": {
+        "impressions": 469,
+        "position": 27
+      },
+      "cause_chain": [],
+      "confidence": 0.9,
+      "current": {
+        "impressions": 469,
+        "position": 27
+      },
+      "first_seen": "2026-01-12T09:00:00Z",
+      "last_event": "2026-07-26T21:00:00Z",
+      "score": 4.61,
+      "status": "opened",
+      "tier": 4
+    },
+    "t4:indexation:/demo-33": {
+      "baseline": {
+        "impressions": 601,
+        "position": 58
+      },
+      "cause_chain": [
+        "commit:2319167"
+      ],
+      "confidence": 0.2,
+      "current": {
+        "impressions": 601,
+        "position": 54
+      },
+      "first_seen": "2026-01-09T03:00:00Z",
+      "last_event": "2026-08-25T15:00:00Z",
+      "score": 5.17,
+      "status": "verified",
+      "tier": 4
+    },
+    "t4:indexation:/integrations/slack-49": {
+      "baseline": {
+        "impressions": 912,
+        "position": 51
+      },
+      "cause_chain": [
+        "commit:871371f"
+      ],
+      "confidence": 0.22,
+      "current": {
+        "impressions": 912,
+        "position": 51
+      },
+      "first_seen": "2026-01-11T21:00:00Z",
+      "last_event": "2026-08-04T09:00:00Z",
+      "score": 29.03,
+      "status": "acknowledged",
+      "tier": 4
+    },
+    "t4:indexation:/use-cases/legal-23": {
+      "baseline": {
+        "impressions": 553,
+        "position": 20
+      },
+      "cause_chain": [],
+      "confidence": 0.34,
+      "current": {
+        "impressions": 553,
+        "position": 20
+      },
+      "first_seen": "2026-01-11T15:00:00Z",
+      "last_event": "2026-08-05T15:00:00Z",
+      "score": 26.96,
+      "status": "acknowledged",
+      "tier": 4
+    },
+    "t4:orphan:/use-cases/legal-54": {
+      "baseline": {
+        "impressions": 137,
+        "position": 26
+      },
+      "cause_chain": [
+        "commit:6c2cca7"
+      ],
+      "confidence": 0.7,
+      "current": {
+        "impressions": 137,
+        "position": 29
+      },
+      "first_seen": "2026-01-08T21:00:00Z",
+      "last_event": "2026-09-10T21:00:00Z",
+      "score": 37.34,
+      "status": "closed",
+      "tier": 4
+    },
+    "t4:position:/integrations/slack-55": {
+      "baseline": {
+        "impressions": 313,
+        "position": 37
+      },
+      "cause_chain": [
+        "commit:2eca93f"
+      ],
+      "confidence": 0.53,
+      "current": {
+        "impressions": 313,
+        "position": 33
+      },
+      "first_seen": "2026-01-11T03:00:00Z",
+      "last_event": "2026-09-10T15:00:00Z",
+      "score": 13.52,
+      "status": "closed",
+      "tier": 4
+    },
+    "t4:schema:/blog/what-is-clm-4": {
+      "baseline": {
+        "impressions": 591,
+        "position": 39
+      },
+      "cause_chain": [
+        "commit:20d1b5f"
+      ],
+      "confidence": 0.49,
+      "current": {
+        "impressions": 591,
+        "position": 42
+      },
+      "first_seen": "2026-01-08T03:00:00Z",
+      "last_event": "2026-09-09T15:00:00Z",
+      "score": 6.16,
+      "status": "acknowledged",
+      "tier": 4
+    },
+    "t4:schema:/contact-15": {
+      "baseline": {
+        "impressions": 714,
+        "position": 48
+      },
+      "cause_chain": [],
+      "confidence": 0.26,
+      "current": {
+        "impressions": 714,
+        "position": 48
+      },
+      "first_seen": "2026-01-09T21:00:00Z",
+      "last_event": "2026-08-24T21:00:00Z",
+      "score": 32.89,
+      "status": "dismissed",
+      "tier": 4
+    }
+  },
+  "generated_at": "2026-08-01T00:00:00Z",
+  "ledger_lines": 1000,
+  "site_events": [
+    {
+      "event": "algo_update",
+      "id": "site",
+      "note": "core update 2026-0",
+      "ts": "2026-01-05T15:00:00Z"
+    },
+    {
+      "event": "algo_update",
+      "id": "site",
+      "note": "core update 2026-97",
+      "ts": "2026-01-29T21:00:00Z"
+    },
+    {
+      "event": "algo_update",
+      "id": "site",
+      "note": "core update 2026-194",
+      "ts": "2026-02-23T03:00:00Z"
+    },
+    {
+      "event": "algo_update",
+      "id": "site",
+      "note": "core update 2026-291",
+      "ts": "2026-03-19T03:00:00Z"
+    },
+    {
+      "event": "algo_update",
+      "id": "site",
+      "note": "core update 2026-388",
+      "ts": "2026-04-12T09:00:00Z"
+    },
+    {
+      "event": "algo_update",
+      "id": "site",
+      "note": "core update 2026-485",
+      "ts": "2026-05-06T09:00:00Z"
+    },
+    {
+      "event": "algo_update",
+      "id": "site",
+      "note": "core update 2026-582",
+      "ts": "2026-05-30T15:00:00Z"
+    },
+    {
+      "event": "algo_update",
+      "id": "site",
+      "note": "core update 2026-679",
+      "ts": "2026-06-23T15:00:00Z"
+    },
+    {
+      "event": "algo_update",
+      "id": "site",
+      "note": "core update 2026-776",
+      "ts": "2026-07-17T21:00:00Z"
+    },
+    {
+      "event": "algo_update",
+      "id": "site",
+      "note": "core update 2026-873",
+      "ts": "2026-08-10T21:00:00Z"
+    },
+    {
+      "event": "algo_update",
+      "id": "site",
+      "note": "core update 2026-970",
+      "ts": "2026-09-04T03:00:00Z"
+    }
+  ]
+}

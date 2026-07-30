@@ -1,0 +1,1000 @@
+{"ts":"2026-01-05T15:00:00Z","id":"site","event":"algo_update","note":"core update 2026-0"}
+{"ts":"2026-01-05T21:00:00Z","id":"t3:orphan:/use-cases/legal-26","event":"opened","to":{"position":46,"impressions":552},"score":36.33,"confidence":0.36}
+{"ts":"2026-01-06T03:00:00Z","id":"t0:position:/vs/acme-42","event":"opened","to":{"position":20,"impressions":889},"score":34.72,"confidence":0.81}
+{"ts":"2026-01-06T09:00:00Z","id":"t0:indexation:/contact-40","event":"opened","to":{"position":48,"impressions":168},"score":28.3,"confidence":0.2}
+{"ts":"2026-01-06T15:00:00Z","id":"t1:orphan:/pricing-30","event":"opened","to":{"position":22,"impressions":691},"score":21.59,"confidence":0.45}
+{"ts":"2026-01-06T21:00:00Z","id":"t3:offsite:/demo-56","event":"opened","to":{"position":57,"impressions":505},"score":11.59,"confidence":0.63}
+{"ts":"2026-01-07T03:00:00Z","id":"t2:offsite:/use-cases/legal-6","event":"opened","to":{"position":25,"impressions":527},"score":3.06,"confidence":0.16}
+{"ts":"2026-01-07T09:00:00Z","id":"t2:indexation:/pricing-21","event":"opened","to":{"position":34,"impressions":332},"score":26.86,"confidence":0.96}
+{"ts":"2026-01-07T15:00:00Z","id":"t0:indexation:/demo-31","event":"opened","to":{"position":23,"impressions":567},"score":25.35,"confidence":0.38}
+{"ts":"2026-01-07T21:00:00Z","id":"t2:indexation:/blog/what-is-clm-34","event":"opened","to":{"position":51,"impressions":374},"score":8.33,"confidence":0.98}
+{"ts":"2026-01-08T03:00:00Z","id":"t4:schema:/blog/what-is-clm-4","event":"opened","to":{"position":39,"impressions":219},"score":4.13,"confidence":0.21}
+{"ts":"2026-01-08T09:00:00Z","id":"t1:position:/integrations/slack-46","event":"opened","to":{"position":31,"impressions":103},"score":20.97,"confidence":0.51}
+{"ts":"2026-01-08T15:00:00Z","id":"t2:indexation:/pricing-21","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-01-08T21:00:00Z","id":"t4:orphan:/use-cases/legal-54","event":"opened","to":{"position":26,"impressions":975},"score":8.2,"confidence":0.83}
+{"ts":"2026-01-09T03:00:00Z","id":"t4:indexation:/demo-33","event":"opened","to":{"position":58,"impressions":372},"score":20.54,"confidence":0.06}
+{"ts":"2026-01-09T09:00:00Z","id":"t0:position:/contact-51","event":"opened","to":{"position":54,"impressions":272},"score":18.02,"confidence":0.89}
+{"ts":"2026-01-09T15:00:00Z","id":"t1:indexation:/vs/acme-48","event":"opened","to":{"position":26,"impressions":521},"score":35.87,"confidence":0.5}
+{"ts":"2026-01-09T21:00:00Z","id":"t4:schema:/contact-15","event":"opened","to":{"position":48,"impressions":332},"score":19.29,"confidence":0.24}
+{"ts":"2026-01-10T03:00:00Z","id":"t0:position:/vs/acme-42","event":"closed"}
+{"ts":"2026-01-10T09:00:00Z","id":"t3:offsite:/demo-56","event":"acknowledged"}
+{"ts":"2026-01-10T15:00:00Z","id":"t1:orphan:/pricing-30","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-01-10T21:00:00Z","id":"t2:cwv:/demo-32","event":"opened","to":{"position":49,"impressions":510},"score":38.33,"confidence":0}
+{"ts":"2026-01-11T03:00:00Z","id":"t4:position:/integrations/slack-55","event":"opened","to":{"position":37,"impressions":949},"score":32.47,"confidence":0.11}
+{"ts":"2026-01-11T09:00:00Z","id":"t0:indexation:/vs/acme-22","event":"opened","to":{"position":24,"impressions":997},"score":26.26,"confidence":0.57}
+{"ts":"2026-01-11T15:00:00Z","id":"t4:indexation:/use-cases/legal-23","event":"opened","to":{"position":20,"impressions":328},"score":18.37,"confidence":0.88}
+{"ts":"2026-01-11T21:00:00Z","id":"t4:indexation:/integrations/slack-49","event":"opened","to":{"position":48,"impressions":676},"score":39.56,"confidence":0.97}
+{"ts":"2026-01-12T03:00:00Z","id":"t2:cwv:/contact-25","event":"opened","to":{"position":36,"impressions":256},"score":30.72,"confidence":0.16}
+{"ts":"2026-01-12T09:00:00Z","id":"t4:cwv:/vs/acme-59","event":"opened","to":{"position":27,"impressions":313},"score":5.04,"confidence":0.28}
+{"ts":"2026-01-12T15:00:00Z","id":"t0:indexation:/contact-40","event":"acknowledged"}
+{"ts":"2026-01-12T21:00:00Z","id":"t3:orphan:/use-cases/legal-26","event":"closed"}
+{"ts":"2026-01-13T03:00:00Z","id":"t0:position:/vs/acme-42","event":"opened","to":{"position":20,"impressions":892},"score":37.66,"confidence":0.73}
+{"ts":"2026-01-13T09:00:00Z","id":"t1:position:/use-cases/legal-39","event":"opened","to":{"position":33,"impressions":958},"score":7.63,"confidence":0.35}
+{"ts":"2026-01-13T15:00:00Z","id":"t2:cwv:/use-cases/legal-18","event":"opened","to":{"position":34,"impressions":437},"score":10.29,"confidence":0.68}
+{"ts":"2026-01-13T21:00:00Z","id":"t2:position:/use-cases/legal-1","event":"opened","to":{"position":42,"impressions":827},"score":14.3,"confidence":0.71}
+{"ts":"2026-01-14T03:00:00Z","id":"t0:position:/vs/acme-42","event":"acknowledged"}
+{"ts":"2026-01-14T09:00:00Z","id":"t3:indexation:/pricing-44","event":"opened","to":{"position":33,"impressions":172},"score":34.97,"confidence":0.22}
+{"ts":"2026-01-14T15:00:00Z","id":"t1:orphan:/pricing-30","event":"opened","to":{"position":22,"impressions":175},"score":39.66,"confidence":0.74}
+{"ts":"2026-01-14T21:00:00Z","id":"t4:indexation:/integrations/slack-49","event":"acknowledged"}
+{"ts":"2026-01-15T03:00:00Z","id":"t3:schema:/demo-29","event":"opened","to":{"position":43,"impressions":503},"score":29.33,"confidence":0.32}
+{"ts":"2026-01-15T09:00:00Z","id":"t2:cwv:/contact-25","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-01-15T15:00:00Z","id":"t1:orphan:/pricing-30","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-01-15T21:00:00Z","id":"t0:indexation:/contact-40","event":"closed"}
+{"ts":"2026-01-16T03:00:00Z","id":"t4:schema:/contact-15","event":"closed"}
+{"ts":"2026-01-16T09:00:00Z","id":"t3:indexation:/pricing-44","event":"closed"}
+{"ts":"2026-01-16T15:00:00Z","id":"t3:orphan:/use-cases/legal-26","event":"opened","to":{"position":46,"impressions":793},"score":9.62,"confidence":0.2}
+{"ts":"2026-01-16T21:00:00Z","id":"t2:cwv:/use-cases/legal-18","event":"closed"}
+{"ts":"2026-01-17T03:00:00Z","id":"t0:cwv:/demo-27","event":"opened","to":{"position":43,"impressions":885},"score":12.34,"confidence":0.97}
+{"ts":"2026-01-17T09:00:00Z","id":"t1:canonical:/demo-53","event":"opened","to":{"position":39,"impressions":715},"score":7.24,"confidence":0.01}
+{"ts":"2026-01-17T15:00:00Z","id":"t1:position:/contact-28","event":"opened","to":{"position":46,"impressions":788},"score":17.41,"confidence":0.02}
+{"ts":"2026-01-17T21:00:00Z","id":"t1:orphan:/contact-13","event":"opened","to":{"position":55,"impressions":646},"score":36.11,"confidence":0.73}
+{"ts":"2026-01-18T03:00:00Z","id":"t2:cwv:/use-cases/legal-18","event":"opened","to":{"position":34,"impressions":760},"score":30.2,"confidence":0.27}
+{"ts":"2026-01-18T09:00:00Z","id":"t2:position:/use-cases/legal-7","event":"opened","to":{"position":46,"impressions":480},"score":3.82,"confidence":0.99}
+{"ts":"2026-01-18T15:00:00Z","id":"t3:offsite:/pricing-50","event":"opened","to":{"position":48,"impressions":563},"score":21.43,"confidence":0.35}
+{"ts":"2026-01-18T21:00:00Z","id":"t0:indexation:/demo-31","event":"acknowledged"}
+{"ts":"2026-01-19T03:00:00Z","id":"t1:position:/use-cases/legal-39","event":"acknowledged"}
+{"ts":"2026-01-19T09:00:00Z","id":"t2:cwv:/demo-32","event":"closed"}
+{"ts":"2026-01-19T15:00:00Z","id":"t2:offsite:/pricing-37","event":"opened","to":{"position":54,"impressions":658},"score":28.45,"confidence":0.6}
+{"ts":"2026-01-19T21:00:00Z","id":"t4:indexation:/integrations/slack-49","event":"in_progress"}
+{"ts":"2026-01-20T03:00:00Z","id":"t3:offsite:/demo-56","event":"in_progress"}
+{"ts":"2026-01-20T09:00:00Z","id":"t2:cwv:/use-cases/legal-18","event":"acknowledged"}
+{"ts":"2026-01-20T15:00:00Z","id":"t0:indexation:/integrations/slack-58","event":"opened","to":{"position":45,"impressions":829},"score":6.57,"confidence":0.23}
+{"ts":"2026-01-20T21:00:00Z","id":"t2:cwv:/demo-32","event":"opened","to":{"position":49,"impressions":912},"score":11.98,"confidence":0.2}
+{"ts":"2026-01-21T03:00:00Z","id":"t2:offsite:/pricing-37","event":"acknowledged"}
+{"ts":"2026-01-21T09:00:00Z","id":"t0:indexation:/vs/acme-22","event":"acknowledged"}
+{"ts":"2026-01-21T15:00:00Z","id":"t0:indexation:/contact-40","event":"opened","to":{"position":48,"impressions":966},"score":6.1,"confidence":0.84}
+{"ts":"2026-01-21T21:00:00Z","id":"t4:schema:/blog/what-is-clm-4","event":"acknowledged"}
+{"ts":"2026-01-22T03:00:00Z","id":"t4:schema:/blog/what-is-clm-4","event":"closed"}
+{"ts":"2026-01-22T09:00:00Z","id":"t2:cwv:/use-cases/legal-18","event":"closed"}
+{"ts":"2026-01-22T15:00:00Z","id":"t0:offsite:/demo-24","event":"opened","to":{"position":23,"impressions":704},"score":22.64,"confidence":0.99}
+{"ts":"2026-01-22T21:00:00Z","id":"t2:offsite:/integrations/slack-0","event":"opened","to":{"position":25,"impressions":114},"score":28.22,"confidence":0.11}
+{"ts":"2026-01-23T03:00:00Z","id":"t0:offsite:/blog/what-is-clm-11","event":"opened","to":{"position":55,"impressions":228},"score":30.54,"confidence":0.93}
+{"ts":"2026-01-23T09:00:00Z","id":"t4:position:/integrations/slack-55","event":"closed"}
+{"ts":"2026-01-23T15:00:00Z","id":"t1:cwv:/integrations/slack-12","event":"opened","to":{"position":41,"impressions":951},"score":21.94,"confidence":0.3}
+{"ts":"2026-01-23T21:00:00Z","id":"t0:position:/contact-20","event":"opened","to":{"position":53,"impressions":380},"score":31.99,"confidence":0.07}
+{"ts":"2026-01-24T03:00:00Z","id":"t4:cwv:/demo-35","event":"opened","to":{"position":46,"impressions":177},"score":39.43,"confidence":1}
+{"ts":"2026-01-24T09:00:00Z","id":"t4:cwv:/vs/acme-59","event":"closed"}
+{"ts":"2026-01-24T15:00:00Z","id":"t2:offsite:/pricing-37","event":"in_progress"}
+{"ts":"2026-01-24T21:00:00Z","id":"t1:position:/integrations/slack-46","event":"closed"}
+{"ts":"2026-01-25T03:00:00Z","id":"t0:position:/blog/what-is-clm-57","event":"opened","to":{"position":20,"impressions":284},"score":17.41,"confidence":0.74}
+{"ts":"2026-01-25T09:00:00Z","id":"t3:schema:/demo-29","event":"acknowledged"}
+{"ts":"2026-01-25T15:00:00Z","id":"t2:indexation:/pricing-21","event":"opened","to":{"position":34,"impressions":847},"score":27.82,"confidence":0.33}
+{"ts":"2026-01-25T21:00:00Z","id":"t1:orphan:/contact-13","event":"closed"}
+{"ts":"2026-01-26T03:00:00Z","id":"t1:orphan:/pricing-30","event":"opened","to":{"position":22,"impressions":618},"score":35.09,"confidence":0.07}
+{"ts":"2026-01-26T09:00:00Z","id":"t0:schema:/blog/what-is-clm-36","event":"opened","to":{"position":35,"impressions":885},"score":3.37,"confidence":0.7}
+{"ts":"2026-01-26T15:00:00Z","id":"t3:offsite:/pricing-9","event":"opened","to":{"position":50,"impressions":442},"score":37.23,"confidence":0.9}
+{"ts":"2026-01-26T21:00:00Z","id":"t3:position:/pricing-45","event":"opened","to":{"position":56,"impressions":368},"score":12.72,"confidence":0.33}
+{"ts":"2026-01-27T03:00:00Z","id":"t2:cwv:/use-cases/legal-18","event":"opened","to":{"position":34,"impressions":385},"score":1.9,"confidence":0.46}
+{"ts":"2026-01-27T09:00:00Z","id":"t1:orphan:/contact-13","event":"opened","to":{"position":55,"impressions":340},"score":19.59,"confidence":0.08}
+{"ts":"2026-01-27T15:00:00Z","id":"t4:indexation:/integrations/slack-49","event":"shipped","cause":"commit:871371f","effort_h":5}
+{"ts":"2026-01-27T21:00:00Z","id":"t0:schema:/blog/what-is-clm-36","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-01-28T03:00:00Z","id":"t1:position:/integrations/slack-46","event":"opened","to":{"position":31,"impressions":432},"score":23.3,"confidence":0.8}
+{"ts":"2026-01-28T09:00:00Z","id":"t4:indexation:/demo-33","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-01-28T15:00:00Z","id":"t0:indexation:/demo-31","event":"closed"}
+{"ts":"2026-01-28T21:00:00Z","id":"t0:position:/contact-51","event":"acknowledged"}
+{"ts":"2026-01-29T03:00:00Z","id":"t2:indexation:/pricing-21","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-01-29T09:00:00Z","id":"t0:cwv:/demo-27","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-01-29T15:00:00Z","id":"t0:schema:/blog/what-is-clm-36","event":"opened","to":{"position":35,"impressions":534},"score":15.68,"confidence":0.69}
+{"ts":"2026-01-29T21:00:00Z","id":"site","event":"algo_update","note":"core update 2026-97"}
+{"ts":"2026-01-30T03:00:00Z","id":"t3:orphan:/demo-2","event":"opened","to":{"position":37,"impressions":511},"score":26.23,"confidence":0.3}
+{"ts":"2026-01-30T09:00:00Z","id":"t2:cwv:/demo-32","event":"acknowledged"}
+{"ts":"2026-01-30T15:00:00Z","id":"t0:schema:/blog/what-is-clm-36","event":"closed"}
+{"ts":"2026-01-30T21:00:00Z","id":"t3:canonical:/vs/acme-8","event":"opened","to":{"position":40,"impressions":893},"score":12.83,"confidence":0.21}
+{"ts":"2026-01-31T03:00:00Z","id":"t0:indexation:/demo-31","event":"opened","to":{"position":23,"impressions":577},"score":23.43,"confidence":0.23}
+{"ts":"2026-01-31T09:00:00Z","id":"t4:indexation:/integrations/slack-49","event":"regressed","to":{"position":51}}
+{"ts":"2026-01-31T15:00:00Z","id":"t1:orphan:/contact-5","event":"opened","to":{"position":57,"impressions":986},"score":29.04,"confidence":0.04}
+{"ts":"2026-01-31T21:00:00Z","id":"t2:cwv:/use-cases/legal-18","event":"closed"}
+{"ts":"2026-02-01T03:00:00Z","id":"t4:orphan:/use-cases/legal-54","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-02-01T09:00:00Z","id":"t1:canonical:/demo-53","event":"acknowledged"}
+{"ts":"2026-02-01T15:00:00Z","id":"t0:indexation:/integrations/slack-58","event":"closed"}
+{"ts":"2026-02-01T21:00:00Z","id":"t4:cwv:/vs/acme-59","event":"opened","to":{"position":27,"impressions":538},"score":28.64,"confidence":0.81}
+{"ts":"2026-02-02T03:00:00Z","id":"t0:position:/vs/acme-42","event":"in_progress"}
+{"ts":"2026-02-02T09:00:00Z","id":"t3:position:/pricing-45","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-02-02T15:00:00Z","id":"t2:cwv:/use-cases/legal-18","event":"opened","to":{"position":34,"impressions":874},"score":38.41,"confidence":0.76}
+{"ts":"2026-02-02T21:00:00Z","id":"t0:canonical:/blog/what-is-clm-47","event":"opened","to":{"position":59,"impressions":993},"score":35.81,"confidence":0.37}
+{"ts":"2026-02-03T03:00:00Z","id":"t2:canonical:/use-cases/legal-14","event":"opened","to":{"position":47,"impressions":749},"score":9.07,"confidence":0.85}
+{"ts":"2026-02-03T09:00:00Z","id":"t0:position:/blog/what-is-clm-57","event":"acknowledged"}
+{"ts":"2026-02-03T15:00:00Z","id":"t3:position:/pricing-45","event":"opened","to":{"position":56,"impressions":553},"score":6.54,"confidence":0.09}
+{"ts":"2026-02-03T21:00:00Z","id":"t0:position:/blog/what-is-clm-57","event":"closed"}
+{"ts":"2026-02-04T03:00:00Z","id":"t1:position:/integrations/slack-46","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-02-04T09:00:00Z","id":"t4:indexation:/use-cases/legal-23","event":"closed"}
+{"ts":"2026-02-04T15:00:00Z","id":"t0:position:/contact-51","event":"closed"}
+{"ts":"2026-02-04T21:00:00Z","id":"t3:canonical:/vs/acme-41","event":"opened","to":{"position":58,"impressions":584},"score":2.23,"confidence":0.58}
+{"ts":"2026-02-05T03:00:00Z","id":"t1:position:/contact-28","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-02-05T09:00:00Z","id":"t2:offsite:/demo-43","event":"opened","to":{"position":53,"impressions":882},"score":3.43,"confidence":0.44}
+{"ts":"2026-02-05T15:00:00Z","id":"t2:indexation:/integrations/slack-17","event":"opened","to":{"position":33,"impressions":573},"score":23.88,"confidence":0.91}
+{"ts":"2026-02-05T21:00:00Z","id":"t0:position:/contact-20","event":"acknowledged"}
+{"ts":"2026-02-06T03:00:00Z","id":"t4:indexation:/use-cases/legal-23","event":"opened","to":{"position":20,"impressions":445},"score":31.55,"confidence":0.74}
+{"ts":"2026-02-06T09:00:00Z","id":"t2:cwv:/demo-32","event":"closed"}
+{"ts":"2026-02-06T15:00:00Z","id":"t3:indexation:/pricing-44","event":"opened","to":{"position":33,"impressions":894},"score":16.08,"confidence":0.18}
+{"ts":"2026-02-06T21:00:00Z","id":"t2:indexation:/blog/what-is-clm-34","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-02-07T03:00:00Z","id":"t0:indexation:/integrations/slack-58","event":"opened","to":{"position":45,"impressions":765},"score":3.82,"confidence":0.69}
+{"ts":"2026-02-07T09:00:00Z","id":"t1:canonical:/demo-53","event":"closed"}
+{"ts":"2026-02-07T15:00:00Z","id":"t4:schema:/contact-15","event":"opened","to":{"position":48,"impressions":419},"score":5.87,"confidence":0.65}
+{"ts":"2026-02-07T21:00:00Z","id":"t1:position:/contact-28","event":"opened","to":{"position":46,"impressions":244},"score":3.8,"confidence":0.75}
+{"ts":"2026-02-08T03:00:00Z","id":"t1:offsite:/contact-19","event":"opened","to":{"position":49,"impressions":236},"score":35.6,"confidence":0.32}
+{"ts":"2026-02-08T09:00:00Z","id":"t2:position:/use-cases/legal-7","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-02-08T15:00:00Z","id":"t0:schema:/blog/what-is-clm-36","event":"opened","to":{"position":35,"impressions":507},"score":3.3,"confidence":0.62}
+{"ts":"2026-02-08T21:00:00Z","id":"t2:offsite:/use-cases/legal-6","event":"closed"}
+{"ts":"2026-02-09T03:00:00Z","id":"t1:orphan:/contact-5","event":"acknowledged"}
+{"ts":"2026-02-09T09:00:00Z","id":"t2:indexation:/integrations/slack-17","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-02-09T15:00:00Z","id":"t2:indexation:/blog/what-is-clm-34","event":"opened","to":{"position":51,"impressions":293},"score":1.65,"confidence":0.98}
+{"ts":"2026-02-09T21:00:00Z","id":"t3:canonical:/vs/acme-8","event":"acknowledged"}
+{"ts":"2026-02-10T03:00:00Z","id":"t1:cwv:/integrations/slack-12","event":"acknowledged"}
+{"ts":"2026-02-10T09:00:00Z","id":"t0:offsite:/blog/what-is-clm-11","event":"closed"}
+{"ts":"2026-02-10T15:00:00Z","id":"t4:cwv:/demo-35","event":"closed"}
+{"ts":"2026-02-10T21:00:00Z","id":"t2:offsite:/use-cases/legal-6","event":"opened","to":{"position":25,"impressions":609},"score":1.65,"confidence":0.84}
+{"ts":"2026-02-11T03:00:00Z","id":"t2:indexation:/blog/what-is-clm-34","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-02-11T09:00:00Z","id":"t2:indexation:/integrations/slack-17","event":"opened","to":{"position":33,"impressions":233},"score":18.8,"confidence":0.49}
+{"ts":"2026-02-11T15:00:00Z","id":"t1:orphan:/contact-13","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-02-11T21:00:00Z","id":"t1:offsite:/contact-19","event":"acknowledged"}
+{"ts":"2026-02-12T03:00:00Z","id":"t0:position:/blog/what-is-clm-57","event":"opened","to":{"position":20,"impressions":217},"score":10.89,"confidence":0.88}
+{"ts":"2026-02-12T09:00:00Z","id":"t0:offsite:/demo-24","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-02-12T15:00:00Z","id":"t2:cwv:/use-cases/legal-18","event":"acknowledged"}
+{"ts":"2026-02-12T21:00:00Z","id":"t0:indexation:/contact-40","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-02-13T03:00:00Z","id":"t0:indexation:/integrations/slack-58","event":"acknowledged"}
+{"ts":"2026-02-13T09:00:00Z","id":"t3:canonical:/blog/what-is-clm-52","event":"opened","to":{"position":39,"impressions":169},"score":15.27,"confidence":0.93}
+{"ts":"2026-02-13T15:00:00Z","id":"t0:position:/blog/what-is-clm-57","event":"closed"}
+{"ts":"2026-02-13T21:00:00Z","id":"t1:position:/use-cases/legal-39","event":"closed"}
+{"ts":"2026-02-14T03:00:00Z","id":"t0:schema:/pricing-3","event":"opened","to":{"position":36,"impressions":584},"score":4.92,"confidence":0.12}
+{"ts":"2026-02-14T09:00:00Z","id":"t0:indexation:/contact-40","event":"opened","to":{"position":48,"impressions":219},"score":0.9,"confidence":0.4}
+{"ts":"2026-02-14T15:00:00Z","id":"t4:indexation:/use-cases/legal-23","event":"acknowledged"}
+{"ts":"2026-02-14T21:00:00Z","id":"t4:orphan:/use-cases/legal-54","event":"opened","to":{"position":26,"impressions":998},"score":4.27,"confidence":0.31}
+{"ts":"2026-02-15T03:00:00Z","id":"t0:position:/vs/acme-42","event":"shipped","cause":"commit:6ffe49f","effort_h":3}
+{"ts":"2026-02-15T09:00:00Z","id":"t1:orphan:/contact-5","event":"in_progress"}
+{"ts":"2026-02-15T15:00:00Z","id":"t0:position:/vs/acme-42","event":"verified","to":{"position":16}}
+{"ts":"2026-02-15T21:00:00Z","id":"t0:orphan:/blog/what-is-clm-16","event":"opened","to":{"position":47,"impressions":681},"score":3.86,"confidence":0.13}
+{"ts":"2026-02-16T03:00:00Z","id":"t3:indexation:/pricing-44","event":"closed"}
+{"ts":"2026-02-16T09:00:00Z","id":"t0:cwv:/demo-27","event":"opened","to":{"position":43,"impressions":536},"score":18.82,"confidence":0.28}
+{"ts":"2026-02-16T15:00:00Z","id":"t2:cwv:/use-cases/legal-18","event":"in_progress"}
+{"ts":"2026-02-16T21:00:00Z","id":"t4:indexation:/use-cases/legal-23","event":"closed"}
+{"ts":"2026-02-17T03:00:00Z","id":"t0:position:/vs/acme-42","event":"regressed","to":{"position":19}}
+{"ts":"2026-02-17T09:00:00Z","id":"t4:indexation:/use-cases/legal-23","event":"opened","to":{"position":20,"impressions":607},"score":15.38,"confidence":0.74}
+{"ts":"2026-02-17T15:00:00Z","id":"t1:orphan:/contact-13","event":"opened","to":{"position":55,"impressions":817},"score":25.1,"confidence":0.83}
+{"ts":"2026-02-17T21:00:00Z","id":"t2:indexation:/blog/what-is-clm-34","event":"opened","to":{"position":51,"impressions":882},"score":32.86,"confidence":0.81}
+{"ts":"2026-02-18T03:00:00Z","id":"t1:position:/contact-28","event":"acknowledged"}
+{"ts":"2026-02-18T09:00:00Z","id":"t2:canonical:/use-cases/legal-14","event":"closed"}
+{"ts":"2026-02-18T15:00:00Z","id":"t1:orphan:/contact-13","event":"acknowledged"}
+{"ts":"2026-02-18T21:00:00Z","id":"t1:indexation:/vs/acme-48","event":"acknowledged"}
+{"ts":"2026-02-19T03:00:00Z","id":"t0:indexation:/vs/acme-22","event":"closed"}
+{"ts":"2026-02-19T09:00:00Z","id":"t3:orphan:/demo-2","event":"closed"}
+{"ts":"2026-02-19T15:00:00Z","id":"t1:offsite:/contact-19","event":"closed"}
+{"ts":"2026-02-19T21:00:00Z","id":"t3:offsite:/pricing-9","event":"acknowledged"}
+{"ts":"2026-02-20T03:00:00Z","id":"t1:indexation:/vs/acme-48","event":"closed"}
+{"ts":"2026-02-20T09:00:00Z","id":"t3:offsite:/demo-56","event":"shipped","cause":"commit:962dfbf","effort_h":7}
+{"ts":"2026-02-20T15:00:00Z","id":"t1:orphan:/contact-5","event":"shipped","cause":"commit:124d71f","effort_h":4.5}
+{"ts":"2026-02-20T21:00:00Z","id":"t3:schema:/demo-29","event":"in_progress"}
+{"ts":"2026-02-21T03:00:00Z","id":"t2:offsite:/demo-43","event":"closed"}
+{"ts":"2026-02-21T09:00:00Z","id":"t2:cwv:/use-cases/legal-18","event":"shipped","cause":"commit:f1b8387","effort_h":2}
+{"ts":"2026-02-21T15:00:00Z","id":"t0:offsite:/blog/what-is-clm-11","event":"opened","to":{"position":55,"impressions":910},"score":31.55,"confidence":0.29}
+{"ts":"2026-02-21T21:00:00Z","id":"t0:indexation:/demo-31","event":"acknowledged"}
+{"ts":"2026-02-22T03:00:00Z","id":"t3:offsite:/pricing-9","event":"in_progress"}
+{"ts":"2026-02-22T09:00:00Z","id":"t2:position:/use-cases/legal-7","event":"opened","to":{"position":46,"impressions":863},"score":19.97,"confidence":0.9}
+{"ts":"2026-02-22T15:00:00Z","id":"t1:position:/integrations/slack-46","event":"opened","to":{"position":31,"impressions":889},"score":3.06,"confidence":0.44}
+{"ts":"2026-02-22T21:00:00Z","id":"t4:indexation:/use-cases/legal-23","event":"acknowledged"}
+{"ts":"2026-02-23T03:00:00Z","id":"site","event":"algo_update","note":"core update 2026-194"}
+{"ts":"2026-02-23T09:00:00Z","id":"t2:offsite:/integrations/slack-0","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-02-23T15:00:00Z","id":"t3:canonical:/vs/acme-41","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-02-23T21:00:00Z","id":"t3:position:/pricing-45","event":"acknowledged"}
+{"ts":"2026-02-24T03:00:00Z","id":"t0:canonical:/blog/what-is-clm-47","event":"closed"}
+{"ts":"2026-02-24T09:00:00Z","id":"t1:canonical:/demo-53","event":"opened","to":{"position":39,"impressions":639},"score":2.65,"confidence":0.97}
+{"ts":"2026-02-24T15:00:00Z","id":"t3:schema:/demo-29","event":"shipped","cause":"commit:dc2ecbf","effort_h":6.5}
+{"ts":"2026-02-24T21:00:00Z","id":"t4:position:/integrations/slack-55","event":"opened","to":{"position":37,"impressions":199},"score":34.1,"confidence":0.68}
+{"ts":"2026-02-25T03:00:00Z","id":"t2:orphan:/integrations/slack-10","event":"opened","to":{"position":59,"impressions":297},"score":1.32,"confidence":0.34}
+{"ts":"2026-02-25T09:00:00Z","id":"t4:schema:/blog/what-is-clm-4","event":"opened","to":{"position":39,"impressions":880},"score":29.59,"confidence":0.27}
+{"ts":"2026-02-25T15:00:00Z","id":"t3:canonical:/vs/acme-8","event":"in_progress"}
+{"ts":"2026-02-25T21:00:00Z","id":"t4:cwv:/demo-35","event":"opened","to":{"position":46,"impressions":237},"score":12.67,"confidence":0.52}
+{"ts":"2026-02-26T03:00:00Z","id":"t0:position:/blog/what-is-clm-57","event":"opened","to":{"position":20,"impressions":896},"score":30.04,"confidence":0.71}
+{"ts":"2026-02-26T09:00:00Z","id":"t4:orphan:/use-cases/legal-54","event":"acknowledged"}
+{"ts":"2026-02-26T15:00:00Z","id":"t0:position:/contact-51","event":"opened","to":{"position":54,"impressions":989},"score":11.74,"confidence":0.82}
+{"ts":"2026-02-26T21:00:00Z","id":"t2:offsite:/pricing-37","event":"shipped","cause":"commit:de017ff","effort_h":8}
+{"ts":"2026-02-27T03:00:00Z","id":"t1:offsite:/contact-19","event":"opened","to":{"position":49,"impressions":981},"score":30.01,"confidence":0.85}
+{"ts":"2026-02-27T03:00:00Z","id":"t1:offsite:/contact-19","event":"retiered","to":{"tier":1},"note":"tier reassigned by rule 4"}
+{"ts":"2026-02-27T09:00:00Z","id":"t0:cwv:/demo-27","event":"closed"}
+{"ts":"2026-02-27T15:00:00Z","id":"t0:indexation:/vs/acme-22","event":"opened","to":{"position":24,"impressions":927},"score":6.48,"confidence":0.05}
+{"ts":"2026-02-27T21:00:00Z","id":"t0:offsite:/demo-24","event":"opened","to":{"position":23,"impressions":365},"score":35.52,"confidence":0.26}
+{"ts":"2026-02-28T03:00:00Z","id":"t2:canonical:/pricing-38","event":"opened","to":{"position":31,"impressions":932},"score":35.22,"confidence":0}
+{"ts":"2026-02-28T09:00:00Z","id":"t0:indexation:/contact-40","event":"closed"}
+{"ts":"2026-02-28T15:00:00Z","id":"t3:offsite:/demo-56","event":"verified","to":{"position":53}}
+{"ts":"2026-02-28T21:00:00Z","id":"t2:position:/use-cases/legal-1","event":"closed"}
+{"ts":"2026-03-01T03:00:00Z","id":"t3:canonical:/vs/acme-8","event":"shipped","cause":"commit:d0987ff","effort_h":2}
+{"ts":"2026-03-01T09:00:00Z","id":"t1:position:/use-cases/legal-39","event":"opened","to":{"position":33,"impressions":998},"score":0.95,"confidence":0.13}
+{"ts":"2026-03-01T15:00:00Z","id":"t4:indexation:/integrations/slack-49","event":"acknowledged"}
+{"ts":"2026-03-01T21:00:00Z","id":"t1:indexation:/vs/acme-48","event":"opened","to":{"position":26,"impressions":268},"score":39.54,"confidence":0.82}
+{"ts":"2026-03-02T03:00:00Z","id":"t3:indexation:/pricing-44","event":"opened","to":{"position":33,"impressions":891},"score":20.34,"confidence":0.17}
+{"ts":"2026-03-02T09:00:00Z","id":"t3:canonical:/blog/what-is-clm-52","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-03-02T15:00:00Z","id":"t3:orphan:/demo-2","event":"opened","to":{"position":37,"impressions":792},"score":17.79,"confidence":0.84}
+{"ts":"2026-03-02T21:00:00Z","id":"t1:orphan:/contact-13","event":"in_progress"}
+{"ts":"2026-03-03T03:00:00Z","id":"t2:indexation:/pricing-21","event":"opened","to":{"position":34,"impressions":512},"score":1.87,"confidence":0.71}
+{"ts":"2026-03-03T09:00:00Z","id":"t3:canonical:/vs/acme-41","event":"opened","to":{"position":58,"impressions":283},"score":32.09,"confidence":0.42}
+{"ts":"2026-03-03T15:00:00Z","id":"t0:canonical:/blog/what-is-clm-47","event":"opened","to":{"position":59,"impressions":737},"score":11.34,"confidence":0.41}
+{"ts":"2026-03-03T21:00:00Z","id":"t0:position:/blog/what-is-clm-57","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-03-04T03:00:00Z","id":"t2:offsite:/use-cases/legal-6","event":"closed"}
+{"ts":"2026-03-04T09:00:00Z","id":"t2:cwv:/contact-25","event":"opened","to":{"position":36,"impressions":183},"score":15.84,"confidence":0.54}
+{"ts":"2026-03-04T15:00:00Z","id":"t3:offsite:/pricing-50","event":"acknowledged"}
+{"ts":"2026-03-04T21:00:00Z","id":"t0:position:/blog/what-is-clm-57","event":"opened","to":{"position":20,"impressions":492},"score":4.84,"confidence":0.87}
+{"ts":"2026-03-05T03:00:00Z","id":"t0:canonical:/blog/what-is-clm-47","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-03-05T09:00:00Z","id":"t1:indexation:/vs/acme-48","event":"acknowledged"}
+{"ts":"2026-03-05T15:00:00Z","id":"t3:orphan:/use-cases/legal-26","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-03-05T21:00:00Z","id":"t2:position:/use-cases/legal-1","event":"opened","to":{"position":42,"impressions":508},"score":4.06,"confidence":0.5}
+{"ts":"2026-03-06T03:00:00Z","id":"t3:offsite:/pricing-9","event":"shipped","cause":"commit:949eadf","effort_h":1.5}
+{"ts":"2026-03-06T09:00:00Z","id":"t1:canonical:/demo-53","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-03-06T15:00:00Z","id":"t4:cwv:/demo-35","event":"acknowledged"}
+{"ts":"2026-03-06T21:00:00Z","id":"t0:offsite:/blog/what-is-clm-11","event":"acknowledged"}
+{"ts":"2026-03-07T03:00:00Z","id":"t2:offsite:/pricing-37","event":"regressed","to":{"position":57}}
+{"ts":"2026-03-07T09:00:00Z","id":"t1:orphan:/pricing-30","event":"closed"}
+{"ts":"2026-03-07T15:00:00Z","id":"t4:indexation:/use-cases/legal-23","event":"closed"}
+{"ts":"2026-03-07T21:00:00Z","id":"t3:orphan:/use-cases/legal-26","event":"opened","to":{"position":46,"impressions":296},"score":35.43,"confidence":0.17}
+{"ts":"2026-03-08T03:00:00Z","id":"t4:cwv:/vs/acme-59","event":"closed"}
+{"ts":"2026-03-08T09:00:00Z","id":"t3:offsite:/pricing-9","event":"verified","to":{"position":46}}
+{"ts":"2026-03-08T15:00:00Z","id":"t0:position:/blog/what-is-clm-57","event":"acknowledged"}
+{"ts":"2026-03-08T21:00:00Z","id":"t2:offsite:/demo-43","event":"opened","to":{"position":53,"impressions":779},"score":18.34,"confidence":0.45}
+{"ts":"2026-03-09T03:00:00Z","id":"t0:indexation:/contact-40","event":"opened","to":{"position":48,"impressions":907},"score":1.02,"confidence":0.57}
+{"ts":"2026-03-09T09:00:00Z","id":"t0:indexation:/demo-31","event":"closed"}
+{"ts":"2026-03-09T15:00:00Z","id":"t1:orphan:/contact-5","event":"regressed","to":{"position":60}}
+{"ts":"2026-03-09T21:00:00Z","id":"t1:cwv:/integrations/slack-12","event":"closed"}
+{"ts":"2026-03-10T03:00:00Z","id":"t2:canonical:/pricing-38","event":"acknowledged"}
+{"ts":"2026-03-10T09:00:00Z","id":"t3:offsite:/pricing-9","event":"closed"}
+{"ts":"2026-03-10T15:00:00Z","id":"t3:canonical:/vs/acme-8","event":"regressed","to":{"position":43}}
+{"ts":"2026-03-10T21:00:00Z","id":"t1:orphan:/contact-5","event":"acknowledged"}
+{"ts":"2026-03-11T03:00:00Z","id":"t1:canonical:/demo-53","event":"opened","to":{"position":39,"impressions":808},"score":11.66,"confidence":0.33}
+{"ts":"2026-03-11T09:00:00Z","id":"t3:canonical:/vs/acme-8","event":"acknowledged"}
+{"ts":"2026-03-11T15:00:00Z","id":"t1:orphan:/pricing-30","event":"opened","to":{"position":22,"impressions":470},"score":14.36,"confidence":0.33}
+{"ts":"2026-03-11T21:00:00Z","id":"t2:offsite:/pricing-37","event":"acknowledged"}
+{"ts":"2026-03-12T03:00:00Z","id":"t4:indexation:/demo-33","event":"opened","to":{"position":58,"impressions":765},"score":11.87,"confidence":0.87}
+{"ts":"2026-03-12T09:00:00Z","id":"t3:offsite:/pricing-50","event":"in_progress"}
+{"ts":"2026-03-12T15:00:00Z","id":"t2:position:/use-cases/legal-1","event":"closed"}
+{"ts":"2026-03-12T21:00:00Z","id":"t2:offsite:/integrations/slack-0","event":"opened","to":{"position":25,"impressions":282},"score":1.4,"confidence":0.19}
+{"ts":"2026-03-13T03:00:00Z","id":"t2:offsite:/pricing-37","event":"closed"}
+{"ts":"2026-03-13T09:00:00Z","id":"t2:position:/use-cases/legal-1","event":"opened","to":{"position":42,"impressions":168},"score":27.9,"confidence":0.84}
+{"ts":"2026-03-13T15:00:00Z","id":"t4:position:/integrations/slack-55","event":"closed"}
+{"ts":"2026-03-13T21:00:00Z","id":"t4:cwv:/demo-35","event":"in_progress"}
+{"ts":"2026-03-14T03:00:00Z","id":"t3:offsite:/pricing-9","event":"opened","to":{"position":46,"impressions":215},"score":12.7,"confidence":0.58}
+{"ts":"2026-03-14T09:00:00Z","id":"t0:position:/contact-51","event":"closed"}
+{"ts":"2026-03-14T15:00:00Z","id":"t3:indexation:/pricing-44","event":"closed"}
+{"ts":"2026-03-14T21:00:00Z","id":"t3:offsite:/pricing-50","event":"shipped","cause":"commit:40013c6","effort_h":6.5}
+{"ts":"2026-03-15T03:00:00Z","id":"t3:orphan:/demo-2","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-03-15T09:00:00Z","id":"t3:offsite:/demo-56","event":"closed"}
+{"ts":"2026-03-15T15:00:00Z","id":"t1:canonical:/demo-53","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-03-15T21:00:00Z","id":"t3:offsite:/pricing-50","event":"verified","to":{"position":44}}
+{"ts":"2026-03-16T03:00:00Z","id":"t1:offsite:/contact-19","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-03-16T09:00:00Z","id":"t1:position:/use-cases/legal-39","event":"acknowledged"}
+{"ts":"2026-03-16T15:00:00Z","id":"t3:orphan:/use-cases/legal-26","event":"closed"}
+{"ts":"2026-03-16T21:00:00Z","id":"t0:position:/contact-51","event":"opened","to":{"position":54,"impressions":156},"score":30.96,"confidence":0.08}
+{"ts":"2026-03-17T03:00:00Z","id":"t3:schema:/demo-29","event":"regressed","to":{"position":46}}
+{"ts":"2026-03-17T09:00:00Z","id":"t1:orphan:/contact-13","event":"shipped","cause":"commit:bb1702e","effort_h":7}
+{"ts":"2026-03-17T15:00:00Z","id":"t0:position:/contact-20","event":"in_progress"}
+{"ts":"2026-03-17T21:00:00Z","id":"t3:orphan:/use-cases/legal-26","event":"opened","to":{"position":46,"impressions":424},"score":14,"confidence":0.69}
+{"ts":"2026-03-18T03:00:00Z","id":"t3:orphan:/demo-2","event":"opened","to":{"position":37,"impressions":545},"score":10.08,"confidence":0.28}
+{"ts":"2026-03-18T09:00:00Z","id":"t0:indexation:/demo-31","event":"opened","to":{"position":23,"impressions":694},"score":16.24,"confidence":0.98}
+{"ts":"2026-03-18T15:00:00Z","id":"t2:cwv:/use-cases/legal-18","event":"verified","to":{"position":30}}
+{"ts":"2026-03-18T21:00:00Z","id":"t2:offsite:/pricing-37","event":"opened","to":{"position":57,"impressions":529},"score":1.74,"confidence":0.76}
+{"ts":"2026-03-19T03:00:00Z","id":"site","event":"algo_update","note":"core update 2026-291"}
+{"ts":"2026-03-19T09:00:00Z","id":"t1:orphan:/contact-5","event":"closed"}
+{"ts":"2026-03-19T15:00:00Z","id":"t1:indexation:/vs/acme-48","event":"closed"}
+{"ts":"2026-03-19T21:00:00Z","id":"t2:offsite:/use-cases/legal-6","event":"opened","to":{"position":25,"impressions":502},"score":12,"confidence":0.46}
+{"ts":"2026-03-20T03:00:00Z","id":"t0:position:/blog/what-is-clm-57","event":"in_progress"}
+{"ts":"2026-03-20T09:00:00Z","id":"t0:offsite:/demo-24","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-03-20T15:00:00Z","id":"t0:cwv:/demo-27","event":"opened","to":{"position":43,"impressions":817},"score":17.37,"confidence":0.17}
+{"ts":"2026-03-20T21:00:00Z","id":"t4:indexation:/use-cases/legal-23","event":"opened","to":{"position":20,"impressions":372},"score":14.65,"confidence":0.16}
+{"ts":"2026-03-21T03:00:00Z","id":"t2:offsite:/demo-43","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-03-21T09:00:00Z","id":"t3:orphan:/use-cases/legal-26","event":"closed"}
+{"ts":"2026-03-21T15:00:00Z","id":"t1:orphan:/contact-5","event":"opened","to":{"position":60,"impressions":298},"score":10.39,"confidence":0.21}
+{"ts":"2026-03-21T21:00:00Z","id":"t0:schema:/pricing-3","event":"acknowledged"}
+{"ts":"2026-03-22T03:00:00Z","id":"t2:indexation:/blog/what-is-clm-34","event":"closed"}
+{"ts":"2026-03-22T09:00:00Z","id":"t4:orphan:/use-cases/legal-54","event":"closed"}
+{"ts":"2026-03-22T15:00:00Z","id":"t0:cwv:/demo-27","event":"closed"}
+{"ts":"2026-03-22T21:00:00Z","id":"t3:orphan:/use-cases/legal-26","event":"opened","to":{"position":46,"impressions":658},"score":32.94,"confidence":0.78}
+{"ts":"2026-03-23T03:00:00Z","id":"t2:indexation:/blog/what-is-clm-34","event":"opened","to":{"position":51,"impressions":305},"score":39.21,"confidence":0.97}
+{"ts":"2026-03-23T09:00:00Z","id":"t2:canonical:/use-cases/legal-14","event":"opened","to":{"position":47,"impressions":131},"score":39.33,"confidence":0.53}
+{"ts":"2026-03-23T15:00:00Z","id":"t2:orphan:/integrations/slack-10","event":"acknowledged"}
+{"ts":"2026-03-23T21:00:00Z","id":"t1:offsite:/contact-19","event":"opened","to":{"position":49,"impressions":463},"score":17.89,"confidence":0.63}
+{"ts":"2026-03-24T03:00:00Z","id":"t2:position:/use-cases/legal-1","event":"closed"}
+{"ts":"2026-03-24T09:00:00Z","id":"t3:schema:/demo-29","event":"acknowledged"}
+{"ts":"2026-03-24T15:00:00Z","id":"t0:schema:/pricing-3","event":"in_progress"}
+{"ts":"2026-03-24T21:00:00Z","id":"t2:cwv:/use-cases/legal-18","event":"closed"}
+{"ts":"2026-03-25T03:00:00Z","id":"t2:orphan:/integrations/slack-10","event":"closed"}
+{"ts":"2026-03-25T09:00:00Z","id":"t4:indexation:/demo-33","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-03-25T15:00:00Z","id":"t0:position:/contact-51","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-03-25T21:00:00Z","id":"t4:cwv:/vs/acme-59","event":"opened","to":{"position":27,"impressions":830},"score":20.56,"confidence":0.52}
+{"ts":"2026-03-26T03:00:00Z","id":"t0:canonical:/blog/what-is-clm-47","event":"opened","to":{"position":59,"impressions":887},"score":27.48,"confidence":0.17}
+{"ts":"2026-03-26T09:00:00Z","id":"t0:position:/contact-20","event":"shipped","cause":"commit:1d6fe1f","effort_h":3.5}
+{"ts":"2026-03-26T15:00:00Z","id":"t2:canonical:/pricing-38","event":"in_progress"}
+{"ts":"2026-03-26T21:00:00Z","id":"t2:orphan:/integrations/slack-10","event":"opened","to":{"position":59,"impressions":361},"score":9.71,"confidence":0.53}
+{"ts":"2026-03-27T03:00:00Z","id":"t4:cwv:/demo-35","event":"shipped","cause":"commit:1789b47","effort_h":0.5}
+{"ts":"2026-03-27T09:00:00Z","id":"t0:indexation:/integrations/slack-58","event":"in_progress"}
+{"ts":"2026-03-27T15:00:00Z","id":"t0:schema:/pricing-3","event":"shipped","cause":"commit:ae0307f","effort_h":1.5}
+{"ts":"2026-03-27T21:00:00Z","id":"t2:offsite:/pricing-37","event":"closed"}
+{"ts":"2026-03-28T03:00:00Z","id":"t2:orphan:/integrations/slack-10","event":"acknowledged"}
+{"ts":"2026-03-28T09:00:00Z","id":"t1:orphan:/contact-13","event":"verified","to":{"position":51}}
+{"ts":"2026-03-28T15:00:00Z","id":"t2:indexation:/blog/what-is-clm-34","event":"acknowledged"}
+{"ts":"2026-03-28T21:00:00Z","id":"t3:offsite:/pricing-50","event":"closed"}
+{"ts":"2026-03-29T03:00:00Z","id":"t1:position:/contact-28","event":"in_progress"}
+{"ts":"2026-03-29T09:00:00Z","id":"t2:offsite:/integrations/slack-0","event":"acknowledged"}
+{"ts":"2026-03-29T15:00:00Z","id":"t3:offsite:/pricing-50","event":"opened","to":{"position":44,"impressions":241},"score":22.41,"confidence":0.28}
+{"ts":"2026-03-29T21:00:00Z","id":"t3:schema:/demo-29","event":"closed"}
+{"ts":"2026-03-30T03:00:00Z","id":"t2:indexation:/blog/what-is-clm-34","event":"in_progress"}
+{"ts":"2026-03-30T09:00:00Z","id":"t2:indexation:/pricing-21","event":"acknowledged"}
+{"ts":"2026-03-30T15:00:00Z","id":"t3:orphan:/demo-2","event":"closed"}
+{"ts":"2026-03-30T21:00:00Z","id":"t2:indexation:/pricing-21","event":"closed"}
+{"ts":"2026-03-31T03:00:00Z","id":"t0:indexation:/contact-40","event":"acknowledged"}
+{"ts":"2026-03-31T09:00:00Z","id":"t4:schema:/blog/what-is-clm-4","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-03-31T15:00:00Z","id":"t4:indexation:/use-cases/legal-23","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-03-31T21:00:00Z","id":"t0:position:/contact-51","event":"opened","to":{"position":54,"impressions":493},"score":6.34,"confidence":0.66}
+{"ts":"2026-04-01T03:00:00Z","id":"t3:orphan:/demo-2","event":"opened","to":{"position":37,"impressions":565},"score":33.85,"confidence":0.43}
+{"ts":"2026-04-01T09:00:00Z","id":"t4:position:/integrations/slack-55","event":"opened","to":{"position":37,"impressions":842},"score":6.37,"confidence":0.78}
+{"ts":"2026-04-01T15:00:00Z","id":"t2:canonical:/pricing-38","event":"shipped","cause":"commit:43abb67","effort_h":6.5}
+{"ts":"2026-04-01T21:00:00Z","id":"t2:position:/use-cases/legal-1","event":"opened","to":{"position":42,"impressions":982},"score":30.46,"confidence":0.13}
+{"ts":"2026-04-02T03:00:00Z","id":"t1:position:/integrations/slack-46","event":"acknowledged"}
+{"ts":"2026-04-02T09:00:00Z","id":"t0:position:/vs/acme-42","event":"acknowledged"}
+{"ts":"2026-04-02T15:00:00Z","id":"t4:indexation:/integrations/slack-49","event":"closed"}
+{"ts":"2026-04-02T21:00:00Z","id":"t0:cwv:/demo-27","event":"opened","to":{"position":43,"impressions":737},"score":28.21,"confidence":0.24}
+{"ts":"2026-04-03T03:00:00Z","id":"t1:canonical:/demo-53","event":"opened","to":{"position":39,"impressions":820},"score":38.76,"confidence":0.81}
+{"ts":"2026-04-03T09:00:00Z","id":"t0:orphan:/blog/what-is-clm-16","event":"closed"}
+{"ts":"2026-04-03T15:00:00Z","id":"t1:indexation:/vs/acme-48","event":"opened","to":{"position":26,"impressions":648},"score":37.44,"confidence":0.11}
+{"ts":"2026-04-03T21:00:00Z","id":"t2:position:/use-cases/legal-1","event":"closed"}
+{"ts":"2026-04-04T03:00:00Z","id":"t3:position:/pricing-45","event":"closed"}
+{"ts":"2026-04-04T09:00:00Z","id":"t2:canonical:/pricing-38","event":"regressed","to":{"position":34}}
+{"ts":"2026-04-04T15:00:00Z","id":"t2:orphan:/integrations/slack-10","event":"closed"}
+{"ts":"2026-04-04T21:00:00Z","id":"t2:cwv:/contact-25","event":"acknowledged"}
+{"ts":"2026-04-05T03:00:00Z","id":"t3:canonical:/vs/acme-41","event":"acknowledged"}
+{"ts":"2026-04-05T09:00:00Z","id":"t2:cwv:/demo-32","event":"opened","to":{"position":49,"impressions":932},"score":18.54,"confidence":0.45}
+{"ts":"2026-04-05T15:00:00Z","id":"t2:orphan:/integrations/slack-10","event":"opened","to":{"position":59,"impressions":531},"score":33.21,"confidence":0.1}
+{"ts":"2026-04-05T21:00:00Z","id":"t0:indexation:/integrations/slack-58","event":"shipped","cause":"commit:37e9f9f","effort_h":3.5}
+{"ts":"2026-04-06T03:00:00Z","id":"t3:canonical:/vs/acme-8","event":"in_progress"}
+{"ts":"2026-04-06T09:00:00Z","id":"t0:position:/blog/what-is-clm-57","event":"shipped","cause":"commit:4b3a7bf","effort_h":6}
+{"ts":"2026-04-06T15:00:00Z","id":"t3:canonical:/blog/what-is-clm-52","event":"opened","to":{"position":39,"impressions":467},"score":2.55,"confidence":0.73}
+{"ts":"2026-04-06T21:00:00Z","id":"t4:schema:/blog/what-is-clm-4","event":"opened","to":{"position":39,"impressions":877},"score":33.03,"confidence":0.63}
+{"ts":"2026-04-07T03:00:00Z","id":"t3:orphan:/demo-2","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-04-07T09:00:00Z","id":"t3:schema:/demo-29","event":"opened","to":{"position":46,"impressions":918},"score":11.77,"confidence":0.63}
+{"ts":"2026-04-07T15:00:00Z","id":"t2:indexation:/integrations/slack-17","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-04-07T21:00:00Z","id":"t4:cwv:/demo-35","event":"verified","to":{"position":42}}
+{"ts":"2026-04-08T03:00:00Z","id":"t3:schema:/demo-29","event":"closed"}
+{"ts":"2026-04-08T09:00:00Z","id":"t4:schema:/contact-15","event":"closed"}
+{"ts":"2026-04-08T15:00:00Z","id":"t4:indexation:/demo-33","event":"opened","to":{"position":58,"impressions":633},"score":29.7,"confidence":0.66}
+{"ts":"2026-04-08T21:00:00Z","id":"t2:indexation:/integrations/slack-17","event":"opened","to":{"position":33,"impressions":116},"score":16.84,"confidence":0.48}
+{"ts":"2026-04-09T03:00:00Z","id":"t0:indexation:/vs/acme-22","event":"closed"}
+{"ts":"2026-04-09T09:00:00Z","id":"t2:indexation:/integrations/slack-17","event":"closed"}
+{"ts":"2026-04-09T15:00:00Z","id":"t3:position:/pricing-45","event":"opened","to":{"position":56,"impressions":961},"score":32.44,"confidence":0.55}
+{"ts":"2026-04-09T21:00:00Z","id":"t4:cwv:/demo-35","event":"closed"}
+{"ts":"2026-04-10T03:00:00Z","id":"t2:canonical:/pricing-38","event":"acknowledged"}
+{"ts":"2026-04-10T09:00:00Z","id":"t3:offsite:/demo-56","event":"opened","to":{"position":53,"impressions":175},"score":20.61,"confidence":0.34}
+{"ts":"2026-04-10T15:00:00Z","id":"t3:indexation:/pricing-44","event":"opened","to":{"position":33,"impressions":734},"score":9.04,"confidence":0.22}
+{"ts":"2026-04-10T21:00:00Z","id":"t1:orphan:/pricing-30","event":"acknowledged"}
+{"ts":"2026-04-11T03:00:00Z","id":"t3:offsite:/pricing-50","event":"acknowledged"}
+{"ts":"2026-04-11T09:00:00Z","id":"t0:cwv:/demo-27","event":"closed"}
+{"ts":"2026-04-11T15:00:00Z","id":"t0:indexation:/demo-31","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-04-11T21:00:00Z","id":"t1:indexation:/vs/acme-48","event":"acknowledged"}
+{"ts":"2026-04-12T03:00:00Z","id":"t0:position:/contact-51","event":"closed"}
+{"ts":"2026-04-12T09:00:00Z","id":"site","event":"algo_update","note":"core update 2026-388"}
+{"ts":"2026-04-12T15:00:00Z","id":"t3:orphan:/use-cases/legal-26","event":"acknowledged"}
+{"ts":"2026-04-12T21:00:00Z","id":"t2:offsite:/use-cases/legal-6","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-04-13T03:00:00Z","id":"t4:orphan:/use-cases/legal-54","event":"opened","to":{"position":26,"impressions":356},"score":33.06,"confidence":0.85}
+{"ts":"2026-04-13T09:00:00Z","id":"t0:schema:/blog/what-is-clm-36","event":"acknowledged"}
+{"ts":"2026-04-13T15:00:00Z","id":"t1:orphan:/contact-5","event":"acknowledged"}
+{"ts":"2026-04-13T21:00:00Z","id":"t1:offsite:/contact-19","event":"closed"}
+{"ts":"2026-04-14T03:00:00Z","id":"t3:canonical:/blog/what-is-clm-52","event":"acknowledged"}
+{"ts":"2026-04-14T09:00:00Z","id":"t3:canonical:/vs/acme-8","event":"shipped","cause":"commit:4beb7bf","effort_h":8}
+{"ts":"2026-04-14T15:00:00Z","id":"t2:offsite:/pricing-37","event":"opened","to":{"position":57,"impressions":336},"score":9.33,"confidence":0.84}
+{"ts":"2026-04-14T21:00:00Z","id":"t2:cwv:/contact-25","event":"in_progress"}
+{"ts":"2026-04-15T03:00:00Z","id":"t4:orphan:/use-cases/legal-54","event":"closed"}
+{"ts":"2026-04-15T09:00:00Z","id":"t3:orphan:/use-cases/legal-26","event":"in_progress"}
+{"ts":"2026-04-15T15:00:00Z","id":"t2:cwv:/contact-25","event":"shipped","cause":"commit:9d50fff","effort_h":5.5}
+{"ts":"2026-04-15T21:00:00Z","id":"t0:schema:/blog/what-is-clm-36","event":"in_progress"}
+{"ts":"2026-04-16T03:00:00Z","id":"t2:position:/use-cases/legal-7","event":"acknowledged"}
+{"ts":"2026-04-16T09:00:00Z","id":"t3:offsite:/pricing-9","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-04-16T15:00:00Z","id":"t0:position:/contact-20","event":"verified","to":{"position":49}}
+{"ts":"2026-04-16T21:00:00Z","id":"t3:offsite:/demo-56","event":"closed"}
+{"ts":"2026-04-17T03:00:00Z","id":"t1:orphan:/contact-13","event":"closed"}
+{"ts":"2026-04-17T09:00:00Z","id":"t0:position:/blog/what-is-clm-57","event":"verified","to":{"position":16}}
+{"ts":"2026-04-17T15:00:00Z","id":"t0:schema:/pricing-3","event":"regressed","to":{"position":39}}
+{"ts":"2026-04-17T21:00:00Z","id":"t1:position:/contact-28","event":"shipped","cause":"commit:4696d67","effort_h":3.5}
+{"ts":"2026-04-18T03:00:00Z","id":"t4:orphan:/use-cases/legal-54","event":"opened","to":{"position":26,"impressions":812},"score":22.38,"confidence":0.35}
+{"ts":"2026-04-18T09:00:00Z","id":"t2:indexation:/integrations/slack-17","event":"opened","to":{"position":33,"impressions":728},"score":5.74,"confidence":0.34}
+{"ts":"2026-04-18T15:00:00Z","id":"t2:canonical:/pricing-38","event":"in_progress"}
+{"ts":"2026-04-18T21:00:00Z","id":"t3:schema:/demo-29","event":"opened","to":{"position":46,"impressions":833},"score":12.07,"confidence":0.15}
+{"ts":"2026-04-19T03:00:00Z","id":"t4:indexation:/integrations/slack-49","event":"opened","to":{"position":51,"impressions":511},"score":8.06,"confidence":0.24}
+{"ts":"2026-04-19T09:00:00Z","id":"t2:cwv:/demo-32","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-04-19T15:00:00Z","id":"t3:canonical:/vs/acme-41","event":"in_progress"}
+{"ts":"2026-04-19T21:00:00Z","id":"t0:schema:/pricing-3","event":"acknowledged"}
+{"ts":"2026-04-20T03:00:00Z","id":"t3:orphan:/use-cases/legal-26","event":"shipped","cause":"commit:d3525bf","effort_h":2}
+{"ts":"2026-04-20T09:00:00Z","id":"t1:indexation:/vs/acme-48","event":"in_progress"}
+{"ts":"2026-04-20T15:00:00Z","id":"t0:indexation:/integrations/slack-58","event":"verified","to":{"position":41}}
+{"ts":"2026-04-20T15:00:00Z","id":"t0:indexation:/integrations/slack-58","event":"retiered","to":{"tier":1},"note":"tier reassigned by rule 4"}
+{"ts":"2026-04-20T21:00:00Z","id":"t0:indexation:/demo-31","event":"opened","to":{"position":23,"impressions":506},"score":29.63,"confidence":0.84}
+{"ts":"2026-04-21T03:00:00Z","id":"t0:indexation:/demo-31","event":"closed"}
+{"ts":"2026-04-21T09:00:00Z","id":"t1:orphan:/pricing-30","event":"in_progress"}
+{"ts":"2026-04-21T15:00:00Z","id":"t0:offsite:/blog/what-is-clm-11","event":"in_progress"}
+{"ts":"2026-04-21T21:00:00Z","id":"t2:indexation:/pricing-21","event":"opened","to":{"position":34,"impressions":870},"score":18.71,"confidence":0.1}
+{"ts":"2026-04-22T03:00:00Z","id":"t1:offsite:/contact-19","event":"opened","to":{"position":49,"impressions":937},"score":17.78,"confidence":0.94}
+{"ts":"2026-04-22T09:00:00Z","id":"t0:indexation:/vs/acme-22","event":"opened","to":{"position":24,"impressions":931},"score":4.7,"confidence":0.67}
+{"ts":"2026-04-22T15:00:00Z","id":"t2:cwv:/demo-32","event":"opened","to":{"position":49,"impressions":793},"score":12.38,"confidence":0.46}
+{"ts":"2026-04-22T21:00:00Z","id":"t1:indexation:/vs/acme-48","event":"shipped","cause":"commit:4c7c4bf","effort_h":2}
+{"ts":"2026-04-23T03:00:00Z","id":"t0:schema:/blog/what-is-clm-36","event":"shipped","cause":"commit:722f89f","effort_h":6.5}
+{"ts":"2026-04-23T09:00:00Z","id":"t2:position:/use-cases/legal-7","event":"in_progress"}
+{"ts":"2026-04-23T15:00:00Z","id":"t1:position:/integrations/slack-46","event":"closed"}
+{"ts":"2026-04-23T21:00:00Z","id":"t3:offsite:/pricing-9","event":"opened","to":{"position":46,"impressions":988},"score":31.83,"confidence":0.41}
+{"ts":"2026-04-24T03:00:00Z","id":"t3:canonical:/vs/acme-41","event":"shipped","cause":"commit:4a5183f","effort_h":4.5}
+{"ts":"2026-04-24T09:00:00Z","id":"t0:offsite:/demo-24","event":"opened","to":{"position":23,"impressions":964},"score":18.66,"confidence":0.27}
+{"ts":"2026-04-24T15:00:00Z","id":"t2:orphan:/integrations/slack-10","event":"closed"}
+{"ts":"2026-04-24T21:00:00Z","id":"t0:indexation:/vs/acme-22","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-04-25T03:00:00Z","id":"t1:position:/use-cases/legal-39","event":"closed"}
+{"ts":"2026-04-25T09:00:00Z","id":"t1:position:/use-cases/legal-39","event":"opened","to":{"position":33,"impressions":351},"score":8.22,"confidence":0.78}
+{"ts":"2026-04-25T15:00:00Z","id":"t0:indexation:/vs/acme-22","event":"opened","to":{"position":24,"impressions":150},"score":18.62,"confidence":0.11}
+{"ts":"2026-04-25T21:00:00Z","id":"t0:indexation:/demo-31","event":"opened","to":{"position":23,"impressions":591},"score":1.8,"confidence":0.35}
+{"ts":"2026-04-26T03:00:00Z","id":"t0:schema:/blog/what-is-clm-36","event":"verified","to":{"position":31}}
+{"ts":"2026-04-26T09:00:00Z","id":"t0:schema:/pricing-3","event":"in_progress"}
+{"ts":"2026-04-26T15:00:00Z","id":"t2:offsite:/pricing-37","event":"closed"}
+{"ts":"2026-04-26T21:00:00Z","id":"t0:schema:/pricing-3","event":"shipped","cause":"commit:53c76bf","effort_h":7.5}
+{"ts":"2026-04-27T03:00:00Z","id":"t3:orphan:/demo-2","event":"opened","to":{"position":37,"impressions":465},"score":13.25,"confidence":0.41}
+{"ts":"2026-04-27T09:00:00Z","id":"t0:cwv:/demo-27","event":"opened","to":{"position":43,"impressions":784},"score":22.21,"confidence":0.36}
+{"ts":"2026-04-27T15:00:00Z","id":"t2:canonical:/pricing-38","event":"shipped","cause":"commit:82ac327","effort_h":5.5}
+{"ts":"2026-04-27T21:00:00Z","id":"t2:offsite:/pricing-37","event":"opened","to":{"position":57,"impressions":580},"score":29.72,"confidence":0.11}
+{"ts":"2026-04-28T03:00:00Z","id":"t3:orphan:/use-cases/legal-26","event":"verified","to":{"position":42}}
+{"ts":"2026-04-28T09:00:00Z","id":"t0:orphan:/blog/what-is-clm-16","event":"opened","to":{"position":47,"impressions":559},"score":10.87,"confidence":0.21}
+{"ts":"2026-04-28T15:00:00Z","id":"t3:schema:/demo-29","event":"closed"}
+{"ts":"2026-04-28T21:00:00Z","id":"t1:position:/use-cases/legal-39","event":"acknowledged"}
+{"ts":"2026-04-29T03:00:00Z","id":"t2:position:/use-cases/legal-1","event":"opened","to":{"position":42,"impressions":623},"score":6.12,"confidence":0.41}
+{"ts":"2026-04-29T09:00:00Z","id":"t2:cwv:/demo-32","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-04-29T15:00:00Z","id":"t0:position:/contact-20","event":"regressed","to":{"position":52}}
+{"ts":"2026-04-29T21:00:00Z","id":"t0:position:/contact-51","event":"opened","to":{"position":54,"impressions":973},"score":22.85,"confidence":0.37}
+{"ts":"2026-04-30T03:00:00Z","id":"t2:cwv:/contact-25","event":"verified","to":{"position":32}}
+{"ts":"2026-04-30T09:00:00Z","id":"t2:offsite:/demo-43","event":"opened","to":{"position":53,"impressions":938},"score":35.92,"confidence":0.52}
+{"ts":"2026-04-30T15:00:00Z","id":"t1:offsite:/contact-19","event":"acknowledged"}
+{"ts":"2026-04-30T21:00:00Z","id":"t1:canonical:/demo-53","event":"acknowledged"}
+{"ts":"2026-05-01T03:00:00Z","id":"t1:orphan:/contact-13","event":"opened","to":{"position":51,"impressions":442},"score":7.38,"confidence":0.41}
+{"ts":"2026-05-01T09:00:00Z","id":"t1:cwv:/integrations/slack-12","event":"opened","to":{"position":41,"impressions":125},"score":32.65,"confidence":0.74}
+{"ts":"2026-05-01T15:00:00Z","id":"t1:orphan:/pricing-30","event":"shipped","cause":"commit:ab663df","effort_h":0.5}
+{"ts":"2026-05-01T21:00:00Z","id":"t0:offsite:/demo-24","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-05-02T03:00:00Z","id":"t1:position:/contact-28","event":"verified","to":{"position":42}}
+{"ts":"2026-05-02T09:00:00Z","id":"t4:position:/integrations/slack-55","event":"acknowledged"}
+{"ts":"2026-05-02T15:00:00Z","id":"t4:indexation:/integrations/slack-49","event":"acknowledged"}
+{"ts":"2026-05-02T21:00:00Z","id":"t4:indexation:/integrations/slack-49","event":"closed"}
+{"ts":"2026-05-03T03:00:00Z","id":"t3:indexation:/pricing-44","event":"acknowledged"}
+{"ts":"2026-05-03T09:00:00Z","id":"t4:cwv:/demo-35","event":"opened","to":{"position":42,"impressions":403},"score":17.22,"confidence":0.54}
+{"ts":"2026-05-03T15:00:00Z","id":"t2:indexation:/integrations/slack-17","event":"acknowledged"}
+{"ts":"2026-05-03T21:00:00Z","id":"t2:canonical:/use-cases/legal-14","event":"closed"}
+{"ts":"2026-05-04T03:00:00Z","id":"t3:canonical:/vs/acme-41","event":"regressed","to":{"position":61}}
+{"ts":"2026-05-04T09:00:00Z","id":"t0:orphan:/blog/what-is-clm-16","event":"acknowledged"}
+{"ts":"2026-05-04T15:00:00Z","id":"t3:canonical:/blog/what-is-clm-52","event":"in_progress"}
+{"ts":"2026-05-04T21:00:00Z","id":"t3:orphan:/demo-2","event":"closed"}
+{"ts":"2026-05-05T03:00:00Z","id":"t1:indexation:/vs/acme-48","event":"regressed","to":{"position":29}}
+{"ts":"2026-05-05T09:00:00Z","id":"t4:orphan:/use-cases/legal-54","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-05-05T15:00:00Z","id":"t2:canonical:/pricing-38","event":"regressed","to":{"position":37}}
+{"ts":"2026-05-05T21:00:00Z","id":"t4:cwv:/demo-35","event":"closed"}
+{"ts":"2026-05-06T03:00:00Z","id":"t4:schema:/contact-15","event":"opened","to":{"position":48,"impressions":936},"score":32.16,"confidence":0.58}
+{"ts":"2026-05-06T09:00:00Z","id":"site","event":"algo_update","note":"core update 2026-485"}
+{"ts":"2026-05-06T15:00:00Z","id":"t2:offsite:/demo-43","event":"acknowledged"}
+{"ts":"2026-05-06T21:00:00Z","id":"t2:cwv:/use-cases/legal-18","event":"opened","to":{"position":30,"impressions":966},"score":10.44,"confidence":0.59}
+{"ts":"2026-05-07T03:00:00Z","id":"t0:position:/blog/what-is-clm-57","event":"regressed","to":{"position":19}}
+{"ts":"2026-05-07T09:00:00Z","id":"t2:indexation:/pricing-21","event":"closed"}
+{"ts":"2026-05-07T15:00:00Z","id":"t2:offsite:/pricing-37","event":"closed"}
+{"ts":"2026-05-07T21:00:00Z","id":"t0:offsite:/blog/what-is-clm-11","event":"shipped","cause":"commit:327a83f","effort_h":7.5}
+{"ts":"2026-05-08T03:00:00Z","id":"t0:offsite:/blog/what-is-clm-11","event":"regressed","to":{"position":58}}
+{"ts":"2026-05-08T09:00:00Z","id":"t0:indexation:/demo-31","event":"closed"}
+{"ts":"2026-05-08T15:00:00Z","id":"t2:cwv:/use-cases/legal-18","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-05-08T21:00:00Z","id":"t3:canonical:/vs/acme-41","event":"acknowledged"}
+{"ts":"2026-05-09T03:00:00Z","id":"t2:orphan:/integrations/slack-10","event":"opened","to":{"position":59,"impressions":445},"score":6.03,"confidence":0.96}
+{"ts":"2026-05-09T09:00:00Z","id":"t3:position:/pricing-45","event":"acknowledged"}
+{"ts":"2026-05-09T15:00:00Z","id":"t2:indexation:/blog/what-is-clm-34","event":"shipped","cause":"commit:f972e1f","effort_h":0}
+{"ts":"2026-05-09T21:00:00Z","id":"t4:schema:/contact-15","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-05-10T03:00:00Z","id":"t4:schema:/blog/what-is-clm-4","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-05-10T09:00:00Z","id":"t1:cwv:/integrations/slack-12","event":"acknowledged"}
+{"ts":"2026-05-10T15:00:00Z","id":"t1:orphan:/contact-5","event":"closed"}
+{"ts":"2026-05-10T21:00:00Z","id":"t3:canonical:/vs/acme-8","event":"regressed","to":{"position":46}}
+{"ts":"2026-05-11T03:00:00Z","id":"t4:indexation:/integrations/slack-49","event":"opened","to":{"position":51,"impressions":994},"score":8.84,"confidence":0.88}
+{"ts":"2026-05-11T09:00:00Z","id":"t1:canonical:/demo-53","event":"closed"}
+{"ts":"2026-05-11T15:00:00Z","id":"t2:offsite:/use-cases/legal-6","event":"opened","to":{"position":25,"impressions":175},"score":13.96,"confidence":0.87}
+{"ts":"2026-05-11T21:00:00Z","id":"t2:canonical:/use-cases/legal-14","event":"opened","to":{"position":47,"impressions":759},"score":10.64,"confidence":0.69}
+{"ts":"2026-05-12T03:00:00Z","id":"t0:indexation:/vs/acme-22","event":"acknowledged"}
+{"ts":"2026-05-12T09:00:00Z","id":"t2:offsite:/use-cases/legal-6","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-05-12T15:00:00Z","id":"t1:position:/use-cases/legal-39","event":"closed"}
+{"ts":"2026-05-12T21:00:00Z","id":"t2:offsite:/integrations/slack-0","event":"in_progress"}
+{"ts":"2026-05-13T03:00:00Z","id":"t2:canonical:/pricing-38","event":"acknowledged"}
+{"ts":"2026-05-13T09:00:00Z","id":"t2:indexation:/pricing-21","event":"opened","to":{"position":34,"impressions":519},"score":17.89,"confidence":0.52}
+{"ts":"2026-05-13T15:00:00Z","id":"t4:cwv:/demo-35","event":"opened","to":{"position":42,"impressions":498},"score":39.37,"confidence":0.04}
+{"ts":"2026-05-13T21:00:00Z","id":"t1:orphan:/contact-13","event":"closed"}
+{"ts":"2026-05-14T03:00:00Z","id":"t0:schema:/pricing-3","event":"regressed","to":{"position":42}}
+{"ts":"2026-05-14T09:00:00Z","id":"t2:cwv:/demo-32","event":"opened","to":{"position":49,"impressions":486},"score":6.16,"confidence":0.02}
+{"ts":"2026-05-14T15:00:00Z","id":"t3:canonical:/vs/acme-8","event":"acknowledged"}
+{"ts":"2026-05-14T21:00:00Z","id":"t2:position:/use-cases/legal-7","event":"shipped","cause":"commit:b9f636f","effort_h":6}
+{"ts":"2026-05-15T03:00:00Z","id":"t1:offsite:/contact-19","event":"in_progress"}
+{"ts":"2026-05-15T09:00:00Z","id":"t1:position:/integrations/slack-46","event":"opened","to":{"position":31,"impressions":358},"score":4.96,"confidence":0.67}
+{"ts":"2026-05-15T15:00:00Z","id":"t4:indexation:/use-cases/legal-23","event":"opened","to":{"position":20,"impressions":394},"score":23.2,"confidence":0.29}
+{"ts":"2026-05-15T21:00:00Z","id":"t3:canonical:/vs/acme-41","event":"in_progress"}
+{"ts":"2026-05-16T03:00:00Z","id":"t4:cwv:/demo-35","event":"closed"}
+{"ts":"2026-05-16T09:00:00Z","id":"t3:offsite:/demo-56","event":"opened","to":{"position":53,"impressions":960},"score":37.35,"confidence":0.14}
+{"ts":"2026-05-16T15:00:00Z","id":"t2:offsite:/demo-43","event":"closed"}
+{"ts":"2026-05-16T21:00:00Z","id":"t4:indexation:/integrations/slack-49","event":"closed"}
+{"ts":"2026-05-17T03:00:00Z","id":"t3:indexation:/pricing-44","event":"in_progress"}
+{"ts":"2026-05-17T09:00:00Z","id":"t2:canonical:/use-cases/legal-14","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-05-17T15:00:00Z","id":"t1:offsite:/contact-19","event":"shipped","cause":"commit:723487f","effort_h":6.5}
+{"ts":"2026-05-17T21:00:00Z","id":"t3:canonical:/blog/what-is-clm-52","event":"shipped","cause":"commit:5309887","effort_h":2.5}
+{"ts":"2026-05-18T03:00:00Z","id":"t2:canonical:/pricing-38","event":"in_progress"}
+{"ts":"2026-05-18T09:00:00Z","id":"t3:canonical:/vs/acme-41","event":"shipped","cause":"commit:67d6e5f","effort_h":4.5}
+{"ts":"2026-05-18T15:00:00Z","id":"t1:position:/integrations/slack-46","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-05-18T21:00:00Z","id":"t4:indexation:/use-cases/legal-23","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-05-19T03:00:00Z","id":"t1:orphan:/contact-5","event":"opened","to":{"position":60,"impressions":153},"score":5.65,"confidence":0.46}
+{"ts":"2026-05-19T09:00:00Z","id":"t1:position:/contact-28","event":"regressed","to":{"position":45}}
+{"ts":"2026-05-19T15:00:00Z","id":"t1:indexation:/vs/acme-48","event":"acknowledged"}
+{"ts":"2026-05-19T21:00:00Z","id":"t2:cwv:/demo-32","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-05-20T03:00:00Z","id":"t2:offsite:/pricing-37","event":"opened","to":{"position":57,"impressions":469},"score":26.26,"confidence":0.67}
+{"ts":"2026-05-20T09:00:00Z","id":"t0:position:/vs/acme-42","event":"in_progress"}
+{"ts":"2026-05-20T15:00:00Z","id":"t0:indexation:/integrations/slack-58","event":"closed"}
+{"ts":"2026-05-20T21:00:00Z","id":"t2:position:/use-cases/legal-7","event":"regressed","to":{"position":49}}
+{"ts":"2026-05-21T03:00:00Z","id":"t3:canonical:/vs/acme-41","event":"regressed","to":{"position":64}}
+{"ts":"2026-05-21T09:00:00Z","id":"t4:schema:/blog/what-is-clm-4","event":"opened","to":{"position":39,"impressions":591},"score":6.16,"confidence":0.49}
+{"ts":"2026-05-21T15:00:00Z","id":"t1:canonical:/demo-53","event":"opened","to":{"position":39,"impressions":301},"score":32.31,"confidence":0.93}
+{"ts":"2026-05-21T21:00:00Z","id":"t3:orphan:/use-cases/legal-26","event":"closed"}
+{"ts":"2026-05-22T03:00:00Z","id":"t0:position:/blog/what-is-clm-57","event":"acknowledged"}
+{"ts":"2026-05-22T09:00:00Z","id":"t0:indexation:/contact-40","event":"in_progress"}
+{"ts":"2026-05-22T15:00:00Z","id":"t1:orphan:/contact-13","event":"opened","to":{"position":51,"impressions":461},"score":17.57,"confidence":0.82}
+{"ts":"2026-05-22T21:00:00Z","id":"t0:cwv:/demo-27","event":"closed"}
+{"ts":"2026-05-23T03:00:00Z","id":"t1:offsite:/contact-19","event":"verified","to":{"position":45}}
+{"ts":"2026-05-23T09:00:00Z","id":"t4:cwv:/vs/acme-59","event":"closed"}
+{"ts":"2026-05-23T15:00:00Z","id":"t2:canonical:/pricing-38","event":"shipped","cause":"commit:2e0437f","effort_h":1.5}
+{"ts":"2026-05-23T21:00:00Z","id":"t2:offsite:/use-cases/legal-6","event":"opened","to":{"position":25,"impressions":463},"score":30.48,"confidence":0.12}
+{"ts":"2026-05-24T03:00:00Z","id":"t4:orphan:/use-cases/legal-54","event":"opened","to":{"position":26,"impressions":299},"score":23.22,"confidence":0.2}
+{"ts":"2026-05-24T09:00:00Z","id":"t3:orphan:/use-cases/legal-26","event":"opened","to":{"position":42,"impressions":347},"score":16.47,"confidence":0.35}
+{"ts":"2026-05-24T15:00:00Z","id":"t3:offsite:/pricing-9","event":"acknowledged"}
+{"ts":"2026-05-24T21:00:00Z","id":"t2:orphan:/integrations/slack-10","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-05-25T03:00:00Z","id":"t3:canonical:/vs/acme-41","event":"acknowledged"}
+{"ts":"2026-05-25T09:00:00Z","id":"t4:orphan:/use-cases/legal-54","event":"closed"}
+{"ts":"2026-05-25T15:00:00Z","id":"t0:orphan:/blog/what-is-clm-16","event":"closed"}
+{"ts":"2026-05-25T21:00:00Z","id":"t3:offsite:/pricing-50","event":"closed"}
+{"ts":"2026-05-26T03:00:00Z","id":"t0:position:/contact-20","event":"acknowledged"}
+{"ts":"2026-05-26T09:00:00Z","id":"t2:cwv:/demo-32","event":"opened","to":{"position":49,"impressions":894},"score":1.49,"confidence":0.29}
+{"ts":"2026-05-26T15:00:00Z","id":"t0:offsite:/blog/what-is-clm-11","event":"acknowledged"}
+{"ts":"2026-05-26T21:00:00Z","id":"t4:indexation:/use-cases/legal-23","event":"opened","to":{"position":20,"impressions":416},"score":37.83,"confidence":0.37}
+{"ts":"2026-05-27T03:00:00Z","id":"t2:cwv:/contact-25","event":"closed"}
+{"ts":"2026-05-27T09:00:00Z","id":"t0:position:/vs/acme-42","event":"shipped","cause":"commit:21e125f","effort_h":3.5}
+{"ts":"2026-05-27T15:00:00Z","id":"t2:canonical:/pricing-38","event":"regressed","to":{"position":40}}
+{"ts":"2026-05-27T21:00:00Z","id":"t4:schema:/contact-15","event":"opened","to":{"position":48,"impressions":402},"score":27.2,"confidence":0.01}
+{"ts":"2026-05-28T03:00:00Z","id":"t4:cwv:/demo-35","event":"opened","to":{"position":42,"impressions":526},"score":32.8,"confidence":0.57}
+{"ts":"2026-05-28T09:00:00Z","id":"t0:schema:/blog/what-is-clm-36","event":"regressed","to":{"position":34}}
+{"ts":"2026-05-28T15:00:00Z","id":"t2:canonical:/pricing-38","event":"acknowledged"}
+{"ts":"2026-05-28T21:00:00Z","id":"t1:canonical:/demo-53","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-05-29T03:00:00Z","id":"t2:offsite:/pricing-37","event":"acknowledged"}
+{"ts":"2026-05-29T09:00:00Z","id":"t1:orphan:/contact-13","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-05-29T15:00:00Z","id":"t4:indexation:/integrations/slack-49","event":"opened","to":{"position":51,"impressions":709},"score":35.11,"confidence":0.21}
+{"ts":"2026-05-29T21:00:00Z","id":"t0:schema:/pricing-3","event":"acknowledged"}
+{"ts":"2026-05-30T03:00:00Z","id":"t0:schema:/blog/what-is-clm-36","event":"acknowledged"}
+{"ts":"2026-05-30T09:00:00Z","id":"t4:orphan:/use-cases/legal-54","event":"opened","to":{"position":26,"impressions":137},"score":37.34,"confidence":0.7}
+{"ts":"2026-05-30T15:00:00Z","id":"site","event":"algo_update","note":"core update 2026-582"}
+{"ts":"2026-05-30T21:00:00Z","id":"t4:schema:/blog/what-is-clm-4","event":"acknowledged"}
+{"ts":"2026-05-31T03:00:00Z","id":"t3:offsite:/pricing-50","event":"opened","to":{"position":44,"impressions":143},"score":8.35,"confidence":0.86}
+{"ts":"2026-05-31T09:00:00Z","id":"t2:cwv:/demo-32","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-05-31T15:00:00Z","id":"t0:offsite:/demo-24","event":"opened","to":{"position":23,"impressions":107},"score":27.47,"confidence":0.01}
+{"ts":"2026-05-31T21:00:00Z","id":"t4:indexation:/integrations/slack-49","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-06-01T03:00:00Z","id":"t4:indexation:/demo-33","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-06-01T09:00:00Z","id":"t0:indexation:/demo-31","event":"opened","to":{"position":23,"impressions":236},"score":28.84,"confidence":0.37}
+{"ts":"2026-06-01T15:00:00Z","id":"t0:cwv:/demo-27","event":"opened","to":{"position":43,"impressions":762},"score":11.9,"confidence":0.47}
+{"ts":"2026-06-01T21:00:00Z","id":"t2:canonical:/pricing-38","event":"in_progress"}
+{"ts":"2026-06-02T03:00:00Z","id":"t0:indexation:/demo-31","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-06-02T09:00:00Z","id":"t1:offsite:/contact-19","event":"regressed","to":{"position":48}}
+{"ts":"2026-06-02T15:00:00Z","id":"t2:cwv:/contact-25","event":"opened","to":{"position":32,"impressions":746},"score":5.97,"confidence":0.13}
+{"ts":"2026-06-02T21:00:00Z","id":"t3:canonical:/vs/acme-41","event":"in_progress"}
+{"ts":"2026-06-03T03:00:00Z","id":"t2:indexation:/blog/what-is-clm-34","event":"verified","to":{"position":47}}
+{"ts":"2026-06-03T09:00:00Z","id":"t1:indexation:/vs/acme-48","event":"in_progress"}
+{"ts":"2026-06-03T15:00:00Z","id":"t3:offsite:/pricing-9","event":"in_progress"}
+{"ts":"2026-06-03T21:00:00Z","id":"t3:canonical:/vs/acme-41","event":"shipped","cause":"commit:4b0fb7f","effort_h":0.5}
+{"ts":"2026-06-04T03:00:00Z","id":"t3:orphan:/demo-2","event":"opened","to":{"position":37,"impressions":813},"score":11.67,"confidence":0.78}
+{"ts":"2026-06-04T09:00:00Z","id":"t2:offsite:/integrations/slack-0","event":"shipped","cause":"commit:9911c41","effort_h":3}
+{"ts":"2026-06-04T15:00:00Z","id":"t0:position:/contact-51","event":"closed"}
+{"ts":"2026-06-04T21:00:00Z","id":"t2:offsite:/integrations/slack-0","event":"verified","to":{"position":21}}
+{"ts":"2026-06-05T03:00:00Z","id":"t4:orphan:/use-cases/legal-54","event":"acknowledged"}
+{"ts":"2026-06-05T09:00:00Z","id":"t0:position:/contact-20","event":"in_progress"}
+{"ts":"2026-06-05T15:00:00Z","id":"t1:offsite:/contact-19","event":"acknowledged"}
+{"ts":"2026-06-05T21:00:00Z","id":"t2:offsite:/integrations/slack-0","event":"regressed","to":{"position":24}}
+{"ts":"2026-06-06T03:00:00Z","id":"t1:position:/use-cases/legal-39","event":"opened","to":{"position":33,"impressions":276},"score":8.06,"confidence":0.75}
+{"ts":"2026-06-06T09:00:00Z","id":"t3:orphan:/use-cases/legal-26","event":"closed"}
+{"ts":"2026-06-06T15:00:00Z","id":"t2:cwv:/contact-25","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-06-06T21:00:00Z","id":"t0:orphan:/blog/what-is-clm-16","event":"opened","to":{"position":47,"impressions":370},"score":26.77,"confidence":0.34}
+{"ts":"2026-06-07T03:00:00Z","id":"t0:orphan:/blog/what-is-clm-16","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-06-07T09:00:00Z","id":"t3:offsite:/demo-56","event":"closed"}
+{"ts":"2026-06-07T15:00:00Z","id":"t1:cwv:/integrations/slack-12","event":"closed"}
+{"ts":"2026-06-07T21:00:00Z","id":"t2:indexation:/pricing-21","event":"closed"}
+{"ts":"2026-06-08T03:00:00Z","id":"t3:orphan:/demo-2","event":"acknowledged"}
+{"ts":"2026-06-08T09:00:00Z","id":"t0:offsite:/demo-24","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-06-08T15:00:00Z","id":"t2:offsite:/pricing-37","event":"closed"}
+{"ts":"2026-06-08T21:00:00Z","id":"t4:orphan:/use-cases/legal-54","event":"in_progress"}
+{"ts":"2026-06-09T03:00:00Z","id":"t2:canonical:/pricing-38","event":"shipped","cause":"commit:9a3dd9f","effort_h":1}
+{"ts":"2026-06-09T09:00:00Z","id":"t0:canonical:/blog/what-is-clm-47","event":"acknowledged"}
+{"ts":"2026-06-09T15:00:00Z","id":"t0:position:/blog/what-is-clm-57","event":"closed"}
+{"ts":"2026-06-09T21:00:00Z","id":"t4:cwv:/vs/acme-59","event":"opened","to":{"position":27,"impressions":229},"score":1.7,"confidence":0.49}
+{"ts":"2026-06-10T03:00:00Z","id":"t1:orphan:/pricing-30","event":"verified","to":{"position":18}}
+{"ts":"2026-06-10T09:00:00Z","id":"t0:indexation:/demo-31","event":"opened","to":{"position":23,"impressions":512},"score":10.99,"confidence":0.41}
+{"ts":"2026-06-10T15:00:00Z","id":"t1:cwv:/integrations/slack-12","event":"opened","to":{"position":41,"impressions":328},"score":3.35,"confidence":0.93}
+{"ts":"2026-06-10T21:00:00Z","id":"t0:position:/vs/acme-42","event":"verified","to":{"position":15}}
+{"ts":"2026-06-11T03:00:00Z","id":"t0:position:/vs/acme-42","event":"closed"}
+{"ts":"2026-06-11T09:00:00Z","id":"t0:offsite:/demo-24","event":"opened","to":{"position":23,"impressions":786},"score":33.9,"confidence":0.52}
+{"ts":"2026-06-11T15:00:00Z","id":"t1:indexation:/vs/acme-48","event":"shipped","cause":"commit:5959e3f","effort_h":6}
+{"ts":"2026-06-11T21:00:00Z","id":"t0:indexation:/vs/acme-22","event":"closed"}
+{"ts":"2026-06-12T03:00:00Z","id":"t2:indexation:/pricing-21","event":"opened","to":{"position":34,"impressions":823},"score":5.23,"confidence":0.68}
+{"ts":"2026-06-12T03:00:00Z","id":"t2:indexation:/pricing-21","event":"retiered","to":{"tier":2},"note":"tier reassigned by rule 4"}
+{"ts":"2026-06-12T09:00:00Z","id":"t1:cwv:/integrations/slack-12","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-06-12T15:00:00Z","id":"t0:indexation:/contact-40","event":"shipped","cause":"commit:c45307f","effort_h":0.5}
+{"ts":"2026-06-12T21:00:00Z","id":"t1:canonical:/demo-53","event":"opened","to":{"position":39,"impressions":404},"score":0.83,"confidence":0.23}
+{"ts":"2026-06-13T03:00:00Z","id":"t2:position:/use-cases/legal-1","event":"closed"}
+{"ts":"2026-06-13T09:00:00Z","id":"t0:indexation:/vs/acme-22","event":"opened","to":{"position":24,"impressions":549},"score":22.59,"confidence":0.75}
+{"ts":"2026-06-13T15:00:00Z","id":"t0:indexation:/contact-40","event":"verified","to":{"position":44}}
+{"ts":"2026-06-13T21:00:00Z","id":"t0:schema:/blog/what-is-clm-36","event":"in_progress"}
+{"ts":"2026-06-14T03:00:00Z","id":"t0:indexation:/demo-31","event":"acknowledged"}
+{"ts":"2026-06-14T09:00:00Z","id":"t3:canonical:/vs/acme-8","event":"in_progress"}
+{"ts":"2026-06-14T15:00:00Z","id":"t2:canonical:/use-cases/legal-14","event":"opened","to":{"position":47,"impressions":436},"score":29.15,"confidence":0.42}
+{"ts":"2026-06-14T21:00:00Z","id":"t3:offsite:/demo-56","event":"opened","to":{"position":53,"impressions":631},"score":24.31,"confidence":0.8}
+{"ts":"2026-06-15T03:00:00Z","id":"t2:offsite:/integrations/slack-0","event":"acknowledged"}
+{"ts":"2026-06-15T09:00:00Z","id":"t3:indexation:/pricing-44","event":"shipped","cause":"commit:1d161df","effort_h":2.5}
+{"ts":"2026-06-15T15:00:00Z","id":"t1:position:/contact-28","event":"acknowledged"}
+{"ts":"2026-06-15T21:00:00Z","id":"t2:position:/use-cases/legal-1","event":"opened","to":{"position":42,"impressions":905},"score":6.77,"confidence":0.36}
+{"ts":"2026-06-16T03:00:00Z","id":"t0:indexation:/vs/acme-22","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-06-16T09:00:00Z","id":"t0:schema:/pricing-3","event":"in_progress"}
+{"ts":"2026-06-16T15:00:00Z","id":"t2:canonical:/use-cases/legal-14","event":"closed"}
+{"ts":"2026-06-16T21:00:00Z","id":"t2:offsite:/pricing-37","event":"opened","to":{"position":57,"impressions":615},"score":27.99,"confidence":0.64}
+{"ts":"2026-06-17T03:00:00Z","id":"t1:orphan:/contact-13","event":"opened","to":{"position":51,"impressions":589},"score":14.22,"confidence":0.27}
+{"ts":"2026-06-17T09:00:00Z","id":"t3:canonical:/blog/what-is-clm-52","event":"regressed","to":{"position":42}}
+{"ts":"2026-06-17T15:00:00Z","id":"t2:canonical:/pricing-38","event":"regressed","to":{"position":43}}
+{"ts":"2026-06-17T21:00:00Z","id":"t0:indexation:/integrations/slack-58","event":"opened","to":{"position":41,"impressions":585},"score":15.15,"confidence":0.97}
+{"ts":"2026-06-18T03:00:00Z","id":"t0:indexation:/contact-40","event":"closed"}
+{"ts":"2026-06-18T09:00:00Z","id":"t2:canonical:/pricing-38","event":"acknowledged"}
+{"ts":"2026-06-18T15:00:00Z","id":"t3:canonical:/vs/acme-8","event":"shipped","cause":"commit:f99e59f","effort_h":1}
+{"ts":"2026-06-18T21:00:00Z","id":"t0:offsite:/demo-24","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-06-19T03:00:00Z","id":"t2:orphan:/integrations/slack-10","event":"opened","to":{"position":59,"impressions":779},"score":15.93,"confidence":0.47}
+{"ts":"2026-06-19T09:00:00Z","id":"t0:canonical:/blog/what-is-clm-47","event":"closed"}
+{"ts":"2026-06-19T15:00:00Z","id":"t2:orphan:/integrations/slack-10","event":"closed"}
+{"ts":"2026-06-19T21:00:00Z","id":"t0:orphan:/blog/what-is-clm-16","event":"opened","to":{"position":47,"impressions":727},"score":4.83,"confidence":0.75}
+{"ts":"2026-06-20T03:00:00Z","id":"t4:cwv:/vs/acme-59","event":"closed"}
+{"ts":"2026-06-20T09:00:00Z","id":"t4:schema:/contact-15","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-06-20T15:00:00Z","id":"t2:cwv:/demo-32","event":"opened","to":{"position":49,"impressions":551},"score":38.49,"confidence":0.63}
+{"ts":"2026-06-20T21:00:00Z","id":"t0:indexation:/vs/acme-22","event":"opened","to":{"position":24,"impressions":624},"score":15.18,"confidence":0.07}
+{"ts":"2026-06-21T03:00:00Z","id":"t3:orphan:/demo-2","event":"closed"}
+{"ts":"2026-06-21T09:00:00Z","id":"t0:cwv:/demo-27","event":"closed"}
+{"ts":"2026-06-21T15:00:00Z","id":"t4:indexation:/use-cases/legal-23","event":"closed"}
+{"ts":"2026-06-21T21:00:00Z","id":"t1:indexation:/vs/acme-48","event":"verified","to":{"position":25}}
+{"ts":"2026-06-22T03:00:00Z","id":"t3:offsite:/demo-56","event":"closed"}
+{"ts":"2026-06-22T09:00:00Z","id":"t2:canonical:/pricing-38","event":"closed"}
+{"ts":"2026-06-22T15:00:00Z","id":"t0:offsite:/blog/what-is-clm-11","event":"in_progress"}
+{"ts":"2026-06-22T21:00:00Z","id":"t1:offsite:/contact-19","event":"in_progress"}
+{"ts":"2026-06-23T03:00:00Z","id":"t0:offsite:/demo-24","event":"opened","to":{"position":23,"impressions":921},"score":15.24,"confidence":0.3}
+{"ts":"2026-06-23T09:00:00Z","id":"t3:offsite:/pricing-9","event":"shipped","cause":"commit:651ad3f","effort_h":1.5}
+{"ts":"2026-06-23T15:00:00Z","id":"site","event":"algo_update","note":"core update 2026-679"}
+{"ts":"2026-06-23T21:00:00Z","id":"t4:position:/integrations/slack-55","event":"closed"}
+{"ts":"2026-06-24T03:00:00Z","id":"t1:orphan:/contact-13","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-06-24T09:00:00Z","id":"t1:indexation:/vs/acme-48","event":"regressed","to":{"position":28}}
+{"ts":"2026-06-24T15:00:00Z","id":"t4:schema:/blog/what-is-clm-4","event":"in_progress"}
+{"ts":"2026-06-24T21:00:00Z","id":"t0:position:/vs/acme-42","event":"opened","to":{"position":15,"impressions":212},"score":13.59,"confidence":0.33}
+{"ts":"2026-06-25T03:00:00Z","id":"t2:offsite:/use-cases/legal-6","event":"closed"}
+{"ts":"2026-06-25T09:00:00Z","id":"t2:canonical:/use-cases/legal-14","event":"opened","to":{"position":47,"impressions":792},"score":5.77,"confidence":0.55}
+{"ts":"2026-06-25T15:00:00Z","id":"t4:schema:/contact-15","event":"opened","to":{"position":48,"impressions":291},"score":10.73,"confidence":0.33}
+{"ts":"2026-06-25T21:00:00Z","id":"t1:offsite:/contact-19","event":"shipped","cause":"commit:e41593f","effort_h":1.5}
+{"ts":"2026-06-26T03:00:00Z","id":"t4:indexation:/demo-33","event":"opened","to":{"position":58,"impressions":318},"score":14.07,"confidence":0.43}
+{"ts":"2026-06-26T09:00:00Z","id":"t2:indexation:/pricing-21","event":"acknowledged"}
+{"ts":"2026-06-26T15:00:00Z","id":"t0:schema:/pricing-3","event":"shipped","cause":"commit:75cc037","effort_h":4}
+{"ts":"2026-06-26T21:00:00Z","id":"t1:orphan:/pricing-30","event":"closed"}
+{"ts":"2026-06-27T03:00:00Z","id":"t0:position:/contact-51","event":"opened","to":{"position":54,"impressions":676},"score":21.06,"confidence":0.49}
+{"ts":"2026-06-27T09:00:00Z","id":"t0:position:/blog/what-is-clm-57","event":"opened","to":{"position":19,"impressions":528},"score":27.16,"confidence":0.97}
+{"ts":"2026-06-27T15:00:00Z","id":"t0:offsite:/demo-24","event":"acknowledged"}
+{"ts":"2026-06-27T21:00:00Z","id":"t3:orphan:/demo-2","event":"opened","to":{"position":37,"impressions":230},"score":18.27,"confidence":0.38}
+{"ts":"2026-06-28T03:00:00Z","id":"t2:cwv:/use-cases/legal-18","event":"opened","to":{"position":30,"impressions":534},"score":39.03,"confidence":1}
+{"ts":"2026-06-28T09:00:00Z","id":"t0:indexation:/integrations/slack-58","event":"acknowledged"}
+{"ts":"2026-06-28T15:00:00Z","id":"t0:indexation:/integrations/slack-58","event":"closed"}
+{"ts":"2026-06-28T21:00:00Z","id":"t0:offsite:/blog/what-is-clm-11","event":"shipped","cause":"commit:a9775ee","effort_h":7}
+{"ts":"2026-06-29T03:00:00Z","id":"t2:cwv:/use-cases/legal-18","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-06-29T09:00:00Z","id":"t1:orphan:/contact-13","event":"opened","to":{"position":51,"impressions":923},"score":28.98,"confidence":0.71}
+{"ts":"2026-06-29T15:00:00Z","id":"t0:offsite:/demo-24","event":"closed"}
+{"ts":"2026-06-29T21:00:00Z","id":"t3:indexation:/pricing-44","event":"regressed","to":{"position":36}}
+{"ts":"2026-06-30T03:00:00Z","id":"t3:canonical:/blog/what-is-clm-52","event":"acknowledged"}
+{"ts":"2026-06-30T09:00:00Z","id":"t1:orphan:/pricing-30","event":"opened","to":{"position":18,"impressions":947},"score":30.9,"confidence":0.12}
+{"ts":"2026-06-30T15:00:00Z","id":"t2:position:/use-cases/legal-7","event":"acknowledged"}
+{"ts":"2026-06-30T21:00:00Z","id":"t0:position:/contact-51","event":"acknowledged"}
+{"ts":"2026-07-01T03:00:00Z","id":"t1:offsite:/contact-19","event":"verified","to":{"position":44}}
+{"ts":"2026-07-01T09:00:00Z","id":"t4:indexation:/use-cases/legal-23","event":"opened","to":{"position":20,"impressions":956},"score":16.09,"confidence":0.53}
+{"ts":"2026-07-01T15:00:00Z","id":"t3:orphan:/demo-2","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-07-01T21:00:00Z","id":"t0:position:/contact-20","event":"shipped","cause":"commit:25b73e7","effort_h":6}
+{"ts":"2026-07-02T03:00:00Z","id":"t1:orphan:/pricing-30","event":"closed"}
+{"ts":"2026-07-02T09:00:00Z","id":"t0:indexation:/integrations/slack-58","event":"opened","to":{"position":41,"impressions":432},"score":37.04,"confidence":0.72}
+{"ts":"2026-07-02T15:00:00Z","id":"t3:canonical:/vs/acme-8","event":"regressed","to":{"position":49}}
+{"ts":"2026-07-02T21:00:00Z","id":"t3:offsite:/demo-56","event":"opened","to":{"position":53,"impressions":210},"score":13.54,"confidence":0.73}
+{"ts":"2026-07-03T03:00:00Z","id":"t3:canonical:/blog/what-is-clm-52","event":"closed"}
+{"ts":"2026-07-03T09:00:00Z","id":"t0:schema:/blog/what-is-clm-36","event":"shipped","cause":"commit:dfacb47","effort_h":7.5}
+{"ts":"2026-07-03T15:00:00Z","id":"t0:position:/contact-20","event":"verified","to":{"position":48}}
+{"ts":"2026-07-03T21:00:00Z","id":"t2:offsite:/integrations/slack-0","event":"closed"}
+{"ts":"2026-07-04T03:00:00Z","id":"t4:indexation:/demo-33","event":"closed"}
+{"ts":"2026-07-04T09:00:00Z","id":"t3:position:/pricing-45","event":"in_progress"}
+{"ts":"2026-07-04T15:00:00Z","id":"t1:position:/integrations/slack-46","event":"opened","to":{"position":31,"impressions":540},"score":30.33,"confidence":0.65}
+{"ts":"2026-07-04T21:00:00Z","id":"t1:position:/use-cases/legal-39","event":"acknowledged"}
+{"ts":"2026-07-05T03:00:00Z","id":"t2:cwv:/contact-25","event":"opened","to":{"position":32,"impressions":830},"score":14.52,"confidence":0.31}
+{"ts":"2026-07-05T09:00:00Z","id":"t4:indexation:/integrations/slack-49","event":"opened","to":{"position":51,"impressions":392},"score":28.21,"confidence":0.96}
+{"ts":"2026-07-05T15:00:00Z","id":"t0:cwv:/demo-27","event":"opened","to":{"position":43,"impressions":362},"score":23.69,"confidence":0.72}
+{"ts":"2026-07-05T21:00:00Z","id":"t2:orphan:/integrations/slack-10","event":"opened","to":{"position":59,"impressions":106},"score":17.83,"confidence":0.87}
+{"ts":"2026-07-06T03:00:00Z","id":"t0:offsite:/blog/what-is-clm-11","event":"regressed","to":{"position":61}}
+{"ts":"2026-07-06T09:00:00Z","id":"t3:position:/pricing-45","event":"shipped","cause":"commit:747b9ff","effort_h":0}
+{"ts":"2026-07-06T15:00:00Z","id":"t3:position:/pricing-45","event":"verified","to":{"position":52}}
+{"ts":"2026-07-06T21:00:00Z","id":"t2:offsite:/integrations/slack-0","event":"opened","to":{"position":24,"impressions":357},"score":5.68,"confidence":0.44}
+{"ts":"2026-07-07T03:00:00Z","id":"t4:indexation:/use-cases/legal-23","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-07-07T09:00:00Z","id":"t4:cwv:/demo-35","event":"acknowledged"}
+{"ts":"2026-07-07T15:00:00Z","id":"t2:position:/use-cases/legal-1","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-07-07T21:00:00Z","id":"t3:offsite:/demo-56","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-07-08T03:00:00Z","id":"t0:indexation:/demo-31","event":"closed"}
+{"ts":"2026-07-08T09:00:00Z","id":"t2:cwv:/contact-25","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-07-08T15:00:00Z","id":"t3:schema:/demo-29","event":"opened","to":{"position":46,"impressions":784},"score":33.01,"confidence":0.31}
+{"ts":"2026-07-08T21:00:00Z","id":"t0:cwv:/demo-27","event":"acknowledged"}
+{"ts":"2026-07-09T03:00:00Z","id":"t2:position:/use-cases/legal-1","event":"opened","to":{"position":42,"impressions":449},"score":33.15,"confidence":0.69}
+{"ts":"2026-07-09T09:00:00Z","id":"t1:indexation:/vs/acme-48","event":"acknowledged"}
+{"ts":"2026-07-09T15:00:00Z","id":"t2:canonical:/pricing-38","event":"opened","to":{"position":43,"impressions":767},"score":38.31,"confidence":0.24}
+{"ts":"2026-07-09T21:00:00Z","id":"t3:canonical:/vs/acme-8","event":"acknowledged"}
+{"ts":"2026-07-10T03:00:00Z","id":"t4:indexation:/demo-33","event":"opened","to":{"position":58,"impressions":601},"score":5.17,"confidence":0.2}
+{"ts":"2026-07-10T09:00:00Z","id":"t3:offsite:/pricing-9","event":"verified","to":{"position":42}}
+{"ts":"2026-07-10T15:00:00Z","id":"t0:position:/contact-51","event":"in_progress"}
+{"ts":"2026-07-10T21:00:00Z","id":"t0:indexation:/vs/acme-22","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-07-11T03:00:00Z","id":"t0:indexation:/integrations/slack-58","event":"acknowledged"}
+{"ts":"2026-07-11T09:00:00Z","id":"t1:position:/integrations/slack-46","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-07-11T15:00:00Z","id":"t3:indexation:/pricing-44","event":"acknowledged"}
+{"ts":"2026-07-11T21:00:00Z","id":"t4:cwv:/vs/acme-59","event":"opened","to":{"position":27,"impressions":315},"score":18.64,"confidence":0.74}
+{"ts":"2026-07-12T03:00:00Z","id":"t3:position:/pricing-45","event":"closed"}
+{"ts":"2026-07-12T09:00:00Z","id":"t0:indexation:/integrations/slack-58","event":"in_progress"}
+{"ts":"2026-07-12T15:00:00Z","id":"t2:position:/use-cases/legal-1","event":"closed"}
+{"ts":"2026-07-12T21:00:00Z","id":"t3:canonical:/vs/acme-8","event":"closed"}
+{"ts":"2026-07-13T03:00:00Z","id":"t0:cwv:/demo-27","event":"closed"}
+{"ts":"2026-07-13T09:00:00Z","id":"t0:offsite:/blog/what-is-clm-11","event":"acknowledged"}
+{"ts":"2026-07-13T15:00:00Z","id":"t0:canonical:/blog/what-is-clm-47","event":"opened","to":{"position":59,"impressions":624},"score":19.32,"confidence":0.27}
+{"ts":"2026-07-13T21:00:00Z","id":"t0:position:/blog/what-is-clm-57","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-07-14T03:00:00Z","id":"t0:offsite:/demo-24","event":"opened","to":{"position":23,"impressions":912},"score":5.6,"confidence":0.82}
+{"ts":"2026-07-14T09:00:00Z","id":"t3:position:/pricing-45","event":"opened","to":{"position":52,"impressions":984},"score":33.87,"confidence":0.63}
+{"ts":"2026-07-14T15:00:00Z","id":"t0:indexation:/demo-31","event":"opened","to":{"position":23,"impressions":934},"score":30.34,"confidence":0.89}
+{"ts":"2026-07-14T21:00:00Z","id":"t3:position:/pricing-45","event":"closed"}
+{"ts":"2026-07-15T03:00:00Z","id":"t0:offsite:/demo-24","event":"acknowledged"}
+{"ts":"2026-07-15T09:00:00Z","id":"t0:canonical:/blog/what-is-clm-47","event":"acknowledged"}
+{"ts":"2026-07-15T15:00:00Z","id":"t3:schema:/demo-29","event":"closed"}
+{"ts":"2026-07-15T21:00:00Z","id":"t1:position:/contact-28","event":"in_progress"}
+{"ts":"2026-07-16T03:00:00Z","id":"t3:offsite:/pricing-9","event":"regressed","to":{"position":45}}
+{"ts":"2026-07-16T09:00:00Z","id":"t0:orphan:/blog/what-is-clm-16","event":"closed"}
+{"ts":"2026-07-16T15:00:00Z","id":"t4:position:/integrations/slack-55","event":"opened","to":{"position":37,"impressions":313},"score":13.52,"confidence":0.53}
+{"ts":"2026-07-16T21:00:00Z","id":"t0:cwv:/demo-27","event":"opened","to":{"position":43,"impressions":205},"score":0.12,"confidence":0.87}
+{"ts":"2026-07-17T03:00:00Z","id":"t4:schema:/contact-15","event":"closed"}
+{"ts":"2026-07-17T09:00:00Z","id":"t1:orphan:/contact-5","event":"acknowledged"}
+{"ts":"2026-07-17T15:00:00Z","id":"t0:orphan:/blog/what-is-clm-16","event":"opened","to":{"position":47,"impressions":150},"score":13.14,"confidence":0.64}
+{"ts":"2026-07-17T21:00:00Z","id":"site","event":"algo_update","note":"core update 2026-776"}
+{"ts":"2026-07-18T03:00:00Z","id":"t0:indexation:/vs/acme-22","event":"opened","to":{"position":24,"impressions":280},"score":33.96,"confidence":0.16}
+{"ts":"2026-07-18T09:00:00Z","id":"t2:canonical:/use-cases/legal-14","event":"acknowledged"}
+{"ts":"2026-07-18T15:00:00Z","id":"t3:canonical:/blog/what-is-clm-52","event":"opened","to":{"position":42,"impressions":131},"score":7.56,"confidence":0.41}
+{"ts":"2026-07-18T21:00:00Z","id":"t0:offsite:/demo-24","event":"in_progress"}
+{"ts":"2026-07-19T03:00:00Z","id":"t2:offsite:/use-cases/legal-6","event":"opened","to":{"position":25,"impressions":211},"score":11.82,"confidence":0}
+{"ts":"2026-07-19T09:00:00Z","id":"t3:schema:/demo-29","event":"opened","to":{"position":46,"impressions":213},"score":36.07,"confidence":0.61}
+{"ts":"2026-07-19T15:00:00Z","id":"t1:canonical:/demo-53","event":"acknowledged"}
+{"ts":"2026-07-19T21:00:00Z","id":"t2:offsite:/use-cases/legal-6","event":"acknowledged"}
+{"ts":"2026-07-20T03:00:00Z","id":"t0:position:/contact-20","event":"closed"}
+{"ts":"2026-07-20T09:00:00Z","id":"t4:indexation:/use-cases/legal-23","event":"opened","to":{"position":20,"impressions":553},"score":26.96,"confidence":0.34}
+{"ts":"2026-07-20T15:00:00Z","id":"t3:offsite:/pricing-50","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-07-20T21:00:00Z","id":"t4:cwv:/vs/acme-59","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-07-21T03:00:00Z","id":"t1:orphan:/pricing-30","event":"opened","to":{"position":18,"impressions":500},"score":7.58,"confidence":0.21}
+{"ts":"2026-07-21T09:00:00Z","id":"t1:cwv:/integrations/slack-12","event":"opened","to":{"position":41,"impressions":372},"score":18.77,"confidence":0.99}
+{"ts":"2026-07-21T15:00:00Z","id":"t3:offsite:/pricing-9","event":"acknowledged"}
+{"ts":"2026-07-21T21:00:00Z","id":"t1:orphan:/contact-13","event":"closed"}
+{"ts":"2026-07-22T03:00:00Z","id":"t3:orphan:/use-cases/legal-26","event":"opened","to":{"position":42,"impressions":468},"score":39.32,"confidence":0.79}
+{"ts":"2026-07-22T09:00:00Z","id":"t2:indexation:/blog/what-is-clm-34","event":"closed"}
+{"ts":"2026-07-22T15:00:00Z","id":"t2:position:/use-cases/legal-7","event":"in_progress"}
+{"ts":"2026-07-22T21:00:00Z","id":"t0:offsite:/demo-24","event":"shipped","cause":"commit:ad0f43f","effort_h":7.5}
+{"ts":"2026-07-23T03:00:00Z","id":"t4:indexation:/demo-33","event":"acknowledged"}
+{"ts":"2026-07-23T09:00:00Z","id":"t3:offsite:/pricing-9","event":"in_progress"}
+{"ts":"2026-07-23T15:00:00Z","id":"t2:indexation:/blog/what-is-clm-34","event":"opened","to":{"position":47,"impressions":826},"score":28.66,"confidence":0.67}
+{"ts":"2026-07-23T21:00:00Z","id":"t2:offsite:/demo-43","event":"opened","to":{"position":53,"impressions":994},"score":6.25,"confidence":0.61}
+{"ts":"2026-07-24T03:00:00Z","id":"t2:cwv:/use-cases/legal-18","event":"opened","to":{"position":30,"impressions":730},"score":21.9,"confidence":0.2}
+{"ts":"2026-07-24T09:00:00Z","id":"t4:schema:/contact-15","event":"opened","to":{"position":48,"impressions":587},"score":15.11,"confidence":0.69}
+{"ts":"2026-07-24T15:00:00Z","id":"t3:canonical:/vs/acme-41","event":"verified","to":{"position":60}}
+{"ts":"2026-07-24T21:00:00Z","id":"t2:cwv:/demo-32","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-07-25T03:00:00Z","id":"t4:indexation:/integrations/slack-49","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-07-25T09:00:00Z","id":"t4:schema:/blog/what-is-clm-4","event":"shipped","cause":"commit:20d1b5f","effort_h":5}
+{"ts":"2026-07-25T15:00:00Z","id":"t3:orphan:/demo-2","event":"opened","to":{"position":37,"impressions":810},"score":15.53,"confidence":0.74}
+{"ts":"2026-07-25T21:00:00Z","id":"t2:canonical:/use-cases/legal-14","event":"closed"}
+{"ts":"2026-07-26T03:00:00Z","id":"t4:schema:/contact-15","event":"closed"}
+{"ts":"2026-07-26T09:00:00Z","id":"t2:indexation:/integrations/slack-17","event":"in_progress"}
+{"ts":"2026-07-26T15:00:00Z","id":"t0:position:/contact-51","event":"shipped","cause":"commit:fbc47e7","effort_h":3.5}
+{"ts":"2026-07-26T21:00:00Z","id":"t4:cwv:/vs/acme-59","event":"opened","to":{"position":27,"impressions":469},"score":4.61,"confidence":0.9}
+{"ts":"2026-07-27T03:00:00Z","id":"t2:canonical:/use-cases/legal-14","event":"opened","to":{"position":47,"impressions":329},"score":22.17,"confidence":0.29}
+{"ts":"2026-07-27T09:00:00Z","id":"t0:indexation:/contact-40","event":"opened","to":{"position":44,"impressions":116},"score":3.67,"confidence":0.56}
+{"ts":"2026-07-27T15:00:00Z","id":"t0:position:/vs/acme-42","event":"closed"}
+{"ts":"2026-07-27T21:00:00Z","id":"t3:offsite:/demo-56","event":"opened","to":{"position":53,"impressions":891},"score":2.57,"confidence":0.52}
+{"ts":"2026-07-28T03:00:00Z","id":"t3:orphan:/use-cases/legal-26","event":"closed"}
+{"ts":"2026-07-28T09:00:00Z","id":"t1:canonical:/demo-53","event":"in_progress"}
+{"ts":"2026-07-28T15:00:00Z","id":"t0:orphan:/blog/what-is-clm-16","event":"closed"}
+{"ts":"2026-07-28T21:00:00Z","id":"t1:canonical:/demo-53","event":"shipped","cause":"commit:32c7d9f","effort_h":1}
+{"ts":"2026-07-29T03:00:00Z","id":"t4:schema:/contact-15","event":"opened","to":{"position":48,"impressions":714},"score":32.89,"confidence":0.26}
+{"ts":"2026-07-29T09:00:00Z","id":"t1:cwv:/integrations/slack-12","event":"closed"}
+{"ts":"2026-07-29T15:00:00Z","id":"t1:cwv:/integrations/slack-12","event":"opened","to":{"position":41,"impressions":131},"score":22.98,"confidence":0.59}
+{"ts":"2026-07-29T21:00:00Z","id":"t1:position:/use-cases/legal-39","event":"in_progress"}
+{"ts":"2026-07-30T03:00:00Z","id":"t2:cwv:/demo-32","event":"opened","to":{"position":49,"impressions":602},"score":38.74,"confidence":0.78}
+{"ts":"2026-07-30T09:00:00Z","id":"t2:indexation:/integrations/slack-17","event":"shipped","cause":"commit:1d5549f","effort_h":5.5}
+{"ts":"2026-07-30T15:00:00Z","id":"t2:cwv:/contact-25","event":"opened","to":{"position":32,"impressions":472},"score":8.48,"confidence":0.32}
+{"ts":"2026-07-30T21:00:00Z","id":"t4:cwv:/demo-35","event":"in_progress"}
+{"ts":"2026-07-31T03:00:00Z","id":"t2:canonical:/use-cases/legal-14","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-07-31T09:00:00Z","id":"t0:position:/blog/what-is-clm-57","event":"opened","to":{"position":19,"impressions":111},"score":26.84,"confidence":0.25}
+{"ts":"2026-07-31T15:00:00Z","id":"t2:offsite:/pricing-37","event":"acknowledged"}
+{"ts":"2026-07-31T21:00:00Z","id":"t0:schema:/blog/what-is-clm-36","event":"regressed","to":{"position":37}}
+{"ts":"2026-08-01T03:00:00Z","id":"t2:cwv:/demo-32","event":"closed"}
+{"ts":"2026-08-01T09:00:00Z","id":"t0:position:/contact-20","event":"opened","to":{"position":48,"impressions":456},"score":5.74,"confidence":0.74}
+{"ts":"2026-08-01T15:00:00Z","id":"t4:cwv:/demo-35","event":"shipped","cause":"commit:7dd2407","effort_h":0}
+{"ts":"2026-08-01T21:00:00Z","id":"t0:indexation:/vs/acme-22","event":"closed"}
+{"ts":"2026-08-02T03:00:00Z","id":"t2:position:/use-cases/legal-7","event":"shipped","cause":"commit:88e3a4f","effort_h":2}
+{"ts":"2026-08-02T09:00:00Z","id":"t1:orphan:/contact-5","event":"in_progress"}
+{"ts":"2026-08-02T15:00:00Z","id":"t1:position:/integrations/slack-46","event":"opened","to":{"position":31,"impressions":481},"score":28.46,"confidence":0.53}
+{"ts":"2026-08-02T21:00:00Z","id":"t4:indexation:/demo-33","event":"in_progress"}
+{"ts":"2026-08-03T03:00:00Z","id":"t4:indexation:/integrations/slack-49","event":"opened","to":{"position":51,"impressions":912},"score":29.03,"confidence":0.22}
+{"ts":"2026-08-03T09:00:00Z","id":"t2:orphan:/integrations/slack-10","event":"acknowledged"}
+{"ts":"2026-08-03T15:00:00Z","id":"t3:canonical:/blog/what-is-clm-52","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-08-03T15:00:00Z","id":"t3:canonical:/blog/what-is-clm-52","event":"retiered","to":{"tier":3},"note":"tier reassigned by rule 4"}
+{"ts":"2026-08-03T21:00:00Z","id":"t2:position:/use-cases/legal-7","event":"regressed","to":{"position":52}}
+{"ts":"2026-08-04T03:00:00Z","id":"t0:indexation:/integrations/slack-58","event":"shipped","cause":"commit:b81f7ff","effort_h":8}
+{"ts":"2026-08-04T09:00:00Z","id":"t4:indexation:/integrations/slack-49","event":"acknowledged"}
+{"ts":"2026-08-04T15:00:00Z","id":"t0:position:/contact-20","event":"acknowledged"}
+{"ts":"2026-08-04T21:00:00Z","id":"t2:offsite:/pricing-37","event":"in_progress"}
+{"ts":"2026-08-05T03:00:00Z","id":"t4:orphan:/use-cases/legal-54","event":"shipped","cause":"commit:6c2cca7","effort_h":6.5}
+{"ts":"2026-08-05T09:00:00Z","id":"t3:offsite:/demo-56","event":"acknowledged"}
+{"ts":"2026-08-05T15:00:00Z","id":"t4:indexation:/use-cases/legal-23","event":"acknowledged"}
+{"ts":"2026-08-05T21:00:00Z","id":"t4:indexation:/demo-33","event":"shipped","cause":"commit:2319167","effort_h":4}
+{"ts":"2026-08-06T03:00:00Z","id":"t0:indexation:/integrations/slack-58","event":"verified","to":{"position":37}}
+{"ts":"2026-08-06T09:00:00Z","id":"t0:offsite:/demo-24","event":"verified","to":{"position":19}}
+{"ts":"2026-08-06T15:00:00Z","id":"t2:position:/use-cases/legal-7","event":"acknowledged"}
+{"ts":"2026-08-06T21:00:00Z","id":"t3:indexation:/pricing-44","event":"closed"}
+{"ts":"2026-08-07T03:00:00Z","id":"t2:position:/use-cases/legal-7","event":"in_progress"}
+{"ts":"2026-08-07T09:00:00Z","id":"t3:canonical:/blog/what-is-clm-52","event":"opened","to":{"position":42,"impressions":913},"score":19.12,"confidence":0.28}
+{"ts":"2026-08-07T15:00:00Z","id":"t3:schema:/demo-29","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-08-07T21:00:00Z","id":"t2:position:/use-cases/legal-7","event":"shipped","cause":"commit:70b585f","effort_h":7.5}
+{"ts":"2026-08-08T03:00:00Z","id":"t4:cwv:/demo-35","event":"regressed","to":{"position":45}}
+{"ts":"2026-08-08T09:00:00Z","id":"t2:orphan:/integrations/slack-10","event":"in_progress"}
+{"ts":"2026-08-08T15:00:00Z","id":"t1:position:/integrations/slack-46","event":"acknowledged"}
+{"ts":"2026-08-08T21:00:00Z","id":"t3:offsite:/pricing-9","event":"shipped","cause":"commit:2d3653f","effort_h":6}
+{"ts":"2026-08-09T03:00:00Z","id":"t2:canonical:/pricing-38","event":"closed"}
+{"ts":"2026-08-09T09:00:00Z","id":"t0:position:/contact-20","event":"closed"}
+{"ts":"2026-08-09T15:00:00Z","id":"t3:offsite:/pricing-50","event":"opened","to":{"position":44,"impressions":439},"score":38.55,"confidence":0.83}
+{"ts":"2026-08-09T21:00:00Z","id":"t0:schema:/blog/what-is-clm-36","event":"acknowledged"}
+{"ts":"2026-08-10T03:00:00Z","id":"t3:orphan:/demo-2","event":"closed"}
+{"ts":"2026-08-10T09:00:00Z","id":"t3:schema:/demo-29","event":"opened","to":{"position":46,"impressions":207},"score":37.18,"confidence":0}
+{"ts":"2026-08-10T15:00:00Z","id":"t2:cwv:/contact-25","event":"closed"}
+{"ts":"2026-08-10T21:00:00Z","id":"site","event":"algo_update","note":"core update 2026-873"}
+{"ts":"2026-08-11T03:00:00Z","id":"t1:orphan:/contact-5","event":"shipped","cause":"commit:5e4d91f","effort_h":5.5}
+{"ts":"2026-08-11T09:00:00Z","id":"t1:orphan:/contact-5","event":"verified","to":{"position":56}}
+{"ts":"2026-08-11T15:00:00Z","id":"t2:cwv:/demo-32","event":"opened","to":{"position":49,"impressions":903},"score":0.94,"confidence":0.6}
+{"ts":"2026-08-11T21:00:00Z","id":"t3:orphan:/demo-2","event":"opened","to":{"position":37,"impressions":815},"score":4.01,"confidence":0.51}
+{"ts":"2026-08-12T03:00:00Z","id":"t0:position:/vs/acme-42","event":"opened","to":{"position":15,"impressions":719},"score":29.37,"confidence":0.06}
+{"ts":"2026-08-12T09:00:00Z","id":"t2:cwv:/use-cases/legal-18","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-08-12T15:00:00Z","id":"t0:canonical:/blog/what-is-clm-47","event":"closed"}
+{"ts":"2026-08-12T21:00:00Z","id":"t0:position:/vs/acme-42","event":"acknowledged"}
+{"ts":"2026-08-13T03:00:00Z","id":"t0:indexation:/integrations/slack-58","event":"closed"}
+{"ts":"2026-08-13T09:00:00Z","id":"t0:position:/blog/what-is-clm-57","event":"acknowledged"}
+{"ts":"2026-08-13T15:00:00Z","id":"t2:position:/use-cases/legal-1","event":"opened","to":{"position":42,"impressions":984},"score":21.12,"confidence":0.98}
+{"ts":"2026-08-13T21:00:00Z","id":"t2:offsite:/demo-43","event":"acknowledged"}
+{"ts":"2026-08-14T03:00:00Z","id":"t1:position:/contact-28","event":"shipped","cause":"commit:103ccff","effort_h":2.5}
+{"ts":"2026-08-14T09:00:00Z","id":"t2:position:/use-cases/legal-7","event":"verified","to":{"position":48}}
+{"ts":"2026-08-14T15:00:00Z","id":"t2:cwv:/contact-25","event":"opened","to":{"position":32,"impressions":415},"score":0.68,"confidence":0.14}
+{"ts":"2026-08-14T21:00:00Z","id":"t0:indexation:/integrations/slack-58","event":"opened","to":{"position":37,"impressions":998},"score":27.64,"confidence":0.63}
+{"ts":"2026-08-15T03:00:00Z","id":"t0:indexation:/contact-40","event":"acknowledged"}
+{"ts":"2026-08-15T09:00:00Z","id":"t0:indexation:/demo-31","event":"closed"}
+{"ts":"2026-08-15T15:00:00Z","id":"t0:cwv:/demo-27","event":"acknowledged"}
+{"ts":"2026-08-15T21:00:00Z","id":"t4:orphan:/use-cases/legal-54","event":"regressed","to":{"position":29}}
+{"ts":"2026-08-16T03:00:00Z","id":"t0:offsite:/blog/what-is-clm-11","event":"in_progress"}
+{"ts":"2026-08-16T09:00:00Z","id":"t3:offsite:/pricing-9","event":"regressed","to":{"position":48}}
+{"ts":"2026-08-16T15:00:00Z","id":"t0:offsite:/demo-24","event":"closed"}
+{"ts":"2026-08-16T21:00:00Z","id":"t2:cwv:/use-cases/legal-18","event":"opened","to":{"position":30,"impressions":954},"score":33.97,"confidence":0.07}
+{"ts":"2026-08-17T03:00:00Z","id":"t0:position:/contact-51","event":"regressed","to":{"position":57}}
+{"ts":"2026-08-17T09:00:00Z","id":"t2:position:/use-cases/legal-7","event":"closed"}
+{"ts":"2026-08-17T15:00:00Z","id":"t1:position:/use-cases/legal-39","event":"shipped","cause":"commit:352b23f","effort_h":5}
+{"ts":"2026-08-17T21:00:00Z","id":"t0:canonical:/blog/what-is-clm-47","event":"opened","to":{"position":59,"impressions":277},"score":5.55,"confidence":0.41}
+{"ts":"2026-08-18T03:00:00Z","id":"t3:offsite:/pricing-50","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-08-18T09:00:00Z","id":"t3:orphan:/use-cases/legal-26","event":"opened","to":{"position":42,"impressions":244},"score":18.32,"confidence":0.92}
+{"ts":"2026-08-18T15:00:00Z","id":"t3:orphan:/use-cases/legal-26","event":"acknowledged"}
+{"ts":"2026-08-18T21:00:00Z","id":"t0:indexation:/integrations/slack-58","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-08-19T03:00:00Z","id":"t1:cwv:/integrations/slack-12","event":"closed"}
+{"ts":"2026-08-19T09:00:00Z","id":"t0:position:/blog/what-is-clm-57","event":"in_progress"}
+{"ts":"2026-08-19T15:00:00Z","id":"t2:indexation:/integrations/slack-17","event":"verified","to":{"position":29}}
+{"ts":"2026-08-19T21:00:00Z","id":"t4:position:/integrations/slack-55","event":"acknowledged"}
+{"ts":"2026-08-20T03:00:00Z","id":"t3:canonical:/vs/acme-41","event":"regressed","to":{"position":63}}
+{"ts":"2026-08-20T09:00:00Z","id":"t2:indexation:/pricing-21","event":"closed"}
+{"ts":"2026-08-20T15:00:00Z","id":"t2:offsite:/integrations/slack-0","event":"acknowledged"}
+{"ts":"2026-08-20T21:00:00Z","id":"t1:cwv:/integrations/slack-12","event":"opened","to":{"position":41,"impressions":497},"score":11.25,"confidence":0.8}
+{"ts":"2026-08-21T03:00:00Z","id":"t1:cwv:/integrations/slack-12","event":"acknowledged"}
+{"ts":"2026-08-21T09:00:00Z","id":"t1:orphan:/contact-13","event":"opened","to":{"position":51,"impressions":471},"score":19.17,"confidence":0.51}
+{"ts":"2026-08-21T15:00:00Z","id":"t1:position:/contact-28","event":"verified","to":{"position":41}}
+{"ts":"2026-08-21T21:00:00Z","id":"t2:position:/use-cases/legal-7","event":"opened","to":{"position":48,"impressions":455},"score":3.82,"confidence":0.96}
+{"ts":"2026-08-22T03:00:00Z","id":"t0:orphan:/blog/what-is-clm-16","event":"opened","to":{"position":47,"impressions":818},"score":15.96,"confidence":0.67}
+{"ts":"2026-08-22T09:00:00Z","id":"t2:position:/use-cases/legal-1","event":"acknowledged"}
+{"ts":"2026-08-22T15:00:00Z","id":"t1:orphan:/contact-5","event":"regressed","to":{"position":59}}
+{"ts":"2026-08-22T21:00:00Z","id":"t3:canonical:/vs/acme-41","event":"acknowledged"}
+{"ts":"2026-08-23T03:00:00Z","id":"t2:cwv:/demo-32","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-08-23T09:00:00Z","id":"t3:orphan:/use-cases/legal-26","event":"in_progress"}
+{"ts":"2026-08-23T15:00:00Z","id":"t0:position:/blog/what-is-clm-57","event":"shipped","cause":"commit:2872d5f","effort_h":6}
+{"ts":"2026-08-23T21:00:00Z","id":"t0:position:/contact-20","event":"opened","to":{"position":48,"impressions":182},"score":4.19,"confidence":0.69}
+{"ts":"2026-08-24T03:00:00Z","id":"t4:position:/integrations/slack-55","event":"in_progress"}
+{"ts":"2026-08-24T09:00:00Z","id":"t2:offsite:/demo-43","event":"in_progress"}
+{"ts":"2026-08-24T15:00:00Z","id":"t2:offsite:/use-cases/legal-6","event":"closed"}
+{"ts":"2026-08-24T21:00:00Z","id":"t4:schema:/contact-15","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-08-25T03:00:00Z","id":"t1:orphan:/contact-5","event":"acknowledged"}
+{"ts":"2026-08-25T09:00:00Z","id":"t3:canonical:/vs/acme-8","event":"opened","to":{"position":49,"impressions":443},"score":16.23,"confidence":0.17}
+{"ts":"2026-08-25T15:00:00Z","id":"t4:indexation:/demo-33","event":"verified","to":{"position":54}}
+{"ts":"2026-08-25T21:00:00Z","id":"t3:orphan:/use-cases/legal-26","event":"shipped","cause":"commit:4fdc407","effort_h":4}
+{"ts":"2026-08-26T03:00:00Z","id":"t2:cwv:/demo-32","event":"opened","to":{"position":49,"impressions":394},"score":38.22,"confidence":0.05}
+{"ts":"2026-08-26T09:00:00Z","id":"t4:position:/integrations/slack-55","event":"shipped","cause":"commit:2eca93f","effort_h":1}
+{"ts":"2026-08-26T15:00:00Z","id":"t0:position:/blog/what-is-clm-57","event":"regressed","to":{"position":22}}
+{"ts":"2026-08-26T21:00:00Z","id":"t4:orphan:/use-cases/legal-54","event":"acknowledged"}
+{"ts":"2026-08-27T03:00:00Z","id":"t0:orphan:/blog/what-is-clm-16","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-08-27T09:00:00Z","id":"t2:orphan:/integrations/slack-10","event":"shipped","cause":"commit:ed9755f","effort_h":6.5}
+{"ts":"2026-08-27T15:00:00Z","id":"t0:orphan:/blog/what-is-clm-16","event":"opened","to":{"position":47,"impressions":426},"score":7.65,"confidence":0.84}
+{"ts":"2026-08-27T21:00:00Z","id":"t3:orphan:/use-cases/legal-26","event":"verified","to":{"position":38}}
+{"ts":"2026-08-28T03:00:00Z","id":"t4:schema:/blog/what-is-clm-4","event":"regressed","to":{"position":42}}
+{"ts":"2026-08-28T09:00:00Z","id":"t4:position:/integrations/slack-55","event":"verified","to":{"position":33}}
+{"ts":"2026-08-28T15:00:00Z","id":"t3:offsite:/pricing-9","event":"acknowledged"}
+{"ts":"2026-08-28T21:00:00Z","id":"t0:cwv:/demo-27","event":"in_progress"}
+{"ts":"2026-08-29T03:00:00Z","id":"t3:offsite:/pricing-50","event":"opened","to":{"position":44,"impressions":516},"score":10.82,"confidence":0.58}
+{"ts":"2026-08-29T09:00:00Z","id":"t0:offsite:/demo-24","event":"opened","to":{"position":19,"impressions":881},"score":19.74,"confidence":0.85}
+{"ts":"2026-08-29T15:00:00Z","id":"t1:orphan:/pricing-30","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-08-29T21:00:00Z","id":"t1:position:/contact-28","event":"regressed","to":{"position":44}}
+{"ts":"2026-08-30T03:00:00Z","id":"t1:canonical:/demo-53","event":"regressed","to":{"position":42}}
+{"ts":"2026-08-30T09:00:00Z","id":"t0:schema:/pricing-3","event":"regressed","to":{"position":45}}
+{"ts":"2026-08-30T15:00:00Z","id":"t3:position:/pricing-45","event":"opened","to":{"position":52,"impressions":251},"score":13.13,"confidence":0.14}
+{"ts":"2026-08-30T21:00:00Z","id":"t3:schema:/demo-29","event":"acknowledged"}
+{"ts":"2026-08-31T03:00:00Z","id":"t0:canonical:/blog/what-is-clm-47","event":"closed"}
+{"ts":"2026-08-31T09:00:00Z","id":"t2:cwv:/contact-25","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-08-31T15:00:00Z","id":"t3:orphan:/use-cases/legal-26","event":"regressed","to":{"position":41}}
+{"ts":"2026-08-31T21:00:00Z","id":"t2:position:/use-cases/legal-7","event":"closed"}
+{"ts":"2026-09-01T03:00:00Z","id":"t2:position:/use-cases/legal-7","event":"opened","to":{"position":48,"impressions":522},"score":26.01,"confidence":0.8}
+{"ts":"2026-09-01T09:00:00Z","id":"t1:position:/integrations/slack-46","event":"in_progress"}
+{"ts":"2026-09-01T15:00:00Z","id":"t0:indexation:/demo-31","event":"opened","to":{"position":23,"impressions":348},"score":31.54,"confidence":0.05}
+{"ts":"2026-09-01T21:00:00Z","id":"t0:position:/contact-51","event":"acknowledged"}
+{"ts":"2026-09-02T03:00:00Z","id":"t4:cwv:/demo-35","event":"acknowledged"}
+{"ts":"2026-09-02T09:00:00Z","id":"t2:indexation:/blog/what-is-clm-34","event":"closed"}
+{"ts":"2026-09-02T15:00:00Z","id":"t0:schema:/blog/what-is-clm-36","event":"in_progress"}
+{"ts":"2026-09-02T21:00:00Z","id":"t0:cwv:/demo-27","event":"shipped","cause":"commit:534f4ff","effort_h":4}
+{"ts":"2026-09-03T03:00:00Z","id":"t3:canonical:/blog/what-is-clm-52","event":"closed"}
+{"ts":"2026-09-03T09:00:00Z","id":"t2:canonical:/use-cases/legal-14","event":"opened","to":{"position":47,"impressions":230},"score":37.7,"confidence":0.81}
+{"ts":"2026-09-03T15:00:00Z","id":"t0:indexation:/contact-40","event":"in_progress"}
+{"ts":"2026-09-03T21:00:00Z","id":"t0:position:/blog/what-is-clm-57","event":"acknowledged"}
+{"ts":"2026-09-04T03:00:00Z","id":"site","event":"algo_update","note":"core update 2026-970"}
+{"ts":"2026-09-04T09:00:00Z","id":"t2:indexation:/integrations/slack-17","event":"regressed","to":{"position":32}}
+{"ts":"2026-09-04T15:00:00Z","id":"t2:cwv:/contact-25","event":"opened","to":{"position":32,"impressions":759},"score":36.16,"confidence":0.38}
+{"ts":"2026-09-04T21:00:00Z","id":"t2:orphan:/integrations/slack-10","event":"verified","to":{"position":55}}
+{"ts":"2026-09-05T03:00:00Z","id":"t2:indexation:/blog/what-is-clm-34","event":"opened","to":{"position":47,"impressions":840},"score":28.07,"confidence":0.28}
+{"ts":"2026-09-05T09:00:00Z","id":"t2:offsite:/pricing-37","event":"shipped","cause":"commit:c0b307f","effort_h":6.5}
+{"ts":"2026-09-05T15:00:00Z","id":"t3:offsite:/pricing-9","event":"closed"}
+{"ts":"2026-09-05T21:00:00Z","id":"t2:orphan:/integrations/slack-10","event":"regressed","to":{"position":58}}
+{"ts":"2026-09-06T03:00:00Z","id":"t0:indexation:/vs/acme-22","event":"opened","to":{"position":24,"impressions":518},"score":8.29,"confidence":0.22}
+{"ts":"2026-09-06T09:00:00Z","id":"t2:cwv:/use-cases/legal-18","event":"closed"}
+{"ts":"2026-09-06T15:00:00Z","id":"t0:indexation:/vs/acme-22","event":"acknowledged"}
+{"ts":"2026-09-06T21:00:00Z","id":"t2:offsite:/use-cases/legal-6","event":"opened","to":{"position":25,"impressions":705},"score":34.43,"confidence":0.87}
+{"ts":"2026-09-07T03:00:00Z","id":"t2:position:/use-cases/legal-7","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-09-07T09:00:00Z","id":"t2:canonical:/pricing-38","event":"opened","to":{"position":43,"impressions":844},"score":1.83,"confidence":0.04}
+{"ts":"2026-09-07T15:00:00Z","id":"t2:indexation:/integrations/slack-17","event":"acknowledged"}
+{"ts":"2026-09-07T21:00:00Z","id":"t3:offsite:/demo-56","event":"in_progress"}
+{"ts":"2026-09-08T03:00:00Z","id":"t2:indexation:/blog/what-is-clm-34","event":"dismissed","note":"owner decided not to act"}
+{"ts":"2026-09-08T09:00:00Z","id":"t0:indexation:/vs/acme-22","event":"in_progress"}
+{"ts":"2026-09-08T15:00:00Z","id":"t0:orphan:/blog/what-is-clm-16","event":"acknowledged"}
+{"ts":"2026-09-08T21:00:00Z","id":"t3:schema:/demo-29","event":"closed"}
+{"ts":"2026-09-09T03:00:00Z","id":"t2:indexation:/blog/what-is-clm-34","event":"opened","to":{"position":47,"impressions":393},"score":36.5,"confidence":0.02}
+{"ts":"2026-09-09T09:00:00Z","id":"t2:canonical:/pricing-38","event":"closed"}
+{"ts":"2026-09-09T15:00:00Z","id":"t4:schema:/blog/what-is-clm-4","event":"acknowledged"}
+{"ts":"2026-09-09T21:00:00Z","id":"t2:indexation:/integrations/slack-17","event":"in_progress"}
+{"ts":"2026-09-10T03:00:00Z","id":"t3:canonical:/vs/acme-41","event":"in_progress"}
+{"ts":"2026-09-10T09:00:00Z","id":"t2:canonical:/pricing-38","event":"opened","to":{"position":43,"impressions":324},"score":19.32,"confidence":0.96}
+{"ts":"2026-09-10T15:00:00Z","id":"t4:position:/integrations/slack-55","event":"closed"}
+{"ts":"2026-09-10T21:00:00Z","id":"t4:orphan:/use-cases/legal-54","event":"closed"}
+{"ts":"2026-09-11T03:00:00Z","id":"t2:canonical:/use-cases/legal-14","event":"closed"}
+{"ts":"2026-09-11T09:00:00Z","id":"t0:indexation:/demo-31","event":"dismissed","note":"owner decided not to act"}
