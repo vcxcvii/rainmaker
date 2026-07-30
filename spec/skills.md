@@ -186,7 +186,7 @@ Three properties are non-negotiable everywhere:
 
 **Triggers:** "what does this metric mean", "why don't GA4 and GSC agree", "what is INP", "explain average position", "what is a citation".
 
-Reference only. Produces nothing. `references/definitions.md` covers every term in v1 section 9.2 plus AEO terms, each with a one-sentence definition, the common misuse, and what to say instead. Every other skill's numeric claims trace back here.
+Reference only. Produces nothing. The definitions live at `skills/_shared/metric-definitions.md`, not inside this skill, because every other skill cites them and a copy inside one skill would drift. Every term in v1 section 9.2 plus the AEO terms, each with a one-sentence definition, the common misuse, and what to say instead. Enforced by `src/skills/shared.test.ts`, which fails the build if a term loses any of its three parts.
 
 ---
 
