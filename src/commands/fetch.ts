@@ -148,7 +148,7 @@ export async function runFetch(argv: string[]): Promise<number> {
   const dir = resolve(process.cwd(), 'data', 'snapshots', stamp);
   const written = writeSourceSnapshots(dir, snapshots);
   if (!written.length) {
-    console.error('No snapshots written. Run `paydirt doctor` for setup details.');
+    console.error('No snapshots written. Run `rainmaker doctor` for setup details.');
     return 1;
   }
   for (const path of written) console.log(`Wrote ${path}`);

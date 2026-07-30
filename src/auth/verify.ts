@@ -1,4 +1,4 @@
-import type { PaydirtConfig } from '../config/schema.js';
+import type { RainmakerConfig } from '../config/schema.js';
 import {
   GOOGLE_SCOPES,
   createGoogleTokenProvider,
@@ -76,7 +76,7 @@ function googleClient(
 
 /** Builds real, one-request probes. Missing credentials omit only that client. */
 export function createDefaultCapabilityClients(options: {
-  config?: PaydirtConfig;
+  config?: RainmakerConfig;
   env?: NodeJS.ProcessEnv;
   fetcher?: typeof fetch;
 }): CapabilityClients {

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * paydirt CLI.
+ * rainmaker CLI.
  *
  * Deterministic layer. Everything here runs without Claude, which is what makes
  * it cron-safe and reproducible. Skills read what this writes; they never
@@ -13,7 +13,7 @@ import { ConfigError } from './config/load.js';
 const VERSION = '0.1.0';
 
 const COMMANDS = {
-  init: 'Create paydirt.config.yml. No credentials needed.',
+  init: 'Create rainmaker.config.yml. No credentials needed.',
   doctor: 'Verify every credential independently. Report live vs degraded capabilities.',
   audit: 'Crawl, measure, tier, score. Writes a diagnosis. Runs with whatever is available.',
   fetch: 'Pull GA4, GSC and Clarity into data/snapshots/ without re-crawling.',
@@ -32,14 +32,14 @@ function usage(): void {
 
   console.log(
     [
-      `paydirt ${VERSION}`,
+      `rainmaker ${VERSION}`,
       'Ranks SEO and content work by distance to revenue, not technical severity.',
       '',
-      'Usage: paydirt <command> [options]',
+      'Usage: rainmaker <command> [options]',
       '',
       lines,
       '',
-      'Start with `paydirt init`, then `paydirt doctor`.',
+      'Start with `rainmaker init`, then `rainmaker doctor`.',
     ].join('\n'),
   );
 }
@@ -78,7 +78,7 @@ async function main(argv: string[]): Promise<number> {
     }
     default: {
       console.error(
-        `\`paydirt ${command}\` is not implemented yet.\n` +
+        `\`rainmaker ${command}\` is not implemented yet.\n` +
           `See PLAN.md for the build order. Currently shipped: init.`,
       );
       return 1;

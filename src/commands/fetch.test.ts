@@ -6,7 +6,7 @@ import { test } from 'node:test';
 import { writeSourceSnapshots, type SourceSnapshots } from './fetch.js';
 
 test('fetch all fixture contract writes four valid snapshot files', () => {
-  const dir = mkdtempSync(join(tmpdir(), 'paydirt-fetch-'));
+  const dir = mkdtempSync(join(tmpdir(), 'rainmaker-fetch-'));
   const snapshots: SourceSnapshots = {
     crawl: {
       fetched_at: '2026-07-29T12:00:00.000Z',

@@ -1,9 +1,9 @@
 import { readFileSync, existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { parse } from 'yaml';
-import { DEFAULT_CRAWL, validateConfig, type PaydirtConfig } from './schema.js';
+import { DEFAULT_CRAWL, validateConfig, type RainmakerConfig } from './schema.js';
 
-export const CONFIG_FILENAME = 'paydirt.config.yml';
+export const CONFIG_FILENAME = 'rainmaker.config.yml';
 
 export class ConfigError extends Error {
   constructor(message: string) {
@@ -13,17 +13,17 @@ export class ConfigError extends Error {
 }
 
 /**
- * Loads and validates paydirt.config.yml from cwd.
+ * Loads and validates rainmaker.config.yml from cwd.
  *
  * Throws with every problem listed rather than the first, so a user fixes one
  * round of errors instead of discovering them one run at a time.
  */
-export function loadConfig(dir = process.cwd()): PaydirtConfig {
+export function loadConfig(dir = process.cwd()): RainmakerConfig {
   const path = resolve(dir, CONFIG_FILENAME);
 
   if (!existsSync(path)) {
     throw new ConfigError(
-      `No ${CONFIG_FILENAME} found in ${dir}.\nRun \`paydirt init\` to create one.`,
+      `No ${CONFIG_FILENAME} found in ${dir}.\nRun \`rainmaker init\` to create one.`,
     );
   }
 
@@ -40,7 +40,7 @@ export function loadConfig(dir = process.cwd()): PaydirtConfig {
     throw new ConfigError(`${CONFIG_FILENAME} has ${problems.length} problem(s):\n${lines}`);
   }
 
-  const config = raw as PaydirtConfig;
+  const config = raw as RainmakerConfig;
 
   return {
     ...config,

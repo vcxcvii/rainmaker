@@ -1,15 +1,15 @@
 {
-  "name": "paydirt",
+  "name": "rainmaker",
   "version": "0.1.0",
   "description": "GTM-native SEO and AI-search system. Ranks every finding by distance to revenue, not technical severity.",
   "type": "module",
   "bin": {
-    "paydirt": "./dist/cli.js"
+    "rainmaker": "./dist/cli.js"
   },
   "files": [
     "dist",
     "skills",
-    "paydirt.config.example.yml",
+    "rainmaker.config.example.yml",
     "README.md"
   ],
   "engines": {

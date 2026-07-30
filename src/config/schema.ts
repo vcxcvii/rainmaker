@@ -1,5 +1,5 @@
 /**
- * paydirt.config.yml schema and loader.
+ * rainmaker.config.yml schema and loader.
  *
  * This config is what lets universal tiering logic work on any site. The tier
  * rules are the same everywhere; this supplies the business context they need.
@@ -17,7 +17,7 @@ export const REVENUE_MODELS = [
 
 export type RevenueModel = (typeof REVENUE_MODELS)[number];
 
-export interface PaydirtConfig {
+export interface RainmakerConfig {
   /** Root URL of the site under analysis. */
   site: string;
 
@@ -80,7 +80,7 @@ export interface ConfigProblem {
  */
 export function validateConfig(raw: unknown): ConfigProblem[] {
   const problems: ConfigProblem[] = [];
-  const c = raw as Partial<PaydirtConfig> | null;
+  const c = raw as Partial<RainmakerConfig> | null;
 
   if (!c || typeof c !== 'object') {
     return [{ field: '.', message: 'config is empty or not an object' }];

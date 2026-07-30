@@ -68,7 +68,7 @@ export async function runInit(argv: string[]): Promise<number> {
         [
           'Not a terminal, so init needs flags:',
           '',
-          '  paydirt init \\',
+          '  rainmaker init \\',
           '    --site https://example.com \\',
           '    --revenue-model sales-led \\',
           '    --primary-conversion "/demo, /pricing" \\',
@@ -131,7 +131,7 @@ export async function runInit(argv: string[]): Promise<number> {
         '',
         `Wrote ${CONFIG_FILENAME}`,
         '',
-        'Next: `paydirt doctor` to see which capabilities are live.',
+        'Next: `rainmaker doctor` to see which capabilities are live.',
         'An audit will run with zero credentials, just with lower confidence.',
       ].join('\n'),
     );
@@ -154,9 +154,9 @@ function renderConfig(v: {
   const list = (items: string[]): string =>
     items.length ? `\n${items.map((i) => `  - ${i}`).join('\n')}` : ' []';
 
-  return `# paydirt configuration
+  return `# rainmaker configuration
 # Supplies the business context that universal tiering logic needs.
-# Docs: https://github.com/vcxcvii/paydirt
+# Docs: https://github.com/vcxcvii/rainmaker
 
 site: ${v.site}
 revenue_model: ${v.revenueModel}

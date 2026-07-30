@@ -1,6 +1,6 @@
-# paydirt configuration
+# rainmaker configuration
 # Supplies the business context that universal tiering logic needs.
-# Docs: https://github.com/vcxcvii/paydirt
+# Docs: https://github.com/vcxcvii/rainmaker
 
 site: https://quillet.com
 revenue_model: sales-led

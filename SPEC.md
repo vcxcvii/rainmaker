@@ -14,7 +14,7 @@
 
 ## 0. Current state, as of 2026-07-30
 
-Repository: `<repo root>/paydirt`, to be renamed. Committed and passing:
+Repository: `<repo root>/rainmaker`, public at `github.com/vcxcvii/rainmaker`. Committed and passing:
 
 | Commit | Block | Contents |
 |---|---|---|
@@ -24,7 +24,7 @@ Repository: `<repo root>/paydirt`, to be renamed. Committed and passing:
 
 Verify before starting: `npm install && npx tsc --noEmit && npm test`.
 
-Rename before block 4: `gh repo rename rainmaker`, `git remote set-url origin https://github.com/vcxcvii/rainmaker.git`, package name and bin to `rainmaker`, directory to `<repo root>/rainmaker`. Every `paydirt` string in code, config filenames (`rainmaker.config.yml`) and docs changes with it.
+Block 4 completed the rename: package and bin `rainmaker`, config `rainmaker.config.yml`, directory and repository `rainmaker`. `paydirt` survives only in `spec/handoff-v1.md`, which is retained verbatim as the historical record.
 
 ---
 
@@ -149,7 +149,7 @@ Blocks 1 to 3 complete. Each block ends with a commit; do not start one until th
 
 | # | Block | Done when |
 |---|---|---|
-| 4 | Rename to Rainmaker | no `paydirt` string remains outside `spec/handoff-v1.md` and `DECISIONS.md`; `npx tsc --noEmit` and tests pass |
+| 4 | Rename to Rainmaker | no `rainmaker` string remains outside `spec/handoff-v1.md` and `DECISIONS.md`; `npx tsc --noEmit` and tests pass |
 | 5 | Ledger: types, append, materialise, query | 1000-line fixture replays byte-identically; illegal transitions rejected; a URL outside the coverage set is never closed |
 | 6 | Context layer and `rainmaker context` | `--init` produces a valid stub; `--validate` rejects a non-owning write; `--check` catches a hash mismatch |
 | 7 | `explain-this-number` and `skills/_shared/` | every term present with definition, misuse, replacement; five shared files exist and no skill restates them |

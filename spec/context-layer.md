@@ -1,6 +1,6 @@
-# paydirt: Context Layer Specification
+# rainmaker: Context Layer Specification
 
-**Status:** normative. Part of the v2 handoff spec. Where this conflicts with `paydirt-handoff-spec.md` (v1), this wins.
+**Status:** normative. Part of the v2 handoff spec. Where this conflicts with `rainmaker-handoff-spec.md` (v1), this wins.
 
 ---
 
@@ -214,7 +214,7 @@ export interface StrategyDecision {
 
 ### 4.1 Write ownership
 
-A skill may only write the fields it owns. Enforced by `paydirt context --validate`, which fails the run if a field changed and the writing skill is not its owner.
+A skill may only write the fields it owns. Enforced by `rainmaker context --validate`, which fails the run if a field changed and the writing skill is not its owner.
 
 | Field | Owner | Others may |
 |---|---|---|
@@ -239,28 +239,28 @@ Every judgment skill opens with the identical block below, copied verbatim into 
 ```markdown
 ## Context load
 
-Run `npx paydirt context --check` first. It prints what exists, what is stale, and exits 1 if anything this skill requires is missing.
+Run `npx rainmaker context --check` first. It prints what exists, what is stale, and exits 1 if anything this skill requires is missing.
 
 Then read, in this order:
-1. `context/business.md` in full. If absent, stop: "No business context. Run `npx paydirt audit`, then the `grill-me` skill."
+1. `context/business.md` in full. If absent, stop: "No business context. Run `npx rainmaker audit`, then the `grill-me` skill."
 2. `context/voice.md` if this skill writes prose. If absent, stop and say so.
 3. `data/strategy.json` if this skill reads or writes strategy.
 4. Only the `data/` files listed in this skill's Requires table. Never crawl or call an API the core already covers.
 
 If `strategy.json.context_hash` does not match the current sha256 of `context/business.md`, say exactly:
-"Business context was edited after the strategy was written. Re-run `grill-me`, or run `npx paydirt context --sync` to accept the prose as authoritative."
+"Business context was edited after the strategy was written. Re-run `grill-me`, or run `npx rainmaker context --sync` to accept the prose as authoritative."
 Then stop.
 ```
 
-## 6. `paydirt context` command
+## 6. `rainmaker context` command
 
 New CLI subcommand. Added to section 8 of the core spec.
 
 ```
-paydirt context --check       print presence and freshness of context files and data
-paydirt context --validate    schema-check strategy.json; verify write-ownership; exit 1 on violation
-paydirt context --sync        recompute context_hash from business.md, bump version, record a decisions entry
-paydirt context --init        write a stub business.md from paydirt.config.yml with confidence: stub
+rainmaker context --check       print presence and freshness of context files and data
+rainmaker context --validate    schema-check strategy.json; verify write-ownership; exit 1 on violation
+rainmaker context --sync        recompute context_hash from business.md, bump version, record a decisions entry
+rainmaker context --init        write a stub business.md from rainmaker.config.yml with confidence: stub
 ```
 
 `--check` output:

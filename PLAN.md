@@ -1,8 +1,8 @@
-# paydirt
+# rainmaker
 
 A GTM-native SEO/AEO/content system. Ranks every piece of work by **distance to revenue**, not technical severity. Diagnoses any site with no credentials, enriches with GA4 + GSC + Clarity when connected, remembers everything it has ever found, files GitHub issues on a schedule, and generates reports a founder can read without a glossary.
 
-Name: **paydirt**. Free on npm, verified. Mining term for ore rich enough to be worth extracting, which is the whole thesis. Repo renamed in place from `lazarus-pit`; GitHub 301s the old URL and the Clarity pipeline plus data history carry over.
+Name: **rainmaker**. Free on npm, verified. Mining term for ore rich enough to be worth extracting, which is the whole thesis. Repo renamed in place from `lazarus-pit`; GitHub 301s the old URL and the Clarity pipeline plus data history carry over.
 
 ---
 
@@ -29,7 +29,7 @@ revenue_score = tier_weight × opportunity × severity ÷ effort_hours
 Config supplies the business context, which is what lets the universal tiering logic work on sites of any size or shape:
 
 ```yaml
-# paydirt.config.yml
+# rainmaker.config.yml
 site: https://quillet.com
 revenue_model: sales-led      # self-serve | sales-led | plg | marketplace | ads | newsletter | consulting
 primary_conversion: [/demo, /pricing]
@@ -221,10 +221,10 @@ Shape: **deterministic core, parallel fan-out at three named points, serial wher
 ## 5. Repo
 
 ```
-paydirt/
-├── package.json                  # bin: paydirt
-├── paydirt.config.yml            # gitignored
-├── paydirt.config.example.yml
+rainmaker/
+├── package.json                  # bin: rainmaker
+├── rainmaker.config.yml            # gitignored
+├── rainmaker.config.example.yml
 ├── .env / .env.example
 │
 ├── src/                          # deterministic, runs without Claude
@@ -291,7 +291,7 @@ Console steps, in order. Blocking dependency for the GA4/GSC path.
 4. GA4 → Admin → Property Access Management → add service account email as **Viewer**
 5. Search Console → Settings → Users and permissions → add same email as **Full**
 6. Key local and gitignored; add as `GOOGLE_SA_KEY` repo secret
-7. `npx paydirt doctor`
+7. `npx rainmaker doctor`
 
 Service account not OAuth: no refresh-token expiry, no consent-screen publishing, survives unattended cron indefinitely.
 
