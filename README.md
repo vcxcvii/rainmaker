@@ -1,6 +1,6 @@
 # Rainmaker
 
-An open-source GTM search system with one principle:
+An open-source SEO and AEO agent with one principle:
 
 > Every finding is ranked by distance to revenue, never by technical severity.
 

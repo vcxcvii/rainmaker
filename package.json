@@ -1,7 +1,7 @@
 {
   "name": "rainmaker",
   "version": "0.1.0",
-  "description": "GTM-native SEO and AI-search system. Ranks every finding by distance to revenue, not technical severity.",
+  "description": "Open-source SEO and AEO agent. Ranks every finding by distance to revenue, checks the live SERP before briefing anything, and records whether the fix worked.",
   "type": "module",
   "bin": {
     "rainmaker": "./dist/cli.js"

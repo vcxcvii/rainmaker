@@ -1,6 +1,6 @@
 # rainmaker
 
-A GTM-native SEO/AEO/content system. Ranks every piece of work by **distance to revenue**, not technical severity. Diagnoses any site with no credentials, enriches with GA4 + GSC + Clarity when connected, remembers everything it has ever found, files GitHub issues on a schedule, and generates reports a founder can read without a glossary.
+An SEO, AEO and content agent. Ranks every piece of work by **distance to revenue**, not technical severity. Diagnoses any site with no credentials, enriches with GA4 + GSC + Clarity when connected, remembers everything it has ever found, files GitHub issues on a schedule, and generates reports a founder can read without a glossary.
 
 Name: **rainmaker**. Free on npm, verified. Mining term for ore rich enough to be worth extracting, which is the whole thesis. Repo renamed in place from `lazarus-pit`; GitHub 301s the old URL and the Clarity pipeline plus data history carry over.
 
