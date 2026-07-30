@@ -6,7 +6,7 @@
 
 > Every finding is ranked by distance to revenue, never by technical severity.
 
-**Authority order.** This file, then `spec/context-layer.md`, `spec/site-blueprint.md`, `spec/offsite.md`, `spec/skills.md`, then `spec/handoff-v1.md`. Earlier wins. `PLAN.md` is rationale and loses to all of them.
+**Authority order.** This file, then `spec/false-positives.md`, `spec/context-layer.md`, `spec/site-blueprint.md`, `spec/offsite.md`, `spec/agent.md`, `spec/skills.md`, then `spec/handoff-v1.md`. Earlier wins. `PLAN.md` is rationale and loses to all of them.
 
 **Rule:** if a detail is unspecified anywhere in that chain, choose the option that is deterministic, testable, and cheapest to run, then record the choice in `DECISIONS.md`. Do not ask.
 
@@ -69,7 +69,7 @@ v2 ran a 12-probe sample and reported it. That is an aggregate, and aggregates h
 
 ### 1.7 Skills were named for practitioners
 
-26 skills, renamed for the outcome a non-specialist actually wants, and organised into five phases with one decision each, no overlap, and a declared consume-and-produce chain. Mapping table in `spec/skills.md` section 0.
+26 skills, renamed for the outcome a non-specialist actually wants, and organised into six phases with one decision each, no overlap, and a declared consume-and-produce chain. Mapping table in `spec/skills.md` section 0.
 
 ---
 
@@ -99,7 +99,9 @@ v1's eight stand. v2 added four. v3 adds five.
 14. **Nothing gets briefed without a SERP verdict.** A `blueprint.nodes[].serp_verdict` of `unchecked` blocks `brief-my-writer`.
 15. **Publish inside the authority budget.** Exceeding it requires an explicit override recorded in `DECISIONS.md` with the measured rates.
 16. **No vendor authority scores, anywhere.** Feasibility is evidenced from our own measured history.
-17. **No manipulation.** No multi-account simulation of independent voices, no vote manipulation, no undisclosed affiliation, no paid or exchanged links, no doorway permutations. These buy a short signal and a long liability, and this system exists to make ranking durable.
+17. **Three verdicts, never two.** Finding, suspicion, unmeasured. A check that cannot establish its case reports a suspicion or says it has no data. Collapsing the third into silence is how a system implies it saw everything.
+18. **Every finding is auditable.** `rainmaker audit --explain <id>` prints file, field, window, threshold and the rule that fired. A finding that cannot be explained that way should not have been reported.
+19. **No manipulation.** No multi-account simulation of independent voices, no vote manipulation, no undisclosed affiliation, no paid or exchanged links, no doorway permutations. These buy a short signal and a long liability, and this system exists to make ranking durable.
 
 ---
 
@@ -118,7 +120,7 @@ rainmaker serp <query...>        live SERP capture into snapshots/<ts>/serp.json
 rainmaker blueprint --build      write blueprint.json from keyword_plan and clusters
 rainmaker blueprint --tree       print the tree and the monthly cohorts
 rainmaker offsite --scan         refresh citation-graph.json from the latest citations.json
-rainmaker campaign               run Ground through Decide as one supervised chain
+rainmaker campaign               run See through Decide as one supervised chain
 ```
 
 `audit` prints `coverage_gap`. `routine` scans commits for `rainmaker-fix:` trailers.

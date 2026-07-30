@@ -78,36 +78,60 @@ export interface DidNothing {
   current: State['findings'][string]['current'];
 }
 
+export interface NothingReport {
+  /** Shipped, window closed, comparable numbers did not move. */
+  did_nothing: DidNothing[];
+  /**
+   * Shipped and past its window, but no metric exists in both baseline and
+   * current, so there is nothing to compare. Reported separately: calling this
+   * a failure is a false positive, and calling it a success is worse.
+   */
+  unmeasured: DidNothing[];
+}
+
 /**
  * Shipped work past its window whose measured values did not move. This is the
  * mandatory "What did nothing" section: a retrospective reporting only wins is
  * a defect, because it leaves the failed assumption in place for next quarter.
  */
-export function didNothing(events: LedgerEvent[], state: State, now: string): DidNothing[] {
+export function didNothing(events: LedgerEvent[], state: State, now: string): NothingReport {
   const shipped = new Map<string, LedgerEvent>();
   for (const event of events) {
     if (event.event === 'shipped') shipped.set(event.id, event);
   }
 
-  const results: DidNothing[] = [];
+  const report: NothingReport = { did_nothing: [], unmeasured: [] };
   for (const [id, finding] of Object.entries(state.findings)) {
     const event = shipped.get(id);
     if (!event) continue;
     const due = Date.parse(event.ts) + windowDaysFor(id) * 86_400_000;
     if (due > Date.parse(now)) continue;
 
-    const moved = Object.entries(finding.baseline).some(
-      ([key, value]) => finding.current[key] !== undefined && finding.current[key] !== value,
+    const comparable = Object.keys(finding.baseline).filter(
+      (key) => finding.current[key] !== undefined,
     );
-    if (!moved) {
-      results.push({
-        id,
-        shipped_at: event.ts,
-        effort_h: event.effort_h ?? 0,
-        baseline: finding.baseline,
-        current: finding.current,
-      });
+    const row: DidNothing = {
+      id,
+      shipped_at: event.ts,
+      effort_h: event.effort_h ?? 0,
+      baseline: finding.baseline,
+      current: finding.current,
+    };
+
+    // No shared metric means no evidence either way. Silence here would let an
+    // unmeasured fix be reported as a proven failure, which is the exact class
+    // of false positive this system is built to avoid.
+    if (comparable.length === 0) {
+      report.unmeasured.push(row);
+      continue;
+    }
+    if (comparable.every((key) => finding.current[key] === finding.baseline[key])) {
+      report.did_nothing.push(row);
     }
   }
-  return results.sort((left, right) => right.effort_h - left.effort_h);
+
+  const byEffort = (left: DidNothing, right: DidNothing) => right.effort_h - left.effort_h;
+  report.did_nothing.sort(byEffort);
+  report.unmeasured.sort(byEffort);
+  return report;
 }

@@ -59,13 +59,19 @@ export function runLedger(args: string[]): number {
       console.log(JSON.stringify(nothing, null, 2));
       return 0;
     }
-    if (nothing.length === 0) {
+    if (nothing.did_nothing.length === 0) {
       console.log('Nothing shipped past its window has failed to move. Either good, or too early.');
-      return 0;
+    } else {
+      console.log('Shipped, window closed, nothing moved:\n');
+      for (const row of nothing.did_nothing) {
+        console.log(`  ${row.id}  ${row.effort_h}h spent  shipped ${row.shipped_at.slice(0, 10)}`);
+      }
     }
-    console.log('Shipped, window closed, nothing moved:\n');
-    for (const row of nothing) {
-      console.log(`  ${row.id}  ${row.effort_h}h spent  shipped ${row.shipped_at.slice(0, 10)}`);
+    if (nothing.unmeasured.length > 0) {
+      console.log('\nShipped, window closed, but no metric to compare. Not a verdict:\n');
+      for (const row of nothing.unmeasured) {
+        console.log(`  ${row.id}  ${row.effort_h}h spent  shipped ${row.shipped_at.slice(0, 10)}`);
+      }
     }
     return 0;
   }

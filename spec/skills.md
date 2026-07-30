@@ -39,7 +39,7 @@ Skills are named for the outcome the user wants, in the words they would use. No
 | new | `show-up-in-communities` |
 | new | `spread-one-piece-everywhere` |
 
-26 skills. Five phases.
+26 skills. Six phases: Ground, See, Decide, Build, Spread, Prove.
 
 ---
 

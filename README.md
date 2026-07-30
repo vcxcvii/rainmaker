@@ -91,7 +91,7 @@ flowchart TD
   R3 -.->|beliefs that failed twice| G1
 ```
 
-26 skills, five phases, one decision each. No two skills can answer the same question, and together they cover the whole job.
+26 skills, six phases, one decision each. No two skills can answer the same question, and together they cover the whole job.
 
 ## The context layer
 
@@ -242,6 +242,7 @@ The full spec is in the repo and is the authority for contributors and coding ag
 | `spec/offsite.md` | citation graph, communities, entity consistency |
 | `spec/skills.md` | all 26 skills |
 | `spec/agent.md` | packaging, first run, cadence, autonomy limits |
+| `spec/false-positives.md` | the evidence bar for every check, and the target under one percent |
 | `spec/handoff-v1.md` | the original handoff, superseded but retained |
 
 MIT. Built in the open by [Varun Choraria](https://varunchoraria.com).

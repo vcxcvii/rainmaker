@@ -237,8 +237,23 @@ test('shipped work past its window whose numbers did not move is reported', () =
   ];
 
   const nothing = didNothing(events, materialise(events, AT), AT);
-  assert.deepEqual(nothing.map((row) => row.id), [flat]);
-  assert.equal(nothing[0].effort_h, 9);
+  assert.deepEqual(nothing.did_nothing.map((row) => row.id), [flat]);
+  assert.equal(nothing.did_nothing[0].effort_h, 9);
+  assert.deepEqual(nothing.unmeasured, []);
+});
+
+test('a fix with no comparable metric is unmeasured, not a proven failure', () => {
+  const id = 't0:canonical:/demo';
+  const events: LedgerEvent[] = [
+    opened(id),
+    { ts: '2026-01-02T00:00:00Z', id, event: 'acknowledged' },
+    { ts: '2026-01-03T00:00:00Z', id, event: 'in_progress' },
+    { ts: '2026-01-04T00:00:00Z', id, event: 'shipped', effort_h: 1 },
+  ];
+
+  const nothing = didNothing(events, materialise(events, AT), AT);
+  assert.deepEqual(nothing.did_nothing, []);
+  assert.deepEqual(nothing.unmeasured.map((row) => row.id), [id]);
 });
 
 test('queries filter by id, status and date', () => {
