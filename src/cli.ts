@@ -19,6 +19,8 @@ const COMMANDS = {
   fetch: 'Pull GA4, GSC and Clarity into data/snapshots/ without re-crawling.',
   routine: 'Run the scheduled pass: fetch, diagnose, file issues in revenue order.',
   report: 'Render a report. --window pulse|28d|month|quarter|half-year',
+  context:
+    'Business context and strategy. --check | --init | --validate | --sync',
   ledger:
     'Query finding history. --id | --since | --status | --pending | --did-nothing | --rebuild',
 } as const;
@@ -77,6 +79,10 @@ async function main(argv: string[]): Promise<number> {
       const { runFetch } = await import('./commands/fetch.js');
       return runFetch(rest);
     }
+    case 'context': {
+      const { runContext } = await import('./commands/context.js');
+      return runContext(rest);
+    }
     case 'ledger': {
       const { runLedger } = await import('./commands/ledger.js');
       return runLedger(rest);
@@ -84,7 +90,7 @@ async function main(argv: string[]): Promise<number> {
     default: {
       console.error(
         `\`rainmaker ${command}\` is not implemented yet.\n` +
-          `See SPEC.md section 6 for the build order. Shipped: init, doctor, fetch, ledger.`,
+          `See SPEC.md section 6 for the build order. Shipped: init, doctor, fetch, context, ledger.`,
       );
       return 1;
     }
