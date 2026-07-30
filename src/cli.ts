@@ -79,6 +79,10 @@ async function main(argv: string[]): Promise<number> {
       const { runFetch } = await import('./commands/fetch.js');
       return runFetch(rest);
     }
+    case 'audit': {
+      const { runAudit } = await import('./commands/audit.js');
+      return runAudit(rest);
+    }
     case 'context': {
       const { runContext } = await import('./commands/context.js');
       return runContext(rest);
@@ -90,7 +94,7 @@ async function main(argv: string[]): Promise<number> {
     default: {
       console.error(
         `\`rainmaker ${command}\` is not implemented yet.\n` +
-          `See SPEC.md section 6 for the build order. Shipped: init, doctor, fetch, context, ledger.`,
+          `See SPEC.md section 6 for the build order. Shipped: init, doctor, fetch, audit, context, ledger.`,
       );
       return 1;
     }
