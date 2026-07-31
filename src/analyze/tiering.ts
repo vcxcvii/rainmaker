@@ -1,6 +1,7 @@
 import type { RainmakerConfig } from '../config/schema.js';
 import type { CrawlPage, Ga4Snapshot, GscSnapshot } from '../fetch/types.js';
 import { normalisePath, type Tier } from './checks.js';
+import { classifyIntent, INTENT_TIER } from './intent.js';
 
 /**
  * Revenue tiering. The ordering principle for the whole system, and the reason
@@ -42,25 +43,6 @@ export const URL_PATTERNS: Array<{ tier: Tier; patterns: string[] }> = [
       '/about', '/careers', '/jobs', '/team', '/press', '/legal', '/privacy', '/terms',
       '/author/', '/tag/', '/category/', '/page/',
     ],
-  },
-];
-
-const QUERY_INTENT: Array<{ tier: Tier; terms: string[] }> = [
-  {
-    tier: 0,
-    terms: ['buy', 'demo', 'trial', 'free trial', 'signup', 'sign up', 'get started', 'book a demo', 'pricing page'],
-  },
-  {
-    tier: 1,
-    terms: ['pricing', 'cost', 'price', ' vs ', 'versus', 'alternative', 'alternatives', 'best', 'top', 'review', 'reviews', 'comparison', 'competitor'],
-  },
-  {
-    tier: 2,
-    terms: ['how to', 'how do i', 'solve', 'fix', 'reduce', 'improve', 'automate', 'streamline', 'prevent'],
-  },
-  {
-    tier: 3,
-    terms: ['what is', 'why is', 'definition', 'meaning', 'examples', 'guide', 'tutorial', 'statistics', 'trends'],
   },
 ];
 
@@ -125,13 +107,10 @@ function queryIntentRule(path: string, gsc: GscSnapshot | null | undefined): Tie
 
   const votes = new Map<Tier, number>();
   for (const row of rows) {
-    const query = ` ${row.query.toLowerCase()} `;
-    for (const { tier, terms } of QUERY_INTENT) {
-      if (terms.some((term) => query.includes(term))) {
-        votes.set(tier, (votes.get(tier) ?? 0) + 1);
-        break;
-      }
-    }
+    const intent = classifyIntent(row.query);
+    if (!intent) continue;
+    const tier = INTENT_TIER[intent];
+    votes.set(tier, (votes.get(tier) ?? 0) + 1);
   }
   if (votes.size === 0) return null;
 
