@@ -17,6 +17,7 @@ const COMMANDS = {
   doctor: 'Verify every credential independently. Report live vs degraded capabilities.',
   audit: 'Crawl, measure, tier, score. Writes a diagnosis. Runs with whatever is available.',
   serp: 'Capture a live SERP for one or more queries and compute a rank verdict.',
+  blueprint: 'Site structure. --build from strategy and crawl data, --tree to print it.',
   fetch: 'Pull GA4, GSC and Clarity into data/snapshots/ without re-crawling.',
   routine: 'Run the scheduled pass: fetch, diagnose, file issues in revenue order.',
   report: 'Render a report. --window pulse|28d|month|quarter|half-year',
@@ -88,6 +89,10 @@ async function main(argv: string[]): Promise<number> {
       const { runSerp } = await import('./commands/serp.js');
       return runSerp(rest);
     }
+    case 'blueprint': {
+      const { runBlueprint } = await import('./commands/blueprint.js');
+      return runBlueprint(rest);
+    }
     case 'context': {
       const { runContext } = await import('./commands/context.js');
       return runContext(rest);
@@ -99,7 +104,7 @@ async function main(argv: string[]): Promise<number> {
     default: {
       console.error(
         `\`rainmaker ${command}\` is not implemented yet.\n` +
-          `See SPEC.md section 6 for the build order. Shipped: init, doctor, fetch, audit, serp, context, ledger.`,
+          `See SPEC.md section 6 for the build order. Shipped: init, doctor, fetch, audit, serp, blueprint, context, ledger.`,
       );
       return 1;
     }
