@@ -17,15 +17,15 @@ With no key at all, `audit` falls back to a built-in crawler rather than refusin
 
 ## The job to be done
 
-```mermaid
-flowchart LR
-  J["<b>When</b> I own a site and a revenue number<br/><b>I want</b> to know what to fix first<br/><b>So I can</b> show a win before the quarter ends"]
-  J --> A["<b>See</b><br/>what is true now"]
-  A --> B["<b>Decide</b><br/>what is worth doing"]
-  B --> C["<b>Build</b><br/>the thing"]
-  C --> D["<b>Spread</b><br/>where answers come from"]
-  D --> E["<b>Prove</b><br/>what actually moved"]
-  E -->|belief updated| B
+```
+WHEN I own a site and a revenue number
+I WANT to know what to fix first
+SO I CAN show a win before the quarter ends
+
+  See --> Decide --> Build --> Spread --> Prove
+             ^                               |
+             |        belief updated         |
+             '-------------------------------'
 ```
 
 The arrow back from Prove to Decide is the whole product. Everything else in this category stops at Build.
@@ -46,51 +46,30 @@ Tiers are assigned by eight precedence rules in code, in strict order, each reco
 
 ## The pipeline
 
-```mermaid
-flowchart TD
-  subgraph G["Ground"]
-    G1[know-my-buyer]
-    G2[say-it-their-way]
-  end
-  subgraph S["See"]
-    S1[unblock-my-money-pages]
-    S2[find-my-quick-wins]
-    S3[get-mentioned-by-ai]
-    S4[stop-losing-visitors]
-    S5[beat-my-competitors]
-  end
-  subgraph D["Decide"]
-    D1[follow-the-money]
-    D2[pick-my-battles]
-    D3[can-i-actually-rank]
-    D4[what-to-target-next]
-    D5[map-my-site]
-  end
-  subgraph B["Build"]
-    B1[brief-my-writer]
-    B2[write-the-page]
-    B3[make-it-sound-human]
-    B4[make-me-quotable]
-    B5[revive-old-pages]
-  end
-  subgraph P["Spread"]
-    P1[get-cited-elsewhere]
-    P2[show-up-in-communities]
-    P3[spread-one-piece-everywhere]
-  end
-  subgraph R["Prove"]
-    R1[check-before-i-publish]
-    R2[show-me-progress]
-    R3[what-actually-worked]
-    R4[what-changed-in-search]
-  end
-  S --> G
-  G --> D
-  D --> B
-  B --> R1
-  R1 --> P
-  P --> R
-  R3 -.->|beliefs that failed twice| G1
+```
+Ground   know-my-buyer, say-it-their-way, explain-this-number
+           |
+           v
+See      unblock-my-money-pages, find-my-quick-wins, get-mentioned-by-ai,
+         stop-losing-visitors, beat-my-competitors
+           |
+           v
+Decide   follow-the-money, pick-my-battles, can-i-actually-rank,
+         what-to-target-next, map-my-site
+           |
+           v
+Build    brief-my-writer, write-the-page, make-it-sound-human,
+         make-me-quotable, revive-old-pages
+           |
+           v
+Spread   get-cited-elsewhere, show-up-in-communities,
+         spread-one-piece-everywhere
+           |
+           v
+Prove    check-before-i-publish, show-me-progress, what-actually-worked,
+         what-changed-in-search, put-it-on-autopilot
+           |
+           `-- beliefs that failed twice loop back to Ground
 ```
 
 26 skills, six phases, one decision each. No two skills can answer the same question, and together they cover the whole job.
@@ -99,13 +78,16 @@ flowchart TD
 
 Every skill loads the same business context, so the system holds one opinion rather than 26.
 
-```mermaid
-flowchart LR
-  CTX["context/business.md<br/><i>prose a human argues with</i>"] <-->|shared ids, verified by hash| STR["data/strategy.json<br/><i>records code can join</i>"]
-  CTX --> SK[every judgment skill]
-  STR --> SK
-  STR --> SRC["src/<br/><i>scoring and tiering</i>"]
-  SK -->|writes only fields it owns| STR
+```
+context/business.md   <-- shared ids, verified by hash -->   data/strategy.json
+prose a human argues with                                    records code can join
+           \                                                        /
+            `------------------ every judgment skill --------------'
+                       (writes only fields it owns back to
+                              data/strategy.json)
+                                       |
+                                       v
+                             src/ (scoring and tiering)
 ```
 
 `business.md` holds the buyer's own words, the proof, the competitors and the things you refuse to claim. `strategy.json` holds the same commitments as addressable records. They share ids, they are verified against each other by hash, and each field has exactly one skill allowed to write it.
