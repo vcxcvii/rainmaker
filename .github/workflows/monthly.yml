@@ -1,12 +1,12 @@
-name: Weekly Rainmaker pulse
+name: Monthly Rainmaker report
 
 on:
   schedule:
-    - cron: "0 14 * * 1" # every Monday, 14:00 UTC
+    - cron: "0 14 1 * *" # first of the month, 14:00 UTC
   workflow_dispatch: {}
 
 jobs:
-  routine:
+  report:
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ secrets.GH_PAT }}
@@ -26,4 +26,10 @@ jobs:
           echo '${{ secrets.GOOGLE_SA_KEY }}' > google-service-account.local.json
           echo "GOOGLE_APPLICATION_CREDENTIALS=./google-service-account.local.json" >> "$GITHUB_ENV"
       - run: npm run build
-      - run: node dist/cli.js routine
+      - run: node dist/cli.js audit --refresh
+      - run: node dist/cli.js report --window month
+      - run: node dist/cli.js ledger --compact
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rainmaker-monthly-report
+          path: reports/

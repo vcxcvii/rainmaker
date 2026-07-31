@@ -19,7 +19,7 @@ const COMMANDS = {
   serp: 'Capture a live SERP for one or more queries and compute a rank verdict.',
   blueprint: 'Site structure. --build from strategy and crawl data, --tree to print it.',
   fetch: 'Pull GA4, GSC and Clarity into data/snapshots/ without re-crawling.',
-  routine: 'Run the scheduled pass: fetch, diagnose, file issues in revenue order.',
+  routine: 'Run the scheduled pass: refresh, detect shipped work, file issues in revenue order.',
   report: 'Render a report. --window pulse|28d|month|quarter|half-year',
   context:
     'Business context and strategy. --check | --init | --validate | --sync',
@@ -88,6 +88,10 @@ async function main(argv: string[]): Promise<number> {
     case 'serp': {
       const { runSerp } = await import('./commands/serp.js');
       return runSerp(rest);
+    }
+    case 'routine': {
+      const { runRoutine } = await import('./commands/routine.js');
+      return runRoutine(rest);
     }
     case 'blueprint': {
       const { runBlueprint } = await import('./commands/blueprint.js');
