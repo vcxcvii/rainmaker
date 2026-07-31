@@ -24,7 +24,7 @@ const COMMANDS = {
   context:
     'Business context and strategy. --check | --init | --validate | --sync',
   ledger:
-    'Query finding history. --id | --since | --status | --pending | --did-nothing | --rebuild',
+    'Query finding history. --id | --since | --status | --pending | --did-nothing | --rebuild | --compact',
 } as const;
 
 type Command = keyof typeof COMMANDS;
@@ -89,6 +89,10 @@ async function main(argv: string[]): Promise<number> {
       const { runSerp } = await import('./commands/serp.js');
       return runSerp(rest);
     }
+    case 'report': {
+      const { runReport } = await import('./commands/report.js');
+      return Promise.resolve(runReport(rest));
+    }
     case 'routine': {
       const { runRoutine } = await import('./commands/routine.js');
       return runRoutine(rest);
@@ -108,7 +112,7 @@ async function main(argv: string[]): Promise<number> {
     default: {
       console.error(
         `\`rainmaker ${command}\` is not implemented yet.\n` +
-          `See SPEC.md section 6 for the build order. Shipped: init, doctor, fetch, audit, serp, blueprint, context, ledger.`,
+          `See SPEC.md section 6 for the build order. Shipped: init, doctor, fetch, audit, serp, blueprint, report, routine, context, ledger.`,
       );
       return 1;
     }

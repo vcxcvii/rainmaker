@@ -1,13 +1,15 @@
-import { existsSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
 import { readLedger } from '../ledger/append.js';
 import { materialise } from '../ledger/materialise.js';
 import { didNothing, pendingVerification, queryEvents } from '../ledger/query.js';
+import { planCompaction, type SnapshotRef } from '../ledger/compact.js';
 import { writeStableJson } from '../util/json.js';
 import type { EventType } from '../ledger/types.js';
 
 const LEDGER = join('data', 'ledger.jsonl');
 const STATE = join('data', 'state.json');
+const SNAPSHOTS = join('data', 'snapshots');
 
 function flag(args: string[], name: string): string | undefined {
   const index = args.indexOf(name);
@@ -23,6 +25,29 @@ export function runLedger(args: string[]): number {
   const events = readLedger(LEDGER);
   const now = new Date().toISOString();
   const json = args.includes('--json');
+
+  if (args.includes('--compact')) {
+    if (!existsSync(SNAPSHOTS)) {
+      console.log('No snapshots directory yet. Nothing to compact.');
+      return 0;
+    }
+    const refs: SnapshotRef[] = readdirSync(SNAPSHOTS)
+      .map((name) => {
+        const crawlPath = join(SNAPSHOTS, name, 'crawl.json');
+        if (!existsSync(crawlPath)) return null;
+        const crawl = JSON.parse(readFileSync(crawlPath, 'utf8')) as { fetched_at: string };
+        return { name, fetched_at: crawl.fetched_at };
+      })
+      .filter((ref): ref is SnapshotRef => ref !== null);
+
+    const plan = planCompaction(refs, now);
+    for (const name of plan.remove) {
+      rmSync(join(SNAPSHOTS, name), { recursive: true, force: true });
+    }
+    console.log(`Compacted: kept ${plan.keep.length}, removed ${plan.remove.length} snapshot(s) older than 90 days.`);
+    console.log('ledger.jsonl is never pruned; only raw snapshot directories compact.');
+    return 0;
+  }
 
   if (args.includes('--rebuild')) {
     const state = materialise(events, now);
