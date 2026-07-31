@@ -123,15 +123,19 @@ $ npx rainmaker init
   One line on who buys: ops leads at 200-2000 person logistics firms
   Competitors? (up to 5, skip to discover them) skip
 
-  Config written. Starting the crawl now, in the background.
-  While that runs: you have no Google credentials set, so opportunity
-  sizing will fall back to a flat value and every finding will say so.
-  Two minutes of setup unlocks it. Run `rainmaker keys` for the steps.
+  Wrote rainmaker.config.yml. Run `rainmaker doctor` to see which
+  capabilities are live. An audit will run with zero credentials,
+  just with lower confidence.
+
+$ npx rainmaker agent
+
+  Using anthropic as the model provider.
+  No diagnosis yet. Running `rainmaker audit` first...
 
   [crawl] 214 URLs discovered, 214 fetched, 0 budget exhausted
   [audit] tiering 214 URLs ... 61 findings ... scoring ... done
 
-$ npx rainmaker agent
+  Running the know-my-buyer interview. Answer in your own words.
 
   I looked at 214 pages before asking you anything.
 
@@ -144,9 +148,9 @@ $ npx rainmaker agent
   deal closes, and what do they still not know when they leave it?
 ```
 
-The interview never runs first. It runs second, grounded in findings, because twelve questions asked about a site nobody has looked at are the same twelve questions every consultant asks. Skip it if you are in a hurry and the system stamps every downstream output `confidence: stub` until you come back.
+`init` only writes config; it asks nothing that can be measured instead. `agent` is what runs the audit automatically the moment it finds no diagnosis, so the interview that follows opens grounded rather than generic. Twelve questions asked about a site nobody has looked at are the same twelve questions every consultant asks. Pass `--skip-interview`, or skip the model key entirely, and the system stamps every downstream output `confidence: stub` until you come back to it.
 
-Then three fixes, plotted on effort against impact, each with its evidence and the exact next command. Not sixty. Then it asks how often you want it to run, and recommends a cadence from your site's shape rather than assuming one.
+Then three fixes, plotted on effort against impact, each with its evidence and the exact next command. Not sixty. Then it recommends a cadence from your site's shape rather than assuming one.
 
 ## Why this and not a folder of SEO skills
 

@@ -96,7 +96,15 @@ function normalizePage(page: ProviderPage, site: string): CrawlPage {
   };
 }
 
-/** Normalization is provider-agnostic, so swapping adapters cannot change analysis code. */
+/**
+ * Normalization is provider-agnostic, so swapping adapters cannot change
+ * analysis code.
+ *
+ * Spending the credit budget is decided by the caller, not here: the cost
+ * guard in src/agent/costguard.ts is what prints the projection and honours
+ * an override flag, and a CLI command needs that decision before it commits
+ * to a crawl, not buried inside the crawl call itself.
+ */
 export async function fetchCrawl(options: {
   provider: CrawlProvider;
   site: string;
@@ -104,13 +112,6 @@ export async function fetchCrawl(options: {
   exclude: string[];
   now?: Date;
 }): Promise<CrawlSnapshot> {
-  const remaining = await options.provider.remainingCredits();
-  if (remaining !== null && remaining < options.maxUrls) {
-    throw new Error(
-      `Crawl needs up to ${options.maxUrls} credits; provider reports ${remaining}. ` +
-      'Lower crawl.max_urls before retrying.',
-    );
-  }
   const result = await options.provider.crawl({
     site: options.site,
     maxUrls: options.maxUrls,

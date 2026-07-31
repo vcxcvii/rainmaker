@@ -6,6 +6,7 @@ import { fetchCrawl } from '../fetch/crawl.js';
 import { createFirecrawlProvider } from '../providers/firecrawl.js';
 import { createContextDevProvider } from '../providers/contextdev.js';
 import { createBuiltinProvider } from '../providers/builtin.js';
+import { formatProjection, projectCrawlCost } from '../agent/costguard.js';
 import type { CrawlSnapshot, Ga4Snapshot, GscSnapshot } from '../fetch/types.js';
 import { coverageSet, runChecks } from '../analyze/site-checks.js';
 import { tierAll, tierDistribution } from '../analyze/tiering.js';
@@ -87,6 +88,14 @@ export async function runAudit(args: string[]): Promise<number> {
           'Run `rainmaker doctor` to see what a key would unlock.',
       );
       provider = createBuiltinProvider();
+    }
+
+    const remainingCredits = await provider.remainingCredits();
+    const projection = projectCrawlCost(maxUrls, remainingCredits, args.includes('--allow-over-budget'));
+    console.log(formatProjection(projection));
+    if (!projection.allowed) {
+      console.error(projection.reason);
+      return 1;
     }
 
     console.log(`Crawling ${config.site} (max ${maxUrls} URLs, ${provider.name})...`);

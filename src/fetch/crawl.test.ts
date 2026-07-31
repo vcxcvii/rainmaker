@@ -40,14 +40,15 @@ test('provider swap changes only snapshot provider', async () => {
   assert.deepEqual(firecrawl.pages, contextdev.pages);
 });
 
-test('refuses a crawl whose maximum exceeds remaining credits', async () => {
-  await assert.rejects(
-    fetchCrawl({
-      provider: provider('firecrawl'),
-      site: 'https://example.com',
-      maxUrls: 101,
-      exclude: [],
-    }),
-    /needs up to 101 credits/,
-  );
+test('does not itself refuse an over-budget crawl: that decision belongs to the caller', async () => {
+  // src/agent/costguard.ts projectCrawlCost is what refuses and prints the
+  // projection, so a CLI command can honour --allow-over-budget. fetchCrawl
+  // stays a pure "do the crawl" call and trusts that decision was already made.
+  const snapshot = await fetchCrawl({
+    provider: provider('firecrawl'), // reports 100 credits remaining
+    site: 'https://example.com',
+    maxUrls: 101,
+    exclude: [],
+  });
+  assert.equal(snapshot.provider, 'firecrawl');
 });

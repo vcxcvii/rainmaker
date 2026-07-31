@@ -5,6 +5,7 @@ import { computeVerdict } from '../serp/verdict.js';
 import type { SerpCapture, VerdictResult } from '../serp/types.js';
 import { loadConfig } from '../config/load.js';
 import { writeStableJson } from '../util/json.js';
+import { formatProjection, projectSerpCost } from '../agent/costguard.js';
 
 export async function runSerp(args: string[]): Promise<number> {
   const queries = args.filter((arg) => !arg.startsWith('--'));
@@ -21,6 +22,8 @@ export async function runSerp(args: string[]): Promise<number> {
     );
     return 1;
   }
+
+  console.log(formatProjection(projectSerpCost(queries.length)));
 
   const config = loadConfig();
   const now = new Date().toISOString();

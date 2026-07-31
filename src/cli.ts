@@ -23,6 +23,8 @@ const COMMANDS = {
   report: 'Render a report. --window pulse|28d|month|quarter|half-year',
   context:
     'Business context and strategy. --check | --init | --validate | --sync',
+  agent: 'Interactive agent: runs audit, holds the interview, shows the three closest fixes, recommends cadence.',
+  keys: 'Which credentials are set and what each one unlocks. No network call.',
   ledger:
     'Query finding history. --id | --since | --status | --pending | --did-nothing | --rebuild | --compact',
 } as const;
@@ -93,6 +95,14 @@ async function main(argv: string[]): Promise<number> {
       const { runReport } = await import('./commands/report.js');
       return Promise.resolve(runReport(rest));
     }
+    case 'agent': {
+      const { runAgent } = await import('./commands/agent.js');
+      return runAgent(rest);
+    }
+    case 'keys': {
+      const { runKeys } = await import('./commands/keys.js');
+      return Promise.resolve(runKeys(rest));
+    }
     case 'routine': {
       const { runRoutine } = await import('./commands/routine.js');
       return runRoutine(rest);
@@ -112,7 +122,7 @@ async function main(argv: string[]): Promise<number> {
     default: {
       console.error(
         `\`rainmaker ${command}\` is not implemented yet.\n` +
-          `See SPEC.md section 6 for the build order. Shipped: init, doctor, fetch, audit, serp, blueprint, report, routine, context, ledger.`,
+          `See SPEC.md section 6 for the build order. Shipped: init, doctor, fetch, audit, serp, blueprint, report, routine, agent, keys, context, ledger.`,
       );
       return 1;
     }
