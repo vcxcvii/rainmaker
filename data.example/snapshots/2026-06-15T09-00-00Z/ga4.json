@@ -1,0 +1,13 @@
+{
+  "fetched_at": "2026-06-15T09:00:00Z",
+  "property_id": "123456789",
+  "window_days": 45,
+  "key_events_configured": ["demo_request"],
+  "pages": [
+    { "path": "/demo", "sessions": 340, "engaged_sessions": 210, "key_events": 41, "conversion_paths": 0 },
+    { "path": "/pricing", "sessions": 480, "engaged_sessions": 300, "key_events": 0, "conversion_paths": 0 },
+    { "path": "/use-cases/contract-review", "sessions": 610, "engaged_sessions": 250, "key_events": 6, "conversion_paths": 0 },
+    { "path": "/", "sessions": 1200, "engaged_sessions": 700, "key_events": 0, "conversion_paths": 0 }
+  ],
+  "paths_sampled": 0
+}

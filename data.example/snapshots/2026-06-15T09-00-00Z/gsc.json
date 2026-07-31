@@ -1,0 +1,14 @@
+{
+  "fetched_at": "2026-06-15T09:00:00Z",
+  "site_url": "sc-domain:quillet.com",
+  "window_days": 28,
+  "start_date": "2026-05-18",
+  "end_date": "2026-06-14",
+  "rows": [
+    { "page": "https://quillet.com/pricing", "query": "quillet pricing", "clicks": 22, "impressions": 210, "ctr": 0.1048, "position": 1.4 },
+    { "page": "https://quillet.com/use-cases/contract-review", "query": "contract review turnaround time", "clicks": 11, "impressions": 1240, "ctr": 0.0089, "position": 8.4 },
+    { "page": "https://quillet.com/use-cases/contract-review", "query": "contract review software", "clicks": 4, "impressions": 640, "ctr": 0.0063, "position": 14.2 },
+    { "page": "https://quillet.com/", "query": "quillet", "clicks": 88, "impressions": 190, "ctr": 0.4631, "position": 1.1 },
+    { "page": "https://quillet.com/blog/old-migration-guide", "query": "clm migration guide", "clicks": 0, "impressions": 40, "ctr": 0, "position": 38.1 }
+  ]
+}

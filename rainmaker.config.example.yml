@@ -19,7 +19,7 @@ secondary_conversion:
 acv: 18000
 sales_cycle_days: 45
 
-# grill-me starts from this hypothesis and argues with it.
+# know-my-buyer starts from this hypothesis and argues with it.
 icp_hint: "GCs and legal ops leads, Series B+, 200-2000 employees"
 
 competitors:

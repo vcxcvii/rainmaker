@@ -13,6 +13,8 @@ npx rainmaker init      # eight questions, ninety seconds
 npx rainmaker audit     # crawls, tiers, scores, writes JSON and Markdown
 ```
 
+With no key at all, `audit` falls back to a built-in crawler rather than refusing to run. `data.example/` in the package ships a full fabricated snapshot (strategy, competitors, citations, blueprint, ledger) so every skill can be developed and read against realistic data before pointing it at a real site.
+
 ## The job to be done
 
 ```mermaid

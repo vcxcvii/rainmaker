@@ -14,8 +14,8 @@ The context layer is one canonical answer to those questions, loaded identically
 
 | Artifact | Format | Canonical for | Written by | Read by |
 |---|---|---|---|---|
-| `context/business.md` | prose Markdown, human-editable | judgment, nuance, buyer language, voice | `grill-me`, then hand-edited by the owner | every judgment skill |
-| `data/strategy.json` | typed JSON | machine fields: ids, clusters, keyword slots, statuses | `grill-me`, `buyer-sharpener`, `revenue-map`, `topic-map`, `keyword-plan` | skills and `src/` |
+| `context/business.md` | prose Markdown, human-editable | judgment, nuance, buyer language, voice | `know-my-buyer`, then hand-edited by the owner | every judgment skill |
+| `data/strategy.json` | typed JSON | machine fields: ids, clusters, keyword slots, statuses | `know-my-buyer`, `say-it-their-way`, `follow-the-money`, `pick-my-battles`, `what-to-target-next` | skills and `src/` |
 
 They are not duplicates. `business.md` holds sentences a human argues with. `strategy.json` holds the same commitments as addressable records that code can join against `diagnosis.json` and `ledger.jsonl`.
 
@@ -42,7 +42,7 @@ Frontmatter is mandatory and machine-parsed.
 ---
 generated_at: 2026-08-12T09:00:00Z
 strategy_version: 3
-source: grill-me
+source: know-my-buyer
 confidence: interviewed          # interviewed | inferred | stub
 ---
 
@@ -89,7 +89,7 @@ confidence: interviewed          # interviewed | inferred | stub
 <claims that are unsupported, legally risky, or off-positioning. Writing skills treat this as a hard block.>
 
 ## Open questions
-<what grill-me could not settle. Each line is a candidate question for the next interview.>
+<what know-my-buyer could not settle. Each line is a candidate question for the next interview.>
 ```
 
 ### 3.2 `voice.md`
@@ -155,7 +155,7 @@ export interface Persona {
 export interface PainPoint {
   id: string;                      // pp1, pp2, ...
   statement: string;               // one sentence, the analyst's framing
-  buyer_language: string[];        // verbatim phrasings. Empty array is a defect after grill-me.
+  buyer_language: string[];        // verbatim phrasings. Empty array is a defect after know-my-buyer.
   evidence: { type: 'interview' | 'gsc_query' | 'review' | 'support' | 'sales_call'; ref: string }[];
   persona_ids: string[];
   tier_hint: 0 | 1 | 2 | 3 | 4;
@@ -218,14 +218,14 @@ A skill may only write the fields it owns. Enforced by `rainmaker context --vali
 
 | Field | Owner | Others may |
 |---|---|---|
-| `icp`, `personas` | `grill-me` | `buyer-sharpener` may amend with a `decisions` entry |
-| `pain_points[].buyer_language` | `grill-me`, `buyer-sharpener` | read only |
-| `pain_points[].status` | `buyer-sharpener`, `where-we-stand` | read only |
-| `proof` | `grill-me` | `competitor-teardown` may append `benchmark` kinds |
-| `competitors` | `competitor-teardown` | read only |
-| `clusters` | `topic-map` | `revenue-map` sets `target_tier` |
-| `keyword_plan` | `keyword-plan` | `content-refresh` may set `slot` |
-| `messaging` | `buyer-sharpener` | read only |
+| `icp`, `personas` | `know-my-buyer` | `say-it-their-way` may amend with a `decisions` entry |
+| `pain_points[].buyer_language` | `know-my-buyer`, `say-it-their-way` | read only |
+| `pain_points[].status` | `say-it-their-way`, `what-actually-worked` | read only |
+| `proof` | `know-my-buyer` | `beat-my-competitors` may append `benchmark` kinds |
+| `competitors` | `beat-my-competitors` | read only |
+| `clusters` | `pick-my-battles` | `follow-the-money` sets `target_tier` |
+| `keyword_plan` | `what-to-target-next` | `revive-old-pages` may set `slot` |
+| `messaging` | `say-it-their-way` | read only |
 | `decisions` | all writers, append only | never edit |
 
 ### 4.2 Additive mutation
@@ -242,13 +242,13 @@ Every judgment skill opens with the identical block below, copied verbatim into 
 Run `npx rainmaker context --check` first. It prints what exists, what is stale, and exits 1 if anything this skill requires is missing.
 
 Then read, in this order:
-1. `context/business.md` in full. If absent, stop: "No business context. Run `npx rainmaker audit`, then the `grill-me` skill."
+1. `context/business.md` in full. If absent, stop: "No business context. Run `npx rainmaker audit`, then the `know-my-buyer` skill."
 2. `context/voice.md` if this skill writes prose. If absent, stop and say so.
 3. `data/strategy.json` if this skill reads or writes strategy.
 4. Only the `data/` files listed in this skill's Requires table. Never crawl or call an API the core already covers.
 
 If `strategy.json.context_hash` does not match the current sha256 of `context/business.md`, say exactly:
-"Business context was edited after the strategy was written. Re-run `grill-me`, or run `npx rainmaker context --sync` to accept the prose as authoritative."
+"Business context was edited after the strategy was written. Re-run `know-my-buyer`, or run `npx rainmaker context --sync` to accept the prose as authoritative."
 Then stop.
 ```
 
@@ -306,7 +306,7 @@ The system must be useful before any interview happens.
 | State | What works | What refuses |
 |---|---|---|
 | No config | nothing | `init` prompts |
-| Config, no credentials | `audit`, `site-health-check`, `ai-search-check`, `competitor-teardown` | anything reading `gsc.json` or `ga4.json` |
+| Config, no credentials | `audit`, `unblock-my-money-pages`, `get-mentioned-by-ai`, `beat-my-competitors` | anything reading `gsc.json` or `ga4.json` |
 | Audit run, no context | all diagnostic skills | every skill reading `strategy.json` |
 | Context stub via `--init` | all skills, outputs stamped `confidence: stub` | nothing |
 | Interviewed context | everything at full confidence | nothing |

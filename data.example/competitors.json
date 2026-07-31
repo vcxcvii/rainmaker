@@ -1,0 +1,25 @@
+{
+  "generated_at": "2026-06-15T09:00:00Z",
+  "competitors": [
+    {
+      "domain": "ironclad.com",
+      "tier_distribution": { "0": 4, "1": 31, "2": 58, "3": 210, "4": 40 },
+      "positioning": "Enterprise CLM built for legal departments running high contract volume.",
+      "pricing_present": false,
+      "proof_types": ["case_study", "analyst_report", "customer_logo_wall"],
+      "named_integrations": ["Salesforce", "DocuSign", "Slack"],
+      "gaps_against_us": [
+        { "cluster_id": "c2", "their_url": "https://ironclad.com/customers", "target_tier": 1, "note": "we have no comparison page against them at all" }
+      ]
+    },
+    {
+      "domain": "lexion.com",
+      "tier_distribution": { "0": 3, "1": 12, "2": 22, "3": 64, "4": 15 },
+      "positioning": "AI-first contract management, extraction-forward messaging.",
+      "pricing_present": true,
+      "proof_types": ["metric", "case_study"],
+      "named_integrations": ["Slack", "Google Drive"],
+      "gaps_against_us": []
+    }
+  ]
+}

@@ -1,0 +1,174 @@
+{
+  "version": 3,
+  "generated_at": "2026-06-15T09:00:00Z",
+  "context_hash": "example-hash-not-a-real-sha256",
+  "written_by": ["know-my-buyer", "say-it-their-way", "pick-my-battles", "beat-my-competitors"],
+  "icp": {
+    "segment": "legal ops leads at 200 to 2000 person firms",
+    "employee_range": [200, 2000],
+    "industries": ["legal services", "professional services"],
+    "geographies": ["United States", "United Kingdom"],
+    "disqualifiers": ["solo practitioners", "companies with no in-house counsel"]
+  },
+  "personas": [
+    {
+      "id": "p1",
+      "title": "Legal Operations Lead",
+      "role_in_deal": "champion",
+      "cares_about": ["contract turnaround time", "audit trail", "team headcount"],
+      "objections": ["migration effort", "another tool to learn"]
+    },
+    {
+      "id": "p2",
+      "title": "General Counsel",
+      "role_in_deal": "economic",
+      "cares_about": ["risk reduction", "compliance", "budget"],
+      "objections": ["security posture", "vendor lock-in"]
+    }
+  ],
+  "pain_points": [
+    {
+      "id": "pp1",
+      "statement": "Contract review is the bottleneck between a signed term sheet and revenue recognition",
+      "buyer_language": [
+        "legal takes two weeks to look at anything",
+        "we lose deals waiting on redlines"
+      ],
+      "evidence": [
+        { "type": "interview", "ref": "2026-05-20 call with Legal Ops Lead, mid-market SaaS" },
+        { "type": "gsc_query", "ref": "contract review turnaround time" }
+      ],
+      "persona_ids": ["p1"],
+      "tier_hint": 2,
+      "status": "validated",
+      "retired_reason": null
+    },
+    {
+      "id": "pp2",
+      "statement": "GCs cannot see where a contract is stuck without asking someone directly",
+      "buyer_language": ["I have no idea where anything is until someone emails me"],
+      "evidence": [{ "type": "interview", "ref": "2026-05-22 call with General Counsel" }],
+      "persona_ids": ["p2"],
+      "tier_hint": 1,
+      "status": "validated",
+      "retired_reason": null
+    },
+    {
+      "id": "pp3",
+      "statement": "Buyers assumed CLM tools were only for enterprise legal departments",
+      "buyer_language": [],
+      "evidence": [],
+      "persona_ids": ["p1"],
+      "tier_hint": 3,
+      "status": "retired",
+      "retired_reason": "no buyer_language ever recorded for this hypothesis across two interview rounds; demoted then retired per say-it-their-way drift check"
+    }
+  ],
+  "proof": [
+    {
+      "id": "pr1",
+      "kind": "case_study",
+      "claim": "A 400-person legal team cut average contract turnaround from 11 days to 3",
+      "source_url": "https://quillet.com/customers/example-legal-team",
+      "strength": "strong"
+    },
+    {
+      "id": "pr2",
+      "kind": "metric",
+      "claim": "94% of customers see their first signed redline inside 48 hours of onboarding",
+      "source_url": "https://quillet.com/product",
+      "strength": "medium"
+    }
+  ],
+  "competitors": [
+    {
+      "domain": "ironclad.com",
+      "positioning": "enterprise CLM for legal departments at large companies",
+      "where_they_win": ["brand recognition", "enterprise procurement relationships"],
+      "where_we_win": ["mid-market pricing", "faster time to first value"],
+      "evidence_urls": ["https://ironclad.com/pricing"]
+    },
+    {
+      "domain": "lexion.com",
+      "positioning": "AI-first contract management",
+      "where_they_win": ["AI extraction accuracy marketing"],
+      "where_we_win": ["named integrations with mid-market CRM stacks"],
+      "evidence_urls": ["https://lexion.com/product"]
+    }
+  ],
+  "clusters": [
+    {
+      "id": "c1",
+      "pain_point_ids": ["pp1"],
+      "intent": "commercial",
+      "target_tier": 1,
+      "head_query": "contract review software",
+      "support_queries": ["contract review turnaround time", "legal contract review tool"],
+      "existing_urls": ["/use-cases/contract-review"],
+      "gap": "thin"
+    },
+    {
+      "id": "c2",
+      "pain_point_ids": ["pp2"],
+      "intent": "commercial",
+      "target_tier": 1,
+      "head_query": "ironclad alternatives",
+      "support_queries": ["ironclad vs quillet", "best ironclad alternative"],
+      "existing_urls": [],
+      "gap": "missing"
+    }
+  ],
+  "keyword_plan": [
+    {
+      "cluster_id": "c1",
+      "query": "contract review turnaround time",
+      "impressions": 1240,
+      "position": 8.4,
+      "slot": "refresh",
+      "target_url": "/use-cases/contract-review",
+      "priority_score": 22.6
+    },
+    {
+      "cluster_id": "c2",
+      "query": "ironclad alternatives",
+      "impressions": 310,
+      "position": null,
+      "slot": "new",
+      "target_url": null,
+      "priority_score": 41.2
+    }
+  ],
+  "messaging": {
+    "one_liner": "Quillet gets contract review off the critical path so deals close on the buyer's timeline, not legal's.",
+    "category": "contract lifecycle management",
+    "differentiators": [
+      "mid-market pricing without an enterprise procurement cycle",
+      "48-hour time to first signed redline"
+    ],
+    "objection_handling": [
+      {
+        "objection": "Migration effort from our current process",
+        "response": "Most teams import their active contract set in under a day; we do not require a full historical migration to start.",
+        "proof_id": "pr2"
+      }
+    ]
+  },
+  "decisions": [
+    {
+      "ts": "2026-05-25T10:00:00Z",
+      "field": "pain_points.pp3.status",
+      "from": "hypothesis",
+      "to": "retired",
+      "reason": "no buyer_language ever recorded across two interview rounds",
+      "source": "say-it-their-way"
+    },
+    {
+      "ts": "2026-06-15T09:00:00Z",
+      "field": "clusters.c2",
+      "from": null,
+      "to": "created",
+      "reason": "competitor-led signal: ironclad named in 3 of last 5 lost-deal interviews",
+      "source": "pick-my-battles"
+    }
+  ]
+}

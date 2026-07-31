@@ -9,8 +9,11 @@
   "files": [
     "dist",
     "skills",
+    "data.example",
     "rainmaker.config.example.yml",
-    "README.md"
+    ".env.example",
+    "README.md",
+    "LICENSE"
   ],
   "engines": {
     "node": ">=20"

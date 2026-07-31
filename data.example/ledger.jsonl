@@ -1,0 +1,13 @@
+{"ts":"2026-03-01T09:00:00Z","id":"t1:canonical:/legacy-pricing-old","event":"opened","to":{"canonical":"/legacy-pricing-old","target_status":404},"score":9.6,"confidence":1.0}
+{"ts":"2026-03-02T10:00:00Z","id":"t1:canonical:/legacy-pricing-old","event":"acknowledged"}
+{"ts":"2026-03-03T11:00:00Z","id":"t1:canonical:/legacy-pricing-old","event":"in_progress"}
+{"ts":"2026-03-05T14:00:00Z","id":"t1:canonical:/legacy-pricing-old","event":"shipped","cause":"a1b2c3d","effort_h":0.5}
+{"ts":"2026-03-08T09:00:00Z","id":"t1:canonical:/legacy-pricing-old","event":"verified","to":{"canonical":"/pricing"}}
+{"ts":"2026-04-01T09:00:00Z","id":"t1:canonical:/legacy-pricing-old","event":"closed"}
+{"ts":"2026-05-01T09:00:00Z","id":"t0:noindex:/demo","event":"opened","to":{"robots_meta":"noindex, follow"},"score":10.0,"confidence":1.0}
+{"ts":"2026-05-02T10:00:00Z","id":"t0:noindex:/demo","event":"acknowledged"}
+{"ts":"2026-05-03T11:00:00Z","id":"t0:noindex:/demo","event":"in_progress"}
+{"ts":"2026-05-25T10:00:00Z","id":"site","event":"algo_update","note":"May 2026 core update, confirmed"}
+{"ts":"2026-06-15T09:00:00Z","id":"t0:meta_description:/pricing","event":"opened","to":{"meta_description":null},"score":18.24,"confidence":1.0}
+{"ts":"2026-06-15T09:00:00Z","id":"t3:orphan:/blog/old-migration-guide","event":"opened","to":{"inbound_internal_links":0},"score":0.04,"confidence":0.1}
+{"ts":"2026-06-15T09:00:00Z","id":"t3:h1:/blog/old-migration-guide","event":"opened","to":{"h1_count":0},"score":0.03,"confidence":0.1}

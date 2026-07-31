@@ -1,0 +1,93 @@
+{
+  "findings": {
+    "t0:meta_description:/pricing": {
+      "baseline": {
+        "meta_description": null
+      },
+      "cause_chain": [],
+      "confidence": 1,
+      "current": {
+        "meta_description": null
+      },
+      "first_seen": "2026-06-15T09:00:00Z",
+      "last_event": "2026-06-15T09:00:00Z",
+      "score": 18.24,
+      "status": "opened",
+      "tier": 0
+    },
+    "t0:noindex:/demo": {
+      "baseline": {
+        "robots_meta": "noindex, follow"
+      },
+      "cause_chain": [],
+      "confidence": 1,
+      "current": {
+        "robots_meta": "noindex, follow"
+      },
+      "first_seen": "2026-05-01T09:00:00Z",
+      "last_event": "2026-05-03T11:00:00Z",
+      "score": 10,
+      "status": "in_progress",
+      "tier": 0
+    },
+    "t1:canonical:/legacy-pricing-old": {
+      "baseline": {
+        "canonical": "/legacy-pricing-old",
+        "target_status": 404
+      },
+      "cause_chain": [
+        "a1b2c3d"
+      ],
+      "confidence": 1,
+      "current": {
+        "canonical": "/pricing",
+        "target_status": 404
+      },
+      "first_seen": "2026-03-01T09:00:00Z",
+      "last_event": "2026-04-01T09:00:00Z",
+      "score": 9.6,
+      "status": "closed",
+      "tier": 1
+    },
+    "t3:h1:/blog/old-migration-guide": {
+      "baseline": {
+        "h1_count": 0
+      },
+      "cause_chain": [],
+      "confidence": 0.1,
+      "current": {
+        "h1_count": 0
+      },
+      "first_seen": "2026-06-15T09:00:00Z",
+      "last_event": "2026-06-15T09:00:00Z",
+      "score": 0.03,
+      "status": "opened",
+      "tier": 3
+    },
+    "t3:orphan:/blog/old-migration-guide": {
+      "baseline": {
+        "inbound_internal_links": 0
+      },
+      "cause_chain": [],
+      "confidence": 0.1,
+      "current": {
+        "inbound_internal_links": 0
+      },
+      "first_seen": "2026-06-15T09:00:00Z",
+      "last_event": "2026-06-15T09:00:00Z",
+      "score": 0.04,
+      "status": "opened",
+      "tier": 3
+    }
+  },
+  "generated_at": "2026-06-15T09:00:00Z",
+  "ledger_lines": 13,
+  "site_events": [
+    {
+      "event": "algo_update",
+      "id": "site",
+      "note": "May 2026 core update, confirmed",
+      "ts": "2026-05-25T10:00:00Z"
+    }
+  ]
+}

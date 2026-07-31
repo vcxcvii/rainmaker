@@ -1,0 +1,52 @@
+{
+  "generated_at": "2026-06-15T09:00:00Z",
+  "site": "https://quillet.com",
+  "captures": [
+    {
+      "query": "ironclad alternatives",
+      "fetched_at": "2026-06-15T09:00:00Z",
+      "results": [
+        { "position": 1, "url": "https://g2.com/categories/contract-management/compare/ironclad-alternatives", "domain": "g2.com", "title": "Best Ironclad Alternatives in 2026" },
+        { "position": 2, "url": "https://lexion.com/vs/ironclad", "domain": "lexion.com", "title": "Lexion vs Ironclad" },
+        { "position": 3, "url": "https://capterra.com/p/ironclad-alternatives", "domain": "capterra.com", "title": "Top Ironclad Alternatives Ranked" }
+      ],
+      "serp_features": ["ai_overview"]
+    },
+    {
+      "query": "contract review software",
+      "fetched_at": "2026-06-15T09:00:00Z",
+      "results": [
+        { "position": 1, "url": "https://ironclad.com/product/contract-review", "domain": "ironclad.com", "title": "Contract Review Software | Ironclad" },
+        { "position": 2, "url": "https://g2.com/categories/contract-review", "domain": "g2.com", "title": "Best Contract Review Software: Top 10" },
+        { "position": 3, "url": "https://quillet.com/use-cases/contract-review", "domain": "quillet.com", "title": "Contract Review Software | Quillet" }
+      ],
+      "serp_features": []
+    }
+  ],
+  "verdicts": [
+    {
+      "query": "ironclad alternatives",
+      "verdict": "CONDITIONAL",
+      "intent_consistent": true,
+      "category_present": true,
+      "rewarded_format": "listicle",
+      "beatable": true,
+      "evidence": [
+        { "reason": "lower_page_count_competitor", "detail": "lexion.com has 12 pages in this cluster against our 10" }
+      ],
+      "condition": "Google rewards a listicle format here, which this site is not positioned to produce as a single comparison page",
+      "condition_resolved_by": "confirm a comparison-table format still ranks, or scope this as a listicle instead"
+    },
+    {
+      "query": "contract review software",
+      "verdict": "QUALIFY",
+      "intent_consistent": true,
+      "category_present": true,
+      "rewarded_format": "landing",
+      "beatable": true,
+      "evidence": [
+        { "reason": "own_demonstrated_ceiling", "detail": "this site has reached position 3 at a similar impression volume" }
+      ]
+    }
+  ]
+}

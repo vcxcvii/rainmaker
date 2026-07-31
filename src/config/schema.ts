@@ -40,7 +40,7 @@ export interface RainmakerConfig {
   /** Days from first touch to closed won. Used to size attribution windows. */
   sales_cycle_days: number;
 
-  /** Free-text ICP. Read by grill-me and buyer-sharpener as a starting hypothesis. */
+  /** Free-text ICP. Read by know-my-buyer and say-it-their-way as a starting hypothesis. */
   icp_hint: string;
 
   /** Optional. Domains to benchmark against in competitor-teardown. */
@@ -121,7 +121,7 @@ export function validateConfig(raw: unknown): ConfigProblem[] {
   if (!c.icp_hint) {
     problems.push({
       field: 'icp_hint',
-      message: 'required. grill-me starts from this hypothesis and argues with it.',
+      message: 'required. know-my-buyer starts from this hypothesis and argues with it.',
     });
   }
 

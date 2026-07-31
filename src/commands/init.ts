@@ -171,7 +171,7 @@ secondary_conversion:${list(v.secondary)}
 acv: ${v.acv}
 sales_cycle_days: ${v.salesCycleDays}
 
-# grill-me starts from this hypothesis and argues with it.
+# know-my-buyer starts from this hypothesis and argues with it.
 icp_hint: ${JSON.stringify(v.icpHint)}
 
 competitors:${list(v.competitors)}

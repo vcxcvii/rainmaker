@@ -1,0 +1,26 @@
+{
+  "generated_at": "2026-06-15T09:00:00Z",
+  "methodology_version": "1.0",
+  "probe_count": 12,
+  "note": "Assistant answers are non-deterministic. Treat this as a sample of 12 probes on 2026-06-15, not a ranking.",
+  "results": [
+    {
+      "engine": "chatgpt",
+      "market": "US",
+      "prompt": "best contract review software for a mid-size legal team",
+      "brand_mentioned": true,
+      "cited_urls": ["https://g2.com/categories/contract-management/compare/ironclad-vs-quillet"],
+      "competitor_domains_cited": ["ironclad.com", "lexion.com"],
+      "confidence": 0.5
+    },
+    {
+      "engine": "perplexity",
+      "market": "US",
+      "prompt": "ironclad alternatives for smaller legal teams",
+      "brand_mentioned": false,
+      "cited_urls": ["https://ironclad.com/customers"],
+      "competitor_domains_cited": ["ironclad.com"],
+      "confidence": 0.5
+    }
+  ]
+}

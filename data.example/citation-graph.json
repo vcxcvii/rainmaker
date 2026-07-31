@@ -1,0 +1,89 @@
+{
+  "generated_at": "2026-06-15T09:00:00Z",
+  "window_days": 30,
+  "sources": [
+    {
+      "domain": "g2.com",
+      "type": "review_platform",
+      "citation_count": 14,
+      "urls": [
+        {
+          "url": "https://g2.com/categories/contract-management/compare/ironclad-vs-quillet",
+          "citation_count": 11,
+          "cited_for": "the comparison table listing price tiers and G2 star ratings"
+        }
+      ],
+      "engines": ["chatgpt", "perplexity"],
+      "brand_present": true,
+      "editable": "self_serve"
+    },
+    {
+      "domain": "reddit.com",
+      "type": "community",
+      "citation_count": 5,
+      "urls": [
+        {
+          "url": "https://reddit.com/r/legaltech/comments/example-clm-thread",
+          "citation_count": 5,
+          "cited_for": "a first-hand comment naming three CLM tools legal ops leads had actually used"
+        }
+      ],
+      "engines": ["perplexity"],
+      "brand_present": false,
+      "editable": "earned"
+    },
+    {
+      "domain": "ironclad.com",
+      "type": "competitor",
+      "citation_count": 9,
+      "urls": [
+        {
+          "url": "https://ironclad.com/customers",
+          "citation_count": 9,
+          "cited_for": "the customer logo wall and case study count, used as a credibility signal"
+        }
+      ],
+      "engines": ["chatgpt"],
+      "brand_present": false,
+      "editable": "closed"
+    }
+  ],
+  "our_presence": [
+    {
+      "domain": "g2.com",
+      "url": "https://g2.com/products/quillet/reviews",
+      "kind": "listing",
+      "claims_accurate": false,
+      "last_checked": "2026-06-10T00:00:00Z"
+    }
+  ],
+  "gaps": [
+    {
+      "source_domain": "g2.com",
+      "url": "https://g2.com/products/quillet/reviews",
+      "citation_count": 3,
+      "action": "correct_record",
+      "plausibility": 0.9,
+      "effort_hours": 0.5,
+      "priority_score": 5.4
+    },
+    {
+      "source_domain": "reddit.com",
+      "url": "https://reddit.com/r/legaltech/comments/example-clm-thread",
+      "citation_count": 5,
+      "action": "answer_thread",
+      "plausibility": 0.3,
+      "effort_hours": 1,
+      "priority_score": 1.5
+    },
+    {
+      "source_domain": "ironclad.com",
+      "url": "https://ironclad.com/customers",
+      "citation_count": 9,
+      "action": "build_better_page",
+      "plausibility": 0.1,
+      "effort_hours": 6,
+      "priority_score": 0.15
+    }
+  ]
+}
