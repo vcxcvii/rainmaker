@@ -27,6 +27,9 @@ export interface BlueprintNode {
   links_down: string[];
   links_across: string[];
   serp_verdict: Verdict | 'unchecked';
+  /** Set when serp_verdict is CONDITIONAL. A CONDITIONAL with no condition recorded is a soft pass. */
+  serp_condition?: string;
+  serp_condition_resolved_by?: string;
   effort_hours: number;
   priority_score: number;
   /** Present only on permuted nodes. Each entry must differ from every sibling's. */

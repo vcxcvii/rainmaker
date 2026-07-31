@@ -4,6 +4,7 @@ import { detectCollisions } from './collisions.js';
 import { checkPermutation } from './permutation.js';
 import { authorityBudget } from './budget.js';
 import { sequenceCohorts } from './cohorts.js';
+import { canBrief } from './gates.js';
 import type { BlueprintNode } from './types.js';
 
 const node = (id: string, extra: Partial<BlueprintNode> = {}): BlueprintNode => ({
@@ -153,6 +154,39 @@ test('cohorts only include planned nodes', () => {
   const nodes = [node('a', { status: 'live' }), node('b', { status: 'planned' })];
   const cohorts = sequenceCohorts(nodes, 4);
   assert.deepEqual(cohorts[0].node_ids, ['b']);
+});
+
+test('an unchecked SERP verdict blocks briefing', () => {
+  const result = canBrief(node('a', { serp_verdict: 'unchecked' }));
+  assert.equal(result.allowed, false);
+  assert.match(result.reason ?? '', /never had its SERP checked/);
+});
+
+test('a KILL verdict blocks briefing', () => {
+  const result = canBrief(node('a', { serp_verdict: 'KILL' }));
+  assert.equal(result.allowed, false);
+  assert.match(result.reason ?? '', /verdicted KILL/);
+});
+
+test('a CONDITIONAL verdict with no recorded resolution blocks briefing, not a soft pass', () => {
+  const result = canBrief(node('a', { serp_verdict: 'CONDITIONAL', serp_condition: 'needs a comparison table' }));
+  assert.equal(result.allowed, false);
+  assert.match(result.reason ?? '', /no recorded resolution/);
+});
+
+test('a CONDITIONAL verdict with a recorded resolution is allowed', () => {
+  const result = canBrief(
+    node('a', {
+      serp_verdict: 'CONDITIONAL',
+      serp_condition: 'needs a comparison table',
+      serp_condition_resolved_by: 'confirmed the writer will include one',
+    }),
+  );
+  assert.equal(result.allowed, true);
+});
+
+test('a QUALIFY verdict is allowed', () => {
+  assert.equal(canBrief(node('a', { serp_verdict: 'QUALIFY' })).allowed, true);
 });
 
 test('cohort sequencing is deterministic across repeated runs', () => {
