@@ -1,8 +1,8 @@
 ---
 name: what-actually-worked
 description: >
-  Answer three questions in order — what did we believe, what did we do, what
-  actually happened — and always include a mandatory "What did nothing"
+  Answer three questions in order: what did we believe, what did we do, what
+  actually happened: and always include a mandatory "What did nothing"
   section, since a retrospective containing only wins is a defect.
 
   Use this skill whenever the user asks to:
@@ -66,7 +66,7 @@ Nothing persisted directly; may recommend a `decisions` entry demoting a pain po
 
 ```
 ## What did we believe?
-<belief> — <held / changed to X, reason: Y>
+<belief>: <held / changed to X, reason: Y>
 
 ## What did we do?
 <cause>: <n> events, <n>h effort

@@ -79,11 +79,11 @@ Vocabulary coverage: <n>% of top-100 query language is attested in strategy.json
 Drift: <fired / not fired>, threshold 40%
 
 ### Proposed additions
-<phrase> — <query>, <impressions> impressions, 28d — add to pain_points.<id>.buyer_language
+<phrase>: <query>, <impressions> impressions, 28d: add to pain_points.<id>.buyer_language
 
 ### Rewritten one-liner
 Before: <text>
-After:  <text> — <which phrase came from where>
+After:  <text>: <which phrase came from where>
 ```
 
 ## Done when

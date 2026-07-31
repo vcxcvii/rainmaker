@@ -9,7 +9,7 @@ export interface BriefGateResult {
  * Invariant 14: nothing gets briefed without a SERP verdict. A node whose
  * `serp_verdict` is still `unchecked` has never had its live SERP read, and
  * briefing it anyway is exactly the mistake can-i-actually-rank exists to
- * prevent — volume and intent classification say nothing about whether the
+ * prevent: volume and intent classification say nothing about whether the
  * top 10 is displaceable.
  */
 export function canBrief(node: BlueprintNode): BriefGateResult {

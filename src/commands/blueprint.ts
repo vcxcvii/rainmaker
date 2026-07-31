@@ -68,7 +68,7 @@ function buildNodes(config: ReturnType<typeof loadConfig>, strategy: ReturnType<
       head_query: cluster.head_query,
       support_queries: cluster.support_queries,
       title: cluster.head_query.slice(0, 60),
-      meta_description: `${cluster.head_query} — see how ${config.site.replace(/^https?:\/\//, '')} covers it.`.slice(0, 155),
+      meta_description: `${cluster.head_query}: see how ${config.site.replace(/^https?:\/\//, '')} covers it.`.slice(0, 155),
       links_up: null,
       links_down: [],
       links_across: [],
@@ -109,7 +109,7 @@ export function runBlueprint(args: string[]): number {
     if (collisions.length > 0) {
       console.log(`\n${collisions.length} collision(s), same head query targeted by more than one node:`);
       for (const collision of collisions) {
-        console.log(`  "${collision.head_query}" — ${collision.node_ids.join(', ')}`);
+        console.log(`  "${collision.head_query}": ${collision.node_ids.join(', ')}`);
       }
       console.log('\nMerge these or re-point one node at a distinct intent before publishing either.');
     }

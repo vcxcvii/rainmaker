@@ -85,7 +85,7 @@ Target query: <q>   Current position: <n or "none">   Rewarded format: <format>
 Competing: <url>, <url>
 
 Must include, verbatim: "<buyer language>"
-Proof to cite: <id> — <claim> (<source url>)
+Proof to cite: <id>: <claim> (<source url>)
 Internal links: from <url> to this page, from <url> to this page, from <url> to this page
 Schema: <type>   Author: <name>, <first-hand evidence>
 Standalone claims: <sentence>, <sentence>, <sentence>

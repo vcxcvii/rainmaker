@@ -75,7 +75,7 @@ A candidate has no SERP verdict at all (`unchecked`). Only QUALIFY and CONDITION
 ```
 ## Keyword plan
 
-<query> — cluster <id>, slot <new|refresh|consolidate|kill>, score <x>
+<query>: cluster <id>, slot <new|refresh|consolidate|kill>, score <x>
   target: <url or "none">
 
 Capped at <n> slots (authority budget). Dropped <n>, highest dropped score <x>.

@@ -69,7 +69,7 @@ The draft in place, and a change log of what was cut and why.
 Before: <n> words   After: <n> words (<+/-n%>)
 
 Cut:
-  "<removed line>" — <why: cliche / unsourced / redundant>
+  "<removed line>": <why: cliche / unsourced / redundant>
 
 Weakest paragraphs (named, not rewritten silently):
   Paragraph <n>: <why it's weak>

@@ -85,7 +85,7 @@ Average position: <before> to <after> across the window (gsc.json, <dates>).
 Shipped in this window: <cause>, <n>h.
 
 ## What to do
-<url> tier <n> score <x> — <action>
+<url> tier <n> score <x>: <action>
 (deprioritised: <url> tier 4, low revenue impact)
 
 ## Control

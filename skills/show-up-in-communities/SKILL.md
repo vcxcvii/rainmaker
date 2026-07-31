@@ -50,7 +50,7 @@ If `context/business.md` carries `confidence: stub`, continue, and stamp every o
 
 Draft answers for human review, plus attribution setup notes. Never posts anything itself.
 
-## Hard rules — not stylistic, platform-safety
+## Hard rules: not stylistic, platform-safety
 
 1. **Read and print the community's rules before drafting anything.** Never post promotional content into a community whose rules forbid it.
 2. **Never simulate independent voices.** No multiple accounts, no upvoting your own posts from another account. This is the fastest way to get an entire domain banned, and the ban does not respond to an SEO fix.
@@ -78,7 +78,7 @@ Draft answers for human review, plus attribution setup notes. Never posts anythi
 ```
 ## Community targets
 
-<community> — rules: <summary>, posting allowed: <yes/no and why>
+<community>: rules: <summary>, posting allowed: <yes/no and why>
   Thread: <url>, traffic <estimate>, cited in AI answers: <yes/no>
   Draft: <text, product name removable>
   Disclosure: <text>

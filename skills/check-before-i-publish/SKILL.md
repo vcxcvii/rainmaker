@@ -67,9 +67,9 @@ Nothing persisted; a pass/fail report.
 
 pain_point_provenance     PASS
 cluster_slot              PASS
-cannibalisation           FAIL — an existing URL already targets this intent: /old-page
+cannibalisation           FAIL: an existing URL already targets this intent: /old-page
 intent_match              PASS
-internal_links            FAIL — only 1 inbound link source identified, needs 3
+internal_links            FAIL: only 1 inbound link source identified, needs 3
 schema_planned            PASS
 eeat_signals               PASS
 extractability            PASS

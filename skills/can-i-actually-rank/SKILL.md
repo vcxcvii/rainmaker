@@ -84,18 +84,18 @@ No SERP capture exists for a candidate. Say: "No SERP capture for '<query>'. Run
 
 Checked: <n>   QUALIFY: <n>   CONDITIONAL: <n>   KILL: <n>
 
-<query> — QUALIFY
+<query>: QUALIFY
   rewarded format: <format>   evidence: <reason>, <reason>
 
-<query> — CONDITIONAL
+<query>: CONDITIONAL
   condition: <text>
   resolved by: <text>
 
-<query> — KILL
+<query>: KILL
   reason: <text>
 
 Most common kill reasons:
-  <reason> — <n> candidates
+  <reason>: <n> candidates
 ```
 
 ## Done when

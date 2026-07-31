@@ -74,7 +74,7 @@ Domain: <domain> (<type>), <n> citations
     Action: <type>, plausibility <x>, effort <h>h
 
 Correct-record gaps (existing mentions that misdescribe us):
-  <url> — says "<wrong claim>", business.md says "<correct claim>"
+  <url>: says "<wrong claim>", business.md says "<correct claim>"
 ```
 
 ## Done when

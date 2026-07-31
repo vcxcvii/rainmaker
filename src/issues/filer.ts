@@ -42,7 +42,7 @@ export function planIssues(findings: Finding[], alreadyFiledIds: ReadonlySet<str
  * it was lazarus-pit.
  */
 export function issueTitle(finding: Finding): string {
-  return `[rainmaker] ${finding.check} — ${normalisePath(finding.url)} (tier ${finding.tier})`;
+  return `[rainmaker] ${finding.check} on ${normalisePath(finding.url)} (tier ${finding.tier})`;
 }
 
 export function issueBody(finding: Finding): string {

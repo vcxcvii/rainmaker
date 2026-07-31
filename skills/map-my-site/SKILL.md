@@ -58,7 +58,7 @@ No keyword plan exists yet, or `config.revenue_model` is unset. Both are require
 
 ## Procedure
 
-1. Run `rainmaker blueprint --build`. This assembles nodes from `keyword_plan` and `clusters`, matches each against `crawl.json` by normalised path (setting `status: live` on a match), and runs collision detection deterministically in code — do not re-derive collisions by hand, and never allow two nodes to share a head query.
+1. Run `rainmaker blueprint --build`. This assembles nodes from `keyword_plan` and `clusters`, matches each against `crawl.json` by normalised path (setting `status: live` on a match), and runs collision detection deterministically in code. Do not re-derive collisions by hand, and never allow two nodes to share a head query.
 2. Select the spine and permutation axis for `config.revenue_model` from `spec/site-blueprint.md` section 5: `sales-led` roots in solutions and comparisons, `local-services` roots in services and areas, `ecommerce` in categories and collections, and so on.
 3. For every candidate permutation (`[service] in [area]`, `[product] for [industry]`), check all four gates before it becomes its own URL: measured demand, three or more substance fields that genuinely differ from every sibling, a proof point specific to the permutation, and remaining capacity inside the authority budget. Use `src/blueprint/permutation.ts checkPermutation`, which enforces the substance comparison byte for byte; do not eyeball it. A node failing any gate becomes a section on its parent, never its own URL.
 4. Assign a parent to every node. A category node needs 3 or more children to exist as its own page; fewer, and the children attach directly to the grandparent.

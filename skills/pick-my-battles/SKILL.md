@@ -89,7 +89,7 @@ Clusters come from seven signal types. A system that derives clusters only from 
 ```
 ## Clusters
 
-<cluster id> — <head query>, intent <x>, target tier <n>, gap <none|thin|missing>
+<cluster id>: <head query>, intent <x>, target tier <n>, gap <none|thin|missing>
   Signal: <type>, <specific evidence>
   Existing: <url or "none">
 

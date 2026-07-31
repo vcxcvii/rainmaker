@@ -78,19 +78,19 @@ Fewer than two GSC snapshots exist. A single snapshot has no movement to classif
 ## Content decay report
 
 refresh (<n>):
-  <url> — position <before> to <after>, <impressions> impressions
+  <url>: position <before> to <after>, <impressions> impressions
 
 rewrite (<n>):
-  <url> — impressions down <n>%, cluster status <validated|hypothesis>
+  <url>: impressions down <n>%, cluster status <validated|hypothesis>
 
 consolidate (<n>):
-  <url> — competes with <url>, keep the larger impression share
+  <url>: competes with <url>, keep the larger impression share
 
 kill (<n>):
-  <url> — 0 clicks over 2 windows, redirect to <target>
+  <url>: 0 clicks over 2 windows, redirect to <target>
 
 pending verification (<n>, excluded from the above):
-  <url> — shipped <date>, window closes <date>
+  <url>: shipped <date>, window closes <date>
 ```
 
 ## Done when

@@ -79,10 +79,10 @@ Tier 1: ...
 ...
 
 Declared conversion pages with zero measured key events:
-  <url> — 0 key events over <window>d (ga4.json, confidence <c>)
+  <url>: 0 key events over <window>d (ga4.json, confidence <c>)
 
 Cluster tier reassignments:
-  <cluster id> — currently tier <n>, should be tier <n>, because <reason>
+  <cluster id>: currently tier <n>, should be tier <n>, because <reason>
 ```
 
 ## Done when
