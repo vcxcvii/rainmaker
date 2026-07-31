@@ -16,7 +16,7 @@ export interface ProviderCrawlResult {
 }
 
 export interface CrawlProvider {
-  readonly name: 'firecrawl' | 'contextdev';
+  readonly name: 'firecrawl' | 'contextdev' | 'builtin';
   remainingCredits(): Promise<number | null>;
   crawl(options: {
     site: string;

@@ -22,7 +22,7 @@ export interface CapabilityResult {
 }
 
 const DEGRADATION: Record<Capability, string> = {
-  crawl: 'site-health-check unavailable; audit cannot crawl',
+  crawl: 'falls back to the built-in crawler: slower, no JavaScript rendering',
   pagespeed: 'site-health-check CWV unavailable',
   gsc: 'google-rankings-check unavailable; opportunity scoring falls back to 1.0',
   ga4: 'conversion-path tiering unavailable; rule 1 skipped',

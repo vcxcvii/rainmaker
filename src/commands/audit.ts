@@ -5,6 +5,7 @@ import { loadConfig, CONFIG_FILENAME } from '../config/load.js';
 import { fetchCrawl } from '../fetch/crawl.js';
 import { createFirecrawlProvider } from '../providers/firecrawl.js';
 import { createContextDevProvider } from '../providers/contextdev.js';
+import { createBuiltinProvider } from '../providers/builtin.js';
 import type { CrawlSnapshot, Ga4Snapshot, GscSnapshot } from '../fetch/types.js';
 import { coverageSet, runChecks } from '../analyze/site-checks.js';
 import { tierAll, tierDistribution } from '../analyze/tiering.js';
@@ -71,24 +72,24 @@ export async function runAudit(args: string[]): Promise<number> {
     const firecrawlKey = process.env.FIRECRAWL_API_KEY;
     const contextKey = process.env.CONTEXT_DEV_API_KEY;
 
-    if (wanted === 'firecrawl' && !firecrawlKey) {
-      console.error(
-        'No FIRECRAWL_API_KEY set, and Firecrawl is the configured crawl provider.\n' +
-          'Run `rainmaker doctor` to see every capability and what each one unlocks.',
+    // Invariant 7: no credential is required for a first audit. A configured
+    // paid provider with no key falls back to the built-in crawler rather
+    // than refusing to run, at lower throughput and no JavaScript rendering.
+    let provider;
+    if (wanted === 'contextdev' && contextKey) {
+      provider = createContextDevProvider({ apiKey: contextKey });
+    } else if (wanted === 'firecrawl' && firecrawlKey) {
+      provider = createFirecrawlProvider({ apiKey: firecrawlKey });
+    } else {
+      console.log(
+        `No ${wanted === 'contextdev' ? 'CONTEXT_DEV_API_KEY' : 'FIRECRAWL_API_KEY'} set. ` +
+          'Falling back to the built-in crawler: slower, no JavaScript rendering. ' +
+          'Run `rainmaker doctor` to see what a key would unlock.',
       );
-      return 1;
-    }
-    if (wanted === 'contextdev' && !contextKey) {
-      console.error('No CONTEXT_DEV_API_KEY set, and context.dev is the configured crawl provider.');
-      return 1;
+      provider = createBuiltinProvider();
     }
 
-    const provider =
-      wanted === 'contextdev'
-        ? createContextDevProvider({ apiKey: contextKey! })
-        : createFirecrawlProvider({ apiKey: firecrawlKey! });
-
-    console.log(`Crawling ${config.site} (max ${maxUrls} URLs, ${wanted})...`);
+    console.log(`Crawling ${config.site} (max ${maxUrls} URLs, ${provider.name})...`);
     crawl = await fetchCrawl({
       provider,
       site: config.site,

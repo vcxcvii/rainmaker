@@ -47,7 +47,7 @@ export interface CrawlPage {
 
 export interface CrawlSnapshot {
   fetched_at: string;
-  provider: 'firecrawl' | 'contextdev';
+  provider: 'firecrawl' | 'contextdev' | 'builtin';
   site: string;
   urls_discovered: number;
   urls_fetched: number;
