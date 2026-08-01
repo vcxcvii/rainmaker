@@ -1,308 +1,212 @@
 # Rainmaker
 
-An open-source SEO and AEO agent with one principle:
+Free, open-source SEO and AEO agent for Codex, Claude Code, and compatible AI coding assistants.
 
-> Every finding is ranked by distance to revenue, never by technical severity.
+Rainmaker crawls your website, connects problems to how the business makes money, and gives you the three fixes worth considering next. It then records what shipped and checks whether the work helped. No hosted account, paid crawler, or separate model API key is required for the normal workflow.
 
-Most SEO tooling reports 200 issues sorted by a severity score its own vendor invented. Rainmaker sorts by whether fixing the thing can plausibly produce a customer, tells you the three closest to revenue, and then keeps a permanent record of whether the fix worked. The record is the point. A plan goes stale in a quarter; a system that remembers what it believed, what it shipped and what moved does not.
+> Most SEO tools find problems. Rainmaker decides what is worth fixing and remembers whether it worked.
 
-Works with no credentials, no account and no model on the first run. The built-in crawler is always the default. Rainmaker never spends a paid provider's quota because its key happens to exist.
+## Quick start
+
+Run this inside your website project:
 
 ```bash
 npx @vcxcvii/rainmaker init --site https://example.com
-npx @vcxcvii/rainmaker audit     # crawls, tiers, scores, writes JSON and Markdown
 ```
 
-`audit` uses the built-in crawler unless you explicitly pass `--provider firecrawl` or `--provider contextdev`. Paid providers require a key and a deliberate command. `data.example/` ships a fabricated snapshot so every skill can be developed and read against realistic data before pointing it at a real site.
+Open Codex, Claude Code, or another compatible coding assistant in the same folder and say:
 
-## The job to be done
-
-```
-WHEN I own a site and a revenue number
-I WANT to know what to fix first
-SO I CAN show a win before the quarter ends
-
-  See --> Decide --> Build --> Spread --> Prove
-             ^                               |
-             |        belief updated         |
-             '-------------------------------'
+```text
+run rainmaker
 ```
 
-The arrow back from Prove to Decide is the whole product. Everything else in this category stops at Build.
+Rainmaker will:
 
-## Revenue tiers
+1. Crawl the site with its built-in crawler.
+2. Show the diagnosis before asking generic business questions.
+3. Offer to connect Google Search Console, GA4, and Clarity.
+4. Interview you one question at a time using evidence from the crawl.
+5. Recommend three fixes ranked by distance to revenue.
+6. Record what you ship and check the relevant metric later.
 
-Every URL gets a tier, and the tier drives every score.
+## What problem does it solve?
 
-| Tier | What lives there | Weight |
+A normal site audit might put a missing alt attribute on a careers page beside a noindexed pricing page. Both appear urgent. The report does not tell you which problem is more likely to cost a customer.
+
+Rainmaker gives every URL a revenue tier:
+
+| Tier | Plain-English meaning | Examples |
 |---|---|---|
-| 0 | Money changes hands: pricing, demo, signup, checkout, contact | 5.0 |
-| 1 | Decision: comparisons, alternatives, case studies, integrations | 3.0 |
-| 2 | Solution: pain-point content, use cases | 2.0 |
-| 3 | Problem: awareness, educational | 1.0 |
-| 4 | Ambient: brand, about, careers | 0.3 |
+| 0 | Money changes hands here | pricing, demo, signup, checkout, contact |
+| 1 | Read right before buying | comparisons, alternatives, case studies, integrations |
+| 2 | Brings the right person in | use cases, solution pages, pain-point content |
+| 3 | General awareness | educational and definitional content |
+| 4 | No direct commercial role | about, careers, press, legal |
 
-Tiers are assigned by eight precedence rules in code, in strict order, each recording which rule fired and how confident it is. No model produces or adjusts a score. Two runs over unchanged input produce identical numbers.
+The tier feeds a deterministic score computed in code. The model cannot invent or adjust it. Two runs over unchanged input produce the same result.
 
-## The pipeline
+## What you get
 
-```
-Ground   know-my-buyer, say-it-their-way, explain-this-number
-           |
-           v
-See      unblock-my-money-pages, find-my-quick-wins, get-mentioned-by-ai,
-         stop-losing-visitors, beat-my-competitors
-           |
-           v
-Decide   follow-the-money, pick-my-battles, can-i-actually-rank,
-         what-to-target-next, map-my-site
-           |
-           v
-Build    brief-my-writer, write-the-page, make-it-sound-human,
-         make-me-quotable, revive-old-pages
-           |
-           v
-Spread   get-cited-elsewhere, show-up-in-communities,
-         spread-one-piece-everywhere
-           |
-           v
-Prove    check-before-i-publish, show-me-progress, what-actually-worked,
-         what-changed-in-search, put-it-on-autopilot
-           |
-           `-- beliefs that failed twice loop back to Ground
-```
+- **Zero-credential first audit.** Built-in crawling, technical checks, tiering, scoring, and reports work without a paid provider.
+- **Three fixes, not sixty.** Every recommendation includes evidence, effort, impact, confidence, and the consequence of doing nothing.
+- **Grounded buyer context.** The interview runs after the crawl and cites the site evidence in every question.
+- **SEO, AEO, and GEO in one workflow.** Technical health, live SERPs, site architecture, content, AI citations, and off-site work share one strategy.
+- **A publish budget.** Rainmaker limits new content to what the site has demonstrated it can get indexed and ranked.
+- **A permanent ledger.** It remembers what Rainmaker believed, what changed, what shipped, and what moved.
+- **Human control.** Paid providers and externally visible actions require explicit approval.
 
-One front-door `rainmaker` skill routes the conversation. Behind it are 26
-decision skills across six phases, one decision each. No two decision skills
-answer the same question, and together they cover the whole job.
+## Install options
 
-## The context layer
+### Portable project install
 
-Every skill loads the same business context, so the system holds one opinion rather than 26.
-
-```
-context/business.md   <-- shared ids, verified by hash -->   data/strategy.json
-prose a human argues with                                    records code can join
-           \                                                        /
-            `------------------ every judgment skill --------------'
-                       (writes only fields it owns back to
-                              data/strategy.json)
-                                       |
-                                       v
-                             src/ (scoring and tiering)
-```
-
-`business.md` holds the buyer's own words, the proof, the competitors and the things you refuse to claim. `strategy.json` holds the same commitments as addressable records. They share ids, they are verified against each other by hash, and each field has exactly one skill allowed to write it.
-
-## What makes ranking durable
-
-Three mechanisms most systems skip, because each one tells you to do less.
-
-- **SERP verdicts.** Nothing gets briefed without reading the live SERP first. Every candidate ends QUALIFY, CONDITIONAL or KILL, and beatability requires named evidence rather than optimism.
-- **Authority budget.** Your monthly publish rate is bounded by how many new pages your site has actually got indexed and ranked in the last 90 days. Publishing 200 pages into a site that gets 6 indexed produces 194 pages of crawl waste.
-- **Topical completeness.** No fourth cluster opens while any existing cluster sits under 40 percent covered. Three half-covered clusters beat nothing; six quarter-covered clusters beat nothing at all.
-
-## Setting it up
-
-One command. It asks nothing it can work out for itself.
+This is the broadest option. It installs one front-door `rainmaker` skill plus 26 decision skills into `.agents/skills/` and `.claude/skills/`. It also writes `RAINMAKER.md` and adds a managed pointer to `AGENTS.md` without replacing existing instructions.
 
 ```bash
 npx @vcxcvii/rainmaker init --site https://example.com
 ```
 
-```
-$ npx @vcxcvii/rainmaker init --site https://example.com
+Refresh the skills after an upgrade without touching business configuration:
 
-  Wrote rainmaker.config.yml
-
-  Installed 27 skills into .agents/skills/ and .claude/skills/
-  Wrote RAINMAKER.md
-  Added the Rainmaker pointer to AGENTS.md
-
-  Host assistant: continue now. You are the model.
-  Run the audit, offer measurement connections, then conduct the interview.
+```bash
+npx @vcxcvii/rainmaker install
 ```
 
-Then open your assistant in that directory and say **"run rainmaker"**. The
-front-door skill automatically resumes from the first incomplete step. It runs
-the audit before interviewing you, offers to connect GSC and GA4, and conducts
-the interview inside the current assistant. It must not launch `rainmaker
-agent`.
+Some assistants discover newly installed skills only when a new task or session starts.
 
-Conversion paths,
-competitors and buyer are worked out from the site and the conversation, not
-asked for in a form up front. After confirmation, the assistant reconciles the
-business model, conversions, value, sales cycle, ICP and competitors back into
-the config before running revenue-ranked strategy work.
-
-There is no universal LLM plugin format. `init` uses the closest portable layer
-today's tools share: project instructions plus local skills. Codex, Claude
-Code, opencode and other assistants that read `AGENTS.md`, `RAINMAKER.md`,
-`.agents/skills/` or `.claude/skills/` can drive the same deterministic CLI.
-Run `npx @vcxcvii/rainmaker install` after an upgrade to refresh that layer
-without rewriting your business config. Start a new task/session if the host
-does not hot-reload newly installed skills.
-
-Codex users can install the native front-door plugin from this repository:
+### Native Codex plugin
 
 ```bash
 codex plugin marketplace add vcxcvii/rainmaker --ref main
 codex plugin add rainmaker@vcxcvii
 ```
 
-Start a new Codex task, open the site project, and say `run rainmaker`.
+Start a new task in the website project and say `run rainmaker`.
 
-Claude Code users can install the plugin instead, which adds a session hook
-that reads project state and opens on the right next step:
+### Claude Code plugin
 
-```
+```text
 /plugin marketplace add vcxcvii/rainmaker
 /plugin install rainmaker@vcxcvii
 ```
 
-There is also an optional standalone terminal agent. It cannot borrow a
-ChatGPT, Claude, or Codex subscription: those hosts do not expose their session
-credentials or model runtime to child processes, and an app subscription is not
-API credit. This is the only path that needs a model API key because your
-existing assistant is otherwise the model:
+The Claude plugin also includes a session hook that notices unfinished Rainmaker work and surfaces the next step.
 
-```
-$ npx @vcxcvii/rainmaker agent
+## Why it uses your existing assistant instead of another model key
 
-  Using anthropic as the model provider.
-  No diagnosis yet. Running `rainmaker audit` first...
+The normal workflow is host-native. Codex or Claude Code conducts the conversation using the model session you already opened. Rainmaker’s CLI handles deterministic work such as crawling, measurement, scoring, and memory.
 
-  [crawl] 214 URLs discovered, 214 fetched, 0 budget exhausted
-  [audit] tiering 214 URLs ... 61 findings ... scoring ... done
+The CLI cannot borrow a ChatGPT, Claude, or Codex subscription. Those apps do not expose their session credentials or model runtime to child command-line processes, and an app subscription is not API credit.
 
-  Running the know-my-buyer interview. Answer in your own words.
-
-  I looked at 214 pages before asking you anything.
-
-  78% of your pages are Tier 3. 4% are Tier 1. Your only comparison page
-  has no internal links pointing at it from anywhere in the site.
-  Your top competitor has 31 Tier 1 pages. You have 3.
-
-  First question. Your /demo page gets 1,240 impressions and 11 clicks
-  over 28 days, sitting at position 8.4. Who reads that page before a
-  deal closes, and what do they still not know when they leave it?
-```
-
-`init` only writes config and installs skills; it asks nothing that can be measured instead. The audit runs before the interview does, so the questions that follow open grounded rather than generic. Twelve questions asked about a site nobody has looked at are the same twelve questions every consultant asks. Pass `--skip-interview`, or skip the model key entirely, and the system stamps every downstream output `confidence: stub` until you come back to it.
-
-Then three fixes, plotted on effort against impact, each with its evidence and the exact next command. Not sixty. Then it recommends a cadence from your site's shape rather than assuming one.
-
-### Providers and consent
-
-The normal host-native path needs no model key. Your current assistant conducts
-the conversation and calls Rainmaker's local commands under the user's existing
-assistant subscription. The standalone `rainmaker agent` and direct AI citation
-probes need one. Anthropic is tried first, then OpenAI:
+`rainmaker agent` is therefore a separate standalone terminal fallback. Use it only when you deliberately want to bring an API key or compatible local endpoint:
 
 ```bash
-ANTHROPIC_API_KEY=...        # or
-OPENAI_API_KEY=...
+ANTHROPIC_API_KEY=... rainmaker agent
+
+# or an OpenAI-compatible local model
+OPENAI_API_KEY=ollama \
+OPENAI_BASE_URL=http://localhost:11434/v1 \
+RAINMAKER_MODEL=llama3.1 \
+rainmaker agent
 ```
 
-Neither vendor is a requirement. `OPENAI_BASE_URL` points the OpenAI path at any endpoint speaking the same chat-completions shape, which covers OpenRouter, Groq, Gemini's compatibility endpoint, and local models under Ollama, LM Studio or vLLM:
+Inside Codex or Claude Code, do not run `rainmaker agent`. Say `run rainmaker` instead.
+
+## Credentials and provider consent
+
+No credential is required for the first useful result.
+
+| Credential | What it unlocks | Required? |
+|---|---|---|
+| None | Built-in crawl, technical checks, tiers, scoring, blueprint, reports | No |
+| Google service account | Search Console opportunity data and GA4 conversion evidence | Optional |
+| Clarity token | Behavioural evidence such as dead clicks and rage clicks | Optional |
+| Firecrawl or context.dev | Alternative crawling for sites that need it | Optional and approval-gated |
+| OpenAI or Anthropic API key | Standalone terminal agent and direct AI citation probes | Optional |
+
+An environment key makes a provider available. It does not approve use.
 
 ```bash
-OPENAI_API_KEY=ollama
-OPENAI_BASE_URL=http://localhost:11434/v1
-RAINMAKER_MODEL=llama3.1
-```
-
-`RAINMAKER_MODEL` overrides the default model id; `ANTHROPIC_BASE_URL` does the same job for the Anthropic path. Every credential and what it unlocks is listed by `rainmaker keys`, which is offline and answers in milliseconds.
-
-Firecrawl and context.dev are optional crawl upgrades. Environment variables
-make them available, not active:
-
-```bash
-rainmaker audit                         # built-in, no quota
+rainmaker audit                         # built-in crawler
 rainmaker audit --provider firecrawl    # explicit Firecrawl use
 rainmaker audit --provider contextdev   # explicit context.dev use
-rainmaker serp --allow-paid "query"     # explicit Firecrawl search use
+rainmaker serp --allow-paid "query"     # explicit paid SERP capture
 ```
 
-## Why this and not a folder of SEO skills
+Run `rainmaker keys` to see which credentials are set, what each unlocks, and whether it remains dormant. Rainmaker never prints secret contents.
 
-There are good individual skills in the wild, and this project studied several closely: [Sam Dunning's SEO research pipeline](https://github.com/swan-gtm/gtm-skills/tree/main/skills/sam-dunning) is the sharpest public example of qualifying and killing keyword candidates, and [Yahav Fuchs' AEO set](https://github.com/swan-gtm/gtm-skills/tree/main/skills/yahav-fuchs) is right about decomposing AI visibility scores instead of trusting an aggregate. Both are worth reading, and Rainmaker takes the lessons.
+## Example questions
 
-The difference is structural, not a feature list.
+- “Which three fixes are closest to revenue?”
+- “Which pages get impressions but fail to earn clicks?”
+- “Can we realistically rank for this query? Read the live results first.”
+- “Our organic traffic fell. Was it something we shipped, a wider search change, or neither?”
+- “How many pages can this site publish before we exceed what it gets indexed?”
+- “What did we ship last quarter that produced no measurable improvement?”
 
-| | A folder of skills | Rainmaker |
-|---|---|---|
-| Context | each skill re-derives the business from whatever it reads | one context layer, loaded identically, with field ownership |
-| Numbers | the model produces the score | scores are computed in code and are byte-identical across runs |
-| Memory | the session | append-only ledger, strategy history, verification windows |
-| Scope | keyword research, or AEO, or technical | one system across your site, Google, answer engines and off-site |
-| Structure | a list of pages to write | a site blueprint with one intent per URL and a publish budget |
-| Ending | a plan | a record of what shipped, what moved, and what did nothing |
+Rainmaker supports sales-led, self-serve, product-led, marketplace, local-services, ecommerce, ads, newsletter, and consulting revenue models.
 
-The last row is the one that matters. Anything can produce a plan. Very little will tell you, ninety days later, that four of the eleven things it recommended did nothing measurable, and then change its own mind about the strategy because of it.
+## Main commands
 
-## Example prompts
-
-Rainmaker is meant to work whether you are one person with a blog or a team with forty thousand URLs.
-
-**A personal site or small blog**
-
-- "My site has about 30 pages and 200 clicks a month. What is actually worth fixing?"
-- "Which of my posts are dying, and should I refresh them or delete them?"
-- "I write about two unrelated topics. Am I splitting my own authority?"
-- "Do any AI assistants mention me when someone asks about my field?"
-
-**A local or service business**
-
-- "I serve six suburbs. Should each one get its own page, or is that spam?"
-- "Map out the site structure for my services across the areas I cover."
-- "Which of my service pages could realistically reach the top three, and which am I wasting effort on?"
-
-**Ecommerce**
-
-- "My category pages cannibalise each other. Show me which ones and which to keep."
-- "Which product pages get impressions but no clicks, and is that a title problem or a ranking problem?"
-
-**B2B SaaS, mid-size**
-
-- "We have 400 blog posts and three comparison pages. Rebalance us."
-- "Our competitor owns the alternatives queries. Can we take them, honestly?"
-- "Which pages does sales actually send, and are any of them technically broken?"
-- "Write the brief for a comparison page, but only if the SERP says we can win it."
-
-**A large site, thousands of URLs, several teams**
-
-- "Rank every tier 0 and tier 1 page by revenue score and give me the top twenty with owners."
-- "How many pages can we publish a month before we exceed what this site gets indexed?"
-- "Show me every cluster under 40 percent complete before anyone opens a new one."
-- "Traffic dropped 18 percent. Was that the core update, something we shipped, or neither? Show me the control."
-- "Of everything we shipped last quarter, what did nothing?"
-
-The last one is the question this system was built to answer, and the one most reporting is designed to avoid.
-
-Keys are read from your environment and sent only to the API they belong to. `rainmaker keys` prints what is set, what it unlocks and whether it remains dormant. With zero keys you still get a baseline crawl, URL tiering and structural diagnosis. Search Console, analytics, live SERPs, competitor evidence and answer-engine probes require their respective tools or credentials, and reports state what was unavailable.
-
-## What it will not do
-
-- Post to any community, send outreach, change live content, or delete a URL. It drafts and files issues. A person approves.
-- Let a model compute or adjust a revenue score.
-- Use vendor authority metrics anywhere in scoring.
-- Buy links, exchange links, simulate independent voices, or ship doorway-page permutations.
-- Assert that an algorithm update caused a metric change. It reports timing consistency and shows the control.
-
-## Specification
-
-The full spec is in the repo and is the authority for contributors and coding agents alike.
-
-| File | Covers |
+| Command | Purpose |
 |---|---|
-| `SPEC.md` | invariants, CLI, build order |
-| `spec/context-layer.md` | business context, strategy schema, field ownership |
-| `spec/site-blueprint.md` | site architecture, permutation guard, authority budget |
-| `spec/offsite.md` | citation graph, communities, entity consistency |
-| `spec/skills.md` | all 26 skills |
-| `spec/agent.md` | packaging, first run, cadence, autonomy limits |
-| `spec/false-positives.md` | the evidence bar for every check, and the target under one percent |
-| `spec/handoff-v1.md` | the original handoff, superseded but retained |
+| `rainmaker init --site <url>` | Create config, context, and portable skills |
+| `rainmaker audit` | Crawl, tier, score, and write the diagnosis |
+| `rainmaker keys` | Explain credential state without a network call |
+| `rainmaker doctor` | Probe configured connections independently |
+| `rainmaker fetch` | Pull GSC, GA4, and Clarity snapshots |
+| `rainmaker serp` | Capture live search results with explicit paid consent |
+| `rainmaker blueprint` | Build or inspect the one-intent-per-URL site plan |
+| `rainmaker report` | Render pulse, 28-day, monthly, or longer reports |
+| `rainmaker routine` | Run the repeatable measurement and planning pass |
+| `rainmaker ledger` | Query finding and outcome history |
+| `rainmaker context` | Check, initialize, validate, or sync business context |
+| `rainmaker agent` | Standalone API-key terminal fallback only |
 
-MIT. Built in the open by [Varun Choraria](https://varunchoraria.com).
+## How the system fits together
+
+Rainmaker has one entry skill and 26 decision skills across six phases:
+
+```text
+Ground -> See -> Decide -> Build -> Spread -> Prove
+                     ^                         |
+                     |____ evidence loop ______|
+```
+
+All decision skills read the same `context/business.md` and `data/strategy.json`. Each strategy field has one owner. The deterministic core writes snapshots and scores. The append-only ledger carries evidence across sessions.
+
+This prevents 26 skills from becoming 26 unrelated opinions.
+
+## What Rainmaker will not do quietly
+
+- Publish content, post to communities, send outreach, redirect pages, or delete URLs.
+- Spend paid-provider quota because a key exists.
+- Let a model compute or alter revenue scores.
+- Use Domain Rating or Authority Score as ranking truth.
+- Ship doorway-page permutations or simulate independent voices.
+- Claim an algorithm update caused a change when the evidence only shows timing.
+- Hide missing Search Console, GA4, or other evidence from a report.
+
+## Rainmaker versus an experienced agency
+
+Rainmaker is strong at repeatable crawling, prioritization, transparent evidence, and remembering outcomes. An experienced human agency remains stronger at stakeholder alignment, customer nuance, creative positioning, political constraints, and decisions where the evidence is incomplete.
+
+The useful combination is a senior operator using Rainmaker as the shared measurement and memory layer, not pretending software removes judgment.
+
+Want help applying it to a real site? [Book 30 minutes with Varun](https://cal.com/varun-choraria/30min).
+
+## Development
+
+```bash
+npm ci
+npm run typecheck
+npm run build
+npm test
+```
+
+The repository includes fabricated `data.example/` fixtures, so contributors can inspect the complete data contracts without sending requests to a real website or provider.
+
+The full specification lives in [`SPEC.md`](SPEC.md). Supporting documents cover the [context layer](spec/context-layer.md), [site blueprint](spec/site-blueprint.md), [off-site work](spec/offsite.md), [skills](spec/skills.md), [agent workflow](spec/agent.md), and [false-positive policy](spec/false-positives.md).
+
+## License
+
+[MIT](LICENSE). Use it, fork it, remove what you do not need, and disagree with it in public.
