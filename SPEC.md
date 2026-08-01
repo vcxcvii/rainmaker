@@ -12,6 +12,32 @@
 
 ---
 
+## Definition of done for v1
+
+One sentence, because a backlog without one grows forever and every real
+session adds to it:
+
+> A new user installs the plugin, says "run rainmaker", and reaches three
+> ranked fixes without typing a CLI flag or editing a JSON file.
+
+That is the whole bar. It is testable, and each clause exists because it has
+failed in a real session:
+
+| Clause | Passes when |
+|---|---|
+| installs the plugin | The marketplace install runs without a build of its own, on first call, in under two seconds |
+| says "run rainmaker" | The session hook and both pointer files name the skill, and the skill fires from that phrase alone |
+| reaches three ranked fixes | `audit` produces a diagnosis whose top three findings are real pages, and the skill reads them back before asking anything |
+| without typing a CLI flag | Provider, credentials and conversion paths are settled in conversation and persisted, never re-asked |
+| without editing a JSON file | Any value the user must supply is either discovered by `doctor` or written by the assistant on confirmation |
+
+**Everything else queues.** A finding that is true, useful, and outside those
+five clauses belongs in `FEEDBACK.md` under "Queued", not in the current pass.
+This is the rule that makes the list finite: the bar is not "no known defects",
+it is "those five clauses hold".
+
+---
+
 ## 0. Current state, as of 2026-07-30
 
 Repository: `<repo root>`, public at `github.com/vcxcvii/rainmaker`. Committed and passing:
