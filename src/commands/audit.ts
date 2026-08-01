@@ -8,6 +8,11 @@ import type { CrawlSnapshot, Ga4Snapshot, GscSnapshot } from '../fetch/types.js'
 import { coverageSet, runChecks } from '../analyze/site-checks.js';
 import { TIERS, TIER_ORDER, tierAll, tierDistribution } from '../analyze/tiering.js';
 import { normalisePath, type Finding } from '../analyze/checks.js';
+import {
+  formatMeasurementWarning,
+  measurementState,
+  proposeKeyEvents,
+} from '../analyze/measurement.js';
 import { appendEvents, readLedger } from '../ledger/append.js';
 import { closureEvents, planClosures } from '../ledger/close.js';
 import { materialise } from '../ledger/materialise.js';
@@ -182,7 +187,15 @@ export async function runAudit(args: string[]): Promise<number> {
     return 0;
   }
 
-  report(diagnosis, opened.length, closed.length, result.rejected.length);
+  const tierZero = [...tiers.entries()]
+    .filter(([, assignment]) => assignment.tier === 0)
+    .map(([path]) => path);
+  const measurementNotice = formatMeasurementWarning(
+    measurementState(ga4),
+    proposeKeyEvents(config, tierZero),
+  );
+
+  report(diagnosis, opened.length, closed.length, result.rejected.length, measurementNotice);
   return 0;
 }
 
@@ -241,7 +254,13 @@ export function formatTierDistribution(
   return lines.join('\n');
 }
 
-function report(diagnosis: Diagnosis, opened: number, closed: number, rejected: number): void {
+function report(
+  diagnosis: Diagnosis,
+  opened: number,
+  closed: number,
+  rejected: number,
+  measurementNotice: string | undefined,
+): void {
   const { tier_distribution: tiers, coverage } = diagnosis;
   const total = Object.values(tiers).reduce((sum, count) => sum + count, 0);
 
@@ -269,6 +288,11 @@ function report(diagnosis: Diagnosis, opened: number, closed: number, rejected: 
       `Degraded: ${missing.join(', ')} missing. Opportunity sizing falls back to a flat value and every affected finding says so.`,
     );
   }
+
+  // A connected GA4 with nothing defined as a key event is not a degraded
+  // capability, so it never appears above. It is worse than one: the property
+  // answers every call, reports real sessions, and measures no conversion.
+  if (measurementNotice) console.log(`\n${measurementNotice}`);
 
   console.log('\nClosest to revenue:\n');
   for (const finding of diagnosis.findings.slice(0, 5)) {

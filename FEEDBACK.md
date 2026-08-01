@@ -44,54 +44,43 @@ it.
 
 ## Open — blocks v1
 
-### Set up the measurement before diagnosing anything
-
-Before the first audit, read the site the user gave and work out what its key
-events and conversions should be, then help them configure those in GA4. A
-site with no conversion events defined produces an audit that cannot rank
-anything by revenue, so every finding falls back to a flat score and the whole
-premise of the product is unavailable on day one.
-
-Order should be: read the site, propose the events that match how this
-business actually makes money, set them up with the user, then audit. Not:
-audit into an empty measurement layer and report low confidence.
-
-Scaffold this as its own skill if it does not fit inside `know-my-buyer`.
-It belongs in the proactive path, not as something the user has to request.
-
-### Interview must ask what is actually connected, then set it up with the user
-
-`doctor` reports GA4, GSC, Clarity and PageSpeed as MISSING, but it reports
-them to a terminal, before any conversation has happened, in the voice of a
-diagnostic. A first-time user does not read that as "you have homework"; they
-read it as noise and continue with four of five capabilities degraded, which
-silently caps the quality of every finding from then on.
-
-The interview should ask directly, early:
-
-- Is Google Analytics 4 connected?
-- Is Search Console connected?
-- Is Google Ads connected? (paid keyword data sharpens every SERP verdict)
-
-And when the answer is no, walk them through it *in the conversation* at
-ELI5 level. Not a docs link. Not "set `GSC_CLIENT_EMAIL`". Literally: which
-page to open, which button, what to paste back, one step at a time, waiting
-for them at each step.
-
-Rationale: these three connections are the difference between opportunity
-scoring that falls back to a flat 1.0 and scoring that reflects the business.
-It is the highest-leverage thing a new user can do in their first hour, and
-today nothing asks them to do it.
-
-Ads is additive to the existing GA4/GSC capability set and needs a provider.
-
-At the same moment, ask whether they have their own Firecrawl or context.dev
-account. Both are already supported providers, both are the kind of key a
-user may already hold from other work, and a user's own key means their own
-quota and billing rather than a shared or absent one. Asking costs one line
-in a conversation that is already about connecting things.
+Nothing. The definition of done in `SPEC.md` holds as of 0.6.0; see the note on
+Google Ads under Queued, which is additive rather than blocking.
 
 ## Fixed
+
+### A connected GA4 that measured nothing looked healthy
+
+The highest-leverage fix available to a new site was the one thing nothing
+mentioned. GA4 reports sessions whether or not any event is marked as a key
+event, so a property with none looked connected and live. Tiering already
+declined to use it, correctly and silently: scores fell back to URL patterns
+and no output said why. A real first run showed 522 sessions over 30 days and
+zero key events.
+
+`audit` now names the state, and prints the events worth creating for this
+revenue model with what each measures and why. The list is computed from the
+revenue model and the Tier 0 pages, so it is reproducible across runs and
+reviewable in a diff rather than invented per session. The skill handles it
+before the interview, since an interview conducted on flat scores asks the
+wrong questions.
+
+Creating the events stays with the user. Rainmaker holds `analytics.readonly`
+on purpose, and widening that scope to write conversion definitions is not a
+trade worth making for an audit tool.
+
+### The interview did not ask what was connected
+
+`doctor` reported capabilities to a terminal before any conversation, in the
+voice of a diagnostic, so a first-time user read it as noise and continued with
+four of five degraded. The skill now runs `doctor` as step 5, says in plain
+language what each degraded capability costs, and walks the user through
+connecting one source at a time with the service account address in hand.
+
+Google Ads is not part of this. It needs a new provider and a new credential,
+and it sharpens SERP verdicts rather than making any clause of the definition
+of done hold, so it is queued.
+
 
 ### A non-executable bin turned every call into a fork bomb
 

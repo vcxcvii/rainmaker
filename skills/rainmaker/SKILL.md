@@ -62,6 +62,14 @@ assistant. The CLI only crawls, measures, scores, and persists state.
    Never pass `--allow-over-budget` on the user's behalf.
 4. Read the diagnosis. State the tier distribution, the top three findings by
    revenue score, and which evidence is unavailable.
+
+   If the audit reports that GA4 has no key events configured, that outranks
+   every finding beneath it and is handled before the interview. The audit
+   prints the events worth creating for this revenue model; read them out, say
+   what each one measures, and walk the user through GA4 Admin, Events, mark as
+   key event, one at a time. Do not invent events of your own: the list is
+   computed from the revenue model and the Tier 0 pages so it is the same on
+   every run. Rainmaker holds read-only Analytics scope and cannot create them.
 5. Run `rainmaker doctor`. Say plainly what each degraded capability costs
    before interviewing anyone: without GSC and GA4, opportunity scoring falls
    back to a flat value and no finding can be ranked by revenue, which is the
