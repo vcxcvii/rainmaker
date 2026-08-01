@@ -93,6 +93,52 @@ Target order: `init --site X` writes a config in seconds with TODOs, then the
 conversation crawls, proposes conversion paths, discovers competitors, argues
 with the ICP, and fills them in.
 
+## Open — from the four-angle review
+
+These were found, judged real, and deliberately not fixed in the same pass:
+each changes behaviour or adds surface rather than cleaning up what exists.
+
+### Every CLI call costs ~1.3s for marketplace users
+
+`dist/` is gitignored, so a marketplace install has no build and `bin/rainmaker`
+falls through to `npx`. Measured with a warm cache: `npx … --version` takes
+1.355s against 0.052s for `node dist/cli.js --version`. That is ~1.3s of npm
+resolution on every command, in front of an agent that calls the CLI repeatedly
+within one session.
+
+Resolving once and memoising would remove ~96% of it, but the obvious place to
+cache is `${CLAUDE_PLUGIN_ROOT}`, which the plugin docs explicitly describe as
+ephemeral and not for state. Needs a real answer, not a quick one.
+
+### The two best findings the audit produces cannot be tracked
+
+"No Tier 0 pages" and "No Tier 1 pages" are site-level diagnoses, and the
+latter's own text says it is "usually worth more than any single fix listed
+below". Both exist only as `console.log` inside the printer: not in `Diagnosis`,
+not in the `CHECKS` set, not scored, not in the ledger, invisible to `report`,
+`routine`, and to any skill reading the diagnosis JSON. The highest-value output
+of the system is the one thing that cannot be ordered, tracked or closed, and it
+disappears the moment nobody is watching stdout.
+
+### Skills can only be installed while creating a config
+
+Skill installation lives inside `init`, reachable only on first run. There is no
+way to add skills to a project that already has a config, and no way to refresh
+them after upgrading the package: `init` refuses without `--force`, and
+`--force` rewrites the user's config just to re-copy files. Wants to be
+`rainmaker install`, idempotent, with `init` calling it.
+
+### The hook re-derives project state the CLI already computes
+
+`context --check` already reports present/missing/stale across business,
+strategy and snapshots, and picks the next step. The hook re-derives a coarser
+version in shell and hardcodes three paths that exist as exported constants. The
+credential half of that duplication has already drifted once (see Fixed). The
+"no node, no npx" constraint is about latency, not a reason to keep a second
+state model — `context --check` is filesystem-only too. Wants
+`context --check --json` and a hook reduced to invoke, print, and fall silent on
+timeout.
+
 ## Open — core
 
 ### sitemap.xml is audited as if it were a page
