@@ -9,8 +9,8 @@ Most SEO tooling reports 200 issues sorted by a severity score its own vendor in
 Works with no credentials, no account and no model on the first run. Bring your own keys to unlock more.
 
 ```bash
-npx rainmaker init      # eight questions, ninety seconds
-npx rainmaker audit     # crawls, tiers, scores, writes JSON and Markdown
+npx @vcxcvii/rainmaker init      # eight questions, ninety seconds
+npx @vcxcvii/rainmaker audit     # crawls, tiers, scores, writes JSON and Markdown
 ```
 
 With no key at all, `audit` falls back to a built-in crawler rather than refusing to run. `data.example/` in the package ships a full fabricated snapshot (strategy, competitors, citations, blueprint, ledger) so every skill can be developed and read against realistic data before pointing it at a real site.
@@ -103,15 +103,15 @@ Three mechanisms most systems skip, because each one tells you to do less.
 ## Setting it up
 
 ```bash
-npx rainmaker init                     # the core, plain Node, no model needed
+npx @vcxcvii/rainmaker init            # the core, plain Node, no model needed
 npx skills add vcxcvii/rainmaker       # the 26 skills, into any assistant
-npx rainmaker agent                    # the interactive agent, bring your own key
+npx @vcxcvii/rainmaker agent           # the interactive agent, bring your own key
 ```
 
 The first ten minutes, in order:
 
 ```
-$ npx rainmaker init
+$ npx @vcxcvii/rainmaker init
 
   Site? https://example.com
   How does the business make money? [self-serve / sales-led / plg / local-services /
@@ -127,7 +127,7 @@ $ npx rainmaker init
   capabilities are live. An audit will run with zero credentials,
   just with lower confidence.
 
-$ npx rainmaker agent
+$ npx @vcxcvii/rainmaker agent
 
   Using anthropic as the model provider.
   No diagnosis yet. Running `rainmaker audit` first...

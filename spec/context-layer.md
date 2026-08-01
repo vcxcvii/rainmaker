@@ -239,16 +239,16 @@ Every judgment skill opens with the identical block below, copied verbatim into 
 ```markdown
 ## Context load
 
-Run `npx rainmaker context --check` first. It prints what exists, what is stale, and exits 1 if anything this skill requires is missing.
+Run `npx @vcxcvii/rainmaker context --check` first. It prints what exists, what is stale, and exits 1 if anything this skill requires is missing.
 
 Then read, in this order:
-1. `context/business.md` in full. If absent, stop: "No business context. Run `npx rainmaker audit`, then the `know-my-buyer` skill."
+1. `context/business.md` in full. If absent, stop: "No business context. Run `npx @vcxcvii/rainmaker audit`, then the `know-my-buyer` skill."
 2. `context/voice.md` if this skill writes prose. If absent, stop and say so.
 3. `data/strategy.json` if this skill reads or writes strategy.
 4. Only the `data/` files listed in this skill's Requires table. Never crawl or call an API the core already covers.
 
 If `strategy.json.context_hash` does not match the current sha256 of `context/business.md`, say exactly:
-"Business context was edited after the strategy was written. Re-run `know-my-buyer`, or run `npx rainmaker context --sync` to accept the prose as authoritative."
+"Business context was edited after the strategy was written. Re-run `know-my-buyer`, or run `npx @vcxcvii/rainmaker context --sync` to accept the prose as authoritative."
 Then stop.
 ```
 

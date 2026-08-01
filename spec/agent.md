@@ -24,8 +24,8 @@ What has to be built for it to actually run itself is small and named in section
 ### 2.1 The core, for anyone
 
 ```
-npx rainmaker init
-npx rainmaker audit
+npx @vcxcvii/rainmaker init
+npx @vcxcvii/rainmaker audit
 ```
 
 Plain Node. No model, no key, no account. It crawls, measures, tiers, scores and writes JSON and Markdown. Everything deterministic lives here, which is why the same input always produces the same output and why any LLM can sit on top of it without changing the numbers.
@@ -41,8 +41,8 @@ Installs the 26 skills in the universal format, symlinked into whichever assista
 ### 2.3 The agent, for hands-off operation
 
 ```
-npx rainmaker agent          interactive, in the terminal
-npx rainmaker routine        unattended, from cron or GitHub Actions
+npx @vcxcvii/rainmaker agent          interactive, in the terminal
+npx @vcxcvii/rainmaker routine        unattended, from cron or GitHub Actions
 ```
 
 `agent` is a loop over the same skills and the same CLI, driven by whichever model the user brings. It exists so Rainmaker works for someone who does not already live inside an AI coding tool.

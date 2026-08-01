@@ -291,7 +291,7 @@ Console steps, in order. Blocking dependency for the GA4/GSC path.
 4. GA4 → Admin → Property Access Management → add service account email as **Viewer**
 5. Search Console → Settings → Users and permissions → add same email as **Full**
 6. Key local and gitignored; add as `GOOGLE_SA_KEY` repo secret
-7. `npx rainmaker doctor`
+7. `npx @vcxcvii/rainmaker doctor`
 
 Service account not OAuth: no refresh-token expiry, no consent-screen publishing, survives unattended cron indefinitely.
 
