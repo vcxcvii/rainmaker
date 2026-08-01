@@ -72,7 +72,9 @@ Prove    check-before-i-publish, show-me-progress, what-actually-worked,
            `-- beliefs that failed twice loop back to Ground
 ```
 
-26 skills, six phases, one decision each. No two skills can answer the same question, and together they cover the whole job.
+One front-door `rainmaker` skill routes the conversation. Behind it are 26
+decision skills across six phases, one decision each. No two decision skills
+answer the same question, and together they cover the whole job.
 
 ## The context layer
 
@@ -113,26 +115,42 @@ $ npx @vcxcvii/rainmaker init --site https://example.com
 
   Wrote rainmaker.config.yml
 
-  Installed 26 skills into .agents/skills/ and .claude/skills/
+  Installed 27 skills into .agents/skills/ and .claude/skills/
   Wrote RAINMAKER.md
   Added the Rainmaker pointer to AGENTS.md
 
-  Next: open any coding assistant here and ask it to run the first audit.
-  The built-in crawl spends no credits.
+  Host assistant: continue now. You are the model.
+  Run the audit, offer measurement connections, then conduct the interview.
 ```
 
-Then open your assistant in that directory and talk to it. Conversion paths,
+Then open your assistant in that directory and say **"run rainmaker"**. The
+front-door skill automatically resumes from the first incomplete step. It runs
+the audit before interviewing you, offers to connect GSC and GA4, and conducts
+the interview inside the current assistant. It must not launch `rainmaker
+agent`.
+
+Conversion paths,
 competitors and buyer are worked out from the site and the conversation, not
 asked for in a form up front. After confirmation, the assistant reconciles the
 business model, conversions, value, sales cycle, ICP and competitors back into
 the config before running revenue-ranked strategy work.
 
-There is no universal LLM plugin format. `init` uses the portable layer that
+There is no universal LLM plugin format. `init` uses the closest portable layer
 today's tools share: project instructions plus local skills. Codex, Claude
 Code, opencode and other assistants that read `AGENTS.md`, `RAINMAKER.md`,
 `.agents/skills/` or `.claude/skills/` can drive the same deterministic CLI.
 Run `npx @vcxcvii/rainmaker install` after an upgrade to refresh that layer
-without rewriting your business config.
+without rewriting your business config. Start a new task/session if the host
+does not hot-reload newly installed skills.
+
+Codex users can install the native front-door plugin from this repository:
+
+```bash
+codex plugin marketplace add vcxcvii/rainmaker --ref main
+codex plugin add rainmaker@vcxcvii
+```
+
+Start a new Codex task, open the site project, and say `run rainmaker`.
 
 Claude Code users can install the plugin instead, which adds a session hook
 that reads project state and opens on the right next step:
@@ -142,8 +160,11 @@ that reads project state and opens on the right next step:
 /plugin install rainmaker@vcxcvii
 ```
 
-There is also an optional standalone agent. This is the only path that needs a
-model key because your existing assistant is otherwise the model:
+There is also an optional standalone terminal agent. It cannot borrow a
+ChatGPT, Claude, or Codex subscription: those hosts do not expose their session
+credentials or model runtime to child processes, and an app subscription is not
+API credit. This is the only path that needs a model API key because your
+existing assistant is otherwise the model:
 
 ```
 $ npx @vcxcvii/rainmaker agent
@@ -173,10 +194,10 @@ Then three fixes, plotted on effort against impact, each with its evidence and t
 
 ### Providers and consent
 
-The normal interactive-plugin path needs no model key. Your current assistant
-conducts the conversation and calls Rainmaker's local commands. The standalone
-`rainmaker agent` and direct AI citation probes need one. Anthropic is tried
-first, then OpenAI:
+The normal host-native path needs no model key. Your current assistant conducts
+the conversation and calls Rainmaker's local commands under the user's existing
+assistant subscription. The standalone `rainmaker agent` and direct AI citation
+probes need one. Anthropic is tried first, then OpenAI:
 
 ```bash
 ANTHROPIC_API_KEY=...        # or

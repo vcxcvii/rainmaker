@@ -27,7 +27,7 @@ const COMMANDS = {
   report: 'Render a report. --window pulse|28d|month|quarter|half-year',
   context:
     'Business context and strategy. --check | --init | --validate | --sync',
-  agent: 'Interactive agent: runs audit, holds the interview, shows the three closest fixes, recommends cadence.',
+  agent: 'Standalone terminal fallback. Requires a model API key; do not use inside an AI assistant.',
   keys: 'Which credentials are set and what each one unlocks. No network call.',
   ledger:
     'Query finding history. --id | --since | --status | --pending | --did-nothing | --rebuild | --compact',

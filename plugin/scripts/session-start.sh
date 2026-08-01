@@ -11,6 +11,8 @@ set -eu
 root="${CLAUDE_PLUGIN_ROOT:-}"
 
 trailer="
+Use the model hosting this conversation. Never run \`rainmaker agent\` inside
+Claude; it is a standalone API-key fallback. Never ask for a model API key.
 Shared reference files live at:
   $root/skills/_shared
 When a skill refers to \`skills/_shared/<file>\`, read it from that path."

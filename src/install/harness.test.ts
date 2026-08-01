@@ -57,6 +57,11 @@ test('skills install into portable and Claude-compatible project locations', () 
   const { installed } = installSkills(dir);
 
   assert.ok(installed > 20, `expected the full skill set, got ${installed}`);
+  const entry = readFileSync(join(dir, '.agents', 'skills', 'rainmaker', 'SKILL.md'), 'utf8');
+  assert.match(entry, /run rainmaker/i);
+  assert.match(entry, /host.*model/i);
+  assert.match(entry, /never run `rainmaker agent`/i);
+  assert.ok(readFileSync(join(dir, '.claude', 'skills', 'rainmaker', 'SKILL.md'), 'utf8'));
   assert.ok(readFileSync(join(dir, '.claude', 'skills', 'know-my-buyer', 'SKILL.md'), 'utf8'));
   assert.ok(readFileSync(join(dir, '.agents', 'skills', 'know-my-buyer', 'SKILL.md'), 'utf8'));
   // Skills reference this path relative to the project root.
@@ -70,6 +75,7 @@ test('portable Rainmaker instructions make the host model the interactive interf
   assert.match(doc, /explicit approval/i);
   assert.match(doc, /Firecrawl/i);
   assert.doesNotMatch(doc, /ANTHROPIC_API_KEY|OPENAI_API_KEY/);
+  assert.match(doc, /Never run `rainmaker agent` inside/i);
 });
 
 test('an existing AGENTS.md is preserved and receives one managed pointer', () => {
@@ -85,5 +91,23 @@ test('an existing AGENTS.md is preserved and receives one managed pointer', () =
   assert.equal(second, 'kept');
   assert.match(content, /^mine/m);
   assert.equal((content.match(/RAINMAKER:START/g) ?? []).length, 1);
+  assert.match(content, /run rainmaker/i);
+  assert.match(content, /\.agents\/skills\/rainmaker\/SKILL\.md/);
   assert.ok(readFileSync(join(dir, 'RAINMAKER.md'), 'utf8'));
+});
+
+test('install refreshes a legacy managed pointer so existing projects gain the trigger', () => {
+  const dir = project();
+  writeFileSync(
+    join(dir, 'AGENTS.md'),
+    'mine\n\n<!-- RAINMAKER:START -->\n## Rainmaker\n\nRead `RAINMAKER.md`.\n<!-- RAINMAKER:END -->\n',
+    'utf8',
+  );
+
+  assert.equal(writeAgentsDoc(dir), 'updated');
+  assert.equal(writeAgentsDoc(dir), 'kept');
+  const content = readFileSync(join(dir, 'AGENTS.md'), 'utf8');
+  assert.match(content, /^mine/m);
+  assert.match(content, /run rainmaker/i);
+  assert.equal((content.match(/RAINMAKER:START/g) ?? []).length, 1);
 });

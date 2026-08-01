@@ -1,0 +1,28 @@
+{
+  "name": "rainmaker",
+  "version": "0.3.1",
+  "description": "Host-native, interactive revenue SEO and AEO workflow.",
+  "author": {
+    "name": "Varun Choraria",
+    "url": "https://github.com/vcxcvii"
+  },
+  "homepage": "https://varunchoraria.com/side-quests/rainmaker/",
+  "repository": "https://github.com/vcxcvii/rainmaker",
+  "license": "MIT",
+  "keywords": ["seo", "aeo", "revenue", "interactive"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Rainmaker",
+    "shortDescription": "Revenue-first SEO inside your current AI",
+    "longDescription": "Run Rainmaker as an interactive workflow inside Codex. Your current model conducts the interview; deterministic CLI tools handle crawling, measurement, scoring, and memory.",
+    "developerName": "Varun Choraria",
+    "category": "Marketing",
+    "capabilities": ["Interactive", "SEO", "AEO"],
+    "websiteURL": "https://varunchoraria.com/side-quests/rainmaker/",
+    "defaultPrompt": [
+      "Run Rainmaker",
+      "Resume my Rainmaker audit",
+      "Connect Rainmaker to GSC and GA4"
+    ]
+  }
+}
