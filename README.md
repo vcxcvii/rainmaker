@@ -163,6 +163,25 @@ $ npx @vcxcvii/rainmaker agent
 
 Then three fixes, plotted on effort against impact, each with its evidence and the exact next command. Not sixty. Then it recommends a cadence from your site's shape rather than assuming one.
 
+### Bringing your own model
+
+An audit needs no model key at all. The interview and the AI citation probes do. Anthropic is tried first, then OpenAI:
+
+```bash
+ANTHROPIC_API_KEY=...        # or
+OPENAI_API_KEY=...
+```
+
+Neither vendor is a requirement. `OPENAI_BASE_URL` points the OpenAI path at any endpoint speaking the same chat-completions shape, which covers OpenRouter, Groq, Gemini's compatibility endpoint, and local models under Ollama, LM Studio or vLLM:
+
+```bash
+OPENAI_API_KEY=ollama
+OPENAI_BASE_URL=http://localhost:11434/v1
+RAINMAKER_MODEL=llama3.1
+```
+
+`RAINMAKER_MODEL` overrides the default model id; `ANTHROPIC_BASE_URL` does the same job for the Anthropic path. Every credential and what it unlocks is listed by `rainmaker keys`, which is offline and answers in milliseconds.
+
 ## Why this and not a folder of SEO skills
 
 There are good individual skills in the wild, and this project studied several closely: [Sam Dunning's SEO research pipeline](https://github.com/swan-gtm/gtm-skills/tree/main/skills/sam-dunning) is the sharpest public example of qualifying and killing keyword candidates, and [Yahav Fuchs' AEO set](https://github.com/swan-gtm/gtm-skills/tree/main/skills/yahav-fuchs) is right about decomposing AI visibility scores instead of trusting an aggregate. Both are worth reading, and Rainmaker takes the lessons.
