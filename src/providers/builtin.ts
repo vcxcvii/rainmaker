@@ -2,8 +2,8 @@ import type { CrawlProvider, ProviderCrawlResult, ProviderPage } from './types.j
 
 /**
  * The zero-credential crawl provider. Invariant 7: no credential is required
- * for a first audit, so this is what `audit` falls back to when neither
- * FIRECRAWL_API_KEY nor CONTEXT_DEV_API_KEY is set. Slower and shallower than
+ * for a first audit, so this is what `audit` uses unless the user explicitly
+ * selects an optional provider on the command line. Slower and shallower than
  * either paid provider (sequential same-origin fetches, no JavaScript
  * rendering), which is the honest tradeoff for not needing an account.
  */

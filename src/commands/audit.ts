@@ -3,10 +3,7 @@ import { existsSync, mkdirSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { loadConfig, CONFIG_FILENAME } from '../config/load.js';
 import { fetchCrawl } from '../fetch/crawl.js';
-import { createFirecrawlProvider } from '../providers/firecrawl.js';
-import { createContextDevProvider } from '../providers/contextdev.js';
-import { createBuiltinProvider } from '../providers/builtin.js';
-import { formatProjection, projectCrawlCost } from '../agent/costguard.js';
+import { crawlPreflight } from './crawl-preflight.js';
 import type { CrawlSnapshot, Ga4Snapshot, GscSnapshot } from '../fetch/types.js';
 import { coverageSet, runChecks } from '../analyze/site-checks.js';
 import { TIERS, TIER_ORDER, tierAll, tierDistribution } from '../analyze/tiering.js';
@@ -68,35 +65,9 @@ export async function runAudit(args: string[]): Promise<number> {
       return 1;
     }
   } else {
-    const maxUrls = Number(flagValue(args, '--max-urls') ?? config.crawl?.max_urls ?? 500);
-    const wanted = config.crawl?.provider ?? 'firecrawl';
-    const firecrawlKey = process.env.FIRECRAWL_API_KEY;
-    const contextKey = process.env.CONTEXT_DEV_API_KEY;
-
-    // Invariant 7: no credential is required for a first audit. A configured
-    // paid provider with no key falls back to the built-in crawler rather
-    // than refusing to run, at lower throughput and no JavaScript rendering.
-    let provider;
-    if (wanted === 'contextdev' && contextKey) {
-      provider = createContextDevProvider({ apiKey: contextKey });
-    } else if (wanted === 'firecrawl' && firecrawlKey) {
-      provider = createFirecrawlProvider({ apiKey: firecrawlKey });
-    } else {
-      console.log(
-        `No ${wanted === 'contextdev' ? 'CONTEXT_DEV_API_KEY' : 'FIRECRAWL_API_KEY'} set. ` +
-          'Falling back to the built-in crawler: slower, no JavaScript rendering. ' +
-          'Run `rainmaker doctor` to see what a key would unlock.',
-      );
-      provider = createBuiltinProvider();
-    }
-
-    const remainingCredits = await provider.remainingCredits();
-    const projection = projectCrawlCost(maxUrls, remainingCredits, args.includes('--allow-over-budget'));
-    console.log(formatProjection(projection));
-    if (!projection.allowed) {
-      console.error(projection.reason);
-      return 1;
-    }
+    const maxUrls = Number(flagValue(args, '--max-urls') ?? config.crawl?.max_urls ?? 100);
+    const provider = await crawlPreflight({ args, env: process.env, maxUrls });
+    if (!provider) return 1;
 
     console.log(`Crawling ${config.site} (max ${maxUrls} URLs, ${provider.name})...`);
     crawl = await fetchCrawl({
@@ -194,7 +165,11 @@ function numeric(evidence: Record<string, unknown>): Record<string, number> {
  * every score in this system, so the one place it is guaranteed to be read is
  * the place it has to be explained.
  */
-export function formatTierDistribution(tiers: Record<string, number>, total: number): string {
+export function formatTierDistribution(
+  tiers: Record<string, number>,
+  total: number,
+  coverageComplete = true,
+): string {
   const lines = ['Tiers', `  How close each of your ${total} pages sits to revenue.`, ''];
 
   for (const tier of TIER_ORDER) {
@@ -205,7 +180,13 @@ export function formatTierDistribution(tiers: Record<string, number>, total: num
     );
   }
 
-  if ((tiers['0'] ?? 0) === 0) {
+  if (!coverageComplete) {
+    lines.push(
+      '',
+      '  Partial crawl. Missing tiers mean "not found in this sample", not',
+      '  "absent from the site". Raise max_urls before making a site-wide claim.',
+    );
+  } else if ((tiers['0'] ?? 0) === 0) {
     lines.push(
       '',
       '  No Tier 0 pages. Nothing on this site is where money changes hands,',
@@ -229,7 +210,8 @@ function report(diagnosis: Diagnosis, opened: number, closed: number, rejected: 
   const total = Object.values(tiers).reduce((sum, count) => sum + count, 0);
 
   console.log('');
-  console.log(formatTierDistribution(tiers, total));
+  const coverageComplete = !coverage.budget_exhausted && coverage.fetched >= coverage.discovered;
+  console.log(formatTierDistribution(tiers, total, coverageComplete));
   console.log(
     `Findings: ${diagnosis.findings.length}` +
       (diagnosis.suspicions.length ? `, plus ${diagnosis.suspicions.length} suspicion(s)` : ''),

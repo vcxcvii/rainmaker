@@ -180,6 +180,32 @@ test('inbound counts ignore self-links', () => {
   assert.equal(counts.get('/b'), 1);
 });
 
+test('machine endpoints and feeds are never audited as content pages', () => {
+  const findings = check([
+    page('https://quillet.com/'),
+    page('https://quillet.com/sitemap.xml', { title: null, h1: [], word_count: 0 }),
+    page('https://quillet.com/robots.txt', { title: null, h1: [], word_count: 0 }),
+    page('https://quillet.com/feed.xml', { title: null, h1: [], word_count: 0 }),
+    page('https://quillet.com/blog/feed/', { title: null, h1: [], word_count: 0 }),
+  ]);
+
+  assert.equal(
+    findings.filter((finding) => /sitemap|robots|feed/.test(finding.url)).length,
+    0,
+  );
+});
+
+test('word count and missing schema alone are suspicions, not ranked fixes', () => {
+  const findings = check([
+    page('https://quillet.com/', { internal_links_out: ['https://quillet.com/contact'] }),
+    page('https://quillet.com/contact', { word_count: 177, schema_types: [] }),
+  ]);
+  const weakSignals = findings.filter((finding) => finding.check === 'thin' || finding.check === 'schema');
+
+  assert.ok(weakSignals.length > 0);
+  assert.ok(weakSignals.every((finding) => finding.verdict === 'suspicion'));
+});
+
 test('checks are deterministic across 50 runs', () => {
   const pages = [
     page('https://quillet.com/', { internal_links_out: ['https://quillet.com/demo', 'https://quillet.com/blog/x'] }),

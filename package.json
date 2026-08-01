@@ -1,6 +1,6 @@
 {
   "name": "@vcxcvii/rainmaker",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Open-source SEO and AEO agent. Ranks every finding by distance to revenue, checks the live SERP before briefing anything, and records whether the fix worked.",
   "type": "module",
   "bin": {
@@ -19,7 +19,9 @@
     "node": ">=20"
   },
   "scripts": {
-    "build": "tsc",
+    "prebuild": "node scripts/clean-dist.mjs",
+    "build": "tsc -p tsconfig.build.json",
+    "prepack": "npm run build",
     "dev": "tsx src/cli.ts",
     "init": "tsx src/cli.ts init",
     "doctor": "tsx src/cli.ts doctor",
@@ -28,7 +30,8 @@
     "report": "tsx src/cli.ts report",
     "routine": "tsx src/cli.ts routine",
     "typecheck": "tsc --noEmit",
-    "test": "tsx --test src/**/*.test.ts"
+    "test": "tsx --test src/**/*.test.ts",
+    "update-example": "tsx scripts/update-example-diagnosis.ts"
   },
   "keywords": [
     "seo",

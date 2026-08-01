@@ -33,10 +33,16 @@ Plain Node. No model, no key, no account. It crawls, measures, tiers, scores and
 ### 2.2 The skills, for any assistant
 
 ```
-npx skills add vcxcvii/rainmaker
+npx @vcxcvii/rainmaker init --site https://example.com
+npx @vcxcvii/rainmaker install
 ```
 
-Installs the 26 skills in the universal format, symlinked into whichever assistants are present: Claude Code, Codex, Cursor, and the rest. The skills are Markdown with frontmatter, so they carry no runtime dependency on any one vendor. They read the JSON the core wrote and they call the core's commands. An assistant with no Rainmaker skills installed can still be handed `SPEC.md` and be useful; an assistant with the skills is simply faster and harder to derail.
+There is no universal LLM plugin API. Rainmaker installs a portable project
+protocol in `RAINMAKER.md`, adds an idempotent pointer to `AGENTS.md`, and
+copies the 26 Markdown skills into `.agents/skills/` and `.claude/skills/`.
+Assistants that read those project conventions use the host conversation as
+the model interface. Native adapters, such as the Claude Code plugin and its
+session hook, are optional enhancements over the same CLI and files.
 
 ### 2.3 The agent, for hands-off operation
 
@@ -54,7 +60,7 @@ No hosted service, no proxy, no telemetry. Keys are read from the environment or
 | Key | Unlocks | Without it |
 |---|---|---|
 | none | crawl, technical audit, tiering, scoring, blueprint, reports | full first audit still runs |
-| `FIRECRAWL_API_KEY` | default crawl provider | falls back to the built-in fetcher at lower throughput |
+| `FIRECRAWL_API_KEY` | optional Firecrawl crawl and paid SERP capture | dormant until `--provider firecrawl` or `serp --allow-paid` |
 | `CONTEXT_DEV_API_KEY` | brand retrieve and parse | skipped |
 | `GOOGLE_APPLICATION_CREDENTIALS` | GSC and GA4 | no opportunity sizing, no key-event tiering, confidence drops and says so |
 | `PAGESPEED_API_KEY` | higher CWV rate limits | 5 requests per minute |
@@ -64,7 +70,12 @@ No hosted service, no proxy, no telemetry. Keys are read from the environment or
 
 `rainmaker keys` prints which are set, what each unlocks, and what degrades. `rainmaker doctor` proves each one with the cheapest real call and never aborts on the first failure.
 
-**Cost guard.** Every command that spends money prints its projection first and refuses to exceed `config.budget` without an explicit flag. A crawl projected past remaining Firecrawl credits does not start. Probe sets are capped per run. An agent that can silently spend is not shippable.
+**Cost and consent guard.** The built-in crawler is always the default, even
+when provider keys exist. Paid or quota-backed providers require explicit
+approval in the current conversation and an explicit CLI flag. Every crawl
+path, including `audit`, `fetch` and `routine`, prints its projection first and
+refuses to exceed remaining Firecrawl credits without
+`--allow-over-budget`. SERP capture also requires `--allow-paid`.
 
 ## 4. First run
 
@@ -74,13 +85,22 @@ The job to be done, stated the way the user would state it:
 
 Ten minutes, four moves.
 
-### Move 1: eight questions, ninety seconds
+### Move 1: one fact, then scaffold
 
-`rainmaker init` asks only what cannot be measured: the site, how the business makes money, where money changes hands, secondary conversions, average contract value, sales cycle length, a one-line ICP, and up to five competitors. Every question has a skip, and skipping degrades gracefully rather than blocking.
+`rainmaker init --site X` asks only for the site. It writes a config whose
+business model, conversion paths, value, cycle, ICP and competitors are marked
+as unconfirmed starting state. It also writes stub context and strategy files,
+installs the portable conversation layer, and leaves discovery to the host
+assistant after the crawl.
 
-### Move 2: the crawl runs while you talk
+### Move 2: the conversation starts the crawl
 
-The moment the config is valid, `audit` starts in the background. This matters for a reason the v1 spec got right and most onboarding gets wrong: **the interview must not happen first.** `know-my-buyer` refuses to run without a diagnosis, because interrogating someone about a site the system has not looked at produces the same twelve generic questions every consultant asks.
+After `init`, the host assistant runs `audit` as the next command and explains
+what it is doing. `init` does not leave a hidden background process behind.
+This matters for a reason the v1 spec got right and most onboarding gets wrong:
+**the interview must not happen first.** `know-my-buyer` refuses to run without
+a diagnosis, because interrogating someone about a site the system has not
+looked at produces the same twelve generic questions every consultant asks.
 
 So the order is: measure, then interrogate, grounded. While the crawl runs, the agent explains what it is doing and what each capability will unlock.
 
@@ -88,7 +108,9 @@ So the order is: measure, then interrogate, grounded. While the crawl runs, the 
 
 When the audit lands, `know-my-buyer` opens with three sentences of fact: tier distribution, the top three findings by score, the sharpest contrast against a competitor. Then twelve questions minimum, one at a time, each citing a real number from the audit. It writes `context/business.md` and `strategy.json`.
 
-A user in a hurry can skip it. Then `rainmaker context --init` writes a stub marked `confidence: stub`, every downstream output carries that stamp, and the agent asks again after the first weekly run.
+`init` already writes a stub marked `confidence: stub`, so the skill can begin
+after the audit instead of stalling on missing files. Every downstream output
+carries that stamp until the interview replaces it.
 
 ### Move 4: three fixes, closest to revenue
 
@@ -151,7 +173,7 @@ Named so nobody assumes it already exists.
 | Effort against impact renderer | the first-run artifact, and the header of every report | 22 |
 | Cadence recommender | reads site shape, proposes, never assumes | 23 |
 | Cost guard and projections | an agent that can silently spend is not shippable | 23 |
-| Skills registry packaging | `npx skills add vcxcvii/rainmaker` across assistants | 24 |
+| Portable project packaging | `rainmaker init` and `rainmaker install` across compatible assistants | 24 |
 
 ## 7. What stays human
 

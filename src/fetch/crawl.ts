@@ -30,6 +30,11 @@ function meta(html: string, key: string): string | null {
   return null;
 }
 
+function title(html: string): string | null {
+  const match = html.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i);
+  return match ? stripHtml(match[1]) || null : null;
+}
+
 function canonical(html: string): string | null {
   const tags = html.match(/<link\b[^>]*>/gi) ?? [];
   for (const tag of tags) {
@@ -82,7 +87,7 @@ function normalizePage(page: ProviderPage, site: string): CrawlPage {
   return {
     url: page.url,
     status: page.status,
-    title: page.title ?? meta(html, 'og:title') ?? null,
+    title: page.title ?? title(html) ?? meta(html, 'og:title') ?? null,
     meta_description: page.description ?? meta(html, 'description'),
     canonical: canonical(html),
     robots_meta: meta(html, 'robots'),

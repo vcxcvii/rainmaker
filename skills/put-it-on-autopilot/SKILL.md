@@ -58,11 +58,15 @@ If `context/business.md` carries `confidence: stub`, continue, and stamp every o
 4. Generate the workflow calling `rainmaker routine` (weekly) and `rainmaker report --window month` plus `rainmaker ledger --compact` (monthly).
 5. Verify every secret the workflow needs is documented in the README's credentials section, and print the exact `gh secret set` commands. Never write a workflow depending on a secret the user has not been told to create.
 6. AI citation probes are scheduled monthly, never weekly: they cost money per run and the answers are non-deterministic, so a weekly line would mostly measure sampling variance.
+7. Built-in crawl is the workflow default. Include `--provider firecrawl` or `--provider contextdev` only after the user explicitly approves that provider and its quota or cost.
+8. GitHub Actions does not allow `secrets.*` directly in a step `if:`. Map an optional secret into job-level `env`, then test `env.NAME != ''` in the condition.
 
 ## Decision rules
 
 - Never re-check anything faster than its own verification window. A weekly ranking report on a 40-page site reports noise as news.
 - Never schedule a workflow whose secrets are undocumented.
+- Never activate a paid provider because its secret exists.
+- Never emit `if: ${{ secrets.NAME != '' }}`. Use a job-level environment variable and `if: env.NAME != ''`.
 - The cadence is a recommendation the user confirms, never a default silently applied.
 
 ## Output

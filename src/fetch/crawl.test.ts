@@ -52,3 +52,31 @@ test('does not itself refuse an over-budget crawl: that decision belongs to the 
   });
   assert.equal(snapshot.provider, 'firecrawl');
 });
+
+test('normalises the standard HTML title when a provider does not supply one', async () => {
+  const htmlOnly: CrawlProvider = {
+    name: 'builtin',
+    async remainingCredits() { return null; },
+    async crawl() {
+      return {
+        urlsDiscovered: 1,
+        budgetExhausted: false,
+        pages: [{
+          url: 'https://example.com/',
+          status: 200,
+          html: '<html><head><title>Example &amp; Company</title></head><body><h1>Home</h1></body></html>',
+          links: [],
+        }],
+      };
+    },
+  };
+
+  const snapshot = await fetchCrawl({
+    provider: htmlOnly,
+    site: 'https://example.com',
+    maxUrls: 10,
+    exclude: [],
+  });
+
+  assert.equal(snapshot.pages[0].title, 'Example & Company');
+});

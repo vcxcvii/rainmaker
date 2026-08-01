@@ -27,8 +27,9 @@ competitors:
   - luminance.com
 
 crawl:
-  max_urls: 500
-  provider: firecrawl
+  max_urls: 100
+  # Built-in is always the default. Paid providers require an explicit CLI flag.
+  provider: builtin
   exclude:
     - /tag/
     - /author/

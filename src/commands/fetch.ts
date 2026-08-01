@@ -16,9 +16,7 @@ import type {
   Ga4Snapshot,
   GscSnapshot,
 } from '../fetch/types.js';
-import { createContextDevProvider } from '../providers/contextdev.js';
-import { createFirecrawlProvider } from '../providers/firecrawl.js';
-import type { CrawlProvider } from '../providers/types.js';
+import { crawlPreflight } from './crawl-preflight.js';
 import { writeStableJson } from '../util/json.js';
 
 type Source = 'ga4' | 'gsc' | 'clarity' | 'all';
@@ -46,20 +44,6 @@ function tokenProvider(env: NodeJS.ProcessEnv): GoogleTokenProvider | undefined 
     : undefined;
 }
 
-function crawlProvider(
-  provider: 'firecrawl' | 'contextdev',
-  env: NodeJS.ProcessEnv,
-): CrawlProvider | undefined {
-  if (provider === 'contextdev') {
-    return env.CONTEXT_DEV_API_KEY
-      ? createContextDevProvider({ apiKey: env.CONTEXT_DEV_API_KEY })
-      : undefined;
-  }
-  return env.FIRECRAWL_API_KEY
-    ? createFirecrawlProvider({ apiKey: env.FIRECRAWL_API_KEY })
-    : undefined;
-}
-
 export function writeSourceSnapshots(dir: string, snapshots: SourceSnapshots): string[] {
   mkdirSync(dir, { recursive: true });
   const written: string[] = [];
@@ -83,20 +67,20 @@ export async function runFetch(argv: string[]): Promise<number> {
   const tasks: Array<Promise<void>> = [];
 
   if (selected === 'all') {
-    const providerName = config.crawl?.provider ?? 'firecrawl';
-    const provider = crawlProvider(providerName, env);
+    const maxUrls = config.crawl?.max_urls ?? 100;
+    const provider = await crawlPreflight({ args: argv, env, maxUrls });
     if (provider) {
       tasks.push(fetchCrawl({
         provider,
         site: config.site,
-        maxUrls: config.crawl?.max_urls ?? 500,
+        maxUrls,
         exclude: config.crawl?.exclude ?? [],
         now,
       }).then((snapshot) => {
         snapshots.crawl = snapshot;
       }));
     } else {
-      console.error(`Skipping crawl: ${providerName} credential missing.`);
+      return 1;
     }
   }
 

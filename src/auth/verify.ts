@@ -22,7 +22,7 @@ export interface CapabilityResult {
 }
 
 const DEGRADATION: Record<Capability, string> = {
-  crawl: 'falls back to the built-in crawler: slower, no JavaScript rendering',
+  crawl: 'uses the built-in crawler by default: slower, no JavaScript rendering',
   pagespeed: 'site-health-check CWV unavailable',
   gsc: 'google-rankings-check unavailable; opportunity scoring falls back to 1.0',
   ga4: 'conversion-path tiering unavailable; rule 1 skipped',
@@ -83,23 +83,13 @@ export function createDefaultCapabilityClients(options: {
   const config = options.config;
   const env = options.env ?? process.env;
   const fetcher = options.fetcher ?? fetch;
-  const clients: CapabilityClients = {};
-
-  if (env.FIRECRAWL_API_KEY) {
-    clients.crawl = {
+  const clients: CapabilityClients = {
+    crawl: {
       async check(): Promise<string> {
-        const response = await fetcher('https://api.firecrawl.dev/v2/team/credit-usage', {
-          headers: withBearer(env.FIRECRAWL_API_KEY ?? ''),
-        });
-        const payload = await requireOk(response, 'Firecrawl');
-        const data = asRecord(payload?.data);
-        const remaining = data?.remainingCredits;
-        return typeof remaining === 'number'
-          ? `firecrawl, ${remaining} credits`
-          : 'firecrawl, credit balance unavailable';
+        return 'built-in crawler, no provider credits';
       },
-    };
-  }
+    },
+  };
 
   if (config?.site) {
     clients.pagespeed = {

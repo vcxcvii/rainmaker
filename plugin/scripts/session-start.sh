@@ -59,7 +59,6 @@ missing=""
 grep -q '^gsc_site_url:' rainmaker.config.yml 2>/dev/null || missing="$missing Search Console,"
 [ -n "${GOOGLE_APPLICATION_CREDENTIALS:-}" ] || missing="$missing Google Analytics,"
 [ -n "${CLARITY_TOKEN:-}" ] || missing="$missing Clarity,"
-[ -n "${FIRECRAWL_API_KEY:-}" ] || missing="$missing Firecrawl,"
 missing="${missing# }"
 missing="${missing%,}"
 
@@ -73,8 +72,17 @@ finding says so. At a natural point in the conversation, offer to set them up
 together, and walk the user through it one step at a time in plain language:
 which page to open, which button to click, what to paste back. Do not hand
 them a docs link or an environment variable name and leave. Wait at each step.
-Ask whether they already have a Firecrawl or context.dev account of their own
-before assuming they need a new one."
+Firecrawl and context.dev are optional paid or quota-backed providers, not
+missing requirements. Never activate either because a key exists. Ask for
+explicit approval before using one."
+fi
+
+if [ -n "${FIRECRAWL_API_KEY:-}" ] || [ -n "${CONTEXT_DEV_API_KEY:-}" ]; then
+  connections_note="$connections_note
+
+A paid crawl-provider key is present but dormant. The built-in crawler remains
+the default. Use a paid provider only after explicit approval in this
+conversation, then pass --provider firecrawl or --provider contextdev."
 fi
 
 if [ "$have_snapshot" = no ]; then

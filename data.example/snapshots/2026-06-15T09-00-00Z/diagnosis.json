@@ -1,173 +1,178 @@
 {
-  "generated_at": "2026-06-15T09:00:00Z",
-  "config_hash": "example-config-hash-not-real",
   "capabilities": {
-    "crawl": "live",
-    "gsc": "live",
-    "ga4": "live",
     "clarity": "missing",
+    "crawl": "live",
+    "ga4": "live",
+    "gsc": "live",
     "pagespeed": "missing"
   },
+  "config_hash": "example-config-hash-not-real",
+  "coverage": {
+    "budget_exhausted": false,
+    "coverage_gap": 0,
+    "discovered": 6,
+    "fetched": 6
+  },
+  "findings": [
+    {
+      "check": "noindex",
+      "confidence": 0.9,
+      "effort_hours": 0.5,
+      "evidence": {
+        "inbound_internal_links": 3,
+        "robots_meta": "noindex, follow"
+      },
+      "id": "t0:noindex:/demo",
+      "message": "Excluded from search by a robots meta tag: \"noindex, follow\".",
+      "opportunity": 1,
+      "revenue_score": 10.64,
+      "severity": "blocking",
+      "tier": 0,
+      "tier_confidence": 0.9,
+      "tier_source": "ga4_key_event",
+      "url": "https://quillet.com/demo",
+      "verdict": "finding"
+    },
+    {
+      "check": "meta_description",
+      "confidence": 1,
+      "effort_hours": 0.5,
+      "evidence": {
+        "meta_description": null
+      },
+      "id": "t0:meta_description:/pricing",
+      "message": "No meta description, so the snippet is whatever Google decides to extract.",
+      "opportunity": 0.1,
+      "revenue_score": 0.43,
+      "severity": "moderate",
+      "tier": 0,
+      "tier_confidence": 1,
+      "tier_source": "declared_primary",
+      "url": "https://quillet.com/pricing",
+      "verdict": "finding"
+    },
+    {
+      "check": "orphan",
+      "confidence": 0.5,
+      "effort_hours": 1,
+      "evidence": {
+        "crawl_coverage": 1,
+        "inbound_internal_links": 0
+      },
+      "id": "t3:orphan:/blog/old-migration-guide",
+      "message": "No internal links point at this page.",
+      "opportunity": 0.24,
+      "revenue_score": 0.1,
+      "severity": "moderate",
+      "tier": 3,
+      "tier_confidence": 0.5,
+      "tier_source": "query_intent",
+      "url": "https://quillet.com/blog/old-migration-guide",
+      "verdict": "finding"
+    },
+    {
+      "check": "h1",
+      "confidence": 0.5,
+      "effort_hours": 0.5,
+      "evidence": {
+        "h1_count": 0
+      },
+      "id": "t3:h1:/blog/old-migration-guide",
+      "message": "No H1.",
+      "opportunity": 0.24,
+      "revenue_score": 0.08,
+      "severity": "minor",
+      "tier": 3,
+      "tier_confidence": 0.5,
+      "tier_source": "query_intent",
+      "url": "https://quillet.com/blog/old-migration-guide",
+      "verdict": "finding"
+    }
+  ],
+  "generated_at": "2026-06-15T09:00:00Z",
+  "suspicions": [
+    {
+      "check": "schema",
+      "confidence": 0.9,
+      "confirm_with": "Confirm an eligible schema type and a search-result benefit before implementing markup.",
+      "effort_hours": 1,
+      "evidence": {
+        "schema_types": []
+      },
+      "id": "t0:schema:/use-cases/contract-review",
+      "message": "No structured data is present.",
+      "opportunity": 78.78,
+      "revenue_score": 167.61,
+      "severity": "moderate",
+      "tier": 0,
+      "tier_confidence": 0.9,
+      "tier_source": "ga4_key_event",
+      "url": "https://quillet.com/use-cases/contract-review",
+      "verdict": "suspicion"
+    },
+    {
+      "check": "schema",
+      "confidence": 0.9,
+      "confirm_with": "Confirm an eligible schema type and a search-result benefit before implementing markup.",
+      "effort_hours": 1,
+      "evidence": {
+        "schema_types": []
+      },
+      "id": "t0:schema:/demo",
+      "message": "No structured data is present.",
+      "opportunity": 1,
+      "revenue_score": 2.13,
+      "severity": "moderate",
+      "tier": 0,
+      "tier_confidence": 0.9,
+      "tier_source": "ga4_key_event",
+      "url": "https://quillet.com/demo",
+      "verdict": "suspicion"
+    },
+    {
+      "check": "thin",
+      "confidence": 0.9,
+      "confirm_with": "Compare required buyer questions and live SERP coverage before adding copy. Word count alone is not a defect.",
+      "effort_hours": 3,
+      "evidence": {
+        "word_count": 210
+      },
+      "id": "t0:thin:/demo",
+      "message": "210 words on a tier 0 page.",
+      "opportunity": 1,
+      "revenue_score": 0.71,
+      "severity": "moderate",
+      "tier": 0,
+      "tier_confidence": 0.9,
+      "tier_source": "ga4_key_event",
+      "url": "https://quillet.com/demo",
+      "verdict": "suspicion"
+    },
+    {
+      "check": "schema",
+      "confidence": 1,
+      "confirm_with": "Confirm an eligible schema type and a search-result benefit before implementing markup.",
+      "effort_hours": 1,
+      "evidence": {
+        "schema_types": []
+      },
+      "id": "t0:schema:/pricing",
+      "message": "No structured data is present.",
+      "opportunity": 0.1,
+      "revenue_score": 0.21,
+      "severity": "moderate",
+      "tier": 0,
+      "tier_confidence": 1,
+      "tier_source": "declared_primary",
+      "url": "https://quillet.com/pricing",
+      "verdict": "suspicion"
+    }
+  ],
   "tier_distribution": {
     "0": 3,
     "1": 0,
     "2": 1,
     "3": 1,
     "4": 1
-  },
-  "coverage": {
-    "discovered": 6,
-    "fetched": 6,
-    "budget_exhausted": false,
-    "coverage_gap": 0
-  },
-  "findings": [
-    {
-      "id": "t0:schema:/use-cases/contract-review",
-      "check": "schema",
-      "url": "https://quillet.com/use-cases/contract-review",
-      "tier": 0,
-      "tier_source": "ga4_key_event",
-      "tier_confidence": 0.9,
-      "severity": "moderate",
-      "effort_hours": 1,
-      "opportunity": 78.78,
-      "revenue_score": 167.61,
-      "confidence": 0.9,
-      "evidence": {
-        "schema_types": []
-      },
-      "message": "No structured data on a page buyers compare on.",
-      "verdict": "finding"
-    },
-    {
-      "id": "t0:noindex:/demo",
-      "check": "noindex",
-      "url": "https://quillet.com/demo",
-      "tier": 0,
-      "tier_source": "ga4_key_event",
-      "tier_confidence": 0.9,
-      "severity": "blocking",
-      "effort_hours": 0.5,
-      "opportunity": 1,
-      "revenue_score": 10.64,
-      "confidence": 0.9,
-      "evidence": {
-        "robots_meta": "noindex, follow",
-        "inbound_internal_links": 3
-      },
-      "message": "Excluded from search by a robots meta tag: \"noindex, follow\".",
-      "verdict": "finding"
-    },
-    {
-      "id": "t0:schema:/demo",
-      "check": "schema",
-      "url": "https://quillet.com/demo",
-      "tier": 0,
-      "tier_source": "ga4_key_event",
-      "tier_confidence": 0.9,
-      "severity": "moderate",
-      "effort_hours": 1,
-      "opportunity": 1,
-      "revenue_score": 2.13,
-      "confidence": 0.9,
-      "evidence": {
-        "schema_types": []
-      },
-      "message": "No structured data on a page buyers compare on.",
-      "verdict": "finding"
-    },
-    {
-      "id": "t0:thin:/demo",
-      "check": "thin",
-      "url": "https://quillet.com/demo",
-      "tier": 0,
-      "tier_source": "ga4_key_event",
-      "tier_confidence": 0.9,
-      "severity": "moderate",
-      "effort_hours": 3,
-      "opportunity": 1,
-      "revenue_score": 0.71,
-      "confidence": 0.9,
-      "evidence": {
-        "word_count": 210
-      },
-      "message": "210 words on a tier 0 page.",
-      "verdict": "finding"
-    },
-    {
-      "id": "t0:meta_description:/pricing",
-      "check": "meta_description",
-      "url": "https://quillet.com/pricing",
-      "tier": 0,
-      "tier_source": "declared_primary",
-      "tier_confidence": 1,
-      "severity": "moderate",
-      "effort_hours": 0.5,
-      "opportunity": 0.1,
-      "revenue_score": 0.43,
-      "confidence": 1,
-      "evidence": {
-        "meta_description": null
-      },
-      "message": "No meta description, so the snippet is whatever Google decides to extract.",
-      "verdict": "finding"
-    },
-    {
-      "id": "t0:schema:/pricing",
-      "check": "schema",
-      "url": "https://quillet.com/pricing",
-      "tier": 0,
-      "tier_source": "declared_primary",
-      "tier_confidence": 1,
-      "severity": "moderate",
-      "effort_hours": 1,
-      "opportunity": 0.1,
-      "revenue_score": 0.21,
-      "confidence": 1,
-      "evidence": {
-        "schema_types": []
-      },
-      "message": "No structured data on a page buyers compare on.",
-      "verdict": "finding"
-    },
-    {
-      "id": "t3:orphan:/blog/old-migration-guide",
-      "check": "orphan",
-      "url": "https://quillet.com/blog/old-migration-guide",
-      "tier": 3,
-      "tier_source": "query_intent",
-      "tier_confidence": 0.5,
-      "severity": "moderate",
-      "effort_hours": 1,
-      "opportunity": 0.24,
-      "revenue_score": 0.1,
-      "confidence": 0.5,
-      "evidence": {
-        "inbound_internal_links": 0,
-        "crawl_coverage": 1
-      },
-      "message": "No internal links point at this page.",
-      "verdict": "finding"
-    },
-    {
-      "id": "t3:h1:/blog/old-migration-guide",
-      "check": "h1",
-      "url": "https://quillet.com/blog/old-migration-guide",
-      "tier": 3,
-      "tier_source": "query_intent",
-      "tier_confidence": 0.5,
-      "severity": "minor",
-      "effort_hours": 0.5,
-      "opportunity": 0.24,
-      "revenue_score": 0.08,
-      "confidence": 0.5,
-      "evidence": {
-        "h1_count": 0
-      },
-      "message": "No H1.",
-      "verdict": "finding"
-    }
-  ],
-  "suspicions": []
+  }
 }

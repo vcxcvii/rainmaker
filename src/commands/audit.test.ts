@@ -22,3 +22,13 @@ test('no Tier 1 is called out as the gap it is, not left for the user to spot', 
   assert.match(output, /No Tier 1 pages/);
   assert.doesNotMatch(output, /No Tier 0 pages/);
 });
+
+test('a partial crawl never turns absence into a site-wide claim', () => {
+  const output = formatTierDistribution(
+    { '0': 1, '1': 0, '2': 13, '3': 6, '4': 0 },
+    20,
+    false,
+  );
+  assert.match(output, /partial crawl/i);
+  assert.doesNotMatch(output, /usually worth more than any single fix/i);
+});
