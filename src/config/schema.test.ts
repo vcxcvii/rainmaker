@@ -46,6 +46,12 @@ test('a site-only scaffold is auditable before the assistant discovers business 
   assert.deepEqual(problems, []);
 });
 
+test('supports local services and ecommerce without pretending they are sales-led', () => {
+  for (const revenue_model of ['local-services', 'ecommerce']) {
+    assert.deepEqual(validateConfig({ ...valid, revenue_model }), []);
+  }
+});
+
 test('empty or non-object input does not throw', () => {
   assert.equal(validateConfig(null).length, 1);
   assert.equal(validateConfig('nope').length, 1);

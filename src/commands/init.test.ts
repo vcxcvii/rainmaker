@@ -11,6 +11,7 @@ import {
 
 test('the CLI asks only for the site and leaves business discovery to conversation', () => {
   assert.deepEqual(interactivePromptFields(), ['site']);
+  assert.equal(INIT_FIELDS.find((field) => field.flag === 'revenue-model')?.default, 'unknown');
 });
 
 test('only site is required, so the rest can be omitted', () => {

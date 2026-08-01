@@ -4,7 +4,8 @@ import { createInterface } from 'node:readline/promises';
 import { stdin, stdout } from 'node:process';
 import { CONFIG_FILENAME } from '../config/load.js';
 import { REVENUE_MODELS, type RevenueModel } from '../config/schema.js';
-import { installSkills, writeAgentsDoc, writeRainmakerDoc } from '../install/harness.js';
+import { installProject } from './install.js';
+import { runContext } from './context.js';
 
 /** Parses `--key value` and `--key=value` into a flat map. */
 function parseFlags(argv: string[]): Record<string, string> {
@@ -56,7 +57,7 @@ export const INIT_FIELDS: InitField[] = [
   {
     flag: 'revenue-model',
     question: 'Revenue model',
-    default: 'sales-led',
+    default: 'unknown',
     example: REVENUE_MODELS.join('|'),
     note: `Revenue model: ${REVENUE_MODELS.join(' | ')}`,
   },
@@ -269,27 +270,24 @@ export async function runInit(argv: string[]): Promise<number> {
 
     writeFileSync(path, yaml, 'utf8');
 
+    const contextResult = existsSync(resolve(dir, 'context', 'business.md'))
+      ? 0
+      : runContext(['--init']);
+    if (contextResult !== 0) return contextResult;
+
     // Any assistant, not just Claude Code. Skipped with --no-skills for
     // callers that manage their own skill installation.
     const installReport: string[] = [];
     if (flags['no-skills'] === undefined) {
       try {
-        const { installed, targets } = installSkills(dir);
-        writeRainmakerDoc(dir, {
-          site: normalisedSite,
-          hasPrimaryConversion: primary.length > 0,
-        });
-        const doc = writeAgentsDoc(dir, {
-          site: normalisedSite,
-          hasPrimaryConversion: primary.length > 0,
-        });
+        const report = installProject(dir);
         installReport.push(
           '',
-          `Installed ${installed} skills into ${targets.map((target) => resolve(target)).join(' and ')}`,
+          `Installed ${report.installed} skills into ${report.targets.map((target) => resolve(target)).join(' and ')}`,
           'Wrote RAINMAKER.md',
-          doc === 'written'
+          report.agents === 'written'
             ? 'Wrote AGENTS.md'
-            : doc === 'updated'
+            : report.agents === 'updated'
               ? 'Updated AGENTS.md without replacing existing instructions.'
               : 'AGENTS.md already points at RAINMAKER.md.',
           'Your current assistant is the interactive interface. No model API key is needed.',

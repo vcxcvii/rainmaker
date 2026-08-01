@@ -3,19 +3,7 @@ import { mkdtempSync, readFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { test } from 'node:test';
-import {
-  chooseFetchProvider,
-  createCrawlProvider,
-  writeSourceSnapshots,
-  type SourceSnapshots,
-} from './fetch.js';
-
-test('measurement fetch also keeps ambient paid-provider keys dormant', () => {
-  assert.equal(chooseFetchProvider([], 'firecrawl'), 'builtin');
-  assert.equal(chooseFetchProvider(['--provider', 'firecrawl'], 'builtin'), 'firecrawl');
-  assert.equal(createCrawlProvider('builtin', { FIRECRAWL_API_KEY: 'secret' })?.name, 'builtin');
-  assert.equal(createCrawlProvider('firecrawl', {})?.name, undefined);
-});
+import { writeSourceSnapshots, type SourceSnapshots } from './fetch.js';
 
 test('fetch all fixture contract writes four valid snapshot files', () => {
   const dir = mkdtempSync(join(tmpdir(), 'rainmaker-fetch-'));

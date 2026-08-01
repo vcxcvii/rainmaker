@@ -3,10 +3,7 @@ import { existsSync, mkdirSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { loadConfig, CONFIG_FILENAME } from '../config/load.js';
 import { fetchCrawl } from '../fetch/crawl.js';
-import { createFirecrawlProvider } from '../providers/firecrawl.js';
-import { createContextDevProvider } from '../providers/contextdev.js';
-import { createBuiltinProvider } from '../providers/builtin.js';
-import type { CrawlProviderName } from '../config/schema.js';
+import { selectCrawlProvider } from '../providers/select.js';
 import { formatProjection, projectCrawlCost } from '../agent/costguard.js';
 import type { CrawlSnapshot, Ga4Snapshot, GscSnapshot } from '../fetch/types.js';
 import { coverageSet, runChecks } from '../analyze/site-checks.js';
@@ -48,21 +45,6 @@ function flagValue(args: string[], name: string): string | undefined {
   return index >= 0 ? args[index + 1] : undefined;
 }
 
-export function chooseCrawlProvider(input: {
-  configured?: CrawlProviderName;
-  cli?: string;
-  env: NodeJS.ProcessEnv;
-}): CrawlProviderName {
-  // Old releases wrote `provider: firecrawl` by default. A config value can
-  // therefore be legacy state, not consent. Only an explicit CLI flag may
-  // activate a paid or quota-backed provider.
-  const requested = input.cli ?? 'builtin';
-  if (!['builtin', 'firecrawl', 'contextdev'].includes(requested)) {
-    throw new Error('--provider must be builtin, firecrawl, or contextdev');
-  }
-  return requested as CrawlProviderName;
-}
-
 export async function runAudit(args: string[]): Promise<number> {
   const config = loadConfig();
   const now = new Date().toISOString();
@@ -85,33 +67,14 @@ export async function runAudit(args: string[]): Promise<number> {
     }
   } else {
     const maxUrls = Number(flagValue(args, '--max-urls') ?? config.crawl?.max_urls ?? 100);
-    const wanted = chooseCrawlProvider({
-      configured: config.crawl?.provider,
-      cli: flagValue(args, '--provider'),
-      env: process.env,
-    });
-    const firecrawlKey = process.env.FIRECRAWL_API_KEY;
-    const contextKey = process.env.CONTEXT_DEV_API_KEY;
-
-    // Invariant 7: no credential is required for a first audit. Explicitly
-    // selecting a provider without its key degrades to the built-in crawler.
-    let provider;
-    if (wanted === 'contextdev' && contextKey) {
-      provider = createContextDevProvider({ apiKey: contextKey });
-    } else if (wanted === 'firecrawl' && firecrawlKey) {
-      provider = createFirecrawlProvider({ apiKey: firecrawlKey });
-    } else if (wanted === 'builtin') {
-      provider = createBuiltinProvider();
-    } else {
-      console.log(
-        `No ${wanted === 'contextdev' ? 'CONTEXT_DEV_API_KEY' : 'FIRECRAWL_API_KEY'} set for explicit ` +
-          `${wanted} selection. Falling back to the built-in crawler: slower, no JavaScript rendering.`,
-      );
-      provider = createBuiltinProvider();
+    const selection = selectCrawlProvider(args, process.env);
+    if (!selection.provider) {
+      console.error(`${selection.missingCredential} is required for --provider ${selection.requested}.`);
+      return 1;
     }
-
-    if (wanted !== 'builtin' && provider.name === wanted) {
-      console.log(`Using explicitly selected ${wanted} provider.`);
+    const provider = selection.provider;
+    if (selection.requested !== 'builtin') {
+      console.log(`Using explicitly selected ${selection.requested} provider.`);
     }
 
     const remainingCredits = await provider.remainingCredits();

@@ -20,7 +20,8 @@ export async function refreshForRoutine(deps: {
   const providerArgs = providerIndex >= 0 && args[providerIndex + 1]
     ? ['--provider', args[providerIndex + 1]]
     : [];
-  const fetched = await deps.fetch(['--source', 'all', ...providerArgs]);
+  const budgetArgs = args.includes('--allow-over-budget') ? ['--allow-over-budget'] : [];
+  const fetched = await deps.fetch(['--source', 'all', ...providerArgs, ...budgetArgs]);
   if (fetched !== 0) return fetched;
   return deps.audit(['--refresh', '--json']);
 }

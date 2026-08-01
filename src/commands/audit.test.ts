@@ -1,24 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { chooseCrawlProvider, formatTierDistribution } from './audit.js';
-
-test('an ambient Firecrawl key never opts the user into paid crawling', () => {
-  assert.equal(
-    chooseCrawlProvider({ configured: undefined, cli: undefined, env: { FIRECRAWL_API_KEY: 'secret' } }),
-    'builtin',
-  );
-});
-
-test('a paid crawl provider is used only after explicit CLI selection', () => {
-  assert.equal(
-    chooseCrawlProvider({ configured: 'builtin', cli: 'firecrawl', env: { FIRECRAWL_API_KEY: 'secret' } }),
-    'firecrawl',
-  );
-  assert.equal(
-    chooseCrawlProvider({ configured: 'firecrawl', cli: undefined, env: { FIRECRAWL_API_KEY: 'secret' } }),
-    'builtin',
-  );
-});
+import { formatTierDistribution } from './audit.js';
 
 test('every tier is labelled, because the numbers alone mean nothing to a new user', () => {
   const output = formatTierDistribution({ '0': 1, '1': 2, '2': 13, '3': 6, '4': 0 }, 22);

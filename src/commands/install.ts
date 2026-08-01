@@ -16,7 +16,7 @@ export function installProject(dir = process.cwd()): InstallReport {
   };
   const skills = installSkills(dir);
   const rainmaker = writeRainmakerDoc(dir, input);
-  const agents = writeAgentsDoc(dir, input);
+  const agents = writeAgentsDoc(dir);
   return { installed: skills.installed, targets: skills.targets, agents, rainmaker };
 }
 

@@ -37,3 +37,24 @@
 - The cost guard's budget decision moved out of fetchCrawl and into the CLI layer (src/agent/costguard.ts, called from commands/audit.ts). fetchCrawl now only does the crawl; printing a projection and honouring --allow-over-budget is a caller concern, not a library concern, and a CLI command needs the decision before committing to a crawl, not buried inside the call that does it.
 - rainmaker agent only requires a model key at the point an interview is actually about to run, not upfront. audit, the first-run effort/impact render, and the cadence recommendation are all deterministic and credential-free; gating the whole command on a model key blocked a returning user who has already been interviewed from ever reaching them.
 - Fixed 14 skill files and 4 code paths (issue titles, generated meta descriptions, blueprint CLI output) that used a literal em-dash. The core spec forbids it in skill prose and generated content explicitly; PLAN.md is left as-is since it is superseded rationale, same treatment as spec/handoff-v1.md.
+
+## 2026-08-01
+
+- Provider keys express availability, never consent. The built-in crawler is
+  always selected unless the current CLI invocation contains `--provider
+  firecrawl` or `--provider contextdev`. This supersedes the 2026-07-30
+  automatic-fallback decision because old configs wrote Firecrawl as their
+  default and could silently reactivate paid crawling.
+- `rainmaker serp` requires `--allow-paid`. Every crawl entry path uses the
+  shared provider selection and cost guard, including `fetch` and `routine`.
+- There is no honest universal LLM plugin API. The portable surface is
+  `RAINMAKER.md`, an `AGENTS.md` pointer, `.agents/skills/`,
+  `.claude/skills/`, and the deterministic CLI. Native host plugins remain
+  optional adapters.
+- `init` asks only for the site, creates stub context immediately, and leaves
+  business discovery to the host conversation after the first crawl. Its
+  revenue model is `unknown` until confirmed instead of silently assuming
+  every site is sales-led.
+- Word count and missing schema are suspicions until corroborated. Machine
+  endpoints are excluded from content checks, and partial crawls cannot prove
+  that a revenue tier is absent site-wide.

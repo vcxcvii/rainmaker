@@ -6,10 +6,13 @@
  */
 
 export const REVENUE_MODELS = [
+  'unknown',
   'self-serve',
   'sales-led',
   'plg',
   'marketplace',
+  'local-services',
+  'ecommerce',
   'ads',
   'newsletter',
   'consulting',
@@ -59,7 +62,7 @@ export interface RainmakerConfig {
     max_urls?: number;
     /** Paths to skip entirely. */
     exclude?: string[];
-    /** Legacy preference only. Paid providers must still be selected explicitly on each CLI run. */
+    /** Legacy metadata only. Paid providers must be selected explicitly on each CLI run. */
     provider?: CrawlProviderName;
   };
 }

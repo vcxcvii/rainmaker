@@ -32,7 +32,7 @@ test('routine stops when no fresh snapshot can be written', async () => {
   assert.equal(audited, false);
 });
 
-test('routine forwards an explicitly approved provider to the fresh fetch', async () => {
+test('routine forwards explicit provider and budget approval to the fresh fetch', async () => {
   const calls: string[][] = [];
   await refreshForRoutine(
     {
@@ -42,7 +42,13 @@ test('routine forwards an explicitly approved provider to the fresh fetch', asyn
       },
       audit: async () => 0,
     },
-    ['--provider', 'firecrawl'],
+    ['--provider', 'firecrawl', '--allow-over-budget'],
   );
-  assert.deepEqual(calls[0], ['--source', 'all', '--provider', 'firecrawl']);
+  assert.deepEqual(calls[0], [
+    '--source',
+    'all',
+    '--provider',
+    'firecrawl',
+    '--allow-over-budget',
+  ]);
 });

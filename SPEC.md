@@ -168,7 +168,7 @@ Blocks 1 to 3 complete. Each block ends with a commit; do not start one until th
 | 18 | `check-before-i-publish`, `put-it-on-autopilot`, issue filing in revenue order | all preflight gates fire on a bad fixture brief; `routine` twice in one day files zero duplicates; `shipped` appended from a trailer fixture |
 | 19 | `show-me-progress`, `what-actually-worked`, 6 windows | all five spine sections; over-long window refused with its availability date; "What did nothing" non-empty on a fixture with a failed intervention |
 | 20 | `what-changed-in-search` | three stages; source tier on every claim; control check present; `algo_update` written |
-| 21 | npx packaging, README, `data.example/` | `npm pack`, clean install, `rainmaker init` then `context --init` then `audit` succeeds with zero credentials |
+| 21 | npx packaging, README, `data.example/` | `npm pack`, clean install, `rainmaker init` then `audit` succeeds with zero credentials; init creates stub context |
 
 ---
 
