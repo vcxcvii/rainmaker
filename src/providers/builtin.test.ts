@@ -60,6 +60,52 @@ test('the builtin provider excludes matching paths', async () => {
   assert.ok(!result.pages.some((page) => page.url.endsWith('/about')));
 });
 
+test('linked assets never enter the queue, so they never spend crawl budget', async () => {
+  const requested: string[] = [];
+  const withAssets: typeof fetch = (async (input: RequestInfo | URL) => {
+    const url = typeof input === 'string' ? input : input.toString();
+    requested.push(url);
+    if (url === 'https://example.com/') {
+      return new Response(
+        `<html><head><title>Home</title></head><body>
+          <a href="/assets/hero.webp">Image</a>
+          <a href="/api/site.json">Data</a>
+          <a href="/llms.txt">llms</a>
+          <a href="/pricing">Pricing</a>
+        </body></html>`,
+        { status: 200, headers: { 'content-type': 'text/html' } },
+      );
+    }
+    return fakeFetcher()(input as never);
+  }) as typeof fetch;
+
+  const provider = createBuiltinProvider({ fetcher: withAssets, pause: async () => {} });
+  const result = await provider.crawl({ site: 'https://example.com/', maxUrls: 10, exclude: [] });
+
+  assert.deepEqual(requested, ['https://example.com/', 'https://example.com/pricing']);
+  assert.equal(result.pages.length, 2);
+  assert.equal(result.urlsDiscovered, 2, 'assets are not discovered pages either');
+});
+
+test('a URL that answers with a non-HTML body is not recorded as a page', async () => {
+  const jsonEndpoint: typeof fetch = (async (input: RequestInfo | URL) => {
+    const url = typeof input === 'string' ? input : input.toString();
+    if (url === 'https://example.com/') {
+      return new Response(
+        `<html><head><title>Home</title></head><body><a href="/data">Data</a></body></html>`,
+        { status: 200, headers: { 'content-type': 'text/html' } },
+      );
+    }
+    return new Response('{"ok":true}', { status: 200, headers: { 'content-type': 'application/json' } });
+  }) as typeof fetch;
+
+  const provider = createBuiltinProvider({ fetcher: jsonEndpoint, pause: async () => {} });
+  const result = await provider.crawl({ site: 'https://example.com/', maxUrls: 10, exclude: [] });
+
+  assert.deepEqual(result.pages.map((page) => page.url), ['https://example.com/']);
+  assert.equal(result.urlsDiscovered, 1, 'a skipped body does not open a coverage gap');
+});
+
 test('an unreachable URL is skipped rather than aborting the whole crawl', async () => {
   const flaky: typeof fetch = (async (input: RequestInfo | URL) => {
     const url = typeof input === 'string' ? input : input.toString();

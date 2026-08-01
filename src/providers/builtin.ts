@@ -1,3 +1,4 @@
+import { isContentDocument, isHtmlContentType } from '../util/documents.js';
 import type { CrawlProvider, ProviderCrawlResult, ProviderPage } from './types.js';
 
 /**
@@ -39,8 +40,16 @@ export function createBuiltinProvider(options: {
           continue; // unreachable URL: skip rather than abort the whole crawl
         }
 
-        const html = response.headers.get('content-type')?.includes('html') ? await response.text() : '';
-        const links = html ? extractLinks(html, url, origin) : [];
+        // A URL that answers with an image or JSON is not a page. Recording it
+        // would put a document with no title into the analysis, and every
+        // metadata check would then fire on it.
+        if (!isHtmlContentType(response.headers.get('content-type'))) {
+          seen.delete(normalise(url));
+          continue;
+        }
+
+        const html = await response.text();
+        const links = extractLinks(html, url, origin);
 
         pages.push({
           url,
@@ -51,7 +60,9 @@ export function createBuiltinProvider(options: {
 
         for (const link of links) {
           const key = normalise(link);
-          if (seen.has(key) || isExcluded(new URL(link).pathname)) continue;
+          // Assets are skipped before the queue, not after the fetch: on a
+          // 100-URL budget, ten images are ten pages never crawled.
+          if (seen.has(key) || !isContentDocument(link) || isExcluded(new URL(link).pathname)) continue;
           seen.add(key);
           queue.push(link);
         }

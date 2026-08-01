@@ -140,6 +140,24 @@ The answer is stored as `crawl.provider` in `rainmaker.config.yml` and honoured 
 
 Run `rainmaker keys` to see which credentials are set, what each unlocks, and whether it remains dormant; add `--balances` to check live provider credits. Rainmaker never prints secret contents.
 
+### Connecting Search Console and GA4
+
+Both use one Google service account: a robot account you create once inside your own Google Cloud project. It reads only. The scopes are `webmasters.readonly` and `analytics.readonly`, so it cannot change settings, publish, or delete anything.
+
+`rainmaker doctor` prints the address you need and the properties it can already see:
+
+```text
+GSC        ok       2 site(s), gsc_site_url not set: sc-domain:example.com
+GA4        ok       ga4_property_id not set: 531203437 (example.com)
+
+Service account: rainmaker@your-project.iam.gserviceaccount.com
+Grant it Full access in Search Console and Viewer access in GA4 to close a MISSING row above.
+```
+
+Paste that address into Search Console under Settings, Users and permissions, as Full; and into GA4 under Admin, Property access management, as Viewer. Then copy the site URL and property ID that `doctor` listed into `gsc_site_url` and `ga4_property_id` in your config.
+
+A site appears to the service account only when you grant it, one property at a time. Nothing is connected automatically, and the account cannot add itself anywhere. The address is an identifier and is safe to share; the private key in the JSON file beside it is not.
+
 ## Example questions
 
 - “Which three fixes are closest to revenue?”

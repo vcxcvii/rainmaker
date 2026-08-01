@@ -135,7 +135,18 @@ export function createDefaultCapabilityClients(options: {
         });
         if (!hasConfiguredSite) throw new Error(`GSC cannot access ${config.gsc_site_url}`);
       }
-      return config?.gsc_site_url ?? `${count} site(s)`;
+      if (config?.gsc_site_url) return config.gsc_site_url;
+      // Naming the accessible properties is the difference between "GSC works"
+      // and knowing what to write into gsc_site_url. A count makes the reader
+      // guess between sc-domain: and https:// forms.
+      const named = Array.isArray(entries)
+        ? entries
+            .map((entry) => asRecord(entry)?.siteUrl)
+            .filter((siteUrl): siteUrl is string => typeof siteUrl === 'string')
+            .slice(0, 5)
+        : [];
+      if (named.length === 0) return `${count} site(s)`;
+      return `${count} site(s), gsc_site_url not set: ${named.join(', ')}`;
     });
 
     if (config?.ga4_property_id) {
@@ -156,6 +167,39 @@ export function createDefaultCapabilityClients(options: {
         );
         await requireOk(response, 'GA4');
         return `property ${config.ga4_property_id}`;
+      });
+    } else {
+      // Without a property id there is nothing to report on, but the account
+      // can still say which properties it can see. Reporting "MISSING" when
+      // the credential is one config line away from working sends the reader
+      // to the wrong problem.
+      clients.ga4 = googleClient(provider, GOOGLE_SCOPES.ga4, async (token) => {
+        const response = await fetcher(
+          'https://analyticsadmin.googleapis.com/v1beta/accountSummaries?pageSize=50',
+          { headers: withBearer(token) },
+        );
+        const payload = await requireOk(response, 'GA4');
+        const summaries = Array.isArray(payload?.accountSummaries) ? payload.accountSummaries : [];
+        const properties = summaries
+          .flatMap((summary) => {
+            const record = asRecord(summary);
+            return Array.isArray(record?.propertySummaries) ? record.propertySummaries : [];
+          })
+          .map((entry) => {
+            const record = asRecord(entry);
+            const property = typeof record?.property === 'string' ? record.property : null;
+            const name = typeof record?.displayName === 'string' ? record.displayName : null;
+            if (!property) return null;
+            const id = property.replace(/^properties\//, '');
+            return name ? `${id} (${name})` : id;
+          })
+          .filter((entry): entry is string => entry !== null)
+          .slice(0, 5);
+
+        if (properties.length === 0) {
+          throw new Error('the service account can see no GA4 properties; grant it Viewer access');
+        }
+        return `ga4_property_id not set: ${properties.join(', ')}`;
       });
     }
   }

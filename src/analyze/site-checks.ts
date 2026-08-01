@@ -1,5 +1,6 @@
 import type { RainmakerConfig } from '../config/schema.js';
 import type { CrawlPage, CrawlSnapshot, GscSnapshot } from '../fetch/types.js';
+import { isContentDocument } from '../util/documents.js';
 import { effortFor } from './effort.js';
 import {
   combineConfidence,
@@ -21,18 +22,6 @@ import { findingId, normalisePath, type Check, type Finding, type Severity, type
  */
 
 const CONFIRMATION_WORDS = ['thank-you', 'thankyou', 'confirmation', 'success', 'booked', 'received'];
-const NON_CONTENT_PATHS = [
-  /(^|\/)sitemap(?:[-_.].*)?\.xml$/i,
-  /(^|\/)robots\.txt$/i,
-  /(^|\/)feed(?:\.xml|\/)?$/i,
-  /(^|\/)rss(?:\.xml|\/)?$/i,
-  /(^|\/)atom\.xml$/i,
-];
-
-function isContentDocument(url: string): boolean {
-  const path = new URL(url).pathname;
-  return !NON_CONTENT_PATHS.some((pattern) => pattern.test(path));
-}
 
 export interface CheckInput {
   config: RainmakerConfig;

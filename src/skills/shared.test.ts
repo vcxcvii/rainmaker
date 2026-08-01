@@ -184,3 +184,55 @@ test('skill frontmatter states trigger phrases a real user would type', () => {
     );
   }
 });
+
+/**
+ * The orchestrator's hard boundaries, as behaviours rather than wording.
+ *
+ * Each entry is here because it was observed going wrong, or because the rule
+ * existed somewhere the model never reads. A boundary that lives only in
+ * README.md or in the generated RAINMAKER.md is not a boundary: the model
+ * reads this file.
+ */
+// SKILL.md is hard-wrapped, so every pattern matches across a line break.
+const HARD_BOUNDARIES: Array<[string, RegExp]> = [
+  ['rewriting its own source mid-run', /Never\s+modify\s+Rainmaker's\s+own\s+source/],
+  ['editing the site while diagnosing', /Never\s+edit\s+the\s+user's\s+site\s+files\s+while\s+diagnosing/],
+  ['shipping on behalf of the user', /Never\s+commit,\s+push,\s+open\s+a\s+pull\s+request,\s+deploy,\s+publish,\s+post,\s+or\s+send/],
+  ['hand-writing measurements', /Never\s+write\s+into\s+`data\/`\s+by\s+hand/],
+  ['estimating what the CLI produces', /Never\s+estimate\s+a\s+number\s+the\s+CLI\s+produces/],
+  ['spending without consent', /never\s+pass\s+`--allow-paid`\s+or\s+`--allow-over-budget`/],
+  ['a conversational interview', /at\s+most\s+one\s+CLI\s+call\s+and\s+one\s+question\s+per\s+turn/],
+];
+
+test('the orchestrator states every hard boundary it has been taught', () => {
+  const body = read(join(SKILLS, 'rainmaker', 'SKILL.md'));
+
+  for (const [behaviour, pattern] of HARD_BOUNDARIES) {
+    assert.match(body, pattern, `rainmaker/SKILL.md no longer forbids ${behaviour}`);
+  }
+});
+
+test('the orchestrator hands the user the service account address', () => {
+  const body = read(join(SKILLS, 'rainmaker', 'SKILL.md'));
+
+  // Finding this address used to mean reading a credentials file by hand, so
+  // the skill has to name the command that prints it and say where it goes.
+  assert.match(body, /rainmaker doctor/);
+  assert.match(body, /prints\s+its\s+email\s+address/);
+  assert.match(body, /identifier,\s+not\s+a\s+secret/);
+  // And must still refuse the private key sitting beside it.
+  assert.match(body, /never\s+read\s+it,\s+never\s+print\s+it/);
+});
+
+test('degraded measurement is explained before the interview, not after', () => {
+  const body = read(join(SKILLS, 'rainmaker', 'SKILL.md'));
+  const doctorStep = body.indexOf('rainmaker doctor');
+  const interviewStep = body.indexOf('know-my-buyer');
+
+  assert.ok(doctorStep > 0 && interviewStep > 0, 'both steps must exist');
+  assert.ok(
+    doctorStep < interviewStep,
+    'connections are settled before the interview, or the interview runs on flat scores',
+  );
+  assert.match(body, /falls\s+back\s+to\s+a\s+flat\s+value/);
+});

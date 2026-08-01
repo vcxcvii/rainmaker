@@ -1,5 +1,6 @@
 import { createHash } from 'node:crypto';
 import type { CrawlProvider, ProviderPage } from '../providers/types.js';
+import { isContentDocument } from '../util/documents.js';
 import type { CrawlPage, CrawlSnapshot } from './types.js';
 
 function stripHtml(value: string): string {
@@ -122,7 +123,10 @@ export async function fetchCrawl(options: {
     maxUrls: options.maxUrls,
     exclude: options.exclude,
   });
+  // Provider-agnostic, so a paid provider that returns an image or a JSON
+  // endpoint cannot put a titleless document into the snapshot either.
   const pages = result.pages
+    .filter((page) => isContentDocument(page.url))
     .map((page) => normalizePage(page, options.site))
     .sort((a, b) => a.url.localeCompare(b.url));
 

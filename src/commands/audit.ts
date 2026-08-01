@@ -39,6 +39,25 @@ function readJson<T>(path: string): T | null {
   return existsSync(path) ? (JSON.parse(readFileSync(path, 'utf8')) as T) : null;
 }
 
+/**
+ * The newest snapshot that actually contains this measurement, and where it
+ * came from.
+ *
+ * A crawl writes a new snapshot directory, so reading GA4 only from that
+ * directory throws away a `rainmaker fetch` run from minutes earlier and
+ * reports the capability as missing. Measurement and crawl are collected on
+ * different schedules by design; the audit has to look back for the most
+ * recent one rather than assume they landed together.
+ */
+export function readLatest<T>(name: 'gsc.json' | 'ga4.json'): { snapshot: T; from: string } | null {
+  if (!existsSync(SNAPSHOTS)) return null;
+  for (const entry of readdirSync(SNAPSHOTS).sort().reverse()) {
+    const snapshot = readJson<T>(join(SNAPSHOTS, entry, name));
+    if (snapshot) return { snapshot, from: entry };
+  }
+  return null;
+}
+
 function flagValue(args: string[], name: string): string | undefined {
   const index = args.indexOf(name);
   return index >= 0 ? args[index + 1] : undefined;
@@ -87,8 +106,20 @@ export async function runAudit(args: string[]): Promise<number> {
     console.log(`  ${crawl.urls_fetched} of ${crawl.urls_discovered} URLs fetched via ${crawl.provider}.`);
   }
 
-  const gsc = snapshotDir ? readJson<GscSnapshot>(join(snapshotDir, 'gsc.json')) : null;
-  const ga4 = snapshotDir ? readJson<Ga4Snapshot>(join(snapshotDir, 'ga4.json')) : null;
+  const gscSource = readLatest<GscSnapshot>('gsc.json');
+  const ga4Source = readLatest<Ga4Snapshot>('ga4.json');
+  const gsc = gscSource?.snapshot ?? null;
+  const ga4 = ga4Source?.snapshot ?? null;
+
+  const currentSnapshot = snapshotDir ? snapshotDir.split('/').pop() : null;
+  for (const [name, source] of [
+    ['Search Console', gscSource],
+    ['GA4', ga4Source],
+  ] as const) {
+    if (source && source.from !== currentSnapshot) {
+      console.log(`${name} data carried forward from snapshot ${source.from}. Run \`rainmaker fetch\` to refresh it.`);
+    }
+  }
 
   const tiers = tierAll({ config, pages: crawl!.pages, gsc, ga4 });
   const all = runChecks({ config, crawl: crawl!, gsc, tiers });

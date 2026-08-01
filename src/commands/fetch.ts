@@ -128,7 +128,10 @@ export async function runFetch(argv: string[]): Promise<number> {
   }
 
   await Promise.all(tasks);
-  const stamp = now.toISOString();
+  // Same stamp shape audit writes. Snapshot directories are ordered by sorting
+  // their names, and ':' sorts after '-', so a colon-stamped directory from
+  // 17:30 would sort as newer than a dash-stamped one from 17:33.
+  const stamp = now.toISOString().replace(/[:.]/g, '-');
   const dir = resolve(process.cwd(), 'data', 'snapshots', stamp);
   const written = writeSourceSnapshots(dir, snapshots);
   if (!written.length) {

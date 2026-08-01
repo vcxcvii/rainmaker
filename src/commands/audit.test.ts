@@ -1,6 +1,9 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { formatTierDistribution } from './audit.js';
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { formatTierDistribution, readLatest } from './audit.js';
 
 test('every tier is labelled, because the numbers alone mean nothing to a new user', () => {
   const output = formatTierDistribution({ '0': 1, '1': 2, '2': 13, '3': 6, '4': 0 }, 22);
@@ -31,4 +34,32 @@ test('a partial crawl never turns absence into a site-wide claim', () => {
   );
   assert.match(output, /partial crawl/i);
   assert.doesNotMatch(output, /usually worth more than any single fix/i);
+});
+
+test('a crawl does not discard measurement fetched into an earlier snapshot', () => {
+  const root = mkdtempSync(join(tmpdir(), 'rainmaker-audit-'));
+  const previous = process.cwd();
+  try {
+    const snapshots = join(root, 'data', 'snapshots');
+    // The measurement lands first, then a later crawl writes its own directory.
+    mkdirSync(join(snapshots, '2026-08-01T10-00-00-000Z'), { recursive: true });
+    mkdirSync(join(snapshots, '2026-08-01T11-00-00-000Z'), { recursive: true });
+    writeFileSync(
+      join(snapshots, '2026-08-01T10-00-00-000Z', 'ga4.json'),
+      JSON.stringify({ property_id: '123' }),
+    );
+    writeFileSync(
+      join(snapshots, '2026-08-01T11-00-00-000Z', 'crawl.json'),
+      JSON.stringify({ pages: [] }),
+    );
+
+    process.chdir(root);
+    const found = readLatest<{ property_id: string }>('ga4.json');
+    assert.equal(found?.snapshot.property_id, '123');
+    assert.equal(found?.from, '2026-08-01T10-00-00-000Z', 'the reader says where the data came from');
+    assert.equal(readLatest('gsc.json'), null, 'never fetched stays absent');
+  } finally {
+    process.chdir(previous);
+    rmSync(root, { recursive: true, force: true });
+  }
 });

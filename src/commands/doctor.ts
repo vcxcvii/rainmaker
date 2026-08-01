@@ -62,6 +62,24 @@ export function formatDoctor(results: CapabilityResult[]): string {
   return lines.join('\n');
 }
 
+/**
+ * The service account's own address, which is what a user has to paste into
+ * Search Console or GA4 to grant access. It is an identifier, not a secret:
+ * the private key in the same file is never read here and never printed.
+ * Without it the fix for "GSC cannot access this site" is "go find a string
+ * inside a credentials file", which is a worse instruction than it sounds.
+ */
+export function serviceAccountEmail(env: NodeJS.ProcessEnv = process.env): string | undefined {
+  const path = env.GOOGLE_APPLICATION_CREDENTIALS;
+  if (!path || !existsSync(path)) return undefined;
+  try {
+    const parsed = JSON.parse(readFileSync(path, 'utf8')) as { client_email?: unknown };
+    return typeof parsed.client_email === 'string' ? parsed.client_email : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
 export async function runDoctor(argv: string[]): Promise<number> {
   const json = argv.includes('--json');
   const configPath = resolve(process.cwd(), CONFIG_FILENAME);
@@ -71,6 +89,12 @@ export async function runDoctor(argv: string[]): Promise<number> {
 
   const skew = formatVersionSkew(cliVersion(), pluginVersion());
   console.log(json ? JSON.stringify(results, null, 2) : formatDoctor(results));
+
+  const account = serviceAccountEmail();
+  if (account && !json) {
+    console.log(`\nService account: ${account}`);
+    console.log('Grant it Full access in Search Console and Viewer access in GA4 to close a MISSING row above.');
+  }
   if (skew && !json) console.log(`\n${skew}`);
   return 0;
 }

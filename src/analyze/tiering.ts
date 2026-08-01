@@ -1,5 +1,6 @@
 import type { RainmakerConfig } from '../config/schema.js';
 import type { CrawlPage, Ga4Snapshot, GscSnapshot } from '../fetch/types.js';
+import { isContentDocument } from '../util/documents.js';
 import { normalisePath, type Tier } from './checks.js';
 import { classifyIntent, INTENT_TIER } from './intent.js';
 
@@ -260,6 +261,9 @@ export function tierAll(input: TieringInput): Map<string, TierAssignment> {
   const distances = tierZeroDistances(input.pages, input.config);
   const assignments = new Map<string, TierAssignment>();
   for (const page of input.pages) {
+    // An image is not a tier 3 page. Counting assets inflates the awareness
+    // tier and makes the distribution a reader is meant to act on a lie.
+    if (!isContentDocument(page.url)) continue;
     assignments.set(normalisePath(page.url), assignTier(page.url, input, distances));
   }
   return assignments;
