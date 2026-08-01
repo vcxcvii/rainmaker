@@ -3,7 +3,7 @@
   "name": "rainmaker",
   "displayName": "Rainmaker",
   "description": "Turns a website into a pipeline diagnosis, then works the fixes closest to revenue. Crawls, tiers every URL against where money changes hands, reads live SERPs before briefing anything, and holds a publish rate your site can actually get indexed.",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "author": {
     "name": "Varun Choraria",
     "url": "https://github.com/vcxcvii"

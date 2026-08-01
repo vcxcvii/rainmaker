@@ -4,9 +4,11 @@ import {
   INIT_FIELDS,
   describeInitFields,
   formatInitUsage,
+  homeDirectoryRefusal,
   interactivePromptFields,
   invocation,
   hostHandoff,
+  pointerLine,
   suspectPaths,
 } from './init.js';
 
@@ -17,6 +19,30 @@ test('init hands control to the current host model without launching the standal
   assert.match(handoff, /do not run `rainmaker agent`/i);
   assert.match(handoff, /you are the model/i);
   assert.match(handoff, /`rainmaker audit`/i);
+  // Names the skill, so the host resumes the workflow rather than treating
+  // init's output as the end of the job.
+  assert.match(handoff, /`rainmaker` skill/);
+});
+
+test('init refuses to scaffold into a home directory, and names the way out', () => {
+  const refusal = homeDirectoryRefusal('/Users/someone', '/Users/someone');
+  assert.ok(refusal);
+  assert.match(refusal, /home directory/);
+  assert.match(refusal, /--force/);
+  assert.match(refusal, /\.claude\/skills/);
+});
+
+test('any directory that is not home scaffolds without complaint', () => {
+  assert.equal(homeDirectoryRefusal('/Users/someone/sites/example', '/Users/someone'), undefined);
+  // Trailing separators and `.` segments still resolve to the same directory.
+  assert.ok(homeDirectoryRefusal('/Users/someone/', '/Users/someone'));
+  assert.ok(homeDirectoryRefusal('/Users/someone/.', '/Users/someone'));
+});
+
+test('one wording describes a steering file, whichever command wrote it', () => {
+  assert.equal(pointerLine('CLAUDE.md', 'written'), 'Wrote CLAUDE.md');
+  assert.match(pointerLine('AGENTS.md', 'updated'), /without replacing existing instructions/);
+  assert.match(pointerLine('AGENTS.md', 'kept'), /already points at RAINMAKER\.md/);
 });
 
 test('the CLI asks only for the site and leaves business discovery to conversation', () => {

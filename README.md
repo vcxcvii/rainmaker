@@ -8,17 +8,21 @@ Rainmaker crawls your website, connects problems to how the business makes money
 
 ## Quick start
 
-Run this inside your website project:
+Install the plugin for your assistant (see [Install options](#install-options)), open it in your website project, and say:
+
+```text
+run rainmaker
+```
+
+That is the whole setup. The `rainmaker` skill asks for your site URL, runs `init` itself, crawls, and opens the conversation from what it found. You do not run CLI commands by hand.
+
+If your assistant has no plugin support, set the project up first and then say the same thing:
 
 ```bash
 npx @vcxcvii/rainmaker init --site https://example.com
 ```
 
-Open Codex, Claude Code, or another compatible coding assistant in the same folder and say:
-
-```text
-run rainmaker
-```
+Run it in the directory for the site, not in your home directory — `init` writes configuration, `context/`, `data/` and skill copies into the working directory, and refuses a home directory without `--force`.
 
 Rainmaker will:
 
@@ -59,7 +63,7 @@ The tier feeds a deterministic score computed in code. The model cannot invent o
 
 ### Portable project install
 
-This is the broadest option. It installs one front-door `rainmaker` skill plus 26 decision skills into `.agents/skills/` and `.claude/skills/`. It also writes `RAINMAKER.md` and adds a managed pointer to `AGENTS.md` without replacing existing instructions.
+This is the broadest option. It installs one front-door `rainmaker` skill plus 26 decision skills into `.agents/skills/` and `.claude/skills/`. It also writes `RAINMAKER.md` and adds a managed pointer to both `AGENTS.md` and `CLAUDE.md` without replacing existing instructions — Claude Code loads `CLAUDE.md` and nothing else, so a pointer in `AGENTS.md` alone never reaches it.
 
 ```bash
 npx @vcxcvii/rainmaker init --site https://example.com
@@ -123,16 +127,18 @@ No credential is required for the first useful result.
 | Firecrawl or context.dev | Alternative crawling for sites that need it | Optional and approval-gated |
 | OpenAI or Anthropic API key | Standalone terminal agent and direct AI citation probes | Optional |
 
-An environment key makes a provider available. It does not approve use.
+An environment key makes a provider available. It does not approve use. It does not license silence either: when a paid key is present, Rainmaker asks which crawler you want before the first crawl, once, and records the answer.
 
 ```bash
-rainmaker audit                         # built-in crawler
-rainmaker audit --provider firecrawl    # explicit Firecrawl use
-rainmaker audit --provider contextdev   # explicit context.dev use
+rainmaker keys --balances               # what is set, and credits remaining
+rainmaker audit                         # built-in crawler, spends nothing
+rainmaker audit --provider firecrawl    # explicit Firecrawl use, this run only
 rainmaker serp --allow-paid "query"     # explicit paid SERP capture
 ```
 
-Run `rainmaker keys` to see which credentials are set, what each unlocks, and whether it remains dormant. Rainmaker never prints secret contents.
+The answer is stored as `crawl.provider` in `rainmaker.config.yml` and honoured by every later audit, so you are asked once rather than once per crawl. `--provider` overrides it for a single run. A crawl projected to exceed the remaining balance is refused rather than trimmed.
+
+Run `rainmaker keys` to see which credentials are set, what each unlocks, and whether it remains dormant; add `--balances` to check live provider credits. Rainmaker never prints secret contents.
 
 ## Example questions
 
@@ -151,7 +157,7 @@ Rainmaker supports sales-led, self-serve, product-led, marketplace, local-servic
 |---|---|
 | `rainmaker init --site <url>` | Create config, context, and portable skills |
 | `rainmaker audit` | Crawl, tier, score, and write the diagnosis |
-| `rainmaker keys` | Explain credential state without a network call |
+| `rainmaker keys` | Explain credential state; `--balances` for live provider credits |
 | `rainmaker doctor` | Probe configured connections independently |
 | `rainmaker fetch` | Pull GSC, GA4, and Clarity snapshots |
 | `rainmaker serp` | Capture live search results with explicit paid consent |

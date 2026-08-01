@@ -9,6 +9,7 @@ import {
   installSkills,
   renderRainmakerDoc,
   writeAgentsDoc,
+  writeClaudeDoc,
   writeRainmakerDoc,
 } from './harness.js';
 
@@ -71,9 +72,17 @@ test('skills install into portable and Claude-compatible project locations', () 
 test('portable Rainmaker instructions make the host model the interactive interface', () => {
   const doc = renderRainmakerDoc({ site: 'https://example.com', hasPrimaryConversion: false });
   assert.match(doc, /conversation is the interface/i);
-  assert.match(doc, /built-in crawler/i);
-  assert.match(doc, /explicit approval/i);
+  // Whitespace-tolerant: the doc is hard-wrapped, so the phrase legitimately
+  // straddles a newline.
+  assert.match(doc, /built-in\s+crawler/i);
   assert.match(doc, /Firecrawl/i);
+  // Consent survives, but as a question the assistant must ask and a decision
+  // it must persist — not a prohibition it satisfies by never mentioning the
+  // provider at all.
+  assert.match(doc, /Never use Firecrawl or context\.dev because a key happens to exist/i);
+  assert.match(doc, /ask which crawler to use/i);
+  assert.match(doc, /rainmaker keys --balances/);
+  assert.match(doc, /`crawl\.provider`/);
   assert.doesNotMatch(doc, /ANTHROPIC_API_KEY|OPENAI_API_KEY/);
   assert.match(doc, /Never run `rainmaker agent` inside/i);
 });
@@ -94,6 +103,41 @@ test('an existing AGENTS.md is preserved and receives one managed pointer', () =
   assert.match(content, /run rainmaker/i);
   assert.match(content, /\.agents\/skills\/rainmaker\/SKILL\.md/);
   assert.ok(readFileSync(join(dir, 'RAINMAKER.md'), 'utf8'));
+});
+
+test('CLAUDE.md gets the pointer too, because Claude Code loads nothing else', () => {
+  const dir = project();
+  writeFileSync(join(dir, 'CLAUDE.md'), '# House rules\n\nUse tabs.\n', 'utf8');
+
+  assert.equal(writeClaudeDoc(dir), 'updated');
+  assert.equal(writeClaudeDoc(dir), 'kept');
+
+  const content = readFileSync(join(dir, 'CLAUDE.md'), 'utf8');
+  assert.match(content, /Use tabs\./);
+  assert.match(content, /`rainmaker` skill/);
+  assert.equal((content.match(/RAINMAKER:START/g) ?? []).length, 1);
+});
+
+test('the pointer sends the host to the skill rather than to the CLI', () => {
+  const dir = project();
+  writeClaudeDoc(dir);
+  const content = readFileSync(join(dir, 'CLAUDE.md'), 'utf8');
+
+  assert.match(content, /invoke the `rainmaker` skill/);
+  assert.match(content, /Do not drive the `rainmaker` CLI by hand/);
+});
+
+test('install reports the skills it copied, not the target directory it copied into', () => {
+  const dir = project();
+  writeFileSync(join(dir, '.agents-decoy'), '', 'utf8');
+  const first = installSkills(dir);
+  // A second install into the same tree must report the same number: the count
+  // describes Rainmaker's skills, not whatever else already lives there.
+  const second = installSkills(dir);
+
+  assert.equal(first.installed, second.installed);
+  assert.ok(first.installed > 0);
+  assert.ok(first.installed < 40, `expected Rainmaker's own skills, got ${first.installed}`);
 });
 
 test('install refreshes a legacy managed pointer so existing projects gain the trigger', () => {

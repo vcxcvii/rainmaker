@@ -2,6 +2,10 @@ node_modules/
 dist/
 .env
 
+# Installed by plugin/bin/rainmaker on first use when a marketplace install has
+# no build of its own. A cache, not a source.
+plugin/.runtime/
+
 # Contains real traffic, conversion counts and modelled pipeline.
 # data.example/ is committed instead, same shapes, fabricated numbers.
 data/

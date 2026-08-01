@@ -7,23 +7,47 @@
 # Resolution order, cheapest first:
 #   1. a real install on PATH (npm i -g, or npm link during development)
 #   2. the plugin's own build, present when working from a clone
-#   3. the published package via npx
+#   3. a global install whose bin symlink is missing (npm link leaves this state)
+#   4. the plugin-local runtime, installed once on first use
 #
-# `dist/` is gitignored, so a marketplace install has no build and lands on 3.
+# `dist/` is gitignored, so a marketplace install has no build and lands on 4.
+#
+# This script must never hand control to a bare `npx`/`npm exec` of its own
+# package. npm-exec resolves the command name against PATH before it installs,
+# finds this wrapper, and re-execs it — an unbounded respawn that reached 280
+# processes in the wild. Every branch below therefore execs `node` against an
+# explicit file path, never a command name.
 
 set -eu
 
+# Set before handing off to anything that might be another copy of this script,
+# and checked here. A second entry with it already set means resolution came
+# back around, so fail loudly instead of forking.
+#
+# This has to cover delegation to a `rainmaker` found on PATH, not just the
+# install path: an older plugin version left on PATH is itself a wrapper that
+# still ends in a bare `npx`, and delegating to it revives the whole loop from
+# inside a fixed script. Branches that exec `node` on a resolved file path do
+# not set it, so the CLI itself always runs with a clean environment.
+if [ -n "${RAINMAKER_WRAPPER:-}" ]; then
+  echo "rainmaker: wrapper resolution looped back to itself; no usable install found." >&2
+  echo "  A stale plugin version may still be on PATH. Update the rainmaker plugin," >&2
+  echo "  or install the CLI directly: npm i -g @vcxcvii/rainmaker" >&2
+  exit 70
+fi
+
 # If this wrapper is running at all, it is on PATH as `rainmaker`, so that is
 # what the CLI should tell the user to type next — regardless of which branch
-# below ends up serving the request. Without this the npx branch makes the CLI
-# advise `npx @vcxcvii/rainmaker doctor` to someone for whom `rainmaker doctor`
-# already works.
+# below ends up serving the request. Without this the fallback branch makes the
+# CLI advise `npx @vcxcvii/rainmaker doctor` to someone for whom `rainmaker
+# doctor` already works.
 RAINMAKER_INVOCATION=rainmaker
 export RAINMAKER_INVOCATION
 
 self=$(cd "$(dirname "$0")" 2>/dev/null && pwd)/$(basename "$0")
+root="${CLAUDE_PLUGIN_ROOT:-$(cd "$(dirname "$0")/.." && pwd)}"
 
-# A `rainmaker` on PATH that is not this wrapper.
+# 1. A `rainmaker` on PATH that is not this wrapper.
 found=""
 old_ifs=${IFS-}
 IFS=:
@@ -39,12 +63,54 @@ done
 IFS=${old_ifs}
 
 if [ -n "$found" ]; then
+  RAINMAKER_WRAPPER=1
+  export RAINMAKER_WRAPPER
   exec "$found" "$@"
 fi
 
-root="${CLAUDE_PLUGIN_ROOT:-$(cd "$(dirname "$0")/.." && pwd)}"
-if [ -f "$root/dist/cli.js" ]; then
-  exec node "$root/dist/cli.js" "$@"
+# 2. A build next to the plugin. `$root/dist` covers a packaged plugin that
+# carries its own; `$root/../dist` covers a clone, where the plugin directory
+# sits inside the repository and the build lands at the repository root.
+for candidate in "$root/dist/cli.js" "$root/../dist/cli.js"; do
+  if [ -f "$candidate" ]; then
+    exec node "$candidate" "$@"
+  fi
+done
+
+# 3. A global install with no bin symlink. `npm link` produces exactly this:
+# the package lands in the global lib directory but nothing links it onto PATH,
+# so branch 1 finds nothing and the old script fell through to npx.
+global_root=$(npm root -g 2>/dev/null || true)
+if [ -n "$global_root" ] && [ -f "$global_root/@vcxcvii/rainmaker/dist/cli.js" ]; then
+  exec node "$global_root/@vcxcvii/rainmaker/dist/cli.js" "$@"
 fi
 
-exec npx -y @vcxcvii/rainmaker "$@"
+# 4. The plugin-local runtime. Installed to a path this script controls, so the
+# exec target is a file rather than a name PATH could resolve back to here.
+runtime="$root/.runtime"
+runtime_cli="$runtime/node_modules/@vcxcvii/rainmaker/dist/cli.js"
+
+if [ ! -f "$runtime_cli" ]; then
+  version=$(sed -n 's/.*"version"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' \
+    "$root/.claude-plugin/plugin.json" 2>/dev/null | head -1)
+  spec="@vcxcvii/rainmaker${version:+@$version}"
+
+  echo "rainmaker: first run, installing $spec into the plugin..." >&2
+  RAINMAKER_WRAPPER=1
+  export RAINMAKER_WRAPPER
+  mkdir -p "$runtime"
+  if ! npm install --prefix "$runtime" --no-audit --no-fund --loglevel=error "$spec" >&2; then
+    echo "rainmaker: could not install $spec." >&2
+    echo "  Install it yourself: npm i -g @vcxcvii/rainmaker" >&2
+    exit 70
+  fi
+  unset RAINMAKER_WRAPPER
+fi
+
+if [ -f "$runtime_cli" ]; then
+  exec node "$runtime_cli" "$@"
+fi
+
+echo "rainmaker: no usable install found after all resolution steps." >&2
+echo "  Install it yourself: npm i -g @vcxcvii/rainmaker" >&2
+exit 70

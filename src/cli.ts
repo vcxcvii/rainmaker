@@ -28,7 +28,7 @@ const COMMANDS = {
   context:
     'Business context and strategy. --check | --init | --validate | --sync',
   agent: 'Standalone terminal fallback. Requires a model API key; do not use inside an AI assistant.',
-  keys: 'Which credentials are set and what each one unlocks. No network call.',
+  keys: 'Which credentials are set and what each one unlocks. --balances for live provider credits.',
   ledger:
     'Query finding history. --id | --since | --status | --pending | --did-nothing | --rebuild | --compact',
 } as const;
@@ -109,7 +109,7 @@ async function main(argv: string[]): Promise<number> {
     }
     case 'keys': {
       const { runKeys } = await import('./commands/keys.js');
-      return Promise.resolve(runKeys(rest));
+      return runKeys(rest);
     }
     case 'routine': {
       const { runRoutine } = await import('./commands/routine.js');
