@@ -1,24 +1,7 @@
-import { cpSync, existsSync, mkdirSync, readdirSync, writeFileSync } from 'node:fs';
+import { cpSync, existsSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { TIERS, TIER_ORDER } from '../analyze/tiering.js';
-
-/**
- * Installing into a project, rather than into one assistant.
- *
- * There is no plugin format that loads in Claude Code, Codex and opencode
- * alike, so this does not try to invent one. It writes the two things every
- * harness already reads:
- *
- *   .claude/skills/  Claude Code loads these natively; opencode searches
- *                    `.claude/skills/<name>/SKILL.md` alongside its own paths
- *   AGENTS.md        the cross-tool convention, read by Codex, opencode,
- *                    Cursor, Gemini CLI, Copilot, Zed, Aider and others
- *
- * Claude Code users who install the plugin get more than this: a SessionStart
- * hook that reads project state and opens on the right next step. AGENTS.md is
- * the portable floor, not a replacement for it.
- */
 
 /** Package root, from `dist/install/harness.js`. */
 function packageRoot(): string {
@@ -30,16 +13,10 @@ export interface AgentsDocInput {
   hasPrimaryConversion: boolean;
 }
 
-/**
- * Deliberately explains the vocabulary it uses. A new user's first contact
- * with this system is output like `Tiers: 0:1 1:0 2:13`, which means nothing
- * without a definition, and an agent reading only this file is the one that
- * has to explain it back to them.
- */
 export function renderAgentsDoc(input: AgentsDocInput): string {
-  const firstStep = input.hasPrimaryConversion
-    ? 'rainmaker audit'
-    : 'fill in `primary_conversion` in rainmaker.config.yml, then `rainmaker audit`';
+  const discovery = input.hasPrimaryConversion
+    ? 'Tier 0 is seeded. Verify it against the crawl and the user before treating it as settled.'
+    : 'Tier 0 is not seeded yet. Run the audit, then propose likely conversion paths from the site and confirm them in conversation.';
 
   return `# AGENTS.md
 
@@ -49,98 +26,148 @@ closest to revenue.
 
 ## How to work in this project
 
-Skills live in \`.claude/skills/\`. Each is a Markdown file describing one
-decision. Read the relevant \`SKILL.md\` in full before acting on its subject,
-and follow it rather than improvising an approach.
+Read \`RAINMAKER.md\` first. It defines the portable, conversation-first entry
+path. Skills live in \`.agents/skills/\` and \`.claude/skills/\`. Read the
+relevant \`SKILL.md\` in full before acting on its subject.
 
-Shared reference files the skills depend on are in \`skills/_shared/\`.
+Shared reference files live in \`skills/_shared/\`.
 
-Deterministic work is the CLI's job, not yours. Crawling, tiering, scoring,
-budget and the ledger all run through \`rainmaker\`. Do not reimplement them,
-and do not estimate a number the CLI can produce.
+Deterministic work is the CLI's job. Crawling, tiering, scoring, budget, and
+the ledger run through \`rainmaker\`. Never estimate a number the CLI can
+produce.
 
-Run \`rainmaker context --check\` before judgment work. It reports what exists,
-what is stale, and exits non-zero when something required is missing.
+Run \`rainmaker context --check\` before judgment work.
 
 ## Next step
 
-\`${firstStep}\`
+\`rainmaker audit\`
+
+${discovery}
 
 Then run the \`know-my-buyer\` skill, which writes \`context/business.md\`.
-Every judgment skill refuses until that file exists.
 
 ## Vocabulary
 
-Explain these to the user in plain language the first time each comes up, then
-use the real term. Do not assume they are known.
+Explain each term in plain language the first time it appears.
 
-**Tier** — how close a page is to money, from 0 to 4.
+**Tier** - how close a page is to money, from 0 to 4.
 
 ${TIER_ORDER.map(
   (tier) =>
-    `- **Tier ${tier}** (${TIERS[tier].name}): ${TIERS[tier].plain} — ${TIERS[tier].examples}.`,
+    `- **Tier ${tier}** (${TIERS[tier].name}): ${TIERS[tier].plain} - ${TIERS[tier].examples}.`,
 ).join('\n')}
 
-Tier drives every score in this system, which is why
-\`primary_conversion\` in the config matters more than any other setting: it is
-what seeds Tier 0, and everything else is measured by distance from it.
+Tier drives every score. \`primary_conversion\` seeds Tier 0.
 
-**SERP verdict** — the judgment made about a keyword after reading the live
-search results page, before anything gets written. \`QUALIFY\` means go,
-\`CONDITIONAL\` means only in a specific format, \`KILL\` means do not write it.
-Nothing gets briefed without one.
+**SERP verdict** - judgment made after reading live search results. \`QUALIFY\`
+means go, \`CONDITIONAL\` means only under a named condition, and \`KILL\`
+means do not write it.
 
-**Authority budget** — how many new pages this site can realistically get
-indexed and ranked per month, measured from the last 90 days rather than
-assumed. Publishing past it produces crawl waste, not rankings.
+**Authority budget** - how many new pages this site can realistically get
+indexed and ranked per month.
 
-**Topical completeness** — how much of a subject area the site actually
-covers. No new cluster opens while an existing one is under 40 percent
-covered.
+**Topical completeness** - how much of a subject area the site covers.
 
-## How to give a recommendation
+## Recommendations
 
-Every finding and every recommendation states three things, in this order:
+Every recommendation states:
 
-1. **What it is**, in plain language first, then the correct term
-2. **Why it happens**, the mechanism, not the assertion
-3. **What changes if they act**, and what happens if they do not
-
-A recommendation without its "why" is not actionable, and the user cannot
-judge whether to trust it.
+1. What it is
+2. Why it happens
+3. What changes if they act, and what happens if they do not
 `;
 }
 
-/** Copies the packaged skills into a project, where any harness can find them. */
-export function installSkills(projectDir: string): { installed: number; target: string } {
-  const source = join(packageRoot(), 'skills');
-  if (!existsSync(source)) {
-    throw new Error(`packaged skills not found at ${source}`);
-  }
+export function renderRainmakerDoc(input: AgentsDocInput): string {
+  return `# Rainmaker
 
-  // `_shared` is skipped here on purpose. Skills reference it as
-  // `skills/_shared/<file>` relative to the project root, so the copy below is
-  // the one that gets read; a second copy under .claude/skills/ is never
-  // resolved by anything and only gives the reference files somewhere to drift.
-  const target = join(projectDir, '.claude', 'skills');
-  cpSync(source, target, {
-    recursive: true,
-    dereference: true,
-    filter: (from) => basename(from) !== '_shared',
-  });
+Rainmaker analyses ${input.site}. The conversation is the interface. The CLI
+is deterministic plumbing for crawl, measurement, scoring, and memory.
+
+## Start or resume
+
+1. Run \`rainmaker context --check\`.
+2. If no diagnosis exists, run \`rainmaker audit\`. It uses the built-in
+   crawler by default and spends no provider credits.
+3. Read the diagnosis before asking business questions.
+4. If conversion paths are missing, propose likely paths from the crawl and
+   ask the user to confirm or correct them. Do not send them to edit YAML alone.
+5. Run the \`know-my-buyer\` skill one question at a time.
+6. Offer the three closest fixes, explain why each matters, then ask which to
+   implement.
+
+## Provider consent
+
+Never use Firecrawl or context.dev because a key happens to exist in the
+environment. Paid or quota-backed providers require explicit approval in the
+current conversation. After approval, use \`rainmaker audit --provider
+firecrawl\` or \`rainmaker audit --provider contextdev\`. Without approval,
+use the built-in crawler.
+
+## Host model
+
+Use the model already hosting this conversation. Do not ask for model API keys
+unless the user explicitly chooses the standalone \`rainmaker agent\` command.
+Project skills are the portable plugin surface across assistants.
+
+## Shared references
+
+Shared rules live in \`skills/_shared/\`. Deterministic numbers come from the
+CLI. Never estimate a number the CLI can produce.
+`;
+}
+
+/** Copies skills into portable and Claude-compatible project locations. */
+export function installSkills(projectDir: string): {
+  installed: number;
+  target: string;
+  targets: string[];
+} {
+  const source = join(packageRoot(), 'skills');
+  if (!existsSync(source)) throw new Error(`packaged skills not found at ${source}`);
+
+  const targets = [join(projectDir, '.agents', 'skills'), join(projectDir, '.claude', 'skills')];
+  for (const target of targets) {
+    cpSync(source, target, {
+      recursive: true,
+      dereference: true,
+      filter: (from) => basename(from) !== '_shared',
+    });
+  }
 
   cpSync(join(source, '_shared'), join(projectDir, 'skills', '_shared'), {
     recursive: true,
     dereference: true,
   });
 
-  return { installed: readdirSync(target).length, target };
+  return { installed: readdirSync(targets[0]).length, target: targets[0], targets };
 }
 
-/** Writes AGENTS.md unless one already exists, which is the user's own. */
-export function writeAgentsDoc(projectDir: string, input: AgentsDocInput): 'written' | 'kept' {
-  const path = join(projectDir, 'AGENTS.md');
-  if (existsSync(path)) return 'kept';
-  writeFileSync(path, renderAgentsDoc(input), 'utf8');
+export function writeRainmakerDoc(projectDir: string, input: AgentsDocInput): 'written' {
+  writeFileSync(join(projectDir, 'RAINMAKER.md'), renderRainmakerDoc(input), 'utf8');
   return 'written';
+}
+
+const POINTER_START = '<!-- RAINMAKER:START -->';
+const POINTER_END = '<!-- RAINMAKER:END -->';
+
+function managedPointer(): string {
+  return `${POINTER_START}\n## Rainmaker\n\nRead \`RAINMAKER.md\` before SEO, AEO, content, or site-strategy work.\n${POINTER_END}`;
+}
+
+/** Preserves user instructions and adds one idempotent Rainmaker pointer. */
+export function writeAgentsDoc(
+  projectDir: string,
+  input: AgentsDocInput,
+): 'written' | 'updated' | 'kept' {
+  const path = join(projectDir, 'AGENTS.md');
+  if (!existsSync(path)) {
+    writeFileSync(path, `${renderAgentsDoc(input)}\n${managedPointer()}\n`, 'utf8');
+    return 'written';
+  }
+
+  const current = readFileSync(path, 'utf8');
+  if (current.includes(POINTER_START)) return 'kept';
+  writeFileSync(path, `${current.trimEnd()}\n\n${managedPointer()}\n`, 'utf8');
+  return 'updated';
 }

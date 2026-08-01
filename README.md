@@ -6,14 +6,14 @@ An open-source SEO and AEO agent with one principle:
 
 Most SEO tooling reports 200 issues sorted by a severity score its own vendor invented. Rainmaker sorts by whether fixing the thing can plausibly produce a customer, tells you the three closest to revenue, and then keeps a permanent record of whether the fix worked. The record is the point. A plan goes stale in a quarter; a system that remembers what it believed, what it shipped and what moved does not.
 
-Works with no credentials, no account and no model on the first run. Bring your own keys to unlock more.
+Works with no credentials, no account and no model on the first run. The built-in crawler is always the default. Rainmaker never spends a paid provider's quota because its key happens to exist.
 
 ```bash
-npx @vcxcvii/rainmaker init      # eight questions, ninety seconds
+npx @vcxcvii/rainmaker init --site https://example.com
 npx @vcxcvii/rainmaker audit     # crawls, tiers, scores, writes JSON and Markdown
 ```
 
-With no key at all, `audit` falls back to a built-in crawler rather than refusing to run. `data.example/` in the package ships a full fabricated snapshot (strategy, competitors, citations, blueprint, ledger) so every skill can be developed and read against realistic data before pointing it at a real site.
+`audit` uses the built-in crawler unless you explicitly pass `--provider firecrawl` or `--provider contextdev`. Paid providers require a key and a deliberate command. `data.example/` ships a fabricated snapshot so every skill can be developed and read against realistic data before pointing it at a real site.
 
 ## The job to be done
 
@@ -113,18 +113,24 @@ $ npx @vcxcvii/rainmaker init --site https://example.com
 
   Wrote rainmaker.config.yml
 
-  Installed 26 skills into .claude/skills/
-  Wrote AGENTS.md
-  Claude Code and opencode load these directly. Codex and other tools
-  read AGENTS.md.
+  Installed 26 skills into .agents/skills/ and .claude/skills/
+  Wrote RAINMAKER.md
+  Added the Rainmaker pointer to AGENTS.md
 
-  Next: `rainmaker doctor` to see which capabilities are live.
-  An audit will run with zero credentials, just with lower confidence.
+  Next: open any coding assistant here and ask it to run the first audit.
+  The built-in crawl spends no credits.
 ```
 
 Then open your assistant in that directory and talk to it. Conversion paths,
 competitors and buyer are worked out from the site and the conversation, not
 asked for in a form up front.
+
+There is no universal LLM plugin format. `init` uses the portable layer that
+today's tools share: project instructions plus local skills. Codex, Claude
+Code, opencode and other assistants that read `AGENTS.md`, `RAINMAKER.md`,
+`.agents/skills/` or `.claude/skills/` can drive the same deterministic CLI.
+Run `npx @vcxcvii/rainmaker install` after an upgrade to refresh that layer
+without rewriting your business config.
 
 Claude Code users can install the plugin instead, which adds a session hook
 that reads project state and opens on the right next step:
@@ -134,8 +140,8 @@ that reads project state and opens on the right next step:
 /plugin install rainmaker@vcxcvii
 ```
 
-There is also a standalone agent, if you would rather not use an assistant at
-all. Bring your own key:
+There is also an optional standalone agent. This is the only path that needs a
+model key because your existing assistant is otherwise the model:
 
 ```
 $ npx @vcxcvii/rainmaker agent
@@ -163,9 +169,12 @@ $ npx @vcxcvii/rainmaker agent
 
 Then three fixes, plotted on effort against impact, each with its evidence and the exact next command. Not sixty. Then it recommends a cadence from your site's shape rather than assuming one.
 
-### Bringing your own model
+### Providers and consent
 
-An audit needs no model key at all. The interview and the AI citation probes do. Anthropic is tried first, then OpenAI:
+The normal interactive-plugin path needs no model key. Your current assistant
+conducts the conversation and calls Rainmaker's local commands. The standalone
+`rainmaker agent` and direct AI citation probes need one. Anthropic is tried
+first, then OpenAI:
 
 ```bash
 ANTHROPIC_API_KEY=...        # or
@@ -181,6 +190,16 @@ RAINMAKER_MODEL=llama3.1
 ```
 
 `RAINMAKER_MODEL` overrides the default model id; `ANTHROPIC_BASE_URL` does the same job for the Anthropic path. Every credential and what it unlocks is listed by `rainmaker keys`, which is offline and answers in milliseconds.
+
+Firecrawl and context.dev are optional crawl upgrades. Environment variables
+make them available, not active:
+
+```bash
+rainmaker audit                         # built-in, no quota
+rainmaker audit --provider firecrawl    # explicit Firecrawl use
+rainmaker audit --provider contextdev   # explicit context.dev use
+rainmaker serp --allow-paid "query"     # explicit Firecrawl search use
+```
 
 ## Why this and not a folder of SEO skills
 
@@ -238,7 +257,7 @@ Rainmaker is meant to work whether you are one person with a blog or a team with
 
 The last one is the question this system was built to answer, and the one most reporting is designed to avoid.
 
-Keys are read from your environment, used against the API they belong to, and sent nowhere else. `rainmaker keys` prints what is set and exactly what each one unlocks. Everything degrades: with zero keys you still get a full technical, structural and competitor diagnosis, and every report states in a mandatory section which capabilities were live and what that weakens.
+Keys are read from your environment and sent only to the API they belong to. `rainmaker keys` prints what is set, what it unlocks and whether it remains dormant. With zero keys you still get a baseline crawl, URL tiering and structural diagnosis. Search Console, analytics, live SERPs, competitor evidence and answer-engine probes require their respective tools or credentials, and reports state what was unavailable.
 
 ## What it will not do
 

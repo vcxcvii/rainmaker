@@ -1,7 +1,7 @@
 name: Publish to npm
 
 # Fires when a GitHub Release is published. Create the release from a tag
-# named after the version, `v0.2.1` for `0.2.1`, and the guard below refuses
+# named after the package version, and the guard below refuses
 # to publish if the two ever disagree.
 on:
   release:

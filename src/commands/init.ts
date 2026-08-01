@@ -4,7 +4,7 @@ import { createInterface } from 'node:readline/promises';
 import { stdin, stdout } from 'node:process';
 import { CONFIG_FILENAME } from '../config/load.js';
 import { REVENUE_MODELS, type RevenueModel } from '../config/schema.js';
-import { installSkills, writeAgentsDoc } from '../install/harness.js';
+import { installSkills, writeAgentsDoc, writeRainmakerDoc } from '../install/harness.js';
 
 /** Parses `--key value` and `--key=value` into a flat map. */
 function parseFlags(argv: string[]): Record<string, string> {
@@ -104,6 +104,10 @@ const FIELDS_BY_FLAG: Record<string, InitField> = Object.fromEntries(
   INIT_FIELDS.map((field) => [field.flag, field]),
 );
 
+export function interactivePromptFields(): string[] {
+  return ['site'];
+}
+
 /**
  * Usage for the non-interactive path. Separates required from optional because
  * listing all eight flags as one block reads as if all eight are mandatory,
@@ -128,7 +132,7 @@ export function formatInitUsage(): string {
     '',
     'Smallest run that writes a usable config:',
     '',
-    '  rainmaker init --site https://example.com --primary-conversion "/demo, /pricing"',
+    '  rainmaker init --site https://example.com',
     '',
     '`rainmaker init --describe` prints these fields as JSON.',
   ].join('\n');
@@ -217,7 +221,7 @@ export async function runInit(argv: string[]): Promise<number> {
     const spec = FIELDS_BY_FLAG[flag];
     const fallback = spec.default ?? '';
     if (flags[flag] !== undefined) return flags[flag];
-    if (!rl) return fallback;
+    if (!rl || !interactivePromptFields().includes(flag)) return fallback;
     if (spec.note) console.log(`\n${spec.note}`);
     const label = spec.list ? `${spec.question} [comma separated]` : spec.question;
     const suffix = fallback ? ` (${fallback})` : '';
@@ -270,19 +274,25 @@ export async function runInit(argv: string[]): Promise<number> {
     const installReport: string[] = [];
     if (flags['no-skills'] === undefined) {
       try {
-        const { installed } = installSkills(dir);
+        const { installed, targets } = installSkills(dir);
+        writeRainmakerDoc(dir, {
+          site: normalisedSite,
+          hasPrimaryConversion: primary.length > 0,
+        });
         const doc = writeAgentsDoc(dir, {
           site: normalisedSite,
           hasPrimaryConversion: primary.length > 0,
         });
         installReport.push(
           '',
-          `Installed ${installed} skills into .claude/skills/`,
+          `Installed ${installed} skills into ${targets.map((target) => resolve(target)).join(' and ')}`,
+          'Wrote RAINMAKER.md',
           doc === 'written'
             ? 'Wrote AGENTS.md'
-            : 'Kept your existing AGENTS.md. Point it at .claude/skills/ yourself.',
-          'Claude Code and opencode load these directly. Codex and other tools',
-          'read AGENTS.md.',
+            : doc === 'updated'
+              ? 'Updated AGENTS.md without replacing existing instructions.'
+              : 'AGENTS.md already points at RAINMAKER.md.',
+          'Your current assistant is the interactive interface. No model API key is needed.',
         );
       } catch (error) {
         installReport.push('', `Skills were not installed: ${(error as Error).message}`);
@@ -299,17 +309,13 @@ export async function runInit(argv: string[]): Promise<number> {
         ]
       : [];
 
-    const next = primary.length
-      ? [
-          '',
-          `Next: \`${run} doctor\` to see which capabilities are live.`,
-          'An audit will run with zero credentials, just with lower confidence.',
-        ]
-      : [
-          '',
-          'primary_conversion is empty, so Tier 0 has nothing to seed and audits',
-          `will refuse to run. Fill it in ${CONFIG_FILENAME}, then \`${run} doctor\`.`,
-        ];
+    const next = [
+      '',
+      `Next: \`${run} audit\`. It uses the built-in crawler and spends no provider credits.`,
+      primary.length
+        ? 'Afterward, verify the conversion paths in conversation.'
+        : 'Afterward, your assistant proposes conversion paths from the crawl for you to confirm.',
+    ];
 
     console.log(
       ['', `Wrote ${CONFIG_FILENAME}`, ...warnings, ...installReport, ...next].join('\n'),
@@ -341,7 +347,7 @@ function renderConfig(v: {
 
   const primaryTodo = v.primary.length
     ? ''
-    : '# TODO: required. Audits refuse to run until at least one path is listed.\n';
+    : '# Discovered after the first audit and confirmed in conversation.\n';
 
   return `# rainmaker configuration
 # Supplies the business context that universal tiering logic needs.
@@ -366,8 +372,9 @@ icp_hint: ${JSON.stringify(v.icpHint)}
 competitors:${list(v.competitors)}
 
 crawl:
-  max_urls: 500
-  provider: firecrawl
+  max_urls: 100
+  # Built-in spends no credits. Choose firecrawl or contextdev only after approval.
+  provider: builtin
   exclude:
     - /tag/
     - /author/

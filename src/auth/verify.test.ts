@@ -2,10 +2,24 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import {
   CAPABILITIES,
+  createDefaultCapabilityClients,
   verifyCapabilities,
   type Capability,
   type CapabilityClients,
 } from './verify.js';
+
+test('doctor reports built-in crawl without touching an ambient Firecrawl key', async () => {
+  let networkCalls = 0;
+  const clients = createDefaultCapabilityClients({
+    env: { FIRECRAWL_API_KEY: 'secret' } as NodeJS.ProcessEnv,
+    fetcher: async () => {
+      networkCalls += 1;
+      throw new Error('should not call network');
+    },
+  });
+  assert.equal(await clients.crawl?.check(), 'built-in crawler, no provider credits');
+  assert.equal(networkCalls, 0);
+});
 
 test('probes every capability against its mocked client', async (t) => {
   for (const capability of CAPABILITIES) {

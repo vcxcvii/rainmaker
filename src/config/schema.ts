@@ -16,6 +16,7 @@ export const REVENUE_MODELS = [
 ] as const;
 
 export type RevenueModel = (typeof REVENUE_MODELS)[number];
+export type CrawlProviderName = 'builtin' | 'firecrawl' | 'contextdev';
 
 export interface RainmakerConfig {
   /** Root URL of the site under analysis. */
@@ -54,19 +55,19 @@ export interface RainmakerConfig {
 
   /** Optional overrides for crawl behaviour. */
   crawl?: {
-    /** Hard cap on URLs fetched per run. Protects Firecrawl credits. */
+    /** Hard cap on URLs fetched per run. Bounds crawl load and optional provider quota. */
     max_urls?: number;
     /** Paths to skip entirely. */
     exclude?: string[];
-    /** Crawl provider. Firecrawl is the shipped default. */
-    provider?: 'firecrawl' | 'contextdev';
+    /** Legacy preference only. Paid providers must still be selected explicitly on each CLI run. */
+    provider?: CrawlProviderName;
   };
 }
 
 export const DEFAULT_CRAWL = {
-  max_urls: 500,
+  max_urls: 100,
   exclude: ['/tag/', '/author/', '/page/', '/feed/'],
-  provider: 'firecrawl' as const,
+  provider: 'builtin' as const,
 };
 
 export interface ConfigProblem {
@@ -101,28 +102,12 @@ export function validateConfig(raw: unknown): ConfigProblem[] {
     });
   }
 
-  if (!c.primary_conversion?.length) {
-    problems.push({
-      field: 'primary_conversion',
-      message:
-        'at least one required. Without it, Tier 0 cannot be seeded and every ' +
-        'finding scores against an unknown revenue path.',
-    });
-  }
-
   if (typeof c.acv !== 'number' || c.acv < 0) {
     problems.push({ field: 'acv', message: 'must be a number, 0 if unknown' });
   }
 
   if (typeof c.sales_cycle_days !== 'number' || c.sales_cycle_days <= 0) {
     problems.push({ field: 'sales_cycle_days', message: 'must be a positive number' });
-  }
-
-  if (!c.icp_hint) {
-    problems.push({
-      field: 'icp_hint',
-      message: 'required. know-my-buyer starts from this hypothesis and argues with it.',
-    });
   }
 
   return problems;

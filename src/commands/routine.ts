@@ -6,10 +6,24 @@ import { materialise } from '../ledger/materialise.js';
 import { readCommitsSince, shippedFromCommits } from '../ledger/shipped.js';
 import { fileIssues, planIssues, targetRepo } from '../issues/filer.js';
 import { runAudit } from './audit.js';
+import { runFetch } from './fetch.js';
 import type { Diagnosis } from './audit.js';
 
 const LEDGER = join('data', 'ledger.jsonl');
 const LAST_ROUTINE_REF = join('data', '.last-routine-ref');
+
+export async function refreshForRoutine(deps: {
+  fetch: (args: string[]) => Promise<number>;
+  audit: (args: string[]) => Promise<number>;
+}, args: string[] = []): Promise<number> {
+  const providerIndex = args.indexOf('--provider');
+  const providerArgs = providerIndex >= 0 && args[providerIndex + 1]
+    ? ['--provider', args[providerIndex + 1]]
+    : [];
+  const fetched = await deps.fetch(['--source', 'all', ...providerArgs]);
+  if (fetched !== 0) return fetched;
+  return deps.audit(['--refresh', '--json']);
+}
 
 function latestDiagnosis(): Diagnosis | null {
   const dir = join('data', 'snapshots');
@@ -40,11 +54,11 @@ function writeLastRoutineRef(): void {
  * in revenue order, all idempotently. Running this twice in one day must
  * file zero duplicate issues and append zero duplicate shipped events.
  */
-export async function runRoutine(_args: string[]): Promise<number> {
+export async function runRoutine(args: string[]): Promise<number> {
   console.log('Refreshing measurements...');
-  const auditResult = await runAudit(['--refresh', '--json']);
+  const auditResult = await refreshForRoutine({ fetch: runFetch, audit: runAudit }, args);
   if (auditResult !== 0) {
-    console.log('No prior audit to refresh. Run `rainmaker audit` once first, then `rainmaker routine`.');
+    console.log('Could not write and audit a fresh snapshot. Run `rainmaker doctor` for setup details.');
     return auditResult;
   }
 

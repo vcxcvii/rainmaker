@@ -21,6 +21,18 @@ import { findingId, normalisePath, type Check, type Finding, type Severity, type
  */
 
 const CONFIRMATION_WORDS = ['thank-you', 'thankyou', 'confirmation', 'success', 'booked', 'received'];
+const NON_CONTENT_PATHS = [
+  /(^|\/)sitemap(?:[-_.].*)?\.xml$/i,
+  /(^|\/)robots\.txt$/i,
+  /(^|\/)feed(?:\.xml|\/)?$/i,
+  /(^|\/)rss(?:\.xml|\/)?$/i,
+  /(^|\/)atom\.xml$/i,
+];
+
+function isContentDocument(url: string): boolean {
+  const path = new URL(url).pathname;
+  return !NON_CONTENT_PATHS.some((pattern) => pattern.test(path));
+}
 
 export interface CheckInput {
   config: RainmakerConfig;
@@ -125,6 +137,7 @@ export function runChecks(input: CheckInput): Finding[] {
   const coverageComplete = coverage >= 0.95 && !crawl.budget_exhausted;
 
   for (const page of pages) {
+    if (!isContentDocument(page.url)) continue;
     const path = normalisePath(page.url);
     const tier = input.tiers.get(path)?.tier ?? 3;
     const robots = (page.robots_meta ?? '').toLowerCase();
@@ -237,6 +250,8 @@ export function runChecks(input: CheckInput): Finding[] {
         message: `${page.word_count} words on a tier ${tier} page.`,
         evidence: { word_count: page.word_count },
         measurement: MEASUREMENT_CONFIDENCE.measured,
+        verdict: 'suspicion',
+        confirm_with: 'Compare required buyer questions and live SERP coverage before adding copy. Word count alone is not a defect.',
       });
     }
 
@@ -245,9 +260,11 @@ export function runChecks(input: CheckInput): Finding[] {
         check: 'schema',
         url: page.url,
         severity: 'moderate',
-        message: 'No structured data on a page buyers compare on.',
+        message: 'No structured data is present.',
         evidence: { schema_types: [] },
         measurement: MEASUREMENT_CONFIDENCE.measured,
+        verdict: 'suspicion',
+        confirm_with: 'Confirm an eligible schema type and a search-result benefit before implementing markup.',
       });
     }
   }
@@ -255,6 +272,7 @@ export function runChecks(input: CheckInput): Finding[] {
   // Duplication is a set problem, so it runs once across pages rather than per page.
   const byHash = new Map<string, CrawlPage[]>();
   for (const page of pages) {
+    if (!isContentDocument(page.url)) continue;
     if (page.status !== 200 || page.word_count < 100) continue;
     const prefix = page.content_hash.slice(0, 16);
     byHash.set(prefix, [...(byHash.get(prefix) ?? []), page]);

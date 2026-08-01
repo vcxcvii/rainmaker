@@ -71,28 +71,6 @@ user may already hold from other work, and a user's own key means their own
 quota and billing rather than a shared or absent one. Asking costs one line
 in a conversation that is already about connecting things.
 
-### Proactive start
-
-Nothing currently begins on its own. Skills are model-invoked: they fire when
-a user's phrasing matches, so a new user facing an empty project has to
-already know what to ask for. The plugin should ship:
-
-- a `CLAUDE.md` that states the entry path, so it is in context from turn one
-- a `SessionStart` hook running `rainmaker context --check`, so a project
-  missing `context/business.md` opens the interview instead of waiting
-
-### The front door is the CLI, and it should be the conversation
-
-`init` interrogates the user for eight answers the agent is meant to
-discover. A question-and-answer UI promises intelligence; behind this one sat
-`readline` and `.split(',')`. Observed directly: a user answered "not decided,
-help figure out" and "no idea, please search", because prompts invite the
-answers you would give a person.
-
-Target order: `init --site X` writes a config in seconds with TODOs, then the
-conversation crawls, proposes conversion paths, discovers competitors, argues
-with the ICP, and fills them in.
-
 ## Open — from the four-angle review
 
 These were found, judged real, and deliberately not fixed in the same pass:
@@ -120,14 +98,6 @@ not in the `CHECKS` set, not scored, not in the ledger, invisible to `report`,
 of the system is the one thing that cannot be ordered, tracked or closed, and it
 disappears the moment nobody is watching stdout.
 
-### Skills can only be installed while creating a config
-
-Skill installation lives inside `init`, reachable only on first run. There is no
-way to add skills to a project that already has a config, and no way to refresh
-them after upgrading the package: `init` refuses without `--force`, and
-`--force` rewrites the user's config just to re-copy files. Wants to be
-`rainmaker install`, idempotent, with `init` calling it.
-
 ### The hook re-derives project state the CLI already computes
 
 `context --check` already reports present/missing/stale across business,
@@ -139,21 +109,52 @@ state model — `context --check` is filesystem-only too. Wants
 `context --check --json` and a hook reduced to invoke, print, and fall silent on
 timeout.
 
-## Open — core
-
-### sitemap.xml is audited as if it were a page
-
-First audit of a 20-URL site produced 4 findings, 3 of them `no title`,
-`no H1`, `orphan` against `/sitemap.xml`. All three are correct-by-design for
-a sitemap. 75% of a new user's first output was noise about a file that works.
-
-Exclude `sitemap.xml`, `robots.txt`, and feed URLs from tiering and checks.
-
-### Version string is stale
-
-`rainmaker --version` prints `0.1.0`; `package.json` says `0.2.1`.
-
 ## Fixed
+
+### Provider keys implied consent
+
+Old releases wrote `provider: firecrawl` by default and provider selection
+also followed whichever key happened to exist. `FIRECRAWL_API_KEY` could
+therefore spend quota during an ordinary audit. Built-in crawl is now always
+the default. Paid or quota-backed crawling needs an explicit `--provider`
+flag, and SERP capture needs `--allow-paid`.
+
+### Interactive setup was tied to one assistant
+
+`init` now installs the skills into both `.agents/skills/` and
+`.claude/skills/`, writes a portable conversation protocol to `RAINMAKER.md`,
+and safely adds one managed pointer to `AGENTS.md`. The current host assistant
+is the model. No separate model key is required. The Claude plugin keeps its
+session hook as an optional native enhancement.
+
+### The front door asked the agent's questions in a terminal
+
+`init` now requires only `--site`, scaffolds the rest, and sends the user into
+an evidence-first conversation. The audit runs first; the assistant then
+proposes conversion paths, competitors and buyer context for confirmation.
+
+### Skills could only be installed while creating a config
+
+`rainmaker install` now refreshes portable skills and assistant instructions
+idempotently without rewriting `rainmaker.config.yml`.
+
+### Machine endpoints were audited as content
+
+Sitemaps, robots files and feed endpoints are excluded from content checks.
+Thin content and absent schema are suspicions until corroborated, not ranked
+revenue findings.
+
+### Version and package identity were stale
+
+The CLI reads its version from `package.json`. Package-lock metadata now names
+`@vcxcvii/rainmaker` and its `rainmaker` binary instead of the old `paydirt`
+identity.
+
+### Routine automation reused stale measurements
+
+`routine` now fetches a new crawl and connected measurements before audit.
+Repository CI replaces the broken client schedules, and generated workflows
+map secrets into job environment variables before testing them.
 
 ### `rainmaker doctor` after an npx run
 

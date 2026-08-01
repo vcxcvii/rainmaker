@@ -1,6 +1,11 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { validateConfig } from './schema.js';
+import { DEFAULT_CRAWL, validateConfig } from './schema.js';
+
+test('first crawl is free and bounded for an interactive session', () => {
+  assert.equal(DEFAULT_CRAWL.provider, 'builtin');
+  assert.equal(DEFAULT_CRAWL.max_urls, 100);
+});
 
 const valid = {
   site: 'https://quillet.com',
@@ -24,7 +29,7 @@ test('reports every problem at once, not just the first', () => {
     acv: -5,
     sales_cycle_days: 0,
   });
-  assert.equal(problems.length, 6);
+  assert.equal(problems.length, 4);
 });
 
 test('rejects a site without a scheme', () => {
@@ -36,10 +41,9 @@ test('acv of 0 is valid, meaning unknown', () => {
   assert.deepEqual(validateConfig({ ...valid, acv: 0 }), []);
 });
 
-test('empty primary_conversion fails because Tier 0 cannot be seeded', () => {
-  const problems = validateConfig({ ...valid, primary_conversion: [] });
-  assert.equal(problems.length, 1);
-  assert.equal(problems[0].field, 'primary_conversion');
+test('a site-only scaffold is auditable before the assistant discovers business context', () => {
+  const problems = validateConfig({ ...valid, primary_conversion: [], icp_hint: '' });
+  assert.deepEqual(problems, []);
 });
 
 test('empty or non-object input does not throw', () => {

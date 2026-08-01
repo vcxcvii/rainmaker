@@ -4,9 +4,14 @@ import {
   INIT_FIELDS,
   describeInitFields,
   formatInitUsage,
+  interactivePromptFields,
   invocation,
   suspectPaths,
 } from './init.js';
+
+test('the CLI asks only for the site and leaves business discovery to conversation', () => {
+  assert.deepEqual(interactivePromptFields(), ['site']);
+});
 
 test('only site is required, so the rest can be omitted', () => {
   const required = INIT_FIELDS.filter((f) => f.required).map((f) => f.flag);
@@ -20,7 +25,8 @@ test('usage separates required from optional and shows the smallest useful run',
   assert.match(requiredBlock, /--site/);
   assert.doesNotMatch(requiredBlock, /--acv/);
   assert.match(usage, /--acv 18000 {2}# default: 0/);
-  assert.match(usage, /init --site \S+ --primary-conversion/);
+  assert.match(usage, /init --site https:\/\/example\.com/);
+  assert.doesNotMatch(usage.slice(usage.indexOf('Smallest run')), /--primary-conversion/);
 });
 
 test('next-step command matches how the package was actually invoked', () => {

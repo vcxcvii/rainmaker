@@ -7,10 +7,21 @@ import { loadConfig } from '../config/load.js';
 import { writeStableJson } from '../util/json.js';
 import { formatProjection, projectSerpCost } from '../agent/costguard.js';
 
+export function paidSearchApproved(args: string[]): boolean {
+  return args.includes('--allow-paid');
+}
+
 export async function runSerp(args: string[]): Promise<number> {
   const queries = args.filter((arg) => !arg.startsWith('--'));
   if (queries.length === 0) {
-    console.error('Usage: rainmaker serp <query> [<query> ...]');
+    console.error('Usage: rainmaker serp --allow-paid <query> [<query> ...]');
+    return 1;
+  }
+
+  if (!paidSearchApproved(args)) {
+    console.error(
+      'SERP capture uses Firecrawl credits. Ask for approval, then re-run with `--allow-paid`.',
+    );
     return 1;
   }
 

@@ -5,7 +5,13 @@ import { join } from 'node:path';
 import { test } from 'node:test';
 import { TIERS, TIER_ORDER } from '../analyze/tiering.js';
 import { formatTierDistribution } from '../commands/audit.js';
-import { installSkills, renderAgentsDoc, writeAgentsDoc } from './harness.js';
+import {
+  installSkills,
+  renderAgentsDoc,
+  renderRainmakerDoc,
+  writeAgentsDoc,
+  writeRainmakerDoc,
+} from './harness.js';
 
 const project = (): string => mkdtempSync(join(tmpdir(), 'rainmaker-harness-'));
 
@@ -38,30 +44,47 @@ test('the doc requires a why with every recommendation', () => {
   assert.match(doc, /What changes if they act/);
 });
 
-test('next step depends on whether Tier 0 can be seeded', () => {
+test('site-only setup starts with an audit, then discovers Tier 0 in conversation', () => {
   const seeded = renderAgentsDoc({ site: 'https://example.com', hasPrimaryConversion: true });
   const unseeded = renderAgentsDoc({ site: 'https://example.com', hasPrimaryConversion: false });
 
   assert.match(seeded, /`rainmaker audit`/);
-  assert.match(unseeded, /fill in `primary_conversion`/);
+  assert.match(unseeded, /`rainmaker audit`/);
+  assert.match(unseeded, /propose.*conversion/i);
 });
 
-test('skills install where both Claude Code and opencode look for them', () => {
+test('skills install into portable and Claude-compatible project locations', () => {
   const dir = project();
   const { installed } = installSkills(dir);
 
   assert.ok(installed > 20, `expected the full skill set, got ${installed}`);
   assert.ok(readFileSync(join(dir, '.claude', 'skills', 'know-my-buyer', 'SKILL.md'), 'utf8'));
+  assert.ok(readFileSync(join(dir, '.agents', 'skills', 'know-my-buyer', 'SKILL.md'), 'utf8'));
   // Skills reference this path relative to the project root.
   assert.ok(readFileSync(join(dir, 'skills', '_shared', 'revenue-tiers.md'), 'utf8'));
 });
 
-test("an existing AGENTS.md is the user's, and is never overwritten", () => {
+test('portable Rainmaker instructions make the host model the interactive interface', () => {
+  const doc = renderRainmakerDoc({ site: 'https://example.com', hasPrimaryConversion: false });
+  assert.match(doc, /conversation is the interface/i);
+  assert.match(doc, /built-in crawler/i);
+  assert.match(doc, /explicit approval/i);
+  assert.match(doc, /Firecrawl/i);
+  assert.doesNotMatch(doc, /ANTHROPIC_API_KEY|OPENAI_API_KEY/);
+});
+
+test('an existing AGENTS.md is preserved and receives one managed pointer', () => {
   const dir = project();
   writeFileSync(join(dir, 'AGENTS.md'), 'mine\n', 'utf8');
 
-  const result = writeAgentsDoc(dir, { site: 'https://example.com', hasPrimaryConversion: true });
+  writeRainmakerDoc(dir, { site: 'https://example.com', hasPrimaryConversion: true });
+  const first = writeAgentsDoc(dir, { site: 'https://example.com', hasPrimaryConversion: true });
+  const second = writeAgentsDoc(dir, { site: 'https://example.com', hasPrimaryConversion: true });
+  const content = readFileSync(join(dir, 'AGENTS.md'), 'utf8');
 
-  assert.equal(result, 'kept');
-  assert.equal(readFileSync(join(dir, 'AGENTS.md'), 'utf8'), 'mine\n');
+  assert.equal(first, 'updated');
+  assert.equal(second, 'kept');
+  assert.match(content, /^mine/m);
+  assert.equal((content.match(/RAINMAKER:START/g) ?? []).length, 1);
+  assert.ok(readFileSync(join(dir, 'RAINMAKER.md'), 'utf8'));
 });

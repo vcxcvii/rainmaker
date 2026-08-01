@@ -54,7 +54,11 @@ If `context/business.md` carries `confidence: stub`, continue, and stamp every o
 
 ## Refuses when
 
-No SERP capture exists for a candidate. Say: "No SERP capture for '<query>'. Run `rainmaker serp \"<query>\"` first, then re-run this skill." Do not guess a verdict from Ahrefs-style volume data alone; the whole point of this skill is reading the actual SERP.
+No SERP capture exists for a candidate. Say: "No SERP capture for '<query>'. Ask me to approve Firecrawl credits, then run `rainmaker serp --allow-paid \"<query>\"` and re-run this skill." Do not guess a verdict from Ahrefs-style volume data alone; the whole point of this skill is reading the actual SERP.
+
+`rainmaker serp` spends Firecrawl credits. Ask for approval before running it.
+After approval, use `rainmaker serp --allow-paid "<query>"`. Never infer approval
+from an ambient `FIRECRAWL_API_KEY`.
 
 ## Procedure
 

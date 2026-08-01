@@ -13,13 +13,13 @@ export interface KeyRow {
 export const KEY_TABLE: KeyRow[] = [
   {
     env: 'FIRECRAWL_API_KEY',
-    unlocks: 'the default crawl provider',
-    without: 'falls back to the built-in crawler: slower, no JavaScript rendering',
+    unlocks: 'available but dormant until explicit `--provider firecrawl` or `serp --allow-paid`',
+    without: 'optional; built-in crawl remains the default',
   },
   {
     env: 'CONTEXT_DEV_API_KEY',
-    unlocks: 'brand retrieve and parse',
-    without: 'skipped',
+    unlocks: 'available but dormant until explicit `--provider contextdev`',
+    without: 'optional; built-in crawl remains the default',
   },
   {
     env: 'GOOGLE_APPLICATION_CREDENTIALS',
@@ -72,7 +72,7 @@ export function formatKeys(statuses: KeyStatus[]): string {
   lines.push('', `${setCount} of ${statuses.length} keys set.`);
   lines.push(
     setCount === 0
-      ? 'Zero keys is a supported starting point: `rainmaker audit` still runs a full technical, structural and competitor diagnosis.'
+      ? 'Zero keys is supported: `rainmaker audit` still runs a baseline crawl, URL tiering and structural diagnosis.'
       : 'Run `rainmaker doctor` to verify each set key actually works, not just that it is present.',
   );
   return lines.join('\n');

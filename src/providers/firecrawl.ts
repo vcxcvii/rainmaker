@@ -39,6 +39,14 @@ function parsePage(value: unknown): ProviderPage | null {
   };
 }
 
+export function crawlHitLimit(input: {
+  discovered: number;
+  fetched: number;
+  maxUrls: number;
+}): boolean {
+  return input.discovered >= input.maxUrls || input.fetched >= input.maxUrls;
+}
+
 export function createFirecrawlProvider(options: {
   apiKey: string;
   fetcher?: typeof fetch;
@@ -120,7 +128,11 @@ export function createFirecrawlProvider(options: {
       return {
         pages: [...unique.values()],
         urlsDiscovered: discovered || unique.size,
-        budgetExhausted: discovered > maxUrls,
+        budgetExhausted: crawlHitLimit({
+          discovered: discovered || unique.size,
+          fetched: unique.size,
+          maxUrls,
+        }),
       };
     },
   };

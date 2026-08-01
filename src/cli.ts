@@ -8,12 +8,16 @@
  */
 
 import 'dotenv/config';
+import { readFileSync } from 'node:fs';
 import { ConfigError } from './config/load.js';
 
-const VERSION = '0.1.0';
+const VERSION = (JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8')) as {
+  version: string;
+}).version;
 
 const COMMANDS = {
   init: 'Create rainmaker.config.yml. No credentials needed.',
+  install: 'Install or refresh portable project skills and assistant instructions.',
   doctor: 'Verify every credential independently. Report live vs degraded capabilities.',
   audit: 'Crawl, measure, tier, score. Writes a diagnosis. Runs with whatever is available.',
   serp: 'Capture a live SERP for one or more queries and compute a rank verdict.',
@@ -46,7 +50,7 @@ function usage(): void {
       '',
       lines,
       '',
-      'Start with `rainmaker init`, then `rainmaker doctor`.',
+      'Start with `rainmaker init --site https://example.com`, then open your assistant in that directory.',
     ].join('\n'),
   );
 }
@@ -74,6 +78,10 @@ async function main(argv: string[]): Promise<number> {
     case 'init': {
       const { runInit } = await import('./commands/init.js');
       return runInit(rest);
+    }
+    case 'install': {
+      const { runInstall } = await import('./commands/install.js');
+      return Promise.resolve(runInstall());
     }
     case 'doctor': {
       const { runDoctor } = await import('./commands/doctor.js');

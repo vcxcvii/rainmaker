@@ -18,7 +18,9 @@ import type {
 } from '../fetch/types.js';
 import { createContextDevProvider } from '../providers/contextdev.js';
 import { createFirecrawlProvider } from '../providers/firecrawl.js';
+import { createBuiltinProvider } from '../providers/builtin.js';
 import type { CrawlProvider } from '../providers/types.js';
+import type { CrawlProviderName } from '../config/schema.js';
 import { writeStableJson } from '../util/json.js';
 
 type Source = 'ga4' | 'gsc' | 'clarity' | 'all';
@@ -39,6 +41,18 @@ function source(argv: string[]): Source {
   throw new Error('--source must be ga4, gsc, clarity, or all');
 }
 
+export function chooseFetchProvider(
+  argv: string[],
+  _configured?: CrawlProviderName,
+): CrawlProviderName {
+  const index = argv.findIndex((arg) => arg === '--provider');
+  const requested = index >= 0 ? argv[index + 1] : 'builtin';
+  if (requested === 'builtin' || requested === 'firecrawl' || requested === 'contextdev') {
+    return requested;
+  }
+  throw new Error('--provider must be builtin, firecrawl, or contextdev');
+}
+
 function tokenProvider(env: NodeJS.ProcessEnv): GoogleTokenProvider | undefined {
   const path = env.GOOGLE_APPLICATION_CREDENTIALS;
   return path
@@ -46,10 +60,11 @@ function tokenProvider(env: NodeJS.ProcessEnv): GoogleTokenProvider | undefined 
     : undefined;
 }
 
-function crawlProvider(
-  provider: 'firecrawl' | 'contextdev',
+export function createCrawlProvider(
+  provider: CrawlProviderName,
   env: NodeJS.ProcessEnv,
 ): CrawlProvider | undefined {
+  if (provider === 'builtin') return createBuiltinProvider();
   if (provider === 'contextdev') {
     return env.CONTEXT_DEV_API_KEY
       ? createContextDevProvider({ apiKey: env.CONTEXT_DEV_API_KEY })
@@ -83,13 +98,13 @@ export async function runFetch(argv: string[]): Promise<number> {
   const tasks: Array<Promise<void>> = [];
 
   if (selected === 'all') {
-    const providerName = config.crawl?.provider ?? 'firecrawl';
-    const provider = crawlProvider(providerName, env);
+    const providerName = chooseFetchProvider(argv, config.crawl?.provider);
+    const provider = createCrawlProvider(providerName, env);
     if (provider) {
       tasks.push(fetchCrawl({
         provider,
         site: config.site,
-        maxUrls: config.crawl?.max_urls ?? 500,
+        maxUrls: config.crawl?.max_urls ?? 100,
         exclude: config.crawl?.exclude ?? [],
         now,
       }).then((snapshot) => {
