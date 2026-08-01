@@ -21,9 +21,9 @@ assistant. The CLI only crawls, measures, scores, and persists state.
 - Never run `rainmaker agent` inside an LLM host. It is a standalone terminal
   fallback for users who deliberately bring an API key.
 - Never ask for `ANTHROPIC_API_KEY` or `OPENAI_API_KEY` here.
-- Never use Firecrawl or context.dev merely because a key exists. Use the
-  built-in crawler unless the user explicitly approves a paid or quota-backed
-  provider in this conversation.
+- Never use Firecrawl or context.dev merely because a key exists. Never stay
+  silent about one either: ask which crawler to use, once, and record the
+  answer as `crawl.provider` in `rainmaker.config.yml`.
 - Keep the workflow interactive. Explain the next action, take it, report the
   result, then ask at most one blocking question.
 
@@ -34,9 +34,18 @@ assistant. The CLI only crawls, measures, scores, and persists state.
    continue in this same conversation.
 2. Read `RAINMAKER.md`. Run `rainmaker context --check`; a missing or stub
    context is expected on first run.
-3. Find the latest `data/snapshots/*/diagnosis.json`. If none exists, run
-   `rainmaker audit`. Use the built-in crawler unless a paid provider was
-   explicitly approved.
+3. Find the latest `data/snapshots/*/diagnosis.json`. If none exists, settle the
+   crawler first, then run `rainmaker audit`:
+   - If `crawl.provider` is already set in the config, that is the user's
+     standing answer. Use it and say which one you are using. Do not re-ask.
+   - Otherwise, if `FIRECRAWL_API_KEY` or `CONTEXT_DEV_API_KEY` is set, run
+     `rainmaker keys --balances`, report the provider and credits remaining in
+     plain language, and ask which crawler to use. The built-in one spends
+     nothing; a paid one renders JavaScript and reaches more of a
+     client-rendered site. Write the answer to `crawl.provider`, then audit.
+   - Otherwise use the built-in crawler and say so.
+
+   Never pass `--allow-over-budget` on the user's behalf.
 4. Read the diagnosis. State the tier distribution, the top three findings by
    revenue score, and which evidence is unavailable.
 5. Run `rainmaker keys`. Offer to connect missing measurement sources. If the

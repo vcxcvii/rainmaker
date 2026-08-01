@@ -66,7 +66,12 @@ export async function runAudit(args: string[]): Promise<number> {
     }
   } else {
     const maxUrls = Number(flagValue(args, '--max-urls') ?? config.crawl?.max_urls ?? 100);
-    const provider = await crawlPreflight({ args, env: process.env, maxUrls });
+    const provider = await crawlPreflight({
+      args,
+      env: process.env,
+      maxUrls,
+      configured: config.crawl?.provider,
+    });
     if (!provider) return 1;
 
     console.log(`Crawling ${config.site} (max ${maxUrls} URLs, ${provider.name})...`);

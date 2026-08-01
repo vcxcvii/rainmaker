@@ -65,7 +65,7 @@ function runInit(): number {
       'This is a stub. Nothing in it came from a buyer, so every report built on',
       'it will say confidence: stub until you run the know-my-buyer skill.',
       '',
-      'Next: `rainmaker audit`, then the know-my-buyer skill.',
+      'Next: the `rainmaker` skill, which audits and then runs that interview.',
     ].join('\n'),
   );
   return 0;

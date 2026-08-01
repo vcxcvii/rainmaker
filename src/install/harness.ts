@@ -44,10 +44,20 @@ is deterministic plumbing for crawl, measurement, scoring, and memory.
 ## Provider consent
 
 Never use Firecrawl or context.dev because a key happens to exist in the
-environment. Paid or quota-backed providers require explicit approval in the
-current conversation. After approval, use \`rainmaker audit --provider
-firecrawl\` or \`rainmaker audit --provider contextdev\`. Without approval,
-use the built-in crawler.
+environment. Ask, once, rather than staying silent about it.
+
+Before the first crawl, if either key is set: run \`rainmaker keys --balances\`,
+tell the user what they actually have — provider and credits remaining — and
+ask which crawler to use. The built-in one spends nothing and is the right
+default for most sites; a paid provider renders JavaScript and reaches more of
+a client-rendered site.
+
+Write the answer to \`crawl.provider\` in \`rainmaker.config.yml\`. That is the
+consent record, and every later audit honours it without asking again. Change
+it only when the user asks. \`--provider\` still overrides it for one run.
+
+Never let a crawl exceed the remaining balance. The preflight projects the cost
+and refuses; do not pass \`--allow-over-budget\` on the user's behalf.
 
 ## Host model
 
@@ -116,7 +126,11 @@ export function installSkills(projectDir: string): {
     dereference: true,
   });
 
-  return { installed: readdirSync(targets[0]).length, targets };
+  // Count what was copied, not what the target now holds. `.claude/skills` is
+  // a shared directory: reading its length reported "Installed 91 skills" to a
+  // user who has 64 of their own and got 27 from Rainmaker.
+  const installed = readdirSync(source).filter((entry) => entry !== '_shared').length;
+  return { installed, targets };
 }
 
 export function writeRainmakerDoc(projectDir: string, input: AgentsDocInput): 'written' {
@@ -128,14 +142,13 @@ const POINTER_START = '<!-- RAINMAKER:START -->';
 const POINTER_END = '<!-- RAINMAKER:END -->';
 
 function managedPointer(): string {
-  return `${POINTER_START}\n## Rainmaker\n\nWhen the user says "run rainmaker", read \`.agents/skills/rainmaker/SKILL.md\` and \`RAINMAKER.md\`, then continue the host-native workflow. Never run the standalone \`rainmaker agent\` command inside an assistant.\n\nRead \`RAINMAKER.md\` before SEO, AEO, content, or site-strategy work.\n${POINTER_END}`;
+  return `${POINTER_START}\n## Rainmaker\n\nWhen the user says "run rainmaker", or wants SEO, AEO, content or site-strategy work in this project, invoke the \`rainmaker\` skill. If the host does not surface skills by name, read \`.agents/skills/rainmaker/SKILL.md\` and follow it.\n\nThe skill runs the whole workflow — setup, audit, buyer interview, fixes — and resumes wherever it left off. Do not drive the \`rainmaker\` CLI by hand in its place.\n\nRead \`RAINMAKER.md\` before that work. Never run the standalone \`rainmaker agent\` command inside an assistant.\n${POINTER_END}`;
 }
 
+export type PointerResult = 'written' | 'updated' | 'kept';
+
 /** Preserves user instructions and adds one idempotent Rainmaker pointer. */
-export function writeAgentsDoc(
-  projectDir: string,
-): 'written' | 'updated' | 'kept' {
-  const path = join(projectDir, 'AGENTS.md');
+function writePointerDoc(path: string): PointerResult {
   if (!existsSync(path)) {
     writeFileSync(path, `${managedPointer()}\n`, 'utf8');
     return 'written';
@@ -153,4 +166,17 @@ export function writeAgentsDoc(
   }
   writeFileSync(path, `${current.trimEnd()}\n\n${managedPointer()}\n`, 'utf8');
   return 'updated';
+}
+
+export function writeAgentsDoc(projectDir: string): PointerResult {
+  return writePointerDoc(join(projectDir, 'AGENTS.md'));
+}
+
+/**
+ * Claude Code auto-loads CLAUDE.md and nothing else. Writing the pointer only
+ * to AGENTS.md left RAINMAKER.md unreferenced in the one host Rainmaker ships
+ * a plugin for: the next session started with no idea any of this existed.
+ */
+export function writeClaudeDoc(projectDir: string): PointerResult {
+  return writePointerDoc(join(projectDir, 'CLAUDE.md'));
 }

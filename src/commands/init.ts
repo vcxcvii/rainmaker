@@ -1,4 +1,5 @@
 import { existsSync, writeFileSync } from 'node:fs';
+import { homedir } from 'node:os';
 import { resolve } from 'node:path';
 import { createInterface } from 'node:readline/promises';
 import { stdin, stdout } from 'node:process';
@@ -6,6 +7,7 @@ import { CONFIG_FILENAME } from '../config/load.js';
 import { REVENUE_MODELS, type RevenueModel } from '../config/schema.js';
 import { installProject } from './install.js';
 import { runContext } from './context.js';
+import type { PointerResult } from '../install/harness.js';
 
 /** Parses `--key value` and `--key=value` into a flat map. */
 function parseFlags(argv: string[]): Record<string, string> {
@@ -156,9 +158,16 @@ export function invocation(
 
 export function hostHandoff(run: string): string {
   return [
-    'Host assistant: continue now. Do not run `rainmaker agent`; that is standalone API-key mode.',
+    'Host assistant: continue now, inside the `rainmaker` skill. Do not run `rainmaker agent`; that is standalone API-key mode.',
     `You are the model. Run \`${run} audit\`, read the diagnosis, offer measurement connections, then conduct the buyer interview yourself.`,
   ].join(' ');
+}
+
+/** One line per steering file, so init and `install` cannot describe it differently. */
+export function pointerLine(name: string, result: PointerResult): string {
+  if (result === 'written') return `Wrote ${name}`;
+  if (result === 'updated') return `Updated ${name} without replacing existing instructions.`;
+  return `${name} already points at RAINMAKER.md.`;
 }
 
 /**
@@ -169,6 +178,33 @@ export function hostHandoff(run: string): string {
  */
 export function suspectPaths(paths: string[]): string[] {
   return paths.filter((p) => !/^(\/|https?:\/\/)/.test(p));
+}
+
+/**
+ * init scaffolds into the working directory: config, context/, data/,
+ * RAINMAKER.md, AGENTS.md, CLAUDE.md, skills/_shared/, and skill copies under
+ * .claude/skills. In a home directory that lands on top of the user's own
+ * assistant configuration — one run put 27 skills alongside the personal ones
+ * in ~/.claude/skills, where nothing distinguishes them afterwards.
+ *
+ * Refuses rather than warns, because by the time a warning is read the files
+ * are already written.
+ */
+export function homeDirectoryRefusal(dir: string, home: string): string | undefined {
+  if (resolve(dir) !== resolve(home)) return undefined;
+  return [
+    `${resolve(dir)} is your home directory.`,
+    '',
+    'init writes rainmaker.config.yml, context/, data/, RAINMAKER.md, AGENTS.md,',
+    'CLAUDE.md and skills/_shared/ into the working directory, and copies its',
+    'skills into .claude/skills and .agents/skills. In a home directory those',
+    'land on top of your own assistant configuration.',
+    '',
+    'Run it in the directory for the site instead:',
+    '  mkdir -p ~/sites/example && cd ~/sites/example',
+    '',
+    'Use --force if you genuinely want Rainmaker scaffolded into your home directory.',
+  ].join('\n');
 }
 
 /** Field spec for callers that collect answers themselves, such as an agent. */
@@ -220,6 +256,12 @@ export async function runInit(argv: string[]): Promise<number> {
 
   if (existsSync(path) && !force) {
     console.error(`${CONFIG_FILENAME} already exists. Use --force to overwrite.`);
+    return 1;
+  }
+
+  const refusal = force ? undefined : homeDirectoryRefusal(dir, homedir());
+  if (refusal) {
+    console.error(refusal);
     return 1;
   }
 
@@ -292,11 +334,8 @@ export async function runInit(argv: string[]): Promise<number> {
           '',
           `Installed ${report.installed} skills into ${report.targets.map((target) => resolve(target)).join(' and ')}`,
           'Wrote RAINMAKER.md',
-          report.agents === 'written'
-            ? 'Wrote AGENTS.md'
-            : report.agents === 'updated'
-              ? 'Updated AGENTS.md without replacing existing instructions.'
-              : 'AGENTS.md already points at RAINMAKER.md.',
+          pointerLine('AGENTS.md', report.agents),
+          pointerLine('CLAUDE.md', report.claude),
           'Your current assistant is the interactive interface. No model API key is needed.',
         );
       } catch (error) {
@@ -315,12 +354,18 @@ export async function runInit(argv: string[]): Promise<number> {
         ]
       : [];
 
+    // Hands back to the skill, not to the shell. Naming the next command here
+    // is what turned an interactive workflow into a list of things for the user
+    // to type: the assistant ran init, printed "Next: rainmaker audit", and
+    // stopped.
     const next = [
       '',
-      `Next: \`${run} audit\`. It uses the built-in crawler and spends no provider credits.`,
+      'Next: continue in the `rainmaker` skill. It runs the audit, reads the',
+      'diagnosis back, and conducts the buyer interview from what it found.',
       primary.length
-        ? 'Afterward, verify the conversion paths in conversation.'
-        : 'Afterward, your assistant proposes conversion paths from the crawl for you to confirm.',
+        ? 'It verifies the conversion paths with you rather than assuming them.'
+        : 'It proposes conversion paths from the crawl for you to confirm.',
+      `Driving it by hand instead: \`${run} audit\`.`,
     ];
 
     console.log(
