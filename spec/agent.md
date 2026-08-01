@@ -93,9 +93,14 @@ as unconfirmed starting state. It also writes stub context and strategy files,
 installs the portable conversation layer, and leaves discovery to the host
 assistant after the crawl.
 
-### Move 2: the crawl runs while you talk
+### Move 2: the conversation starts the crawl
 
-The moment the config is valid, `audit` starts in the background. This matters for a reason the v1 spec got right and most onboarding gets wrong: **the interview must not happen first.** `know-my-buyer` refuses to run without a diagnosis, because interrogating someone about a site the system has not looked at produces the same twelve generic questions every consultant asks.
+After `init`, the host assistant runs `audit` as the next command and explains
+what it is doing. `init` does not leave a hidden background process behind.
+This matters for a reason the v1 spec got right and most onboarding gets wrong:
+**the interview must not happen first.** `know-my-buyer` refuses to run without
+a diagnosis, because interrogating someone about a site the system has not
+looked at produces the same twelve generic questions every consultant asks.
 
 So the order is: measure, then interrogate, grounded. While the crawl runs, the agent explains what it is doing and what each capability will unlock.
 

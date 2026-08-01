@@ -123,7 +123,9 @@ $ npx @vcxcvii/rainmaker init --site https://example.com
 
 Then open your assistant in that directory and talk to it. Conversion paths,
 competitors and buyer are worked out from the site and the conversation, not
-asked for in a form up front.
+asked for in a form up front. After confirmation, the assistant reconciles the
+business model, conversions, value, sales cycle, ICP and competitors back into
+the config before running revenue-ranked strategy work.
 
 There is no universal LLM plugin format. `init` uses the portable layer that
 today's tools share: project instructions plus local skills. Codex, Claude

@@ -33,7 +33,12 @@ is deterministic plumbing for crawl, measurement, scoring, and memory.
    After confirmation, edit \`primary_conversion\` and \`secondary_conversion\`
    in \`rainmaker.config.yml\`, then run \`rainmaker audit --refresh\`.
 5. Run the \`know-my-buyer\` skill one question at a time.
-6. Offer the three closest fixes, explain why each matters, then ask which to
+6. Reconcile \`rainmaker.config.yml\` with confirmed answers: update
+   \`revenue_model\`, \`primary_conversion\`, \`secondary_conversion\`, \`acv\`,
+   \`sales_cycle_days\`, \`icp_hint\`, and \`competitors\`. Never invent a
+   value. Do not run blueprint or map-my-site while \`revenue_model\` is
+   \`unknown\`. Run \`rainmaker audit --refresh\` after saving.
+7. Offer the three closest fixes, explain why each matters, then ask which to
    implement.
 
 ## Provider consent

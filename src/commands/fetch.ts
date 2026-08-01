@@ -16,8 +16,7 @@ import type {
   Ga4Snapshot,
   GscSnapshot,
 } from '../fetch/types.js';
-import { selectCrawlProvider } from '../providers/select.js';
-import { formatProjection, projectCrawlCost } from '../agent/costguard.js';
+import { crawlPreflight } from './crawl-preflight.js';
 import { writeStableJson } from '../util/json.js';
 
 type Source = 'ga4' | 'gsc' | 'clarity' | 'all';
@@ -68,21 +67,9 @@ export async function runFetch(argv: string[]): Promise<number> {
   const tasks: Array<Promise<void>> = [];
 
   if (selected === 'all') {
-    const selection = selectCrawlProvider(argv, env);
-    const provider = selection.provider;
+    const maxUrls = config.crawl?.max_urls ?? 100;
+    const provider = await crawlPreflight({ args: argv, env, maxUrls });
     if (provider) {
-      const maxUrls = config.crawl?.max_urls ?? 100;
-      const remainingCredits = await provider.remainingCredits();
-      const projection = projectCrawlCost(
-        maxUrls,
-        remainingCredits,
-        argv.includes('--allow-over-budget'),
-      );
-      console.log(formatProjection(projection));
-      if (!projection.allowed) {
-        console.error(projection.reason);
-        return 1;
-      }
       tasks.push(fetchCrawl({
         provider,
         site: config.site,
@@ -93,7 +80,7 @@ export async function runFetch(argv: string[]): Promise<number> {
         snapshots.crawl = snapshot;
       }));
     } else {
-      console.error(`Skipping crawl: ${selection.missingCredential} is required for --provider ${selection.requested}.`);
+      return 1;
     }
   }
 

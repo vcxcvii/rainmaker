@@ -54,7 +54,8 @@
 - `init` asks only for the site, creates stub context immediately, and leaves
   business discovery to the host conversation after the first crawl. Its
   revenue model is `unknown` until confirmed instead of silently assuming
-  every site is sales-led.
+  every site is sales-led. The portable protocol then reconciles every
+  confirmed business field back into config before blueprint work.
 - Word count and missing schema are suspicions until corroborated. Machine
   endpoints are excluded from content checks, and partial crawls cannot prove
   that a revenue tier is absent site-wide.
