@@ -3,29 +3,34 @@
 # progress and, if so, states the next move. Runs on every session in every
 # project, so it stays silent unless it has something worth the context.
 #
-# Filesystem checks only. No node, no npx, no network: a session must not wait
-# on this.
+# Filesystem checks and shell builtins only. No node, no npx, no network: a
+# session must not wait on this.
 
 set -eu
 
 root="${CLAUDE_PLUGIN_ROOT:-}"
-shared="$root/skills/_shared"
 
+trailer="
+Shared reference files live at:
+  $root/skills/_shared
+When a skill refers to \`skills/_shared/<file>\`, read it from that path."
+
+# SessionStart stdout is added to Claude's context verbatim.
 emit() {
-  # SessionStart stdout is added to Claude's context verbatim.
-  printf '%s\n' "$1"
+  printf '%s\n%s%s\n' "$1" "$trailer" "${connections_note:-}"
   exit 0
 }
 
 # A project is "claimed" by Rainmaker once a config exists.
 if [ ! -f rainmaker.config.yml ]; then
-  # Don't interrupt work in someone else's codebase.
-  for marker in package.json go.mod Cargo.toml pyproject.toml Gemfile pom.xml \
-                composer.json Makefile .git; do
+  # Don't interrupt work in someone else's codebase. .git and package.json
+  # first: between them they cover almost every directory this opens in.
+  for marker in .git package.json go.mod Cargo.toml pyproject.toml Gemfile \
+                pom.xml composer.json Makefile; do
     [ -e "$marker" ] && exit 0
   done
 
-  emit "Rainmaker is installed and this directory has no rainmaker.config.yml yet.
+  printf '%s\n' "Rainmaker is installed and this directory has no rainmaker.config.yml yet.
 
 If the user wants to start, do not interview them first. Ask only for their
 site URL, then run:
@@ -37,31 +42,39 @@ competitors, ICP) is discovered afterwards by crawling and by the
 know-my-buyer skill, not by asking the user to fill in a form.
 
 If they are here for something unrelated, ignore this and carry on."
+  exit 0
 fi
 
 have_snapshot=no
-[ -d data/snapshots ] && [ -n "$(ls -A data/snapshots 2>/dev/null || true)" ] && have_snapshot=yes
+if [ -d data/snapshots ]; then
+  set -- data/snapshots/*
+  [ -e "$1" ] && have_snapshot=yes
+fi
 
-have_business=no
-[ -f context/business.md ] && have_business=yes
-
-# Credential state, read from the config and environment rather than guessed.
-missing_connections=""
-grep -q '^gsc_site_url:' rainmaker.config.yml 2>/dev/null || missing_connections="$missing_connections Search Console,"
-[ -n "${GA4_PROPERTY_ID:-}" ] || missing_connections="$missing_connections GA4,"
-[ -n "${GOOGLE_ADS_CUSTOMER_ID:-}" ] || missing_connections="$missing_connections Google Ads,"
-missing_connections=$(printf '%s' "$missing_connections" | sed 's/^ //; s/,$//')
+# Credential state, read from the environment rather than guessed. These names
+# come from KEY_TABLE in src/commands/keys.ts. Inventing plausible-looking ones
+# here (GA4_PROPERTY_ID, GOOGLE_ADS_CUSTOMER_ID) produced a hook that reported
+# every project as disconnected regardless of what was actually configured.
+missing=""
+grep -q '^gsc_site_url:' rainmaker.config.yml 2>/dev/null || missing="$missing Search Console,"
+[ -n "${GOOGLE_APPLICATION_CREDENTIALS:-}" ] || missing="$missing Google Analytics,"
+[ -n "${CLARITY_TOKEN:-}" ] || missing="$missing Clarity,"
+[ -n "${FIRECRAWL_API_KEY:-}" ] || missing="$missing Firecrawl,"
+missing="${missing# }"
+missing="${missing%,}"
 
 connections_note=""
-if [ -n "$missing_connections" ]; then
+if [ -n "$missing" ]; then
   connections_note="
 
-Not connected yet: $missing_connections.
+Not connected yet: $missing.
 Without these, opportunity scoring falls back to a flat value and every
 finding says so. At a natural point in the conversation, offer to set them up
 together, and walk the user through it one step at a time in plain language:
 which page to open, which button to click, what to paste back. Do not hand
-them a docs link or an environment variable name and leave. Wait at each step."
+them a docs link or an environment variable name and leave. Wait at each step.
+Ask whether they already have a Firecrawl or context.dev account of their own
+before assuming they need a new one."
 fi
 
 if [ "$have_snapshot" = no ]; then
@@ -70,28 +83,16 @@ if [ "$have_snapshot" = no ]; then
 Start by running \`rainmaker audit\`. It crawls the site and produces the
 diagnosis. Open the conversation from what the audit found, not from
 questions. Then run the know-my-buyer skill to write context/business.md,
-which every judgment skill requires.
-
-Shared reference files live at:
-  $shared
-When a skill refers to \`skills/_shared/<file>\`, read it from that path.$connections_note"
+which every judgment skill requires."
 fi
 
-if [ "$have_business" = no ]; then
+if [ ! -f context/business.md ]; then
   emit "Rainmaker project. An audit has run; context/business.md is missing, so
 every judgment skill will refuse until it exists.
 
 Run the know-my-buyer skill. Open with what the audit already found, then
 interview the user in their own words. Do not ask them anything the crawl
-data can answer.
-
-Shared reference files live at:
-  $shared
-When a skill refers to \`skills/_shared/<file>\`, read it from that path.$connections_note"
+data can answer."
 fi
 
-emit "Rainmaker project, audit and business context both present.
-
-Shared reference files live at:
-  $shared
-When a skill refers to \`skills/_shared/<file>\`, read it from that path.$connections_note"
+emit "Rainmaker project, audit and business context both present."

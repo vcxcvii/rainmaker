@@ -9,7 +9,7 @@ import { createBuiltinProvider } from '../providers/builtin.js';
 import { formatProjection, projectCrawlCost } from '../agent/costguard.js';
 import type { CrawlSnapshot, Ga4Snapshot, GscSnapshot } from '../fetch/types.js';
 import { coverageSet, runChecks } from '../analyze/site-checks.js';
-import { tierAll, tierDistribution } from '../analyze/tiering.js';
+import { TIERS, TIER_ORDER, tierAll, tierDistribution } from '../analyze/tiering.js';
 import { normalisePath, type Finding } from '../analyze/checks.js';
 import { appendEvents, readLedger } from '../ledger/append.js';
 import { closureEvents, planClosures } from '../ledger/close.js';
@@ -188,15 +188,6 @@ function numeric(evidence: Record<string, unknown>): Record<string, number> {
   return out;
 }
 
-/** What each tier means, in the user's terms rather than the system's. */
-const TIER_MEANING: Record<string, string> = {
-  '0': 'money changes hands here',
-  '1': 'read right before buying',
-  '2': 'brings the right person in',
-  '3': 'general awareness',
-  '4': 'no commercial role',
-};
-
 /**
  * `Tiers: 0:1 1:0 2:13` was the first thing a new user ever saw, and it is
  * unreadable without a definition they have not been given yet. Tier drives
@@ -206,11 +197,11 @@ const TIER_MEANING: Record<string, string> = {
 export function formatTierDistribution(tiers: Record<string, number>, total: number): string {
   const lines = ['Tiers', `  How close each of your ${total} pages sits to revenue.`, ''];
 
-  for (const tier of ['0', '1', '2', '3', '4']) {
-    const count = tiers[tier] ?? 0;
+  for (const tier of TIER_ORDER) {
+    const count = tiers[String(tier)] ?? 0;
     const bar = count > 0 ? '#'.repeat(Math.min(count, 40)) : '';
     lines.push(
-      `  Tier ${tier}  ${String(count).padStart(4)}  ${TIER_MEANING[tier].padEnd(30)} ${bar}`,
+      `  Tier ${tier}  ${String(count).padStart(4)}  ${TIERS[tier].plain.padEnd(30)} ${bar}`,
     );
   }
 

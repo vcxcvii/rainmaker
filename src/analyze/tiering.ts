@@ -12,12 +12,65 @@ import { classifyIntent, INTENT_TIER } from './intent.js';
  * is a guess and a reader who cannot see that will read it as measured.
  */
 
+/**
+ * The one description of what a tier means. `skills/_shared/revenue-tiers.md`
+ * says tiers are "computed in src/analyze/tiering.ts, never re-derived", and
+ * the same applies to their names: a tier labelled "Decision" in the skills and
+ * "read right before buying" in the audit output is two vocabularies for one
+ * idea, which is the drift `intent.ts` already warns about for detection logic.
+ *
+ * `name` is the term the system uses. `plain` is what it means to someone who
+ * has never seen the word before, and exists because a new user's first contact
+ * with this system is a tier histogram.
+ */
+export interface TierMeaning {
+  weight: number;
+  name: string;
+  plain: string;
+  examples: string;
+}
+
+export const TIERS: Record<Tier, TierMeaning> = {
+  0: {
+    weight: 5.0,
+    name: 'Money changes hands',
+    plain: 'money changes hands here',
+    examples: 'pricing, demo, trial, signup, checkout, contact, booking',
+  },
+  1: {
+    weight: 3.0,
+    name: 'Decision',
+    plain: 'read right before buying',
+    examples: 'comparisons, alternatives, case studies, integrations, ROI',
+  },
+  2: {
+    weight: 2.0,
+    name: 'Solution',
+    plain: 'brings the right person in',
+    examples: 'use cases, how to solve X',
+  },
+  3: {
+    weight: 1.0,
+    name: 'Problem',
+    plain: 'general awareness',
+    examples: 'definitional and educational content',
+  },
+  4: {
+    weight: 0.3,
+    name: 'Ambient',
+    plain: 'no commercial role',
+    examples: 'about, careers, press, legal, archives',
+  },
+};
+
+export const TIER_ORDER = Object.keys(TIERS).map(Number) as Tier[];
+
 export const TIER_WEIGHT: Record<Tier, number> = {
-  0: 5.0,
-  1: 3.0,
-  2: 2.0,
-  3: 1.0,
-  4: 0.3,
+  0: TIERS[0].weight,
+  1: TIERS[1].weight,
+  2: TIERS[2].weight,
+  3: TIERS[3].weight,
+  4: TIERS[4].weight,
 };
 
 export const URL_PATTERNS: Array<{ tier: Tier; patterns: string[] }> = [

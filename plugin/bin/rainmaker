@@ -13,6 +13,14 @@
 
 set -eu
 
+# If this wrapper is running at all, it is on PATH as `rainmaker`, so that is
+# what the CLI should tell the user to type next — regardless of which branch
+# below ends up serving the request. Without this the npx branch makes the CLI
+# advise `npx @vcxcvii/rainmaker doctor` to someone for whom `rainmaker doctor`
+# already works.
+RAINMAKER_INVOCATION=rainmaker
+export RAINMAKER_INVOCATION
+
 self=$(cd "$(dirname "$0")" 2>/dev/null && pwd)/$(basename "$0")
 
 # A `rainmaker` on PATH that is not this wrapper.

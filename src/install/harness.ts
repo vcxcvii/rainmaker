@@ -1,6 +1,7 @@
 import { cpSync, existsSync, mkdirSync, readdirSync, writeFileSync } from 'node:fs';
-import { dirname, join, resolve } from 'node:path';
+import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { TIERS, TIER_ORDER } from '../analyze/tiering.js';
 
 /**
  * Installing into a project, rather than into one assistant.
@@ -75,14 +76,10 @@ use the real term. Do not assume they are known.
 
 **Tier** — how close a page is to money, from 0 to 4.
 
-- **Tier 0**: money changes hands here. Pricing, checkout, demo request, the
-  booking form. Losing one of these costs revenue today.
-- **Tier 1**: the page a buyer reads immediately before converting. Comparison
-  pages, case studies, the product page for a specific use case.
-- **Tier 2**: pages that bring the right person to the site but do not close
-  anything. Most service and solution pages sit here.
-- **Tier 3**: general awareness content. Blog posts, guides, glossary entries.
-- **Tier 4**: pages with no commercial role at all. Legal, careers, archives.
+${TIER_ORDER.map(
+  (tier) =>
+    `- **Tier ${tier}** (${TIERS[tier].name}): ${TIERS[tier].plain} — ${TIERS[tier].examples}.`,
+).join('\n')}
 
 Tier drives every score in this system, which is why
 \`primary_conversion\` in the config matters more than any other setting: it is
@@ -121,17 +118,23 @@ export function installSkills(projectDir: string): { installed: number; target: 
     throw new Error(`packaged skills not found at ${source}`);
   }
 
+  // `_shared` is skipped here on purpose. Skills reference it as
+  // `skills/_shared/<file>` relative to the project root, so the copy below is
+  // the one that gets read; a second copy under .claude/skills/ is never
+  // resolved by anything and only gives the reference files somewhere to drift.
   const target = join(projectDir, '.claude', 'skills');
-  mkdirSync(target, { recursive: true });
-  cpSync(source, target, { recursive: true, dereference: true });
+  cpSync(source, target, {
+    recursive: true,
+    dereference: true,
+    filter: (from) => basename(from) !== '_shared',
+  });
 
-  // Skills reference `skills/_shared/<file>` relative to the project root.
-  const shared = join(projectDir, 'skills', '_shared');
-  mkdirSync(dirname(shared), { recursive: true });
-  cpSync(join(source, '_shared'), shared, { recursive: true, dereference: true });
+  cpSync(join(source, '_shared'), join(projectDir, 'skills', '_shared'), {
+    recursive: true,
+    dereference: true,
+  });
 
-  const installed = readdirSync(target).filter((name) => name !== '_shared').length;
-  return { installed, target };
+  return { installed: readdirSync(target).length, target };
 }
 
 /** Writes AGENTS.md unless one already exists, which is the user's own. */

@@ -3,6 +3,8 @@ import { mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { test } from 'node:test';
+import { TIERS, TIER_ORDER } from '../analyze/tiering.js';
+import { formatTierDistribution } from '../commands/audit.js';
 import { installSkills, renderAgentsDoc, writeAgentsDoc } from './harness.js';
 
 const project = (): string => mkdtempSync(join(tmpdir(), 'rainmaker-harness-'));
@@ -11,10 +13,22 @@ test('the doc defines every tier, because audit output is unreadable without the
   const doc = renderAgentsDoc({ site: 'https://example.com', hasPrimaryConversion: true });
 
   for (const tier of ['Tier 0', 'Tier 1', 'Tier 2', 'Tier 3', 'Tier 4']) {
-    assert.match(doc, new RegExp(`\\*\\*${tier}\\*\\*`));
+    assert.match(doc, new RegExp(`\\*\\*${tier}`));
   }
   assert.match(doc, /SERP verdict/);
   assert.match(doc, /Authority budget/);
+});
+
+test('the doc and the audit histogram render one tier vocabulary, not two', () => {
+  const doc = renderAgentsDoc({ site: 'https://example.com', hasPrimaryConversion: true });
+  const histogram = formatTierDistribution({ '0': 1, '1': 1, '2': 1, '3': 1, '4': 1 }, 5);
+
+  // Two renderers, one table. They can only drift together.
+  for (const tier of TIER_ORDER) {
+    assert.ok(doc.includes(TIERS[tier].plain), `doc is missing tier ${tier}`);
+    assert.ok(doc.includes(TIERS[tier].name), `doc is missing the term for tier ${tier}`);
+    assert.ok(histogram.includes(TIERS[tier].plain), `histogram is missing tier ${tier}`);
+  }
 });
 
 test('the doc requires a why with every recommendation', () => {

@@ -25,9 +25,15 @@ test('usage separates required from optional and shows the smallest useful run',
 
 test('next-step command matches how the package was actually invoked', () => {
   const npx = '/Users/x/.npm/_npx/a1b2c3/node_modules/.bin/rainmaker';
-  assert.equal(invocation(npx), 'npx @vcxcvii/rainmaker');
-  assert.equal(invocation('/usr/local/bin/rainmaker'), 'rainmaker');
-  assert.equal(invocation(undefined), 'rainmaker');
+  assert.equal(invocation(npx, {}), 'npx @vcxcvii/rainmaker');
+  assert.equal(invocation('/usr/local/bin/rainmaker', {}), 'rainmaker');
+  assert.equal(invocation(undefined, {}), 'rainmaker');
+});
+
+test('the plugin wrapper overrides the argv guess, which it contradicts', () => {
+  const npx = '/Users/x/.npm/_npx/a1b2c3/node_modules/.bin/rainmaker';
+  // The wrapper execs npx but is itself on PATH, so argv alone gets this wrong.
+  assert.equal(invocation(npx, { RAINMAKER_INVOCATION: 'rainmaker' }), 'rainmaker');
 });
 
 test('prose answers are flagged because they match no URL', () => {

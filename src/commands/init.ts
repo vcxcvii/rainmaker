@@ -100,14 +100,18 @@ export const INIT_FIELDS: InitField[] = [
   },
 ];
 
+const FIELDS_BY_FLAG: Record<string, InitField> = Object.fromEntries(
+  INIT_FIELDS.map((field) => [field.flag, field]),
+);
+
 /**
  * Usage for the non-interactive path. Separates required from optional because
  * listing all eight flags as one block reads as if all eight are mandatory,
  * which is the single most common reason a first run gets abandoned.
  */
-export function formatInitUsage(fields: InitField[] = INIT_FIELDS): string {
-  const required = fields.filter((f) => f.required);
-  const optional = fields.filter((f) => !f.required);
+export function formatInitUsage(): string {
+  const required = INIT_FIELDS.filter((f) => f.required);
+  const optional = INIT_FIELDS.filter((f) => !f.required);
   const quote = (f: InitField): string => (f.example.includes(' ') ? `"${f.example}"` : f.example);
   const suffix = (f: InitField): string => (f.default ? `  # default: ${f.default}` : '');
 
@@ -135,7 +139,13 @@ export function formatInitUsage(fields: InitField[] = INIT_FIELDS): string {
  * from a cache directory and the `rainmaker` bin is never on PATH, so telling
  * them to run `rainmaker doctor` produces `command not found`.
  */
-export function invocation(argv1: string | undefined = process.argv[1]): string {
+export function invocation(
+  argv1: string | undefined = process.argv[1],
+  env: NodeJS.ProcessEnv = process.env,
+): string {
+  // The plugin wrapper knows the answer for certain and says so; the argv
+  // sniff is the fallback for a bare npx run with no wrapper in front of it.
+  if (env.RAINMAKER_INVOCATION) return env.RAINMAKER_INVOCATION;
   return argv1?.includes('/_npx/') ? 'npx @vcxcvii/rainmaker' : 'rainmaker';
 }
 
@@ -150,12 +160,12 @@ export function suspectPaths(paths: string[]): string[] {
 }
 
 /** Field spec for callers that collect answers themselves, such as an agent. */
-export function describeInitFields(fields: InitField[] = INIT_FIELDS): string {
+export function describeInitFields(): string {
   return JSON.stringify(
     {
       command: 'init',
       writes: CONFIG_FILENAME,
-      fields: fields.map((f) => ({
+      fields: INIT_FIELDS.map((f) => ({
         flag: f.flag,
         question: f.question,
         type: f.list ? 'list' : 'string',
@@ -203,14 +213,8 @@ export async function runInit(argv: string[]): Promise<number> {
 
   const rl = interactive ? createInterface({ input: stdin, output: stdout }) : null;
 
-  const field = (flag: string): InitField => {
-    const found = INIT_FIELDS.find((f) => f.flag === flag);
-    if (!found) throw new Error(`unknown init field: ${flag}`);
-    return found;
-  };
-
   const ask = async (flag: string): Promise<string> => {
-    const spec = field(flag);
+    const spec = FIELDS_BY_FLAG[flag];
     const fallback = spec.default ?? '';
     if (flags[flag] !== undefined) return flags[flag];
     if (!rl) return fallback;
@@ -247,8 +251,9 @@ export async function runInit(argv: string[]): Promise<number> {
     const icpHint = await ask('icp-hint');
     const competitors = await askList('competitors');
 
+    const normalisedSite = site.replace(/\/+$/, '');
     const yaml = renderConfig({
-      site: site.replace(/\/+$/, ''),
+      site: normalisedSite,
       revenueModel,
       primary,
       secondary,
@@ -267,7 +272,7 @@ export async function runInit(argv: string[]): Promise<number> {
       try {
         const { installed } = installSkills(dir);
         const doc = writeAgentsDoc(dir, {
-          site: site.replace(/\/+$/, ''),
+          site: normalisedSite,
           hasPrimaryConversion: primary.length > 0,
         });
         installReport.push(
