@@ -8,7 +8,7 @@
 
 ## 0. Current state
 
-Repository: `<repo root>/lazarus-pit` (directory and GitHub repo still named `lazarus-pit`; npm package already renamed to `paydirt`). Remote: `https://github.com/vcxcvii/lazarus-pit.git`.
+Repository: `<repo root>` (directory and GitHub repo still named `lazarus-pit`; npm package already renamed to `paydirt`). Remote: `https://github.com/vcxcvii/lazarus-pit.git`.
 
 **Block 1 is complete and committed** (`e5d7845`). Do not redo it.
 
@@ -35,7 +35,7 @@ PLAN.md                         design rationale, secondary to this document
 
 Verify before starting: `npm install && npx tsc --noEmit && npm test` must all pass.
 
-**First action:** rename the GitHub repo to `paydirt` via `gh repo rename paydirt`, then `git remote set-url origin https://github.com/vcxcvii/paydirt.git`. Rename the local directory to `<repo root>/paydirt`.
+**First action:** rename the GitHub repo to `paydirt` via `gh repo rename paydirt`, then `git remote set-url origin https://github.com/vcxcvii/paydirt.git`. Rename the local directory to `<repo root>`.
 
 ---
 

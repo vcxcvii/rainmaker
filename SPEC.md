@@ -14,7 +14,7 @@
 
 ## 0. Current state, as of 2026-07-30
 
-Repository: `<repo root>/rainmaker`, public at `github.com/vcxcvii/rainmaker`. Committed and passing:
+Repository: `<repo root>`, public at `github.com/vcxcvii/rainmaker`. Committed and passing:
 
 | Commit | Block | Contents |
 |---|---|---|

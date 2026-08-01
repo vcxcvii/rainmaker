@@ -7,3 +7,6 @@ dist/
 data/
 rainmaker.config.yml
 *.local.json
+
+# Leftover local config from the pre-rename project. Never ship a real one.
+paydirt.config.yml

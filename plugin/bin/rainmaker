@@ -1,0 +1,42 @@
+#!/usr/bin/env sh
+# Plugin `bin/` entries join the Bash tool's PATH, so this makes `rainmaker`
+# a real command for anyone with the plugin enabled. That removes the failure
+# every npx user hit: the CLI printing "next, run `rainmaker doctor`" for a
+# binary npx never put on PATH.
+#
+# Resolution order, cheapest first:
+#   1. a real install on PATH (npm i -g, or npm link during development)
+#   2. the plugin's own build, present when working from a clone
+#   3. the published package via npx
+#
+# `dist/` is gitignored, so a marketplace install has no build and lands on 3.
+
+set -eu
+
+self=$(cd "$(dirname "$0")" 2>/dev/null && pwd)/$(basename "$0")
+
+# A `rainmaker` on PATH that is not this wrapper.
+found=""
+old_ifs=${IFS-}
+IFS=:
+for dir in $PATH; do
+  [ -n "$dir" ] || continue
+  candidate="$dir/rainmaker"
+  [ -x "$candidate" ] || continue
+  resolved=$(cd "$(dirname "$candidate")" 2>/dev/null && pwd)/rainmaker || continue
+  [ "$resolved" = "$self" ] && continue
+  found="$candidate"
+  break
+done
+IFS=${old_ifs}
+
+if [ -n "$found" ]; then
+  exec "$found" "$@"
+fi
+
+root="${CLAUDE_PLUGIN_ROOT:-$(cd "$(dirname "$0")/.." && pwd)}"
+if [ -f "$root/dist/cli.js" ]; then
+  exec node "$root/dist/cli.js" "$@"
+fi
+
+exec npx -y @vcxcvii/rainmaker "$@"

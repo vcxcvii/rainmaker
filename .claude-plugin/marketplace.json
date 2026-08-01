@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "vcxcvii",
+  "description": "Rainmaker and related GTM tooling.",
+  "owner": {
+    "name": "Varun Choraria",
+    "url": "https://github.com/vcxcvii"
+  },
+  "plugins": [
+    {
+      "name": "rainmaker",
+      "source": "./plugin",
+      "description": "Turns a website into a pipeline diagnosis, then works the fixes closest to revenue.",
+      "category": "marketing",
+      "tags": ["seo", "gtm", "pipeline", "aeo"]
+    }
+  ]
+}

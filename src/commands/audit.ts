@@ -188,12 +188,57 @@ function numeric(evidence: Record<string, unknown>): Record<string, number> {
   return out;
 }
 
+/** What each tier means, in the user's terms rather than the system's. */
+const TIER_MEANING: Record<string, string> = {
+  '0': 'money changes hands here',
+  '1': 'read right before buying',
+  '2': 'brings the right person in',
+  '3': 'general awareness',
+  '4': 'no commercial role',
+};
+
+/**
+ * `Tiers: 0:1 1:0 2:13` was the first thing a new user ever saw, and it is
+ * unreadable without a definition they have not been given yet. Tier drives
+ * every score in this system, so the one place it is guaranteed to be read is
+ * the place it has to be explained.
+ */
+export function formatTierDistribution(tiers: Record<string, number>, total: number): string {
+  const lines = ['Tiers', `  How close each of your ${total} pages sits to revenue.`, ''];
+
+  for (const tier of ['0', '1', '2', '3', '4']) {
+    const count = tiers[tier] ?? 0;
+    const bar = count > 0 ? '#'.repeat(Math.min(count, 40)) : '';
+    lines.push(
+      `  Tier ${tier}  ${String(count).padStart(4)}  ${TIER_MEANING[tier].padEnd(30)} ${bar}`,
+    );
+  }
+
+  if ((tiers['0'] ?? 0) === 0) {
+    lines.push(
+      '',
+      '  No Tier 0 pages. Nothing on this site is where money changes hands,',
+      '  so every score below is relative to nothing. Check primary_conversion',
+      '  in rainmaker.config.yml.',
+    );
+  } else if ((tiers['1'] ?? 0) === 0) {
+    lines.push(
+      '',
+      '  No Tier 1 pages. Buyers arrive at awareness content and reach the',
+      '  point of paying with nothing in between to convince them. This is',
+      '  usually worth more than any single fix listed below.',
+    );
+  }
+
+  return lines.join('\n');
+}
+
 function report(diagnosis: Diagnosis, opened: number, closed: number, rejected: number): void {
   const { tier_distribution: tiers, coverage } = diagnosis;
   const total = Object.values(tiers).reduce((sum, count) => sum + count, 0);
 
   console.log('');
-  console.log(`Tiers: 0:${tiers['0']}  1:${tiers['1']}  2:${tiers['2']}  3:${tiers['3']}  4:${tiers['4']}  (${total} URLs)`);
+  console.log(formatTierDistribution(tiers, total));
   console.log(
     `Findings: ${diagnosis.findings.length}` +
       (diagnosis.suspicions.length ? `, plus ${diagnosis.suspicions.length} suspicion(s)` : ''),

@@ -102,31 +102,42 @@ Three mechanisms most systems skip, because each one tells you to do less.
 
 ## Setting it up
 
+One command. It asks nothing it can work out for itself.
+
 ```bash
-npx @vcxcvii/rainmaker init            # the core, plain Node, no model needed
-npx skills add vcxcvii/rainmaker       # the 26 skills, into any assistant
-npx @vcxcvii/rainmaker agent           # the interactive agent, bring your own key
+npx @vcxcvii/rainmaker init --site https://example.com
 ```
 
-The first ten minutes, in order:
+```
+$ npx @vcxcvii/rainmaker init --site https://example.com
+
+  Wrote rainmaker.config.yml
+
+  Installed 26 skills into .claude/skills/
+  Wrote AGENTS.md
+  Claude Code and opencode load these directly. Codex and other tools
+  read AGENTS.md.
+
+  Next: `rainmaker doctor` to see which capabilities are live.
+  An audit will run with zero credentials, just with lower confidence.
+```
+
+Then open your assistant in that directory and talk to it. Conversion paths,
+competitors and buyer are worked out from the site and the conversation, not
+asked for in a form up front.
+
+Claude Code users can install the plugin instead, which adds a session hook
+that reads project state and opens on the right next step:
 
 ```
-$ npx @vcxcvii/rainmaker init
+/plugin marketplace add vcxcvii/rainmaker
+/plugin install rainmaker@vcxcvii
+```
 
-  Site? https://example.com
-  How does the business make money? [self-serve / sales-led / plg / local-services /
-    ecommerce / marketplace / media / consulting] sales-led
-  Where does money change hands? /demo, /pricing, /contact
-  Secondary value? /case-studies, /integrations
-  Average contract value? (0 if unknown) 18000
-  Days from first touch to closed won? 45
-  One line on who buys: ops leads at 200-2000 person logistics firms
-  Competitors? (up to 5, skip to discover them) skip
+There is also a standalone agent, if you would rather not use an assistant at
+all. Bring your own key:
 
-  Wrote rainmaker.config.yml. Run `rainmaker doctor` to see which
-  capabilities are live. An audit will run with zero credentials,
-  just with lower confidence.
-
+```
 $ npx @vcxcvii/rainmaker agent
 
   Using anthropic as the model provider.
@@ -148,7 +159,7 @@ $ npx @vcxcvii/rainmaker agent
   deal closes, and what do they still not know when they leave it?
 ```
 
-`init` only writes config; it asks nothing that can be measured instead. `agent` is what runs the audit automatically the moment it finds no diagnosis, so the interview that follows opens grounded rather than generic. Twelve questions asked about a site nobody has looked at are the same twelve questions every consultant asks. Pass `--skip-interview`, or skip the model key entirely, and the system stamps every downstream output `confidence: stub` until you come back to it.
+`init` only writes config and installs skills; it asks nothing that can be measured instead. The audit runs before the interview does, so the questions that follow open grounded rather than generic. Twelve questions asked about a site nobody has looked at are the same twelve questions every consultant asks. Pass `--skip-interview`, or skip the model key entirely, and the system stamps every downstream output `confidence: stub` until you come back to it.
 
 Then three fixes, plotted on effort against impact, each with its evidence and the exact next command. Not sixty. Then it recommends a cadence from your site's shape rather than assuming one.
 
