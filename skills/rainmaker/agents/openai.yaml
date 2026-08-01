@@ -1,0 +1,4 @@
+interface:
+  display_name: "Rainmaker"
+  short_description: "Run the host-native revenue SEO workflow"
+  default_prompt: "Use $rainmaker to start or resume Rainmaker in this project."

@@ -154,6 +154,13 @@ export function invocation(
   return argv1?.includes('/_npx/') ? 'npx @vcxcvii/rainmaker' : 'rainmaker';
 }
 
+export function hostHandoff(run: string): string {
+  return [
+    'Host assistant: continue now. Do not run `rainmaker agent`; that is standalone API-key mode.',
+    `You are the model. Run \`${run} audit\`, read the diagnosis, offer measurement connections, then conduct the buyer interview yourself.`,
+  ].join(' ');
+}
+
 /**
  * Conversion paths are site paths, not descriptions. A wizard prompt invites
  * prose answers ("not decided, help figure out"), and silently accepting them
@@ -298,6 +305,7 @@ export async function runInit(argv: string[]): Promise<number> {
     }
 
     const run = invocation();
+    if (flags['no-skills'] === undefined) installReport.push(hostHandoff(run));
     const suspect = suspectPaths([...primary, ...secondary]);
     const warnings = suspect.length
       ? [

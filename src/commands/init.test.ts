@@ -6,8 +6,18 @@ import {
   formatInitUsage,
   interactivePromptFields,
   invocation,
+  hostHandoff,
   suspectPaths,
 } from './init.js';
+
+test('init hands control to the current host model without launching the standalone agent', () => {
+  const handoff = hostHandoff('rainmaker');
+
+  assert.match(handoff, /continue now/i);
+  assert.match(handoff, /do not run `rainmaker agent`/i);
+  assert.match(handoff, /you are the model/i);
+  assert.match(handoff, /`rainmaker audit`/i);
+});
 
 test('the CLI asks only for the site and leaves business discovery to conversation', () => {
   assert.deepEqual(interactivePromptFields(), ['site']);

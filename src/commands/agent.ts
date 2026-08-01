@@ -42,6 +42,15 @@ function stdinIO(): InterviewIO {
   };
 }
 
+export function standaloneModelKeyMessage(): string {
+  return (
+    '`rainmaker agent` is standalone terminal mode. It cannot use your Codex, Claude, or ChatGPT subscription. ' +
+    'If you are already inside an assistant, stop this command and ask the current assistant to run Rainmaker; ' +
+    'the current assistant is the model and needs no model API key. For standalone terminal mode, set ' +
+    'ANTHROPIC_API_KEY or OPENAI_API_KEY, or use --skip-interview.'
+  );
+}
+
 /**
  * The interactive agent: for someone not already inside an AI coding tool.
  * A loop over the same CLI and the same skills, driven by whichever model
@@ -80,11 +89,7 @@ export async function runAgent(args: string[]): Promise<number> {
   const needsInterview = !existsSync(BUSINESS_PATH) || readBusiness().frontmatter.confidence === 'stub';
   if (needsInterview && !args.includes('--skip-interview')) {
     if (!provider) {
-      console.error(
-        'No ANTHROPIC_API_KEY or OPENAI_API_KEY set, and the business context needs the interview to hold it. ' +
-          'Either set a model key, or run `rainmaker agent --skip-interview` to see the three closest fixes ' +
-          'and the cadence recommendation without it; `rainmaker context --init` writes a stub in the meantime.',
-      );
+      console.error(standaloneModelKeyMessage());
       return 1;
     }
     console.log(`Using ${provider.name} as the model provider.`);

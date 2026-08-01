@@ -53,6 +53,8 @@ use the built-in crawler.
 
 Use the model already hosting this conversation. Do not ask for model API keys
 unless the user explicitly chooses the standalone \`rainmaker agent\` command.
+Never run \`rainmaker agent\` inside a host assistant. The host model conducts
+the interview directly using the user's current assistant session.
 Project skills are the portable plugin surface across assistants.
 
 ## Vocabulary
@@ -126,7 +128,7 @@ const POINTER_START = '<!-- RAINMAKER:START -->';
 const POINTER_END = '<!-- RAINMAKER:END -->';
 
 function managedPointer(): string {
-  return `${POINTER_START}\n## Rainmaker\n\nRead \`RAINMAKER.md\` before SEO, AEO, content, or site-strategy work.\n${POINTER_END}`;
+  return `${POINTER_START}\n## Rainmaker\n\nWhen the user says "run rainmaker", read \`.agents/skills/rainmaker/SKILL.md\` and \`RAINMAKER.md\`, then continue the host-native workflow. Never run the standalone \`rainmaker agent\` command inside an assistant.\n\nRead \`RAINMAKER.md\` before SEO, AEO, content, or site-strategy work.\n${POINTER_END}`;
 }
 
 /** Preserves user instructions and adds one idempotent Rainmaker pointer. */
@@ -140,7 +142,15 @@ export function writeAgentsDoc(
   }
 
   const current = readFileSync(path, 'utf8');
-  if (current.includes(POINTER_START)) return 'kept';
+  if (current.includes(POINTER_START)) {
+    const next = current.replace(
+      new RegExp(`${POINTER_START}[\\s\\S]*?${POINTER_END}`),
+      managedPointer(),
+    );
+    if (next === current) return 'kept';
+    writeFileSync(path, next, 'utf8');
+    return 'updated';
+  }
   writeFileSync(path, `${current.trimEnd()}\n\n${managedPointer()}\n`, 'utf8');
   return 'updated';
 }

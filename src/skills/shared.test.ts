@@ -8,6 +8,13 @@ const ROOT = new URL('../../', import.meta.url).pathname;
 const SHARED = join(ROOT, 'skills', '_shared');
 const SKILLS = join(ROOT, 'skills');
 
+/** The front-door orchestrator delegates writes; the 26 decision skills own them. */
+function decisionSkillDirs(): string[] {
+  return readdirSync(SKILLS, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory() && entry.name !== '_shared' && entry.name !== 'rainmaker')
+    .map((entry) => entry.name);
+}
+
 const read = (path: string) => readFileSync(path, 'utf8');
 
 const SHARED_FILES = [
@@ -119,9 +126,7 @@ test('every shipped skill opens with the shared context load block, verbatim', (
   const block = read(join(SHARED, 'context-load.md')).split('---\n\n')[1]?.trim();
   assert.ok(block && block.startsWith('## Context load'), 'context-load.md lost its block');
 
-  const dirs = readdirSync(SKILLS, { withFileTypes: true })
-    .filter((entry) => entry.isDirectory() && entry.name !== '_shared')
-    .map((entry) => entry.name);
+  const dirs = decisionSkillDirs();
 
   for (const dir of dirs) {
     const path = join(SKILLS, dir, 'SKILL.md');
@@ -134,9 +139,7 @@ test('every shipped skill opens with the shared context load block, verbatim', (
 });
 
 test('every shipped skill directory is a known skill name', () => {
-  const dirs = readdirSync(SKILLS, { withFileTypes: true })
-    .filter((entry) => entry.isDirectory() && entry.name !== '_shared')
-    .map((entry) => entry.name);
+  const dirs = decisionSkillDirs();
 
   for (const dir of dirs) {
     assert.ok(
@@ -156,9 +159,7 @@ test('no skill restates shared reference content', () => {
     ['metric-definitions.md', 'A group of interactions from one user within a time window'],
   ];
 
-  const dirs = readdirSync(SKILLS, { withFileTypes: true })
-    .filter((entry) => entry.isDirectory() && entry.name !== '_shared')
-    .map((entry) => entry.name);
+  const dirs = decisionSkillDirs();
 
   for (const dir of dirs) {
     const body = read(join(SKILLS, dir, 'SKILL.md'));
@@ -169,9 +170,7 @@ test('no skill restates shared reference content', () => {
 });
 
 test('skill frontmatter states trigger phrases a real user would type', () => {
-  const dirs = readdirSync(SKILLS, { withFileTypes: true })
-    .filter((entry) => entry.isDirectory() && entry.name !== '_shared')
-    .map((entry) => entry.name);
+  const dirs = decisionSkillDirs();
 
   for (const dir of dirs) {
     const body = read(join(SKILLS, dir, 'SKILL.md'));
