@@ -34,6 +34,11 @@ export const EFFORT_HOURS: Record<Check, number> = {
   indexation: 1,
   offsite: 2,
   citation: 3,
+  // Building a page that does not exist yet, not editing one that does. A
+  // pricing or comparison page is a week of decisions before it is a day of
+  // writing, and understating that is how it stays undone.
+  tier_zero_absent: 16,
+  tier_one_absent: 12,
 };
 
 /** Never zero: a finding that costs nothing would divide the score to infinity. */

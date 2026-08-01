@@ -8,6 +8,7 @@ import type { CrawlSnapshot, Ga4Snapshot, GscSnapshot } from '../fetch/types.js'
 import { coverageSet, runChecks } from '../analyze/site-checks.js';
 import { TIERS, TIER_ORDER, tierAll, tierDistribution } from '../analyze/tiering.js';
 import { normalisePath, type Finding } from '../analyze/checks.js';
+import { siteLevelFindings } from '../analyze/site-level.js';
 import {
   formatMeasurementWarning,
   measurementState,
@@ -127,7 +128,14 @@ export async function runAudit(args: string[]): Promise<number> {
   }
 
   const tiers = tierAll({ config, pages: crawl!.pages, gsc, ga4 });
-  const all = runChecks({ config, crawl: crawl!, gsc, tiers });
+  const all = [
+    ...runChecks({ config, crawl: crawl!, gsc, tiers }),
+    ...siteLevelFindings({
+      config,
+      tierDistribution: tierDistribution(tiers),
+      coverageComplete: !crawl!.budget_exhausted,
+    }),
+  ];
   const findings = all.filter((finding) => finding.verdict === 'finding');
   const suspicions = all.filter((finding) => finding.verdict === 'suspicion');
 
@@ -234,20 +242,6 @@ export function formatTierDistribution(
       '',
       '  Partial crawl. Missing tiers mean "not found in this sample", not',
       '  "absent from the site". Raise max_urls before making a site-wide claim.',
-    );
-  } else if ((tiers['0'] ?? 0) === 0) {
-    lines.push(
-      '',
-      '  No Tier 0 pages. Nothing on this site is where money changes hands,',
-      '  so every score below is relative to nothing. Check primary_conversion',
-      '  in rainmaker.config.yml.',
-    );
-  } else if ((tiers['1'] ?? 0) === 0) {
-    lines.push(
-      '',
-      '  No Tier 1 pages. Buyers arrive at awareness content and reach the',
-      '  point of paying with nothing in between to convince them. This is',
-      '  usually worth more than any single fix listed below.',
     );
   }
 

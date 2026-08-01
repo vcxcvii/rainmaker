@@ -34,6 +34,9 @@ export const CHECKS = [
   // Off-site.
   'offsite',
   'citation',
+  // Site structure. True of the whole site rather than of any one page.
+  'tier_zero_absent',
+  'tier_one_absent',
 ] as const;
 
 export type Check = (typeof CHECKS)[number];

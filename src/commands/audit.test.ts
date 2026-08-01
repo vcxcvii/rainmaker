@@ -14,16 +14,15 @@ test('every tier is labelled, because the numbers alone mean nothing to a new us
   assert.match(output, /22 pages/);
 });
 
-test('no Tier 0 is called out as the config problem it is', () => {
-  const output = formatTierDistribution({ '0': 0, '1': 3, '2': 5, '3': 1, '4': 0 }, 9);
-  assert.match(output, /No Tier 0 pages/);
-  assert.match(output, /primary_conversion/);
-});
+// Missing tiers are findings now, not prose in the histogram, so they are
+// scored and enter the ledger. See site-level.test.ts. The histogram must not
+// also say it: the same problem stated twice in two voices reads as two.
+test('the histogram does not restate what is now a ranked finding', () => {
+  const noTierZero = formatTierDistribution({ '0': 0, '1': 3, '2': 5, '3': 1, '4': 0 }, 9);
+  assert.doesNotMatch(noTierZero, /No Tier 0 pages/);
 
-test('no Tier 1 is called out as the gap it is, not left for the user to spot', () => {
-  const output = formatTierDistribution({ '0': 1, '1': 0, '2': 13, '3': 6, '4': 0 }, 20);
-  assert.match(output, /No Tier 1 pages/);
-  assert.doesNotMatch(output, /No Tier 0 pages/);
+  const noTierOne = formatTierDistribution({ '0': 1, '1': 0, '2': 13, '3': 6, '4': 0 }, 20);
+  assert.doesNotMatch(noTierOne, /No Tier 1 pages/);
 });
 
 test('a partial crawl never turns absence into a site-wide claim', () => {

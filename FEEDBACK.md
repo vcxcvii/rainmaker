@@ -13,16 +13,6 @@ the product.
 
 These change behaviour or add surface rather than making the five clauses hold.
 
-### The two best findings the audit produces cannot be tracked
-
-"No Tier 0 pages" and "No Tier 1 pages" are site-level diagnoses, and the
-latter's own text says it is "usually worth more than any single fix listed
-below". Both exist only as `console.log` inside the printer: not in `Diagnosis`,
-not in the `CHECKS` set, not scored, not in the ledger, invisible to `report`,
-`routine`, and to any skill reading the diagnosis JSON. The highest-value output
-of the system is the one thing that cannot be ordered, tracked or closed, and it
-disappears the moment nobody is watching stdout.
-
 ### The hook re-derives project state the CLI already computes
 
 `context --check` already reports present/missing/stale across business,
@@ -48,6 +38,28 @@ Nothing. The definition of done in `SPEC.md` holds as of 0.6.0; see the note on
 Google Ads under Queued, which is additive rather than blocking.
 
 ## Fixed
+
+### The two best findings the audit produced could not be tracked
+
+"No Tier 0 pages" and "No Tier 1 pages" are site-level diagnoses, and the second
+one's own text said it was usually worth more than any single fix listed under
+it. Both existed only as `console.log` inside the printer: absent from
+`Diagnosis`, unscored, never written to the ledger, invisible to `report`, to
+`routine`, and to every skill that reads the diagnosis JSON. The best output of
+the system disappeared the moment nobody was watching stdout, and could never
+be closed because nothing had opened it.
+
+They are ordinary findings now, carried on the site root, so they rank against
+page-level work and close on their own evidence: a Tier 1 page existing is
+exactly what makes "no Tier 1 pages" untrue. Effort is 16h and 12h rather than
+the sub-hour figures the metadata checks carry, because this is building a page
+that does not exist, not editing one that does, and understating it is how it
+stays undone.
+
+Two rules kept from the printer: a partial crawl produces neither, since
+absence in a sample is not absence from a site; and a site missing both reports
+only the Tier 0 one, because it has one problem rather than two.
+
 
 ### A connected GA4 that measured nothing looked healthy
 
