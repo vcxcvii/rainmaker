@@ -5,8 +5,16 @@ dist/
 # Contains real traffic, conversion counts and modelled pipeline.
 # data.example/ is committed instead, same shapes, fabricated numbers.
 data/
-rainmaker.config.yml
 *.local.json
 
-# Leftover local config from the pre-rename project. Never ship a real one.
-paydirt.config.yml
+# Every real config, whatever the product is called this week.
+#
+# This was `rainmaker.config.yml` alone, and before that `paydirt.config.yml`.
+# Renaming the product renamed the ignore rule, the file on disk kept its old
+# name, and it silently became trackable: a config with a real site, ICP, GSC
+# property and booking link was committed by a `git add -A` that had no reason
+# to warn about it. Match the shape instead of the name so a future rename
+# cannot quietly unprotect anything.
+#
+# `*.config.example.yml` does not match this pattern and stays committed.
+*.config.yml
