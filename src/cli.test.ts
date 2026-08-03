@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
+import { attribution } from './commands/audit.js';
 import { unknownFlags, wantsHelp } from './cli.js';
 
 test('--help is recognised so it never reaches a command that crawls', () => {
@@ -40,4 +41,23 @@ test('an inline value is checked as the flag name alone', () => {
 
 test('every unknown flag is reported once, in the order it appeared', () => {
   assert.deepEqual(unknownFlags('audit', ['--foo', '--bar', '--foo']), ['foo', 'bar']);
+});
+
+test('attribution states the complete tool output, with checkable counts', () => {
+  const finding = (id: string) => ({ id }) as never;
+  const block = attribution([finding('a'), finding('b')], [finding('c')]);
+
+  assert.equal(block.authored_by, 'rainmaker-cli');
+  assert.equal(block.findings, 2);
+  assert.equal(block.suspicions, 1);
+  assert.match(block.statement, /complete output/);
+  assert.match(block.statement, /assistant's own reading/);
+});
+
+test('attribution counts an empty diagnosis rather than going silent', () => {
+  const block = attribution([], []);
+
+  assert.equal(block.findings, 0);
+  assert.equal(block.suspicions, 0);
+  assert.match(block.statement, /0 finding\(s\) and 0 suspicion\(s\)/);
 });

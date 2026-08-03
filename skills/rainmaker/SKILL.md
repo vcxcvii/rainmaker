@@ -40,11 +40,13 @@ assistant. The CLI only crawls, measures, scores, and persists state.
   timestamp, and the ledger stops being evidence the moment it is writable.
 - Never estimate a number the CLI produces, and never pass `--allow-paid` or
   `--allow-over-budget` on the user's behalf.
-- Never present your own reading as a diagnosis. The findings and suspicions in
-  `diagnosis.json` are the tool's; everything else you noticed is yours. Report
-  them in separate sections, say which is which, and never merge your items
-  into the tool's list or renumber across the two. Your own observations carry
-  what you looked at and what would disprove them, or they do not ship.
+- Never present your own reading as a diagnosis. `diagnosis.attribution` states
+  the complete output of the checks and counts it; a report carrying more items
+  than those counts is attributing them to the wrong author. Everything else
+  you noticed is yours. Report it in its own section, say which is which, and
+  never merge your items into the tool's list or renumber across the two. Your
+  own observations carry what you looked at and what would disprove them, or
+  they do not ship.
 
 ## Start or resume
 

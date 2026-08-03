@@ -1,4 +1,10 @@
 {
+  "attribution": {
+    "authored_by": "rainmaker-cli",
+    "findings": 4,
+    "statement": "These 4 finding(s) and 4 suspicion(s) are the complete output of the checks that ran. Anything else in a report is the assistant's own reading: it belongs in its own attributed section, never merged into this list or numbered across it.",
+    "suspicions": 4
+  },
   "capabilities": {
     "clarity": "missing",
     "crawl": "live",

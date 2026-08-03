@@ -33,6 +33,42 @@ export interface Diagnosis {
   coverage: { discovered: number; fetched: number; budget_exhausted: boolean; coverage_gap: number };
   findings: Finding[];
   suspicions: Finding[];
+  /**
+   * What this file does and does not claim.
+   *
+   * An assistant reading a diagnosis will notice things no check covers, and
+   * saying so is useful. Printing it in the tool's voice, numbered into the
+   * tool's list, is not: the reader loses the ability to tell which items
+   * carry evidence, and every scored finding inherits the credibility of the
+   * weakest guess beside it. This block states the complete set the checks
+   * produced, so anything else is visibly outside it.
+   */
+  attribution: Attribution;
+}
+
+export interface Attribution {
+  authored_by: 'rainmaker-cli';
+  findings: number;
+  suspicions: number;
+  statement: string;
+}
+
+/**
+ * Builds the closed statement of what the checks produced.
+ *
+ * The counts are here so the claim is checkable rather than rhetorical: a
+ * report carrying more items than this attributes them to the wrong author.
+ */
+export function attribution(findings: Finding[], suspicions: Finding[]): Attribution {
+  return {
+    authored_by: 'rainmaker-cli',
+    findings: findings.length,
+    suspicions: suspicions.length,
+    statement:
+      `These ${findings.length} finding(s) and ${suspicions.length} suspicion(s) are the complete output ` +
+      'of the checks that ran. Anything else in a report is the assistant\'s own reading: ' +
+      'it belongs in its own attributed section, never merged into this list or numbered across it.',
+  };
 }
 
 function latestSnapshot(): string | null {
@@ -187,6 +223,7 @@ export async function runAudit(args: string[]): Promise<number> {
     },
     findings,
     suspicions,
+    attribution: attribution(findings, suspicions),
   };
   writeStableJson(join(snapshotDir!, 'diagnosis.json'), diagnosis);
 
@@ -298,4 +335,8 @@ function report(
   }
 
   console.log('\nFull diagnosis written to the latest snapshot directory.');
+
+  // Printed last, and by the CLI rather than left to the assistant, so the
+  // boundary appears verbatim in the transcript the user reads.
+  console.log(`\n${diagnosis.attribution.statement}`);
 }

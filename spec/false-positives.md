@@ -21,6 +21,8 @@ Silence about the third category is the most common way a system reports a false
 
 The fourth category is the second most common way, and it does not come from the CLI at all. The assistant driving Rainmaker reads the same crawl the checks read, and it will notice things no check covers. That is useful. It stops being useful the moment those observations are printed in the same list, in the same voice, as a scored finding, because the reader has no way left to tell which items carry evidence and which carry inference. Every verdict in the table above then inherits the credibility of the weakest item next to it.
 
+The diagnosis carries this boundary itself rather than leaving it to prose. `diagnosis.attribution` names the author, counts the findings and suspicions the checks produced, and states that anything beyond them belongs to the assistant. The counts are what make it checkable: a report listing more items than the block counts has attributed them to the wrong author, and that is verifiable without rerunning anything. `rainmaker audit` prints the same statement as its last line, so the boundary appears in the transcript the user reads rather than only in a file they may not open.
+
 A reading is not a lesser finding and must not be laundered into one. It is a different kind of claim: it did not pass a coverage rule, it has no `revenue_score`, it is not in the ledger, and it will not be checked again next run. Report it under its own heading, attributed, with what it is based on and what would show it wrong. Never number it into the tool's sequence. Never let a summary line total the two together.
 
 ## 2. The four rules
