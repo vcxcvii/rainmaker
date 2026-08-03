@@ -32,7 +32,7 @@
     "report": "tsx src/cli.ts report",
     "routine": "tsx src/cli.ts routine",
     "typecheck": "tsc --noEmit",
-    "test": "tsx --test src/**/*.test.ts",
+    "test": "tsx --test src/*.test.ts src/**/*.test.ts",
     "update-example": "tsx scripts/update-example-diagnosis.ts"
   },
   "keywords": [
