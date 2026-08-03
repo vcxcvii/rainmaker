@@ -8,8 +8,8 @@
  */
 
 import 'dotenv/config';
-import { readFileSync } from 'node:fs';
-import { pathToFileURL } from 'node:url';
+import { readFileSync, realpathSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import { ConfigError } from './config/load.js';
 
 const VERSION = (JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8')) as {
@@ -265,9 +265,25 @@ async function main(argv: string[]): Promise<number> {
   }
 }
 
-// Guarded so the flag helpers above can be imported and tested without the
-// import itself running a command and exiting the process.
-if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+/**
+ * True when this module is the program being run, rather than an import.
+ *
+ * Both sides are resolved through realpath before comparing. Comparing the raw
+ * `argv[1]` against `import.meta.url` looks equivalent and is not: an npm
+ * global install puts a symlink on PATH, so `argv[1]` is the link
+ * (`.npm-global/bin/rainmaker`) while `import.meta.url` is already the resolved
+ * file. They never match, and the CLI exits 0 having printed nothing.
+ */
+export function isEntrypoint(entry: string | undefined, moduleUrl: string): boolean {
+  if (!entry) return false;
+  try {
+    return realpathSync(entry) === realpathSync(fileURLToPath(moduleUrl));
+  } catch {
+    return false;
+  }
+}
+
+if (isEntrypoint(process.argv[1], import.meta.url)) {
   main(process.argv.slice(2))
     .then((code) => process.exit(code))
     .catch((err: unknown) => {

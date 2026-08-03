@@ -1,6 +1,6 @@
 {
   "name": "@vcxcvii/rainmaker",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "description": "Open-source SEO and AEO agent. Ranks every finding by distance to revenue, checks the live SERP before briefing anything, and records whether the fix worked.",
   "type": "module",
   "bin": {

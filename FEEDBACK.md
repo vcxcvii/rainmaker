@@ -262,3 +262,59 @@ than printing usage. `rainmaker ledger --help` printed ledger rows. Unknown
 flags fall through to execution, so `--refersh` runs a full audit and silently
 does not refresh. On a project configured for a paid provider, asking for help
 spends credits. Filed as issue #4.
+
+### `context --sync` cannot satisfy `know-my-buyer`'s own definition of done
+
+`know-my-buyer` says it is done when "both artifacts are written with matching
+ids and a matching `context_hash`", and step 7 tells the skill to write them
+"via `rainmaker context --sync` semantics". But `--sync` accepts the prose as
+authoritative and bumps the version without reading it. After a full twelve
+question interview that produced two personas and four proof points in
+`context/business.md`, `data/strategy.json` reported `personas: 0` and
+`proof: 0` against a matching hash.
+
+The skill's hard boundary forbids hand-writing `data/`, and correctly so: a
+record the model can edit is an opinion with a timestamp. So there is no path
+from a completed interview to populated records. The hash matching while the
+ids do not is the worst of both, because `context --validate` passes and every
+downstream skill reads an empty roster while believing the context is current.
+
+Either `--sync` extracts records from the prose, or the skill needs a write
+path that is not the model's own editor, or `--validate` should fail when
+`business.md` names ids that `strategy.json` does not carry.
+
+### `--refresh` on `audit` means the opposite of what it says, and says nothing
+
+`rainmaker audit --refresh` does not re-crawl. It re-tiers and re-scores the most
+recent snapshot, which `audit.ts:122` documents as deliberate and free. The
+behaviour is defensible. The name is not, and the silence is worse.
+
+GSC and GA4 both announce reuse: "Search Console data carried forward from
+snapshot <ts>. Run `rainmaker fetch` to refresh it." The crawl announces
+nothing. So a run against a snapshot from an hour earlier prints a full tier
+distribution and finding list that look identical to a fresh audit.
+
+Observed cost: a page was published, deployed and verified live, then
+`audit --refresh` reported the old tier counts from a pre-publication crawl. The
+page was absent from `crawl.json` while the output claimed to describe the site.
+Nothing in the run said so. Plain `rainmaker audit` then fetched 54 URLs and
+showed the real numbers.
+
+Either rename it (`--rescore`, `--no-crawl`), or print "Crawl carried forward
+from snapshot <ts>. Run `rainmaker audit` without --refresh to re-crawl." in the
+same place the other two carried-forward notices already appear.
+
+### The `--help` fix shipped a silent no-op through the global bin
+
+0.7.1 guarded the entry point on
+`import.meta.url === pathToFileURL(process.argv[1]).href` so the flag helpers
+could be imported by a test without running a command. An npm global install
+puts a symlink on PATH, so `argv[1]` is `.npm-global/bin/rainmaker` while
+`import.meta.url` is already the resolved file. The two never match, and
+`rainmaker <anything>` exited 0 having printed nothing. Running
+`node dist/cli.js <command>` worked, which is what made it easy to miss.
+
+Both sides now resolve through `realpathSync` before comparing, and two tests
+build a real symlink in a temp directory to cover it. The general lesson is that
+the guard was added for testability and was itself the one thing in the file
+with no test.

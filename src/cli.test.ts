@@ -1,8 +1,13 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
+import { mkdtempSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { pathToFileURL } from 'node:url';
+
 import { attribution } from './commands/audit.js';
-import { unknownFlags, wantsHelp } from './cli.js';
+import { isEntrypoint, unknownFlags, wantsHelp } from './cli.js';
 
 test('--help is recognised so it never reaches a command that crawls', () => {
   assert.equal(wantsHelp(['--help']), true);
@@ -60,4 +65,34 @@ test('attribution counts an empty diagnosis rather than going silent', () => {
   assert.equal(block.findings, 0);
   assert.equal(block.suspicions, 0);
   assert.match(block.statement, /0 finding\(s\) and 0 suspicion\(s\)/);
+});
+
+test('a symlinked entry point still counts as the program being run', () => {
+  // The regression this exists for: an npm global install puts a symlink on
+  // PATH, so argv[1] is the link while import.meta.url is the resolved file.
+  // Comparing them without realpath made `rainmaker <anything>` exit 0 silently.
+  const dir = mkdtempSync(join(tmpdir(), 'rainmaker-entry-'));
+  const real = join(dir, 'cli.js');
+  const link = join(dir, 'rainmaker');
+  writeFileSync(real, '');
+  symlinkSync(real, link);
+
+  assert.equal(isEntrypoint(link, pathToFileURL(real).href), true);
+  assert.equal(isEntrypoint(real, pathToFileURL(real).href), true);
+
+  rmSync(dir, { recursive: true, force: true });
+});
+
+test('an unrelated entry point is not the program being run', () => {
+  const dir = mkdtempSync(join(tmpdir(), 'rainmaker-entry-'));
+  const real = join(dir, 'cli.js');
+  const other = join(dir, 'other.js');
+  writeFileSync(real, '');
+  writeFileSync(other, '');
+
+  assert.equal(isEntrypoint(other, pathToFileURL(real).href), false);
+  assert.equal(isEntrypoint(undefined, pathToFileURL(real).href), false);
+  assert.equal(isEntrypoint(join(dir, 'missing.js'), pathToFileURL(real).href), false);
+
+  rmSync(dir, { recursive: true, force: true });
 });
