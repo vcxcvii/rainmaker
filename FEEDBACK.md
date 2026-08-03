@@ -228,3 +228,37 @@ Missing primary conversion returned exit 1 and wrote nothing, leaving an empty
 directory. It now writes the config with a TODO; `validateConfig` already
 rejects an empty `primary_conversion` by name, which is the better place for
 that error to surface.
+
+### An assistant's own observations were reported as the tool's findings
+
+A run through a third-party host returned seven ranked "audit findings" on a
+53-page site. The diagnosis for that same crawl held one finding and one
+suspicion. The other six were the assistant's own reading, printed in the
+tool's voice and numbered into the tool's list.
+
+Three of the six were wrong, and all three failed the same way: they asserted
+things that are only visible in the site's source, from a crawl that only sees
+HTTP. Internal links were called non-canonical when the repository contains
+none; `Last-Modified: None` was read as missing freshness signals when the host
+simply does not send that header and the sitemap carries `lastmod`; redirect
+stubs were called orphans when being absent from the sitemap is what a redirect
+stub is for. The tool never claimed any of them. `links()` in `fetch/crawl.js`
+strips `www.` from both hosts before classifying, so the canonicalisation item
+is not a finding this system can produce.
+
+The cost was not the three wrong items. It was that the one real finding, and
+the tool's loudest output that run - GA4 connected with no key events, so
+nothing on the site measures a conversion - arrived at the same volume as
+inference and got read as one undifferentiated list.
+
+`spec/false-positives.md` now carries a fourth verdict, Reading, alongside
+Finding, Suspicion and Unmeasured, and the skill's hard boundary forbids
+merging the assistant's items into the tool's list.
+
+### Subcommands ignore `--help` and execute instead
+
+`rainmaker audit --help` ran a live 53-page crawl and wrote a snapshot rather
+than printing usage. `rainmaker ledger --help` printed ledger rows. Unknown
+flags fall through to execution, so `--refersh` runs a full audit and silently
+does not refresh. On a project configured for a paid provider, asking for help
+spends credits. Filed as issue #4.

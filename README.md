@@ -209,6 +209,7 @@ This prevents 26 skills from becoming 26 unrelated opinions.
 - Ship doorway-page permutations or simulate independent voices.
 - Claim an algorithm update caused a change when the evidence only shows timing.
 - Hide missing Search Console, GA4, or other evidence from a report.
+- Let the assistant's own observations be reported as findings the tool made. What the checks found and what the assistant noticed are separate sections, separately attributed.
 
 ## Rainmaker versus an experienced agency
 

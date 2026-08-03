@@ -27,9 +27,13 @@ user. Never activate Firecrawl or context.dev because a key exists; obtain
 explicit approval for paid or quota-backed providers.
 
 Read the diagnosis. Report its tier distribution, top three revenue-scored
-findings, and missing evidence. Run `rainmaker keys`, offer GSC/GA4/Clarity
-connections, and walk through one source at a time. Obtain explicit approval
-before probing a disclosed credential. Never print secret contents.
+findings, and missing evidence. Never present your own reading as a diagnosis:
+the findings and suspicions in `diagnosis.json` are the tool's, anything else
+you noticed is yours, and the two go in separate attributed sections. Do not
+merge your items into the tool's list or number across the two. Run `rainmaker
+keys`, offer GSC/GA4/Clarity connections, and walk through one source at a
+time. Obtain explicit approval before probing a disclosed credential. Never
+print secret contents.
 
 Conduct the installed `know-my-buyer` workflow yourself, one grounded question
 at a time. Do not spawn a shell chatbot. Persist confirmed answers according to

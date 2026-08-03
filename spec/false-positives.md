@@ -15,8 +15,13 @@ The target is under one percent of reported findings being wrong. That is only r
 | **Finding** | The evidence establishes the problem | Full finding, scored, ledgered |
 | **Suspicion** | Consistent with a problem, insufficient to establish it | Named as a suspicion, with what would confirm it, never scored above 0.5 |
 | **Unmeasured** | We do not have the data to say | Named in the confidence section, never in the findings list |
+| **Reading** | The assistant's own judgement, not a check that ran | Its own section, attributed to the assistant, never in the findings list |
 
 Silence about the third category is the most common way a system reports a false positive without lying: reporting only what it can see, in a tone that implies it saw everything.
+
+The fourth category is the second most common way, and it does not come from the CLI at all. The assistant driving Rainmaker reads the same crawl the checks read, and it will notice things no check covers. That is useful. It stops being useful the moment those observations are printed in the same list, in the same voice, as a scored finding, because the reader has no way left to tell which items carry evidence and which carry inference. Every verdict in the table above then inherits the credibility of the weakest item next to it.
+
+A reading is not a lesser finding and must not be laundered into one. It is a different kind of claim: it did not pass a coverage rule, it has no `revenue_score`, it is not in the ledger, and it will not be checked again next run. Report it under its own heading, attributed, with what it is based on and what would show it wrong. Never number it into the tool's sequence. Never let a summary line total the two together.
 
 ## 2. The four rules
 
